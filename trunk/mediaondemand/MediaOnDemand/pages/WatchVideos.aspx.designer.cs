@@ -10,7 +10,7 @@
 namespace MediaOnDemand {
     
     
-    public partial class WebForm3 {
+    public partial class WatchVideos {
         
         /// <summary>
         /// TreeView1 control.

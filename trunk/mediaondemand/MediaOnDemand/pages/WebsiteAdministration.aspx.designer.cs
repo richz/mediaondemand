@@ -11,7 +11,7 @@ namespace MediaOnDemand
 {
 
 
-    public partial class WebForm7
+    public partial class WebsiteAdministration
     {
     }
 }

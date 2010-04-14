@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LoggedOut.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="MediaOnDemand.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LoggedOut.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="MediaOnDemand.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
  <title>Login Page</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
   <div class="center">
-                <asp:Login ID="Login" runat="server" BackColor="#F7F6F3" BorderColor="#E6E2D8" 
+                <asp:Login ID="mainLogin" runat="server" BackColor="#F7F6F3" BorderColor="#E6E2D8" 
                     BorderPadding="4" BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" 
                     Font-Size="0.8em" ForeColor="#333333" DestinationPageUrl="~/pages/Home.aspx">
                     <InstructionTextStyle Font-Italic="True" ForeColor="Black" />

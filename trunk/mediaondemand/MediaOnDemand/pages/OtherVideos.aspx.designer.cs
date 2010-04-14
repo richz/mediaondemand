@@ -11,7 +11,7 @@ namespace MediaOnDemand
 {
 
 
-    public partial class WebForm6
+    public partial class OtherVideos
     {
     }
 }

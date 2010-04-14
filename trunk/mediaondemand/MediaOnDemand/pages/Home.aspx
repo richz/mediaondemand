@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="MediaOnDemand.WebForm2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="MediaOnDemand.Home" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
  <title>Home Page</title>
 </asp:Content>

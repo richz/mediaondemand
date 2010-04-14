@@ -10,24 +10,15 @@
 namespace MediaOnDemand {
     
     
-    public partial class StreamMusic {
+    public partial class MediaPlayer {
         
         /// <summary>
-        /// gvMusic control.
+        /// Media_Player_Control control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMusic;
-        
-        /// <summary>
-        /// lnqMusic control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource lnqMusic;
+        protected global::Media_Player_ASP.NET_Control.Media_Player_Control Media_Player_Control;
     }
 }

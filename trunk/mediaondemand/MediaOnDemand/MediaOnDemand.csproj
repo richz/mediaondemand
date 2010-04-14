@@ -12,7 +12,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MediaOnDemand</RootNamespace>
     <AssemblyName>MediaOnDemand</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,24 +33,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Media-Player-ASP.NET-Control">
+      <HintPath>PlayerControls\Media-Player-ASP.NET-Contro-NET3_5\Media-Player-ASP.NET-Control.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnetdb.mdf" />
+    <Content Include="App_Data\aspnetdb_log.LDF">
+      <DependentUpon>aspnetdb.mdf</DependentUpon>
+    </Content>
+    <Content Include="Scripts\mediaplayer.js" />
     <Content Include="pages\About.aspx" />
     <Content Include="Account\ChangePassword.aspx" />
     <Content Include="Account\ChangePasswordSuccess.aspx" />
@@ -77,6 +85,7 @@
     <Content Include="pages\WatchMovies.aspx" />
     <Content Include="pages\OtherVideos.aspx" />
     <Content Include="pages\WebsiteAdministration.aspx" />
+    <Content Include="pages\MediaPlayer.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="pages\About.aspx.cs">
@@ -188,9 +197,22 @@
     <Compile Include="pages\WebsiteAdministration.aspx.designer.cs">
       <DependentUpon>WebsiteAdministration.aspx</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Compile Include="StorageMedia.cs">
+      <DependentUpon>StorageMedia.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="StorageMedia.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StorageMedia.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="StoredMediaManagement.cs" />
+    <Compile Include="pages\MediaPlayer.aspx.cs">
+      <DependentUpon>MediaPlayer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\MediaPlayer.aspx.designer.cs">
+      <DependentUpon>MediaPlayer.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
@@ -198,6 +220,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LoggedOut.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="StorageMedia.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>StorageMedia.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="StorageMedia.dbml.layout">
+      <DependentUpon>StorageMedia.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MediaOnDemandLibrary\MediaOnDemandLibrary.csproj">
+      <Project>{55B8FAF1-98BD-42C2-948C-D1D8CBF1C76D}</Project>
+      <Name>MediaOnDemandLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PlayerControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

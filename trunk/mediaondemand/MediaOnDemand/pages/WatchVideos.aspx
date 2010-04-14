@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WatchVideos.aspx.cs" Inherits="MediaOnDemand.WebForm3" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WatchVideos.aspx.cs" Inherits="MediaOnDemand.WatchVideos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
- <title>Watch Videos</title>
+    <title>Watch Videos</title>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
