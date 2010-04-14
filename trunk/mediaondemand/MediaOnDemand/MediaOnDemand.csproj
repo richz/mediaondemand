@@ -50,13 +50,13 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
+    <Content Include="pages\About.aspx" />
     <Content Include="Account\ChangePassword.aspx" />
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Styles\Site.css" />
-    <Content Include="Default.aspx" />
+    <Content Include="pages\Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.3.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.3.2.js" />
@@ -70,13 +70,20 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="pages\Login.aspx" />
+    <Content Include="pages\Home.aspx" />
+    <Content Include="pages\WatchVideos.aspx" />
+    <Content Include="pages\StreamMusic.aspx" />
+    <Content Include="pages\WatchMovies.aspx" />
+    <Content Include="pages\OtherVideos.aspx" />
+    <Content Include="pages\WebsiteAdministration.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About.aspx.cs">
+    <Compile Include="pages\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="About.aspx.designer.cs">
+    <Compile Include="pages\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\ChangePassword.aspx.cs">
@@ -107,11 +114,11 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
+    <Compile Include="pages\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
+    <Compile Include="pages\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -131,6 +138,55 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\WatchVideos.aspx.cs">
+      <DependentUpon>WatchVideos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\WatchVideos.aspx.designer.cs">
+      <DependentUpon>WatchVideos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\StreamMusic.aspx.cs">
+      <DependentUpon>StreamMusic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\StreamMusic.aspx.designer.cs">
+      <DependentUpon>StreamMusic.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\WatchMovies.aspx.cs">
+      <DependentUpon>WatchMovies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\WatchMovies.aspx.designer.cs">
+      <DependentUpon>WatchMovies.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\OtherVideos.aspx.cs">
+      <DependentUpon>OtherVideos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\OtherVideos.aspx.designer.cs">
+      <DependentUpon>OtherVideos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\WebsiteAdministration.aspx.cs">
+      <DependentUpon>WebsiteAdministration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\WebsiteAdministration.aspx.designer.cs">
+      <DependentUpon>WebsiteAdministration.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
