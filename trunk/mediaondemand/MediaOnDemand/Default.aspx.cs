@@ -11,7 +11,8 @@ namespace MediaOnDemand
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+                Response.Redirect("~/pages/Login.aspx");
         }
     }
 }
