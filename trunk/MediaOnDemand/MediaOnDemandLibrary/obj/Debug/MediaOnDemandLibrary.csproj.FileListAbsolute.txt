@@ -1,0 +1,5 @@
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\ResolveAssemblyReference.cache
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandLibrary.dll
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandLibrary.pdb
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.dll
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.pdb
