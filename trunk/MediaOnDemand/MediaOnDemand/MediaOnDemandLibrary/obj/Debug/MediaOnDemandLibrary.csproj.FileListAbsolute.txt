@@ -1,0 +1,20 @@
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\ResolveAssemblyReference.cache
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandLibrary.dll
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandLibrary.pdb
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.dll
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.pdb
+C:\Users\GAMER\Desktop\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandLibrary.dll
+C:\Users\GAMER\Desktop\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandLibrary.pdb
+C:\Users\GAMER\Desktop\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\GAMER\Desktop\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.dll
+C:\Users\GAMER\Desktop\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.pdb
+E:\Projects\Web\Personal\New MediaOnDemand\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandLibrary.dll
+E:\Projects\Web\Personal\New MediaOnDemand\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandLibrary.pdb
+E:\Projects\Web\Personal\New MediaOnDemand\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\ResolveAssemblyReference.cache
+E:\Projects\Web\Personal\New MediaOnDemand\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.dll
+E:\Projects\Web\Personal\New MediaOnDemand\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.pdb
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandLibrary.dll
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandLibrary.pdb
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\ResolveAssemblyReference.cache
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.dll
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.pdb
