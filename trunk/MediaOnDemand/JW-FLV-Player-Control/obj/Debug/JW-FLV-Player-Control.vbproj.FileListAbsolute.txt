@@ -25,3 +25,12 @@ E:\Projects\Web\Personal\2008 MediaOnDemand\MediaOnDemand\JW-FLV-Player-Control\
 E:\Projects\Web\Personal\2008 MediaOnDemand\MediaOnDemand\JW-FLV-Player-Control\obj\Debug\JW-FLV-Player-Control.dll
 E:\Projects\Web\Personal\2008 MediaOnDemand\MediaOnDemand\JW-FLV-Player-Control\obj\Debug\JW-FLV-Player-Control.xml
 E:\Projects\Web\Personal\2008 MediaOnDemand\MediaOnDemand\JW-FLV-Player-Control\obj\Debug\JW-FLV-Player-Control.pdb
+E:\Projects\Web\Personal\MediaOnDemand\JW-FLV-Player-Control\bin\Debug\JW-FLV-Player-Control.dll
+E:\Projects\Web\Personal\MediaOnDemand\JW-FLV-Player-Control\bin\Debug\JW-FLV-Player-Control.pdb
+E:\Projects\Web\Personal\MediaOnDemand\JW-FLV-Player-Control\bin\Debug\JW-FLV-Player-Control.xml
+E:\Projects\Web\Personal\MediaOnDemand\JW-FLV-Player-Control\obj\Debug\ResolveAssemblyReference.cache
+E:\Projects\Web\Personal\MediaOnDemand\JW-FLV-Player-Control\obj\Debug\JW_FLV_Player_Control.Resources.resources
+E:\Projects\Web\Personal\MediaOnDemand\JW-FLV-Player-Control\obj\Debug\JW-FLV-Player-Control.vbproj.GenerateResource.Cache
+E:\Projects\Web\Personal\MediaOnDemand\JW-FLV-Player-Control\obj\Debug\JW-FLV-Player-Control.dll
+E:\Projects\Web\Personal\MediaOnDemand\JW-FLV-Player-Control\obj\Debug\JW-FLV-Player-Control.xml
+E:\Projects\Web\Personal\MediaOnDemand\JW-FLV-Player-Control\obj\Debug\JW-FLV-Player-Control.pdb
