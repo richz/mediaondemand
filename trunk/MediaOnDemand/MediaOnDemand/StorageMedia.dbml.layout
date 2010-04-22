@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="StorageMedia">
+  <DataContextMoniker Name="/StorageMediaDataContext" />
+  <nestedChildShapes>
+    <classShape Id="c22895b3-ad6c-4a22-a128-c5465cb4bfa0" absoluteBounds="2.75, 1.625, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/StorageMediaDataContext/StoredMedia" />
+      <nestedChildShapes>
+        <elementListCompartment Id="65e2a23a-299b-41b4-a39c-1219fc9a0339" absoluteBounds="2.765, 2.085, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
