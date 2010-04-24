@@ -1,0 +1,308 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E7CA561A-DF3E-4019-8B8E-D95857C86690}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MediaOnDemand</RootNamespace>
+    <AssemblyName>MediaOnDemand</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=3.5.40412.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\2008 MediaOnDemand\MediaOnDemand\MediaOnDemand\bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\ChangePassword.aspx" />
+    <Content Include="Account\ChangePasswordSuccess.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Register.aspx" />
+    <Content Include="bin\MediaOnDemand.dll" />
+    <Content Include="bin\MediaOnDemand.pdb" />
+    <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="js\jquery-1.3.2-vsdoc.js" />
+    <Content Include="js\jquery-1.3.2.js" />
+    <Content Include="js\jquery-1.3.2.min.js" />
+    <Content Include="js\WebAdmin.js" />
+    <Content Include="obj\Debug\MediaOnDemand.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\MediaOnDemand.dll" />
+    <Content Include="obj\Debug\MediaOnDemand.pdb" />
+    <Content Include="Styles\Site.css" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePasswordSuccess.aspx.cs">
+      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePasswordSuccess.aspx.designer.cs">
+      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="LoggedOut.Master.cs">
+      <DependentUpon>LoggedOut.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoggedOut.Master.designer.cs">
+      <DependentUpon>LoggedOut.Master</DependentUpon>
+    </Compile>
+    <Compile Include="pages\About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\AddEditMedia.aspx.cs">
+      <DependentUpon>AddEditMedia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\AddEditMedia.aspx.designer.cs">
+      <DependentUpon>AddEditMedia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\AddEditMediaRow.aspx.cs">
+      <DependentUpon>AddEditMediaRow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\AddEditMediaRow.aspx.designer.cs">
+      <DependentUpon>AddEditMediaRow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\AddNewMedia.aspx.cs">
+      <DependentUpon>AddNewMedia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\AddNewMedia.aspx.designer.cs">
+      <DependentUpon>AddNewMedia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\MediaPlayer.aspx.cs">
+      <DependentUpon>MediaPlayer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\MediaPlayer.aspx.designer.cs">
+      <DependentUpon>MediaPlayer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\OtherVideos.aspx.cs">
+      <DependentUpon>OtherVideos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\OtherVideos.aspx.designer.cs">
+      <DependentUpon>OtherVideos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Player.aspx.cs">
+      <DependentUpon>Player.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Player.aspx.designer.cs">
+      <DependentUpon>Player.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\StreamMusic.aspx.cs">
+      <DependentUpon>StreamMusic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\StreamMusic.aspx.designer.cs">
+      <DependentUpon>StreamMusic.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\WatchMovies.aspx.cs">
+      <DependentUpon>WatchMovies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\WatchMovies.aspx.designer.cs">
+      <DependentUpon>WatchMovies.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\WatchVideos.aspx.cs">
+      <DependentUpon>WatchVideos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\WatchVideos.aspx.designer.cs">
+      <DependentUpon>WatchVideos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\WebsiteAdministration.aspx.cs">
+      <DependentUpon>WebsiteAdministration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\WebsiteAdministration.aspx.designer.cs">
+      <DependentUpon>WebsiteAdministration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="StorageMedia.cs">
+      <DependentUpon>StorageMedia.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="StorageMedia.designer.cs">
+      <DependentUpon>StorageMedia.dbml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="StoredMediaManagement.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\Web.config" />
+    <Content Include="App_Data\aspnetdb.mdf">
+    </Content>
+    <Content Include="App_Data\aspnetdb_log.ldf">
+      <DependentUpon>aspnetdb.mdf</DependentUpon>
+    </Content>
+    <Content Include="flowplayer-3.1.5.swf" />
+    <Content Include="flowplayer.controls-3.1.5.swf" />
+    <Content Include="js\flowplayer-3.1.4.min.js" />
+    <Content Include="js\playMedia.js" />
+    <Content Include="LoggedOut.Master" />
+    <Content Include="pages\About.aspx" />
+    <Content Include="pages\AddEditMedia.aspx" />
+    <Content Include="pages\AddEditMediaRow.aspx" />
+    <Content Include="pages\AddNewMedia.aspx" />
+    <Content Include="pages\Home.aspx" />
+    <Content Include="pages\Login.aspx" />
+    <Content Include="pages\MediaPlayer.aspx" />
+    <Content Include="pages\OtherVideos.aspx" />
+    <Content Include="pages\Player.aspx" />
+    <Content Include="pages\StreamMusic.aspx" />
+    <Content Include="pages\WatchMovies.aspx" />
+    <Content Include="pages\WatchVideos.aspx" />
+    <Content Include="pages\WebsiteAdministration.aspx" />
+    <Content Include="Site.Master" />
+    <Content Include="Styles\style.css" />
+    <None Include="StorageMedia.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>StorageMedia.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="StorageMedia.dbml.layout">
+      <DependentUpon>StorageMedia.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="css\" />
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51595</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:90/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

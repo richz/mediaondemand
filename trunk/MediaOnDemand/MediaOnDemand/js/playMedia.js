@@ -1,0 +1,11 @@
+﻿function getLink() {
+
+
+
+}
+
+function runcmd() {
+    
+    
+    
+}
