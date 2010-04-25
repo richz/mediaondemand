@@ -140,27 +140,6 @@
     <Compile Include="pages\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\AddEditMedia.aspx.cs">
-      <DependentUpon>AddEditMedia.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\AddEditMedia.aspx.designer.cs">
-      <DependentUpon>AddEditMedia.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="pages\AddEditMediaRow.aspx.cs">
-      <DependentUpon>AddEditMediaRow.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\AddEditMediaRow.aspx.designer.cs">
-      <DependentUpon>AddEditMediaRow.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="pages\AddNewMedia.aspx.cs">
-      <DependentUpon>AddNewMedia.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\AddNewMedia.aspx.designer.cs">
-      <DependentUpon>AddNewMedia.aspx</DependentUpon>
-    </Compile>
     <Compile Include="pages\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -252,9 +231,6 @@
     <Content Include="js\playMedia.js" />
     <Content Include="LoggedOut.Master" />
     <Content Include="pages\About.aspx" />
-    <Content Include="pages\AddEditMedia.aspx" />
-    <Content Include="pages\AddEditMediaRow.aspx" />
-    <Content Include="pages\AddNewMedia.aspx" />
     <Content Include="pages\Home.aspx" />
     <Content Include="pages\Login.aspx" />
     <Content Include="pages\MediaPlayer.aspx" />
