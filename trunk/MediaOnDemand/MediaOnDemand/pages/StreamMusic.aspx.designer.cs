@@ -23,6 +23,15 @@ namespace MediaOnDemand {
         protected global::System.Web.UI.WebControls.Label lblFileMessages;
         
         /// <summary>
+        /// wmPlayer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Media_Player_ASP.NET_Control.Media_Player_Control wmPlayer;
+        
+        /// <summary>
         /// gvMusic control.
         /// </summary>
         /// <remarks>
