@@ -1,4 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="StreamMusic.aspx.cs" Inherits="MediaOnDemand.StreamMusic" %>
+
+<%@ Register Assembly="Media-Player-ASP.NET-Control" Namespace="Media_Player_ASP.NET_Control"
+    TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <title>Listen to Music</title>
     <script src="../Scripts/mediaplayer.js" type="text/javascript"></script>
@@ -6,6 +9,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     
     <asp:Label ID="lblFileMessages" runat="server" Text="Label"></asp:Label>
+    
+    <cc1:Media_Player_Control ID="wmPlayer" AutoStart="true" runat="server" />
     
     <asp:GridView ID="gvMusic" runat="server" AllowPaging="True" 
         AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" 

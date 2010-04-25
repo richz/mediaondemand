@@ -13,12 +13,21 @@ namespace MediaOnDemand
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.lblFileMessages.Text = "";
-            
+            this.lblMessage.Text = "";
+
+            if (!IsPostBack)
+            {
+                this.wmPlayer.MovieURL = "";
+                this.wmPlayer.AutoStart = true;
+                this.gvMovies.PageSize = 20;                
+            }
+
+            this.lblFileMessages.Text = "";            
         }
 
         protected void lnkMovieLink_Click(object sender, EventArgs e)
         {
+            this.wmPlayer.MovieURL = "";
 
             LinkButton movieLink = (sender as LinkButton);
 
@@ -26,41 +35,14 @@ namespace MediaOnDemand
 
             if ((new FileInfo(location)).Exists)
             {
-                this.hdnFilePath.Value = location;
-                
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Launch VLC", "runcmd();", true);
+                this.wmPlayer.MovieURL = location;
+                this.lblMessage.Text = "Please click othe Play button if the movie does not start";
 
-                
-
-                //Process vlc = new Process();
-                //string vlcPath = "C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe";
-
-                //vlc.StartInfo.FileName = vlcPath;
-                //vlc.StartInfo.Arguments = "\"" + location + "\"";
-                //vlc.StartInfo.UserName = "GAMER";
-
-                //System.Security.SecureString pwd = new System.Security.SecureString();
-
-                //foreach (char c in "Supersaiyan4")
-                //    pwd.AppendChar(c);
-
-                //vlc.StartInfo.Password = pwd;
-                //vlc.StartInfo.CreateNoWindow = false;
-                //vlc.StartInfo.Verb = "open";
-                //vlc.StartInfo.UseShellExecute = false;
-
-                //try
-                //{
-                //    vlc.Start();
-                //}
-                //catch(InvalidOperationException ex)
-                //{
-                //}
+               // ScriptManager.RegisterStartupScript(this, this.GetType(), "Open Player Window", "window.open ('Player.aspx?file=" + location + "','MediaPlayer')", true);
             }
             else
                 this.lblFileMessages.Text = "File could not be found";
-
-
+            
         }
     }
 }

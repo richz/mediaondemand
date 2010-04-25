@@ -15,8 +15,21 @@ namespace MediaOnDemand
 {
     public partial class Player : System.Web.UI.Page
     {
+        string filePath;
+
         protected void Page_Load(object sender, EventArgs e)
-        {            
+        {
+            if (!IsPostBack)
+            {
+                this.wmPlayer.AutoStart = true;
+                this.wmPlayer.MovieURL = "";
+            }
+        }
+
+        protected void wmPlayer_Load(object sender, EventArgs e)
+        {
+
+            this.wmPlayer.MovieURL = this.filePath = Request.QueryString["file"];
         }
   
 

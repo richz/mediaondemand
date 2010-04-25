@@ -14,21 +14,20 @@ namespace MediaOnDemand
         protected void Page_Load(object sender, EventArgs e)
         {
             this.lblFileMessages.Text = "";
+            this.wmPlayer.MovieURL = "";
         }
 
         protected void SongLinkButton_Click(object sender, EventArgs e)
         {
+            this.wmPlayer.MovieURL = "";
+
             LinkButton songLink = (sender as LinkButton);
 
             string location = songLink.CommandArgument;
 
             if ((new FileInfo(location)).Exists)
             {
-                string windowsMediaPlayerPath = "C:\\Program Files (x86)\\Windows Media Player\\wmplayer.exe";
-                Process windowsMP = new Process();
-                windowsMP.StartInfo.FileName = windowsMediaPlayerPath;
-                windowsMP.StartInfo.Arguments = location;
-                windowsMP.Start();
+                this.wmPlayer.MovieURL = location;
             }
             else
                 this.lblFileMessages.Text = "File could not be found";
