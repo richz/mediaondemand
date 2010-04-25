@@ -21,16 +21,13 @@
             <div class="loginDisplay">
                 <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
                     <AnonymousTemplate>
-                        [ <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server">Log In</a> ]
+                        [ <a href="~/pages/Login.aspx" ID="HeadLoginStatus" runat="server">Log In</a> ]
                     </AnonymousTemplate>
-                    <RoleGroups>
-                        <asp:RoleGroup Roles="Logged In">
-                        
-                        </asp:RoleGroup>
+                    <RoleGroups>                     
                     </RoleGroups>
                     <LoggedInTemplate>
                         Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
-                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/"/> ]
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/pages/Login.aspx"/> ]
                     </LoggedInTemplate>
                 </asp:LoginView>
             </div>
@@ -55,7 +52,7 @@
                         <asp:MenuItem NavigateUrl="~/pages/About.aspx" Text="About"/>
                         <asp:MenuItem NavigateUrl="~/pages/StreamMusic.aspx" Text="Listen to Music" 
                             Value="Listen to Music"></asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="~/pages/WatchVideos.aspx" Text="Watch Videos" 
+                        <asp:MenuItem Text="Watch Videos" 
                             Value="Watch Videos">
                             <asp:MenuItem NavigateUrl="~/pages/WatchMovies.aspx" Text="Movies" Value="Movies">
                             </asp:MenuItem>
@@ -118,7 +115,6 @@
         <tr style="width:100%">
         <td class="leftColumn" style="width:20%">
         <asp:ContentPlaceHolder ID="LeftColumn" runat="server">
-            <asp:Button ID="Button1" runat="server" Text="Left" /> 
         </asp:ContentPlaceHolder>
         </td>
         <td style="width:60%">
@@ -129,7 +125,6 @@
         </td>
         <td class="rightColumn" style="width:20%">
         <asp:ContentPlaceHolder ID="RightColumn" runat="server">
-            <asp:Button ID="Button2" runat="server" Text="Right" />
         </asp:ContentPlaceHolder>
         </td>
         </tr>

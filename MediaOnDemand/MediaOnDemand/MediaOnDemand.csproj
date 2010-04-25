@@ -154,26 +154,12 @@
     <Compile Include="pages\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\MediaPlayer.aspx.cs">
-      <DependentUpon>MediaPlayer.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\MediaPlayer.aspx.designer.cs">
-      <DependentUpon>MediaPlayer.aspx</DependentUpon>
-    </Compile>
     <Compile Include="pages\OtherVideos.aspx.cs">
       <DependentUpon>OtherVideos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pages\OtherVideos.aspx.designer.cs">
       <DependentUpon>OtherVideos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="pages\Player.aspx.cs">
-      <DependentUpon>Player.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\Player.aspx.designer.cs">
-      <DependentUpon>Player.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\StreamMusic.aspx.cs">
       <DependentUpon>StreamMusic.aspx</DependentUpon>
@@ -188,13 +174,6 @@
     </Compile>
     <Compile Include="pages\WatchMovies.aspx.designer.cs">
       <DependentUpon>WatchMovies.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="pages\WatchVideos.aspx.cs">
-      <DependentUpon>WatchVideos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\WatchVideos.aspx.designer.cs">
-      <DependentUpon>WatchVideos.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\WebsiteAdministration.aspx.cs">
       <DependentUpon>WebsiteAdministration.aspx</DependentUpon>
@@ -220,6 +199,13 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="StoredMediaManagement.cs" />
+    <Compile Include="WebControls\PageSizeSelector.ascx.cs">
+      <DependentUpon>PageSizeSelector.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebControls\PageSizeSelector.ascx.designer.cs">
+      <DependentUpon>PageSizeSelector.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
@@ -233,14 +219,12 @@
     <Content Include="pages\About.aspx" />
     <Content Include="pages\Home.aspx" />
     <Content Include="pages\Login.aspx" />
-    <Content Include="pages\MediaPlayer.aspx" />
     <Content Include="pages\OtherVideos.aspx" />
-    <Content Include="pages\Player.aspx" />
     <Content Include="pages\StreamMusic.aspx" />
     <Content Include="pages\WatchMovies.aspx" />
-    <Content Include="pages\WatchVideos.aspx" />
     <Content Include="pages\WebsiteAdministration.aspx" />
     <Content Include="Site.Master" />
+    <Content Include="WebControls\PageSizeSelector.ascx" />
     <None Include="StorageMedia.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>StorageMedia.designer.cs</LastGenOutput>

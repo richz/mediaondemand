@@ -12,18 +12,41 @@
     <asp:Label ID="lblFileMessages" runat="server" Text="Label"></asp:Label>
     <br />
     <table>
-    <tr>
-    <td>
-        <asp:Label ID="lblMessage" runat="server" Font-Bold="true" Text=""></asp:Label>
-    </td>
-    </tr>
         <tr>
-            <td>
-                <cc1:Media_Player_Control ID="wmPlayer" Height="350px" Width="100%" AutoStart="true" runat="server" />
+            <td colspan="2">
+                <asp:Label ID="lblMessage" runat="server" Font-Bold="true" Text=""></asp:Label>
             </td>
         </tr>
         <tr>
-            <td>
+            <td colspan="2">
+                <cc1:Media_Player_Control ID="wmPlayer" Height="350px" Width="100%" AutoStart="true"
+                    runat="server" />
+            </td>
+        </tr>
+        <tr>
+            <td id="PageSize" style="width: 75%">
+                <table>
+                    <tr>
+                        <td>
+                            <asp:Label ID="lblPageSize" runat="server" Text="Items per page: "></asp:Label>
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
+                                <asp:ListItem>10</asp:ListItem>
+                                <asp:ListItem>20</asp:ListItem>
+                                <asp:ListItem>50</asp:ListItem>
+                                <asp:ListItem Value="all">All</asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td align="right">
+                <asp:Label ID="lblRecordCount" runat="server" Text=""></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
                 <asp:GridView ID="gvMovies" Width="100%" runat="server" AllowPaging="True" AllowSorting="True"
                     AutoGenerateColumns="False" DataSourceID="lnqMovies" CellPadding="4" ForeColor="#333333"
                     GridLines="None">
