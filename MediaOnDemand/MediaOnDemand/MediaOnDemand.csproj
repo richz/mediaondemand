@@ -249,16 +249,12 @@
     <Content Include="App_Data\aspnetdb_log.ldf">
       <DependentUpon>aspnetdb.mdf</DependentUpon>
     </Content>
-    <Content Include="flowplayer-3.1.5.swf" />
-    <Content Include="flowplayer.controls-3.1.5.swf" />
-    <Content Include="js\flowplayer-3.1.4.min.js" />
     <Content Include="js\playMedia.js" />
     <Content Include="LoggedOut.Master" />
     <Content Include="pages\About.aspx" />
     <Content Include="pages\AddEditMedia.aspx" />
     <Content Include="pages\AddEditMediaRow.aspx" />
     <Content Include="pages\AddNewMedia.aspx" />
-    <Content Include="pages\Default.html" />
     <Content Include="pages\Home.aspx" />
     <Content Include="pages\Login.aspx" />
     <Content Include="pages\MediaPlayer.aspx" />
@@ -269,7 +265,6 @@
     <Content Include="pages\WatchVideos.aspx" />
     <Content Include="pages\WebsiteAdministration.aspx" />
     <Content Include="Site.Master" />
-    <Content Include="Styles\style.css" />
     <None Include="StorageMedia.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>StorageMedia.designer.cs</LastGenOutput>
@@ -277,7 +272,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="pages\SmoothStreamingSamplePlayer.xap" />
     <None Include="StorageMedia.dbml.layout">
       <DependentUpon>StorageMedia.dbml</DependentUpon>
     </None>
