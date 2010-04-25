@@ -36,7 +36,7 @@ namespace MediaOnDemand
     #endregion
 		
 		public StorageMediaDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["aspnetdbConnectionString1"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["aspnetdbConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -135,7 +135,7 @@ namespace MediaOnDemand
 			OnCreated();
 		}
 		
-		[Column(Storage="_medTitle", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[Column(Storage="_medTitle", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
 		public string medTitle
 		{
 			get
@@ -155,7 +155,7 @@ namespace MediaOnDemand
 			}
 		}
 		
-		[Column(Storage="_medLocation", DbType="VarChar(150)")]
+		[Column(Storage="_medLocation", DbType="VarChar(300)")]
 		public string medLocation
 		{
 			get
