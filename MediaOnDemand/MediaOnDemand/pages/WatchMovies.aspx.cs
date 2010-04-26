@@ -22,12 +22,13 @@ namespace MediaOnDemand
             {
                 this.wmPlayer.MovieURL = "";
                 this.wmPlayer.AutoStart = true;
-                this.gvMovies.PageSize = 20;
+                this.ddlPageSize.SelectedIndex = this.ddlPageSize.Items.Count - 1;
+                this.gvMovies.PageSize = this.GetGridViewRecordCountByCurrentMediaType();
+                this.gvMovies.Sort("medTitle", SortDirection.Ascending);
                 UpdateRecordCount();
             }
 
-            this.lblFileMessages.Text = "";
-            
+            this.lblFileMessages.Text = "";            
         }
 
         #endregion
@@ -42,21 +43,21 @@ namespace MediaOnDemand
 
             string location = movieLink.CommandArgument;
 
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), "Show lightbox", "SetMovieUrl('" + location + "')", true);
+
             if ((new FileInfo(location)).Exists)
             {
                 this.wmPlayer.MovieURL = location;
-                this.lblMessage.Text = "Please click othe Play button if the movie does not start";
+                this.lblMessage.Text = "Please click the Play button if the movie does not start";
 
                // ScriptManager.RegisterStartupScript(this, this.GetType(), "Open Player Window", "window.open ('Player.aspx?file=" + location + "','MediaPlayer')", true);
             }
             else
                 this.lblFileMessages.Text = "File could not be found";
-
         }
 
         protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
-        {           
-
+        {
             if (!this.ddlPageSize.SelectedValue.Equals("all"))
             {
                 this.gvMovies.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue);
@@ -110,5 +111,21 @@ namespace MediaOnDemand
         }
 
         #endregion
+
+        protected void gvMovies_DataBound(object sender, EventArgs e)
+        {
+            if ((sender as GridView).Rows.Count == 0)
+            {
+                this.wmPlayer.Visible = false;
+                this.lblPageSize.Visible = false;
+                this.ddlPageSize.Visible = false;
+            }
+            else
+            {
+                this.wmPlayer.Visible = true;
+                this.lblPageSize.Visible = true;
+                this.ddlPageSize.Visible = true;
+            }
+        }
     }
 }

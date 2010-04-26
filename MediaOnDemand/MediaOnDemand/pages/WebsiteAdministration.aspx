@@ -23,8 +23,8 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:ToolkitScriptManager ID="ToolkitScriptManager" runat="server">
-    </asp:ToolkitScriptManager>
+    <%--<asp:ToolkitScriptManager ID="ToolkitScriptManager" runat="server">
+    </asp:ToolkitScriptManager>--%>
    
     <h1>Website Administration</h1>    
     <table>
@@ -155,7 +155,7 @@
                     <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                     <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" 
                         Wrap="True" />
-                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" Wrap="False" />
+                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" Wrap="False"/>
                     <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
                 </asp:GridView>
             </td>

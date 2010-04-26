@@ -14,15 +14,6 @@ namespace MediaOnDemand {
     public partial class WebsiteAdministration {
         
         /// <summary>
-        /// ToolkitScriptManager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager;
-        
-        /// <summary>
         /// lblChooseMediaType control.
         /// </summary>
         /// <remarks>
