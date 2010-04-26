@@ -16,12 +16,17 @@ namespace MediaOnDemand
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.lblMessage.Text = "";
             this.lblFileMessages.Text = "";
             this.wmPlayer.MovieURL = "";
 
             if (!IsPostBack)
             {
+                this.gvMusic.PageSize = this.GetGridViewRecordCountByCurrentMediaType();
+                this.ddlPageSize.SelectedIndex = this.ddlPageSize.Items.Count - 1;
                 UpdateRecordCount();
+                this.gvMusic.Sort("medTitle", SortDirection.Ascending);
+                
             }
         }
 
@@ -32,6 +37,7 @@ namespace MediaOnDemand
         protected void SongLinkButton_Click(object sender, EventArgs e)
         {
             this.wmPlayer.MovieURL = "";
+            this.lblMessage.Text = "Please click the Play button if the song does not start";
 
             LinkButton songLink = (sender as LinkButton);
 
@@ -51,7 +57,6 @@ namespace MediaOnDemand
 
         protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (!this.ddlPageSize.SelectedValue.Equals("all"))
             {
                 this.gvMusic.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue);
@@ -97,7 +102,7 @@ namespace MediaOnDemand
             var recs =
 
                 (from StoredMedia in context.StoredMedias
-                 where StoredMedia.medMediaType == "movie"
+                 where StoredMedia.medMediaType == "music"
                  select StoredMedia
                 );
 
@@ -105,5 +110,21 @@ namespace MediaOnDemand
         }
 
         #endregion
+
+        protected void gvMusic_DataBound(object sender, EventArgs e)
+        {
+            if ((sender as GridView).Rows.Count == 0)
+            {
+                this.wmPlayer.Visible = false;
+                this.lblPageSize.Visible = false;
+                this.ddlPageSize.Visible = false;
+            }
+            else
+            {
+                this.wmPlayer.Visible = true;
+                this.lblPageSize.Visible = true;
+                this.ddlPageSize.Visible = true;
+            }
+        }
     }
 }

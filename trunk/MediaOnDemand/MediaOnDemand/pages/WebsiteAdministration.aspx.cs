@@ -34,6 +34,7 @@ namespace MediaOnDemand
                 this.btnApplyChanges.Visible = false;
                 this.btnAddNewMediaRow.Enabled = true;
                 this.hdnNetworkFolder.Value = this.movieFolder;
+                this.gvMedia.Sort("medTitle", SortDirection.Ascending);
                 UpdateRecordCount();
 
                 if (Directory.Exists(this.movieFolder) && Directory.Exists(this.musicFolder))

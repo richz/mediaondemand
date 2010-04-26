@@ -10,7 +10,16 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Label ID="lblFileMessages" runat="server" Text="Label"></asp:Label>
-    <br />
+    <%--    <table width="100%">
+    <tr>
+    <td>
+    </td>    
+    </tr>
+    <tr>
+    <td>
+    </td>
+    </tr>
+    </table> --%>
     <table>
         <tr>
             <td colspan="2">
@@ -19,7 +28,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                <cc1:Media_Player_Control ID="wmPlayer" Height="350px" Width="100%" AutoStart="true"
+                <cc1:Media_Player_Control ID="wmPlayer" Height="300px" Width="100%" AutoStart="true"
                     runat="server" />
             </td>
         </tr>
@@ -35,7 +44,7 @@
                                 <asp:ListItem>10</asp:ListItem>
                                 <asp:ListItem>20</asp:ListItem>
                                 <asp:ListItem>50</asp:ListItem>
-                                <asp:ListItem Value="all">All</asp:ListItem>
+                                <asp:ListItem Value="all" Selected="True">All</asp:ListItem>
                             </asp:DropDownList>
                         </td>
                     </tr>
@@ -49,7 +58,7 @@
             <td colspan="2">
                 <asp:GridView ID="gvMovies" Width="100%" runat="server" AllowPaging="True" AllowSorting="True"
                     AutoGenerateColumns="False" DataSourceID="lnqMovies" CellPadding="4" ForeColor="#333333"
-                    GridLines="None">
+                    GridLines="None" OnDataBound="gvMovies_DataBound">
                     <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                     <Columns>
                         <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
@@ -67,6 +76,11 @@
                         <asp:BoundField DataField="medGenre" HeaderText="Genre" ReadOnly="True" SortExpression="medGenre" />
                         <asp:BoundField DataField="medDuration" HeaderText="Duration" ReadOnly="True" SortExpression="medDuration" />
                     </Columns>
+                    <EmptyDataTemplate>
+                        <center>
+                            <asp:Label ID="lblNoRecsFound" runat="server" Text="No records found"></asp:Label>
+                        </center>
+                    </EmptyDataTemplate>
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                     <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
                     <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />

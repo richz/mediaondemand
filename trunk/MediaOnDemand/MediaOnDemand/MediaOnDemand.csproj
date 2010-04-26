@@ -34,15 +34,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\2008 MediaOnDemand\MediaOnDemand\MediaOnDemand\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="Media-Player-ASP.NET-Control, Version=1.0.3141.38822, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\GAMER\Desktop\Media-Player-ASP.NET-Contro-NET3_5\Media-Player-ASP.NET-Control.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Web.Media.SmoothStreaming, Version=3.0.711.8, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\GAMER\Desktop\IIS Smooth Streaming Player Dev Kit\Microsoft.Web.Media.SmoothStreaming.dll</HintPath>
-    </Reference>
+    <Reference Include="Media-Player-ASP.NET-Control, Version=1.0.3141.38822, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core">
