@@ -197,6 +197,13 @@
     <Compile Include="pages\PasswordRecovery.aspx.designer.cs">
       <DependentUpon>PasswordRecovery.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\UserManagement.aspx.cs">
+      <DependentUpon>UserManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\UserManagement.aspx.designer.cs">
+      <DependentUpon>UserManagement.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnetdb.mdf">
@@ -216,6 +223,7 @@
     <Content Include="Site.Master" />
     <Content Include="WebControls\PageSizeSelector.ascx" />
     <Content Include="pages\PasswordRecovery.aspx" />
+    <Content Include="pages\UserManagement.aspx" />
     <None Include="StorageMedia.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>StorageMedia.designer.cs</LastGenOutput>

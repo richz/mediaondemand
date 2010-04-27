@@ -63,6 +63,8 @@
                             <asp:MenuItem NavigateUrl="~/pages/OtherVideos.aspx" Text="Other Videos" 
                                 Value="Other Videos"></asp:MenuItem>
                         </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/pages/UserManagement.aspx" 
+                            Text="Administer User Accounts" Value="Administer User Accounts"></asp:MenuItem>
                         <asp:MenuItem NavigateUrl="~/pages/WebsiteAdministration.aspx" 
                             Text="Administer Website" Value="Administer Website"></asp:MenuItem>
                     </Items>

@@ -3,7 +3,6 @@ E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\MediaOnDemand.pdb
 E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\obj\Debug\ResolveAssemblyReference.cache
 E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\obj\Debug\MediaOnDemand.dll
 E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\obj\Debug\MediaOnDemand.pdb
-E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\AjaxControlToolkit.dll
 E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\AjaxControlToolkit.pdb
 E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\ar\AjaxControlToolkit.resources.dll
 E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\cs\AjaxControlToolkit.resources.dll

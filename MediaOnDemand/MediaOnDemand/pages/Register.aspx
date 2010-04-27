@@ -1,14 +1,16 @@
-﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
+﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/LoggedOut.master" AutoEventWireup="true"
     CodeBehind="Register.aspx.cs" Inherits="MediaOnDemand.Account.Register" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
    
-    <asp:CreateUserWizard ID="CreateUser" runat="server">
-        <MailDefinition Subject="New account">
-        </MailDefinition>
-        <FinishNavigationTemplate>
+    <asp:CreateUserWizard ID="CreateUser" runat="server" FinishDestinationPageUrl="~/pages/Home.aspx" 
+    CancelDestinationPageUrl="~/pages/Login.aspx" 
+    oncreateduser="CreateUser_CreatedUser" 
+        DuplicateUserNameErrorMessage="An account with this User Name already exists, please enter a different user name." 
+        Width="463px" ContinueDestinationPageUrl="~/pages/Home.aspx">        
+       <FinishNavigationTemplate>
             <asp:Button ID="FinishPreviousButton" runat="server" CausesValidation="False" 
                 CommandName="MovePrevious" Text="Previous" />
             <asp:Button ID="FinishButton" runat="server" CommandName="MoveComplete" 
@@ -76,6 +78,9 @@
                                 <asp:RequiredFieldValidator ID="EmailRequired" runat="server" 
                                     ControlToValidate="Email" ErrorMessage="E-mail is required." 
                                     ToolTip="E-mail is required." ValidationGroup="CreateUser">*</asp:RequiredFieldValidator>
+                                    
+                                    <asp:RegularExpressionValidator ID="emailValidator" Display="Dynamic" ErrorMessage="Please enter a valid email address." ControlToValidate="Email" ValidationExpression="^[\w\.\-]+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]{1,})*(\.[a-zA-Z]{2,3}){1,2}$" runat="server">
+                                    </asp:RegularExpressionValidator>
                             </td>
                         </tr>
                         <tr>
@@ -132,6 +137,24 @@
                 </CustomNavigationTemplate>
             </asp:CreateUserWizardStep>
             <asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server">
+                <ContentTemplate>
+                    <table border="0">
+                        <tr>
+                            <td align="center" colspan="2">
+                                Complete</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Your account has been successfully created.</td>
+                        </tr>
+                        <tr>
+                            <td align="right" colspan="2">
+                                <asp:Button ID="ContinueButton" runat="server" CausesValidation="False" 
+                                    CommandName="Continue" Text="Continue" ValidationGroup="CreateUser" />
+                            </td>
+                        </tr>
+                    </table>
+                </ContentTemplate>
             </asp:CompleteWizardStep>
         </WizardSteps>
     </asp:CreateUserWizard>

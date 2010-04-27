@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Profile;
 
 namespace MediaOnDemand.Account
 {
@@ -13,19 +14,18 @@ namespace MediaOnDemand.Account
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //RegisterUser.ContinueDestinationPageUrl = Request.QueryString["ReturnUrl"];
+            
         }
 
         protected void RegisterUser_CreatedUser(object sender, EventArgs e)
         {
-            //FormsAuthentication.SetAuthCookie(RegisterUser.UserName, false /* createPersistentCookie */);
+            FormsAuthentication.SetAuthCookie(CreateUser.UserName, true);
+            
+        }
 
-            //string continueUrl = RegisterUser.ContinueDestinationPageUrl;
-            //if (String.IsNullOrEmpty(continueUrl))
-            //{
-            //    continueUrl = "~/";
-            //}
-            //Response.Redirect(continueUrl);
+        protected void CreateUser_CreatedUser(object sender, EventArgs e)
+        {
+           Roles.AddUserToRole((sender as CreateUserWizard).UserName, "Basic User");
         }
 
     }
