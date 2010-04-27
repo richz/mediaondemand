@@ -61,10 +61,9 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Account\ChangePassword.aspx" />
-    <Content Include="Account\ChangePasswordSuccess.aspx" />
-    <Content Include="Account\Login.aspx" />
-    <Content Include="Account\Register.aspx" />
+    <Content Include="pages\ChangePassword.aspx" />
+    <Content Include="pages\ChangePasswordSuccess.aspx" />
+    <Content Include="pages\Register.aspx" />
     <Content Include="bin\MediaOnDemand.dll" />
     <Content Include="bin\MediaOnDemand.pdb" />
     <Content Include="Default.aspx" />
@@ -80,32 +79,25 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\ChangePassword.aspx.cs">
+    <Compile Include="pages\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account\ChangePassword.aspx.designer.cs">
+    <Compile Include="pages\ChangePassword.aspx.designer.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account\ChangePasswordSuccess.aspx.cs">
+    <Compile Include="pages\ChangePasswordSuccess.aspx.cs">
       <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account\ChangePasswordSuccess.aspx.designer.cs">
+    <Compile Include="pages\ChangePasswordSuccess.aspx.designer.cs">
       <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\Register.aspx.cs">
+    <Compile Include="pages\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account\Register.aspx.designer.cs">
+    <Compile Include="pages\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
@@ -198,9 +190,15 @@
     <Compile Include="WebControls\PageSizeSelector.ascx.designer.cs">
       <DependentUpon>PageSizeSelector.ascx</DependentUpon>
     </Compile>
+    <Compile Include="pages\PasswordRecovery.aspx.cs">
+      <DependentUpon>PasswordRecovery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\PasswordRecovery.aspx.designer.cs">
+      <DependentUpon>PasswordRecovery.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Account\Web.config" />
     <Content Include="App_Data\aspnetdb.mdf">
     </Content>
     <Content Include="App_Data\aspnetdb_log.ldf">
@@ -217,6 +215,7 @@
     <Content Include="pages\WebsiteAdministration.aspx" />
     <Content Include="Site.Master" />
     <Content Include="WebControls\PageSizeSelector.ascx" />
+    <Content Include="pages\PasswordRecovery.aspx" />
     <None Include="StorageMedia.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>StorageMedia.designer.cs</LastGenOutput>

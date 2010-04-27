@@ -1,12 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LoggedOut.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="MediaOnDemand.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
- <title>Login Page</title>
+    <title>Login Page</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
   
   <center>
   <div>
-                <asp:Login ID="mainLogin" runat="server" DestinationPageUrl="~/pages/Home.aspx">
+  
+      <asp:Login ID="mainLogin" runat="server" CreateUserText="Create account" 
+          CreateUserUrl="~/pages/Register.aspx" PasswordRecoveryText="Forgot password" 
+          PasswordRecoveryUrl="~/pages/PasswordRecovery.aspx" DestinationPageUrl="~/pages/Home.aspx">
+      </asp:Login>
+     
+      <%--<asp:Login ID="mainLogin" runat="server" DestinationPageUrl="~/pages/Home.aspx" 
+          MembershipProvider="AspNetSqlRoleProvider">
                     <LayoutTemplate>
                         <table cellpadding="4" cellspacing="0" style="border-collapse:collapse;">
                             <tr>
@@ -62,7 +69,8 @@
                             </tr>
                         </table>
                     </LayoutTemplate>
-                </asp:Login>
+                </asp:Login>--%>
+                
                 </div>
                 </center>
 </asp:Content>
