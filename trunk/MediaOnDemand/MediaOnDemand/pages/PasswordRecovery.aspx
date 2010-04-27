@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <center>
     <asp:PasswordRecovery ID="passwordRecovery" runat="server" 
-            SuccessPageUrl="~/pages/Home.aspx">
+            SuccessPageUrl="~/pages/Home.aspx" MailDefinition-Priority="Low">
         <QuestionTemplate>
             <table border="0" cellpadding="1" cellspacing="0" 
                 style="border-collapse:collapse;">
