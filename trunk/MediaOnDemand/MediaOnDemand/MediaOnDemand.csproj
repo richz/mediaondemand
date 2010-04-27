@@ -231,6 +231,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Machine.config file\Machine.config" />
     <None Include="StorageMedia.dbml.layout">
       <DependentUpon>StorageMedia.dbml</DependentUpon>
     </None>
