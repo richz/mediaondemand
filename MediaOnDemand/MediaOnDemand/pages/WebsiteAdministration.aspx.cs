@@ -15,15 +15,24 @@ namespace MediaOnDemand
     {
         #region Private Fields
 
-        string rootVideosFolder = "\\\\Iomega-0a7441\\movies\\";
-        string rootMusicFolder = "\\\\Iomega-0a7441\\music\\";
-        string moviesFolder = "\\\\Iomega-0a7441\\movies\\Movies";
-        string animationFolder = "\\\\Iomega-0a7441\\movies\\Animation";
-        string documentariesFolder = "\\\\Iomega-0a7441\\movies\\Documentaries";
-        string musicVideosFolder = "\\\\Iomega-0a7441\\movies\\Music Videos";
-        string tvFolder = "\\\\Iomega-0a7441\\movies\\TV";
-        string basketballFolder = "\\\\Iomega-0a7441\\movies\\Basketball";
-        string musicFolder = "\\\\Iomega-0a7441\\music";
+        //string rootVideosFolder = "\\\\Iomega-0a7441\\movies\\";
+        //string rootMusicFolder = "\\\\Iomega-0a7441\\music\\";
+        //string moviesFolder = "\\\\Iomega-0a7441\\movies\\Movies";
+        //string animationFolder = "\\\\Iomega-0a7441\\movies\\Animation";
+        //string documentariesFolder = "\\\\Iomega-0a7441\\movies\\Documentaries";
+        //string musicVideosFolder = "\\\\Iomega-0a7441\\movies\\Music Videos";
+        //string tvFolder = "\\\\Iomega-0a7441\\movies\\TV";
+        //string basketballFolder = "\\\\Iomega-0a7441\\movies\\Basketball";
+        //string musicFolder = "\\\\Iomega-0a7441\\music";
+        string rootVideosFolder = "\\\\192.168.0.130\\movies\\";
+        string rootMusicFolder = "\\\\192.168.0.130\\music\\";
+        string moviesFolder = "\\\\192.168.0.130\\movies\\Movies";
+        string animationFolder = "\\\\192.168.0.130\\movies\\Animation";
+        string documentariesFolder = "\\\\192.168.0.130\\movies\\Documentaries";
+        string musicVideosFolder = "\\\\192.168.0.130\\movies\\Music Videos";
+        string tvFolder = "\\\\192.168.0.130\\movies\\TV";
+        string basketballFolder = "\\\\192.168.0.130\\movies\\Basketball";
+        string musicFolder = "\\\\192.168.0.130\\music";
 
         IQueryable<string> fileLocationList;
         List<string> genresList;
@@ -310,9 +319,9 @@ namespace MediaOnDemand
             this.btnAddNewMediaRow.Text = "Cancel";
             this.btnApplyChanges.Visible = true;
 
-            string medId = (sender as LinkButton).CommandArgument;
+            this.hdnMedId.Value = (sender as LinkButton).CommandArgument;
 
-            this.RetriveRowDataToEdit(medId);
+            this.RetriveRowDataToEdit(this.hdnMedId.Value);
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Show lightbox", "showBox();", true);
         }
@@ -585,8 +594,7 @@ namespace MediaOnDemand
                 this.hdnGenre.Value = row.Cells[7].Text.Trim();
                 this.hdnMediaType.Value = row.Cells[8].Text.Trim();
                 this.hdnDuration.Value = row.Cells[9].Text.Trim();
-                this.hdnAlbum.Value = row.Cells[10].Text.Trim().Equals("&nbsp;") ? "" : row.Cells[10].Text.Trim();
-                this.hdnMedId.Value = row.Cells[12].Text.Trim();
+                this.hdnAlbum.Value = row.Cells[10].Text.Trim().Equals("&nbsp;") ? "" : row.Cells[10].Text.Trim();                
             }
         }
 
