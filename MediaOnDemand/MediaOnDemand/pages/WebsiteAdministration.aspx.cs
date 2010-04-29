@@ -14,10 +14,21 @@ namespace MediaOnDemand
     public partial class WebsiteAdministration : System.Web.UI.Page
     {
         #region Private Fields
-        
-        string movieFolder = "\\\\Iomega-0a7441\\movies\\DVDs";
+
+        string rootVideosFolder = "\\\\Iomega-0a7441\\movies\\";
+        string rootMusicFolder = "\\\\Iomega-0a7441\\music\\";
+        string moviesFolder = "\\\\Iomega-0a7441\\movies\\Movies";
+        string animationFolder = "\\\\Iomega-0a7441\\movies\\Animation";
+        string documentariesFolder = "\\\\Iomega-0a7441\\movies\\Documentaries";
+        string musicVideosFolder = "\\\\Iomega-0a7441\\movies\\Music Videos";
+        string tvFolder = "\\\\Iomega-0a7441\\movies\\TV";
+        string basketballFolder = "\\\\Iomega-0a7441\\movies\\Basketball";
         string musicFolder = "\\\\Iomega-0a7441\\music";
-        
+
+        IQueryable<string> fileLocationList;
+        List<string> genresList;
+        StorageMediaDataContext context;
+
         #endregion
 
         #region Page Event Handlers
@@ -26,6 +37,8 @@ namespace MediaOnDemand
         {
             if (!IsPostBack)
             {
+                this.ddlMediaTypes.SelectedIndex = 0;
+                this.hdnMediaType.Value = ddlMediaTypes.SelectedValue;
                 this.lblFolderMessage.ForeColor = Color.Red;
                 this.lblFolderMessage.Text = "";
                 this.hdnUpdateMode.Value = "none";
@@ -33,44 +46,44 @@ namespace MediaOnDemand
                 this.btnAddNewMediaRow.Text = "Add new media";
                 this.btnApplyChanges.Visible = false;
                 this.btnAddNewMediaRow.Enabled = true;
-                this.hdnNetworkFolder.Value = this.movieFolder;
+                this.hdnNetworkFolder.Value = this.rootVideosFolder;
                 this.gvMedia.Sort("medTitle", SortDirection.Ascending);
                 UpdateRecordCount();
 
-                if (Directory.Exists(this.movieFolder) && Directory.Exists(this.musicFolder))
-                {
-                    //
-                    //Create a new FileSystemWatcher.
-                    FileSystemWatcher movieWatcher = new FileSystemWatcher();
-                    //Subscribe to the Created event.
-                    movieWatcher.Created += new FileSystemEventHandler(movieWatcher_Created);
-                    movieWatcher.Deleted += new FileSystemEventHandler(movieWatcher_Deleted);
-                    movieWatcher.Renamed += new RenamedEventHandler(movieWatcher_Renamed);
+                //if (Directory.Exists(this.rootVideosFolder) && Directory.Exists(this.rootMusicFolder))
+                //{
+                //    //
+                //    //Create a new FileSystemWatcher.
+                //    FileSystemWatcher movieWatcher = new FileSystemWatcher();
+                //    //Subscribe to the Created event.
+                //    movieWatcher.Created += new FileSystemEventHandler(movieWatcher_Created);
+                //    movieWatcher.Deleted += new FileSystemEventHandler(movieWatcher_Deleted);
+                //    movieWatcher.Renamed += new RenamedEventHandler(movieWatcher_Renamed);
 
-                    //Set the path
-                    movieWatcher.Path = movieFolder;
+                //    //Set the path
+                //    movieWatcher.Path = movieFolder;
 
-                    //Enable the FileSystemWatcher events.
-                    movieWatcher.EnableRaisingEvents = true;
-                    //
-                    //Create a new FileSystemWatcher.
-                    FileSystemWatcher musicWatcher = new FileSystemWatcher();
-                    //Subscribe to the Created event.
-                    musicWatcher.Created += new FileSystemEventHandler(musicWatcher_Created);
-                    musicWatcher.Deleted += new FileSystemEventHandler(musicWatcher_Deleted);
-                    musicWatcher.Renamed += new RenamedEventHandler(musicWatcher_Renamed);
+                //    //Enable the FileSystemWatcher events.
+                //    movieWatcher.EnableRaisingEvents = true;
+                //    //
+                //    //Create a new FileSystemWatcher.
+                //    FileSystemWatcher musicWatcher = new FileSystemWatcher();
+                //    //Subscribe to the Created event.
+                //    musicWatcher.Created += new FileSystemEventHandler(musicWatcher_Created);
+                //    musicWatcher.Deleted += new FileSystemEventHandler(musicWatcher_Deleted);
+                //    musicWatcher.Renamed += new RenamedEventHandler(musicWatcher_Renamed);
 
-                    //Set the path
-                    musicWatcher.Path = musicFolder;
+                //    //Set the path
+                //    musicWatcher.Path = musicFolder;
 
-                    //Enable the FileSystemWatcher events.
-                    musicWatcher.EnableRaisingEvents = true;
-                    //                    
-                }
-                else
-                {
-                    //Missing Directories
-                }
+                //    //Enable the FileSystemWatcher events.
+                //    musicWatcher.EnableRaisingEvents = true;
+                //    //                    
+                //}
+                //else
+                //{
+                //    //Missing Directories
+                //}
 
                 //this.AddNewMediaPanel.Visible = false;
                 this.btnAddNewMediaRow.Enabled = true;
@@ -87,6 +100,17 @@ namespace MediaOnDemand
                     this.ddlPageSize.Visible = true;
                 }
 
+            }
+
+            if (this.ddlMediaTypes.SelectedValue.Equals("Music"))
+            {
+                this.gvMedia.Columns[10].Visible = true;
+                this.gvMedia.Columns[13].Visible = false;
+            }
+            else
+            {
+                this.gvMedia.Columns[13].Visible = true;
+                this.gvMedia.Columns[10].Visible = false;
             }
         }
 
@@ -106,20 +130,55 @@ namespace MediaOnDemand
             {
                 case "music":
                     {
-                        this.lnqMedia.Where = "medMediaType == \"music\"";
+                        this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
+                        this.lnqMedia.Where = "medMediaType == \"" + this.ddlMediaTypes.SelectedValue + "\"";
                         this.hdnNetworkFolder.Value = this.musicFolder;
                     }
                     break;
                 case "movie":
                     {
-                        this.lnqMedia.Where = "medMediaType == \"movie\"";
-                        this.hdnNetworkFolder.Value = this.movieFolder;
+                        this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
+                        this.lnqMedia.Where = "medMediaType == \"" + this.ddlMediaTypes.SelectedValue + "\"";
+                        this.hdnNetworkFolder.Value = this.moviesFolder;
+                    }
+                    break;
+                case "documentary":
+                    {
+                        this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
+                        this.lnqMedia.Where = "medMediaType == \"" + this.ddlMediaTypes.SelectedValue + "\"";
+                        this.hdnNetworkFolder.Value = this.documentariesFolder;
+
+                    }
+                    break;
+                case "tv":
+                    {
+                        this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
+                        this.lnqMedia.Where = "medMediaType == \"" + this.ddlMediaTypes.SelectedValue + "\"";
+                        this.hdnNetworkFolder.Value = this.tvFolder;
+
+                    }
+                    break;
+                case "basketball":
+                    {
+                        this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
+                        this.lnqMedia.Where = "medMediaType == \"" + this.ddlMediaTypes.SelectedValue + "\"";
+                        this.hdnNetworkFolder.Value = this.basketballFolder;
+
+                    }
+                    break;
+                case "musicvideo":
+                    {
+                        this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
+                        this.lnqMedia.Where = "medMediaType == \"musicvideo\"";
+                        this.hdnNetworkFolder.Value = this.musicVideosFolder;
+
                     }
                     break;
                 case "all":
                     {
+                        this.hdnMediaType.Value = "";
                         this.lnqMedia.Where = "";
-                        this.hdnNetworkFolder.Value = this.musicFolder + "," + this.movieFolder;
+                        this.hdnNetworkFolder.Value = this.rootMusicFolder + "," + this.rootVideosFolder;
                     }
                     break;
             }
@@ -138,10 +197,10 @@ namespace MediaOnDemand
                 this.hdnArtist.Value = "";
                 this.hdnDescription.Value = "";
                 this.hdnGenre.Value = "";
-                this.hdnMediaType.Value = "";
                 this.hdnDuration.Value = "";
                 this.hdnAlbum.Value = "";
                 this.hdnMedId.Value = "";
+                this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
 
                 //Session["updateMode"] = "add";
                 this.hdnUpdateMode.Value = "add";
@@ -261,67 +320,150 @@ namespace MediaOnDemand
         protected void btnAddAllFromNetworkFolder_Click(object sender, EventArgs e)
         {
             int duplicates = 0;
-
-            DirectoryInfo dir = new DirectoryInfo(this.hdnNetworkFolder.Value);
-
+            
+            //Videos
+            String dir = this.rootVideosFolder;
+            int totalVideoFiles = Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories).Length;
             StorageMediaDataContext context = new StorageMediaDataContext();
+
             StoredMedia media;
-            string filePath;
             string mediaName;
+            string genre;
+            string mediaType;
 
-            foreach (FileInfo file in dir.GetFiles())
+            foreach (String filePath in Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories))
             {
-                filePath = file.FullName;
-                mediaName = Path.GetFileNameWithoutExtension(filePath);
+                FileInfo file = new FileInfo(filePath);
 
-                if (!StoredMediaRecordExistsByTitle(mediaName))
+                if (file.Directory.Name.Equals("musicvideo"))
                 {
-                    media = new StoredMedia
-                    {
-                        medTitle = mediaName,
-                        medLocation = filePath,
-                        medDateAdded = DateTime.Now,
-                        medIsViewable = 'Y',
-                        medArtist = "",
-                        medDescription = "",
-                        medGenre = "",
-                        medMediaType = this.ddlMediaTypes.SelectedValue,
-                        medDuration = 0.0f,
-                        medAlbum = ""
-                    };
-
-                    context.StoredMedias.InsertOnSubmit(media);
-
-                    try
-                    {
-                        context.SubmitChanges();
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
+                    mediaType = "musicvideo";
+                    genre = "";
                 }
                 else
-                    duplicates++;
+                {
+
+                    if (file.Directory.Parent != null)
+                    {
+                        mediaType = file.Directory.Parent.Name;
+
+                        if (mediaType.Equals("movie"))
+                            genre = file.Directory.Name;
+                        else
+                            genre = "";
+                    }
+                    else
+                        mediaType = "";
+                }
+                    if (mediaType.Equals("movie"))
+                    {
+                        genre = file.Directory.Name;                        
+                    }
+                    else
+                    {
+                        genre = "";                        
+                    }
+                    mediaName = Path.GetFileNameWithoutExtension(filePath);                    
+
+                    if (!StoredMediaRecordExistsByTitle(mediaName))
+                    {
+                        media = new StoredMedia
+                        {
+                            medTitle = mediaName,
+                            medLocation = filePath,
+                            medDateAdded = DateTime.Now,
+                            medIsViewable = 'Y',
+                            medArtist = "",
+                            medDescription = "",
+                            medGenre = genre,
+                            medMediaType = mediaType,
+                            medDuration = 0.0f,
+                            medAlbum = "",
+                            medFileExt = file.Extension,
+                        };
+
+                        context.StoredMedias.InsertOnSubmit(media);
+
+                        try
+                        {
+                            context.SubmitChanges();
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+                    else
+                        duplicates++;
+                
             }
 
-            this.gvMedia.DataBind();
-            UpdateRecordCount();
+            dir = this.rootMusicFolder;
+            int totalMusicFiles = Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories).Length;
 
-            if (duplicates == dir.GetFiles().Length)
+            foreach (String filePath in Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories))
+            {
+                FileInfo file = new FileInfo(filePath);
+
+                    genre = file.Directory.Name;
+                    mediaName = file.Name;
+
+                    if (file.Directory.Parent != null)
+                    {
+                        mediaType = file.Directory.Parent.Name;                                                
+                    }
+                    else
+                        mediaType = "";
+
+                    if (!StoredMediaRecordExistsByTitle(mediaName))
+                    {
+                        media = new StoredMedia
+                        {
+                            medTitle = mediaName,
+                            medLocation = filePath,
+                            medDateAdded = DateTime.Now,
+                            medIsViewable = 'Y',
+                            medArtist = "",
+                            medDescription = "",
+                            medGenre = genre,
+                            medMediaType = mediaType,
+                            medDuration = 0.0f,
+                            medAlbum = "",
+                            medFileExt = file.Extension,
+                        };
+
+                        context.StoredMedias.InsertOnSubmit(media);
+
+                        try
+                        {
+                            context.SubmitChanges();
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+                    else
+                        duplicates++;
+                
+            }            
+
+            int totalFiles = totalVideoFiles + totalMusicFiles;
+
+            if (duplicates == totalFiles)
             {
                 this.lblFolderMessage.ForeColor = Color.Red;
                 this.lblFolderMessage.Text = "All " + duplicates + " files were duplicates, no new files were added";
             }
-            else if (duplicates > 0 && duplicates < dir.GetFiles().Length)
+            else if (duplicates > 0 && duplicates < totalFiles)
             {
                 this.lblFolderMessage.ForeColor = Color.Red;
-                this.lblFolderMessage.Text = "Found " + duplicates + " duplicate(s), only " + (dir.GetFiles().Length - duplicates) + " files were added";
+                this.lblFolderMessage.Text = "Found " + duplicates + " duplicate(s), only " + (totalFiles - duplicates) + " files were added";
             }
             else
             {
                 this.lblFolderMessage.ForeColor = Color.Green;
-                this.lblFolderMessage.Text = "All " + dir.GetFiles().Length + " file(s) were added";
+                this.lblFolderMessage.Text = "All " + totalFiles + " file(s) were added";
             }
 
             //Hide Page Size Controls if no records, else show
@@ -335,6 +477,9 @@ namespace MediaOnDemand
                 this.lblPageSize.Visible = true;
                 this.ddlPageSize.Visible = true;
             }
+
+            this.gvMedia.DataBind();
+            UpdateRecordCount();
         }
 
         protected void gvMedia_PageIndexChanged(object sender, EventArgs e)
@@ -380,6 +525,8 @@ namespace MediaOnDemand
                 this.lblPageSize.Visible = true;
                 this.ddlPageSize.Visible = true;
             }
+
+            this.lblFolderMessage.Text = "";
         }
 
         protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
@@ -487,8 +634,6 @@ namespace MediaOnDemand
 
             return false;
         }
-
-
 
         private int GetGridViewRecordCountByCurrentMediaType()
         {

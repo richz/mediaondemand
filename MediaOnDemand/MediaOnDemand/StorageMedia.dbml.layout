@@ -2,10 +2,10 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="StorageMedia">
   <DataContextMoniker Name="/StorageMediaDataContext" />
   <nestedChildShapes>
-    <classShape Id="aca04729-9a3e-4237-a7c9-47ef9a14b5c8" absoluteBounds="2.5, 1.375, 2, 2.9247054036458331">
+    <classShape Id="00e89564-5e81-4a6b-93de-ba5f1d18d464" absoluteBounds="3.375, 2.125, 2, 3.3093082682291666">
       <DataClassMoniker Name="/StorageMediaDataContext/StoredMedia" />
       <nestedChildShapes>
-        <elementListCompartment Id="1b3b3084-8260-4f86-b5a1-a2fd93eeadfc" absoluteBounds="2.515, 1.835, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="d7cffc8e-b3f6-4143-bff8-efda4c17669c" absoluteBounds="3.39, 2.585, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

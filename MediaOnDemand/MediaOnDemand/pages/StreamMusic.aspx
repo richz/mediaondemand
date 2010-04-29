@@ -5,19 +5,15 @@
     TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <title>Listen to Music</title>
+
+    <script src="../js/playMedia.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<form id"musicForm">
+<script type="text/javascript"><%= postBackStr %></script>
+
     <asp:Label ID="lblFileMessages" runat="server" Text="Label"></asp:Label>
-    <%--    <table width="100%">
-    <tr>
-    <td>
-    </td>    
-    </tr>
-    <tr>
-    <td>
-    </td>
-    </tr>
-    </table> --%>
+
     <table width="100%">
         <tr>
             <td colspan="2">
@@ -28,6 +24,7 @@
             <td colspan="2">
                 <cc1:Media_Player_Control ID="wmPlayer" Height="45px" Width="100%" AutoStart="true"
                     runat="server" />
+                    <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server" />
             </td>
         </tr>
         <tr>
@@ -60,13 +57,12 @@
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
-                            <EditItemTemplate>
-                                <asp:Label ID="lblTitle" runat="server" Text='<%# Eval("medTitle") %>'></asp:Label>
-                            </EditItemTemplate>
-                            <ItemTemplate>
-                                <asp:LinkButton ID="lnkSongLink" Text='<%# Bind("medTitle") %>' CommandArgument='<%# Bind("medLocation") %>'
-                                    OnClick="SongLinkButton_Click" runat="server"></asp:LinkButton>
-                            </ItemTemplate>
+                            <ItemTemplate>   
+                                              <a id="lnkMovieLink" href="#" onclick="ForcePostBack(this)" param='<%# Eval("medLocation") %>'>
+                                              <asp:Label ID="lblTitle" runat="server" Text='<%# Eval("medTitle") %>'></asp:Label>
+                                              </a>                              
+                                
+                                    </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="medArtist" HeaderText="Artist" ReadOnly="True" SortExpression="medArtist" />
                         <asp:BoundField DataField="medDescription" HeaderText="Description" ReadOnly="True"
@@ -98,4 +94,6 @@
             <asp:Parameter DefaultValue="Y" Name="medIsViewable" Type="Char" />
         </WhereParameters>
     </asp:LinqDataSource>
+    
+    </form>
 </asp:Content>

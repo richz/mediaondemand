@@ -12,6 +12,8 @@ namespace MediaOnDemand
 {
     public partial class StreamMusic : System.Web.UI.Page
     {
+        protected string postBackStr;
+
         #region Page Event Handlers
 
         protected void Page_Load(object sender, EventArgs e)
@@ -22,35 +24,21 @@ namespace MediaOnDemand
 
             if (!IsPostBack)
             {
-                this.gvMusic.PageSize = this.GetGridViewRecordCountByCurrentMediaType();
+                if(this.gvMusic.Rows.Count > 0)
+                    this.gvMusic.PageSize = this.GetGridViewRecordCountByCurrentMediaType();
                 this.ddlPageSize.SelectedIndex = this.ddlPageSize.Items.Count - 1;
                 UpdateRecordCount();
                 this.gvMusic.Sort("medTitle", SortDirection.Ascending);
                 
             }
+
+            this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
         }
 
         #endregion
 
         #region Controls Event Handlers
-
-        protected void SongLinkButton_Click(object sender, EventArgs e)
-        {
-            this.wmPlayer.MovieURL = "";
-            this.lblMessage.Text = "Please click the Play button if the song does not start";
-
-            LinkButton songLink = (sender as LinkButton);
-
-            string location = songLink.CommandArgument;
-
-            if ((new FileInfo(location)).Exists)
-            {
-                this.wmPlayer.MovieURL = location;
-            }
-            else
-                this.lblFileMessages.Text = "File could not be found";
-        }
-
+             
         #endregion
 
         #region Controls Event Handlers
@@ -59,10 +47,15 @@ namespace MediaOnDemand
         {
             if (!this.ddlPageSize.SelectedValue.Equals("all"))
             {
-                this.gvMusic.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue);
+                this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
+                this.wmPlayer.MovieURL = "";
+                this.wmPlayer.AutoStart = true;
+                this.ddlPageSize.SelectedIndex = this.ddlPageSize.Items.Count - 1;
             }
             else
                 this.gvMusic.PageSize = this.GetGridViewRecordCountByCurrentMediaType();
+
+            this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
 
             this.gvMusic.PageIndex = 0;
             UpdateRecordCount();
