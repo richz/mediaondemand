@@ -101,6 +101,7 @@
                                               </a>                              
                                 
                                     </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Left" />
                                 </asp:TemplateField>
                                 <asp:BoundField DataField="medArtist" HeaderText="Cast" ReadOnly="True" SortExpression="medArtist" />
                                 <asp:BoundField DataField="medDescription" HeaderText="Description" ReadOnly="True"
