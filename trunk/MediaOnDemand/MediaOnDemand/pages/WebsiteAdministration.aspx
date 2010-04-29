@@ -28,20 +28,24 @@
    
     <h1>Website Administration</h1>    
     <table>
-        <tr>
-            <td>
-                <asp:Label ID="lblChooseMediaType" runat="server" Text="Please choose a media type:"></asp:Label>
+    <tr>
+ <td>
+                <asp:Label ID="lblChooseMediaType" runat="server" 
+                    Text="Please choose a media type:" 
+                    ondatabinding="ddlMediaTypes_SelectedIndexChanged"></asp:Label>
             </td>
-            <td>
-                <asp:DropDownList ID="ddlMediaTypes" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlMediaTypes_SelectedIndexChanged">
-                    <asp:ListItem Value="movie" Selected="True">Movies</asp:ListItem>
-                    <asp:ListItem Value="music">Music</asp:ListItem>
-                </asp:DropDownList>
-               
-            </td>
-            <td>
-            </td>
-        </tr>
+    <td>
+        <asp:DropDownList ID="ddlMediaTypes" runat="server" 
+            onselectedindexchanged="ddlMediaTypes_SelectedIndexChanged" AutoPostBack="true">
+            <asp:ListItem Value="movie" Selected="True">Movies</asp:ListItem>                    
+                    <asp:ListItem Value="tv">TV</asp:ListItem>                    
+                    <asp:ListItem Value="basketball">Basketball</asp:ListItem>
+                    <asp:ListItem Value="documentary">Documentaries</asp:ListItem>
+                    <asp:ListItem Value="musicvideo">Music Videos</asp:ListItem>                   
+                    <asp:ListItem Value="music">Music</asp:ListItem>                    
+        </asp:DropDownList>
+    </td>
+    </tr>      
     </table>
     <br />
     <br />
@@ -134,16 +138,20 @@
                         <asp:BoundField DataField="medTitle" HeaderText="Title" SortExpression="medTitle" />
                         <asp:BoundField DataField="medLocation" HeaderText="Location" SortExpression="medLocation" />
                         <asp:BoundField DataField="medDescription" HeaderText="Description" SortExpression="medDescription" />
-                        <asp:BoundField DataField="medIsViewable" HeaderText="IsViewable" SortExpression="medIsViewable" />
-                        <asp:BoundField DataField="medDateAdded" HeaderText="DateAdded" SortExpression="medDateAdded" />
+                        <asp:BoundField DataField="medIsViewable" HeaderText="Is Viewable" 
+                            SortExpression="medIsViewable" />
+                        <asp:BoundField DataField="medDateAdded" HeaderText="Date Added" 
+                            SortExpression="medDateAdded" />
                         <asp:BoundField DataField="medArtist" HeaderText="Artist" SortExpression="medArtist" />
                         <asp:BoundField DataField="medGenre" HeaderText="Genre" SortExpression="medGenre" />
                         <asp:BoundField DataField="medMediaType" HeaderText="Media Type" SortExpression="medMediaType" />
                         <asp:BoundField DataField="medDuration" HeaderText="Duration" SortExpression="medDuration" />
                         <asp:BoundField DataField="medAlbum" HeaderText="Album" SortExpression="medAlbum" />
+                        <asp:BoundField DataField="medVideoType" HeaderText="Video Type" SortExpression="medVideoType" />
                         <asp:CommandField ShowDeleteButton="True" />
                         <asp:BoundField DataField="medId" Visible="false" HeaderText="Id" InsertVisible="False" ReadOnly="True"
                             SortExpression="medId" />
+                        
                     </Columns>
                     <EditRowStyle BackColor="#999999" />
                     <EmptyDataTemplate>

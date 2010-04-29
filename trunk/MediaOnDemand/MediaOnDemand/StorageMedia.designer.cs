@@ -102,6 +102,10 @@ namespace MediaOnDemand
 		
 		private string _medAlbum;
 		
+		private string _medVideoType;
+		
+		private string _medFileExt;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -128,6 +132,10 @@ namespace MediaOnDemand
     partial void OnmedDurationChanged();
     partial void OnmedAlbumChanging(string value);
     partial void OnmedAlbumChanged();
+    partial void OnmedVideoTypeChanging(string value);
+    partial void OnmedVideoTypeChanged();
+    partial void OnmedFileExtChanging(string value);
+    partial void OnmedFileExtChanged();
     #endregion
 		
 		public StoredMedia()
@@ -351,6 +359,46 @@ namespace MediaOnDemand
 					this._medAlbum = value;
 					this.SendPropertyChanged("medAlbum");
 					this.OnmedAlbumChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_medVideoType", DbType="VarChar(200)")]
+		public string medVideoType
+		{
+			get
+			{
+				return this._medVideoType;
+			}
+			set
+			{
+				if ((this._medVideoType != value))
+				{
+					this.OnmedVideoTypeChanging(value);
+					this.SendPropertyChanging();
+					this._medVideoType = value;
+					this.SendPropertyChanged("medVideoType");
+					this.OnmedVideoTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_medFileExt", DbType="VarChar(10)")]
+		public string medFileExt
+		{
+			get
+			{
+				return this._medFileExt;
+			}
+			set
+			{
+				if ((this._medFileExt != value))
+				{
+					this.OnmedFileExtChanging(value);
+					this.SendPropertyChanging();
+					this._medFileExt = value;
+					this.SendPropertyChanged("medFileExt");
+					this.OnmedFileExtChanged();
 				}
 			}
 		}

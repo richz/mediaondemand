@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Diagnostics;
 using System.IO;
+using System.Windows.Forms;
 
 namespace MediaOnDemand
 {
@@ -14,47 +15,39 @@ namespace MediaOnDemand
     {
         #region Page Event Handlers
 
+        protected string postBackStr;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.lblMessage.Text = "";
-
             if (!IsPostBack)
             {
+                this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
                 this.wmPlayer.MovieURL = "";
                 this.wmPlayer.AutoStart = true;
-                this.ddlPageSize.SelectedIndex = this.ddlPageSize.Items.Count - 1;
-                this.gvMovies.PageSize = this.GetGridViewRecordCountByCurrentMediaType();
+                this.ddlPageSize.SelectedIndex = this.ddlPageSize.Items.Count - 1;                
+
+                if (this.gvMovies.Rows.Count > 0)
+                {
+                    this.wmPlayer.Visible = true;
+                    this.gvMovies.PageSize = this.GetGridViewRecordCountByCurrentMediaType(); 
+                }
+                else
+                    this.wmPlayer.Visible = false;
+
                 this.gvMovies.Sort("medTitle", SortDirection.Ascending);
                 UpdateRecordCount();
             }
-
-            this.lblFileMessages.Text = "";            
+            
+            this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
+            this.lblFileMessages.Text = "";
+            this.lblMessage.Text = "";
         }
 
         #endregion
 
         #region Controls Event Handlers
 
-        protected void lnkMovieLink_Click(object sender, EventArgs e)
-        {
-            this.wmPlayer.MovieURL = "";
-
-            LinkButton movieLink = (sender as LinkButton);
-
-            string location = movieLink.CommandArgument;
-
-            //ScriptManager.RegisterStartupScript(this, this.GetType(), "Show lightbox", "SetMovieUrl('" + location + "')", true);
-
-            if ((new FileInfo(location)).Exists)
-            {
-                this.wmPlayer.MovieURL = location;
-                this.lblMessage.Text = "Please click the Play button if the movie does not start";
-
-               // ScriptManager.RegisterStartupScript(this, this.GetType(), "Open Player Window", "window.open ('Player.aspx?file=" + location + "','MediaPlayer')", true);
-            }
-            else
-                this.lblFileMessages.Text = "File could not be found";
-        }
+        
 
         protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -116,16 +109,22 @@ namespace MediaOnDemand
         {
             if ((sender as GridView).Rows.Count == 0)
             {
-                this.wmPlayer.Visible = false;
+                //this.wmPlayer.Visible = false;
                 this.lblPageSize.Visible = false;
                 this.ddlPageSize.Visible = false;
             }
             else
             {
-                this.wmPlayer.Visible = true;
+                //this.wmPlayer.Visible = true;
                 this.lblPageSize.Visible = true;
                 this.ddlPageSize.Visible = true;
             }
         }
+
+        protected void gvMovies_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            
+        }
+
     }
 }
