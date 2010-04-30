@@ -1,14 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="OtherVideos.aspx.cs" Inherits="MediaOnDemand.OtherVideos" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
 <%@ Register Assembly="Media-Player-ASP.NET-Control" Namespace="Media_Player_ASP.NET_Control"
     TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
-<script src="../js/playMedia.js" type="text/javascript"></script>
+    <script src="../js/playMedia.js" type="text/javascript"></script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <h1>Other Videos</h1>   
 
 <form id="watchVideosForm">
 <script type="text/javascript"><%= postBackStr %></script>
@@ -50,6 +54,7 @@
         </tr>
         <tr>
             <td colspan="2">
+               
                 <cc1:Media_Player_Control ID="wmPlayer" Height="300px" Width="100%" AutoStart="true"
                     runat="server" />             
                                     
