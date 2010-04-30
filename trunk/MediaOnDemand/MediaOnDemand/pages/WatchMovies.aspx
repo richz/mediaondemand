@@ -9,6 +9,9 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    
+    <h1>Movies</h1>   
+    
     <form id="watchMovieForm">
 <script type="text/javascript"><%= postBackStr %></script>
 

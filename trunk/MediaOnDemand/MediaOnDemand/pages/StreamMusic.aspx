@@ -9,6 +9,9 @@
     <script src="../js/playMedia.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+<h1>Music</h1>   
+
 <form id"musicForm">
 <script type="text/javascript"><%= postBackStr %></script>
 

@@ -109,13 +109,13 @@ namespace MediaOnDemand
         {
             if ((sender as GridView).Rows.Count == 0)
             {
-                //this.wmPlayer.Visible = false;
+                this.wmPlayer.Visible = false;
                 this.lblPageSize.Visible = false;
                 this.ddlPageSize.Visible = false;
             }
             else
             {
-                //this.wmPlayer.Visible = true;
+                this.wmPlayer.Visible = true;
                 this.lblPageSize.Visible = true;
                 this.ddlPageSize.Visible = true;
             }
