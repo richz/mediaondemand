@@ -11,7 +11,8 @@ namespace MediaOnDemand
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!IsPostBack)
+                (this.mainLogin.FindControl("UserName") as TextBox).Focus();
         }
     }
 }
