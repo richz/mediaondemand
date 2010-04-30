@@ -143,8 +143,6 @@ namespace MediaOnDemand
 
         protected void ddlMediaTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.wmPlayer.MovieURL = "";
-
             // Reset Page Index for Grid
             this.gvVideos.PageIndex = 0;
 
@@ -152,18 +150,18 @@ namespace MediaOnDemand
             {
                 case "documentary":
                     {
-                        this.lnqVideos.Where = "medMediaType == \"" + this.ddlMediaTypes.SelectedValue + "\"";
+                        this.lnqVideos.Where = "medMediaType == \"documentary\"";
 
                     }
                     break;
                 case "tv":
                     {
-                        this.lnqVideos.Where = "medMediaType == \"" + this.ddlMediaTypes.SelectedValue + "\"";
+                        this.lnqVideos.Where = "medMediaType == \"tv\"";
                     }
                     break;
                 case "basketball":
                     {
-                        this.lnqVideos.Where = "medMediaType == \"" + this.ddlMediaTypes.SelectedValue + "\"";
+                        this.lnqVideos.Where = "medMediaType == \"basketball\"";
                     }
                     break;
                 case "musicvideo":
@@ -174,6 +172,8 @@ namespace MediaOnDemand
             }
 
             UpdateRecordCount();
+            this.gvVideos.DataBind();
+
         }
     }
 }
