@@ -127,8 +127,9 @@ namespace MediaOnDemand
                 this.wmPlayer.Visible = false;
                 this.lblPageSize.Visible = false;
                 this.ddlPageSize.Visible = false;
-                this.lblChooseMediaType.Visible = false;
-                this.ddlMediaTypes.Visible = false;
+                this.lblRecordCount.Visible = false;
+                //this.lblChooseMediaType.Visible = false;
+                //this.ddlMediaTypes.Visible = false;
             }
             else
             {
@@ -137,6 +138,7 @@ namespace MediaOnDemand
                 this.ddlPageSize.Visible = true;
                 this.lblChooseMediaType.Visible = true;
                 this.ddlMediaTypes.Visible = true;
+                this.lblRecordCount.Visible = true;
             }
         }
 

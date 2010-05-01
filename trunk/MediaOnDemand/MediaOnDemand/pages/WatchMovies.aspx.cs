@@ -112,12 +112,14 @@ namespace MediaOnDemand
                 this.wmPlayer.Visible = false;
                 this.lblPageSize.Visible = false;
                 this.ddlPageSize.Visible = false;
+                this.lblRecordCount.Visible = false;
             }
             else
             {
                 this.wmPlayer.Visible = true;
                 this.lblPageSize.Visible = true;
                 this.ddlPageSize.Visible = true;
+                this.lblRecordCount.Visible = true;
             }
         }
 
