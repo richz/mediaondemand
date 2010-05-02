@@ -4,5 +4,17 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <div class="main">
+<center>
+<table>
+<tr>
+<td>
+    <asp:Image ID="imgPic1" ImageUrl="~/MediaFiles/Pictures/goku.gif" runat="server" />
+</td>
+
+</tr>
+
+</table>
+
+</center>
 </div>
 </asp:Content>

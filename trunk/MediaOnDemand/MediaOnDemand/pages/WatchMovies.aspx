@@ -77,7 +77,7 @@
                                 <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
                                 
                                     <ItemTemplate>   
-                                              <a style=" id="lnkMovieLink" href="#" onclick="ForcePostBack(this)" param='<%# Eval("medLocation") %>'>
+                                              <a id="lnkMovieLink" href="#" onclick="ForcePostBack(this)" param='<%# Eval("medLocation") %>'>
                                               <asp:Label ID="lblTitle" runat="server" Text='<%# Eval("medTitle") %>'></asp:Label>
                                               </a>                              
                                 

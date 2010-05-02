@@ -168,6 +168,11 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="StoredMediaManagement.cs" />
+    <Compile Include="UserManagement.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserManagement.dbml</DependentUpon>
+    </Compile>
     <Compile Include="WebControls\PageSizeSelector.ascx.cs">
       <DependentUpon>PageSizeSelector.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -240,6 +245,11 @@
     <None Include="StorageMedia.dbml.layout">
       <DependentUpon>StorageMedia.dbml</DependentUpon>
     </None>
+    <None Include="UserManagement.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>UserManagement.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
@@ -249,6 +259,11 @@
       <Project>{38E41635-F6CD-4454-98F5-6CF2E225AE6D}</Project>
       <Name>MediaOnDemandLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UserManagement.dbml.layout">
+      <DependentUpon>UserManagement.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="aspnet_client\system_web\4_0_30128\" />
