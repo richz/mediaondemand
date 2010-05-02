@@ -17,7 +17,22 @@ namespace MediaOnDemand
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.lblUserName.Text = "";
+        }
 
+        protected void lnkDelete_Click(object sender, EventArgs e)
+        {            
+            this.hdnUserName.Value = (sender as LinkButton).CommandArgument;
+
+            this.DeleteUser(this.hdnUserName.Value);            
+        }
+
+        private void DeleteUser(string userName)
+        {
+            if (Membership.DeleteUser(userName, true))
+                this.lblUserName.Text = "User " + userName + " has been deleted";
+
+            this.gvUsers.DataBind();
         }
     }
 }
