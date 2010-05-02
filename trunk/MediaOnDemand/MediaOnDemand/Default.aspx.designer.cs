@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MediaOnDemand
+namespace MediaOnDemandLibrary
 {
 
 

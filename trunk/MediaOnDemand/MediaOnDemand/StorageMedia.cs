@@ -1,6 +1,7 @@
 namespace MediaOnDemand
 {
-    partial class StorageMediaDataContext
+
+partial class StorageMediaDataContext
     {
     }
 }

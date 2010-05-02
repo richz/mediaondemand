@@ -8,7 +8,10 @@
   <div>
   
       <asp:Login ID="mainLogin" runat="server" CreateUserText="Create an account" 
-          CreateUserUrl="~/pages/Register.aspx" DestinationPageUrl="~/pages/Home.aspx">
+          CreateUserUrl="~/pages/Register.aspx" 
+          DestinationPageUrl="~/pages/Home.aspx" 
+          PasswordRecoveryUrl="~/pages/PasswordRecovery.aspx" 
+          PasswordRecoveryText="Forgot Password?" onloggedin="mainLogin_LoggedIn">
           <LayoutTemplate>
               <table border="0" cellpadding="1" cellspacing="0" 
                   style="border-collapse:collapse;">
@@ -58,11 +61,25 @@
                                   </td>
                               </tr>
                               <tr>
+                              <td colspan="2">
+                              </td>
+                              </tr>
+                              <tr>                              
                                   <td colspan="2">
+                                  <center>
                                       <asp:HyperLink ID="CreateUserLink" runat="server" 
                                           NavigateUrl="~/pages/Register.aspx">Create an account</asp:HyperLink>
+                                  </center>
+                                  </td>
+                                  <tr>
+                                  <td colspan="2">
+                                  <center>
+                                      <asp:HyperLink ID="PasswordRecovery" runat="server" 
+                                          NavigateUrl="~/pages/PasswordRecovery.aspx">Forgot your password?</asp:HyperLink>
+                                  </center>
                                   </td>
                               </tr>
+                            
                           </table>
                       </td>
                   </tr>

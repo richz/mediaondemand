@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Profile;
 
-namespace MediaOnDemand.Account
+namespace MediaOnDemand
 {
     public partial class Register : System.Web.UI.Page
     {
@@ -19,7 +19,7 @@ namespace MediaOnDemand.Account
 
         protected void RegisterUser_CreatedUser(object sender, EventArgs e)
         {
-            FormsAuthentication.SetAuthCookie(CreateUser.UserName, true);
+            //FormsAuthentication.SetAuthCookie(CreateUser.UserName, true);
             
         }
 

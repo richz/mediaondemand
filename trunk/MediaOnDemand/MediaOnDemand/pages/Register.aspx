@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/LoggedOut.master" AutoEventWireup="true"
-    CodeBehind="Register.aspx.cs" Inherits="MediaOnDemand.Account.Register" %>
+    CodeBehind="Register.aspx.cs" Inherits="MediaOnDemand.Register" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-   
+   <center>
     <asp:CreateUserWizard ID="CreateUser" runat="server" FinishDestinationPageUrl="~/pages/Home.aspx" 
     CancelDestinationPageUrl="~/pages/Login.aspx" 
     oncreateduser="CreateUser_CreatedUser" 
@@ -158,5 +158,5 @@
             </asp:CompleteWizardStep>
         </WizardSteps>
     </asp:CreateUserWizard>
-   
+   </center>
 </asp:Content>

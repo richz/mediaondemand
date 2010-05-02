@@ -3,8 +3,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <center>
-    <asp:PasswordRecovery ID="passwordRecovery" runat="server" 
-            SuccessPageUrl="~/pages/Home.aspx" MailDefinition-Priority="Low">
+    <asp:PasswordRecovery ID="passwordRecovery" runat="server" MailDefinition-Priority="Low" 
+            onsendingmail="passwordRecovery_SendingMail">
+<MailDefinition Priority="Low"></MailDefinition>
         <QuestionTemplate>
             <table border="0" cellpadding="1" cellspacing="0" 
                 style="border-collapse:collapse;">
@@ -107,6 +108,47 @@
                 </tr>
             </table>
         </UserNameTemplate>
+        <SuccessTemplate>
+            <table border="0" cellpadding="1" cellspacing="0" 
+                style="border-collapse:collapse;">
+                <tr>
+                    <td>
+                        <table border="0" cellpadding="0">
+                        <tr>
+                        <td colspan="2">
+                        </td>
+                        </tr>
+                             <tr>
+                           <td>
+                           Please use this password to log in: 
+                           </td>
+                            <td>
+                                <asp:Label ID="lblNewPassword" Font-Bold="true" ForeColor="Black" runat="server" Text=""></asp:Label>
+                            </td>
+                            </tr>
+                            
+                            <%--<tr>
+                                <td>
+                                    Your password has been emailed to you at </td>
+                                    <td>
+                                        <asp:Label ID="lblUserEmail" runat="server" Text=""></asp:Label>
+                                    </td>
+                            </tr>--%>
+                           
+                            <tr>
+                            <td>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td colspan="2">                            
+                                <asp:HyperLink ID="lnkReturntoLoginPage" NavigateUrl="~/pages/Login.aspx" runat="server">Return to login page</asp:HyperLink>
+                            </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </SuccessTemplate>
     </asp:PasswordRecovery>
     </center>
 </asp:Content>

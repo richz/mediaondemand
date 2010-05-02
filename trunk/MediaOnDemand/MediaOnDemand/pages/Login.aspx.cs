@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq;
+using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -13,6 +14,11 @@ namespace MediaOnDemand
         {
             if (!IsPostBack)
                 (this.mainLogin.FindControl("UserName") as TextBox).Focus();
+        }
+
+        protected void mainLogin_LoggedIn(object sender, EventArgs e)
+        {    
+
         }
     }
 }

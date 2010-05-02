@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MediaOnDemand.WebControls {
+namespace MediaOnDemandLibrary.WebControls {
     
     
     public partial class PageSizeSelector {

@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Diagnostics;
 using System.IO;
+using MediaOnDemand;
 
 namespace MediaOnDemand
 {
@@ -46,16 +47,12 @@ namespace MediaOnDemand
         protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!this.ddlPageSize.SelectedValue.Equals("all"))
-            {
-                this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
-                this.wmPlayer.MovieURL = "";
-                this.wmPlayer.AutoStart = true;
-                this.ddlPageSize.SelectedIndex = this.ddlPageSize.Items.Count - 1;
+            {   
+                //this.ddlPageSize.SelectedIndex = this.ddlPageSize.Items.Count - 1;
+                this.gvMusic.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue);
             }
             else
-                this.gvMusic.PageSize = this.GetGridViewRecordCountByCurrentMediaType();
-
-            this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
+                this.gvMusic.PageSize = this.GetGridViewRecordCountByCurrentMediaType();                       
 
             this.gvMusic.PageIndex = 0;
             UpdateRecordCount();

@@ -115,6 +115,10 @@
                                 <asp:BoundField DataField="medDuration" HeaderText="Duration" ReadOnly="True" SortExpression="medDuration" />
                                 <asp:BoundField DataField="medVideoType" HeaderText="Video Type" 
                                     SortExpression="medVideoType" />
+                                <asp:BoundField DataField="medDateAdded" DataFormatString="{0:G}" 
+                                    HeaderText="Date Added">
+                                    <HeaderStyle Font-Underline="True" />
+                                </asp:BoundField>
                             </Columns>
                             <EmptyDataTemplate>
                                 <center>
@@ -135,7 +139,7 @@
         </ContentTemplate>
     </asp:UpdatePanel>
     <asp:LinqDataSource ID="lnqVideos" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
-        Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre, medDuration, medVideoType)"
+        Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre, medDuration, medVideoType, medDateAdded)"
         TableName="StoredMedias" Where="medIsViewable == @medIsViewable">
         <WhereParameters>
             <asp:Parameter DefaultValue="Y" Name="medIsViewable" Type="Char" />
