@@ -55,7 +55,7 @@
             Text="Add all media files" 
             onclick="btnAddAllFromNetworkFolder_Click" /> 
     </td>
-    <td align="right"><asp:Button ID="btnDeleteAllRecords" runat="server" Text="Delete All Records" 
+    <td align="right"><asp:Button ID="btnDeleteAllRecords" Visible="false" runat="server" Text="Delete All Records" 
             onclick="btnDeleteAllRecords_Click" />
     </td>
          
@@ -124,7 +124,8 @@
                     GridLines="None" AllowPaging="True" AllowSorting="True" 
                     onpageindexchanged="gvMedia_PageIndexChanged" 
                     onpageindexchanging="gvMedia_PageIndexChanging" 
-                    onrowdeleted="gvMedia_RowDeleted" onrowdeleting="gvMedia_RowDeleting">
+                    onrowdeleted="gvMedia_RowDeleted" onrowdeleting="gvMedia_RowDeleting" 
+                    ondatabound="gvMedia_DataBound">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:TemplateField>
