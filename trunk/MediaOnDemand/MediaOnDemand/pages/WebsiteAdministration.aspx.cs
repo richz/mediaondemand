@@ -453,8 +453,8 @@ namespace MediaOnDemand
             StorageMediaDataContext context = new StorageMediaDataContext();
 
             foreach (StoredMedia sm in context.StoredMedias)
-                if (sm.medMediaType.Trim().Equals(this.ddlMediaTypes.SelectedValue))
-                {
+                //if (sm.medMediaType.Trim().Equals(this.ddlMediaTypes.SelectedValue))
+                //{
                     context.StoredMedias.DeleteOnSubmit(sm);
 
                     try
@@ -465,7 +465,7 @@ namespace MediaOnDemand
                     {
 
                     }
-                }
+                //}
 
             this.gvMedia.DataBind();
             UpdateRecordCount();
