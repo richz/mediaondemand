@@ -58,13 +58,12 @@
                         <asp:MenuItem NavigateUrl="~/pages/About.aspx" Text="About"/>
                         <asp:MenuItem NavigateUrl="~/pages/StreamMusic.aspx" Text="Listen to Music" 
                             Value="Listen to Music"></asp:MenuItem>
-                        <asp:MenuItem Text="Watch Videos" Selectable="false" 
-                            Value="Watch Videos">
+                        
                             <asp:MenuItem NavigateUrl="~/pages/WatchMovies.aspx" Text="Movies" Value="Movies">
                             </asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/pages/OtherVideos.aspx" Text="Other Videos" 
                                 Value="Other Videos"></asp:MenuItem>
-                        </asp:MenuItem>
+                        
                         <asp:MenuItem NavigateUrl="~/pages/UserManagement.aspx" 
                             Text="Administer User Accounts" Value="Administer User Accounts"></asp:MenuItem>
                         <asp:MenuItem NavigateUrl="~/pages/WebsiteAdministration.aspx" 
@@ -96,13 +95,11 @@
                         <asp:MenuItem NavigateUrl="~/pages/About.aspx" Text="About"/>
                         <asp:MenuItem NavigateUrl="~/pages/StreamMusic.aspx" Text="Listen to Music" 
                             Value="Listen to Music"></asp:MenuItem>
-                        <asp:MenuItem Selectable="false" Text="Watch Videos" 
-                            Value="Watch Videos">
                             <asp:MenuItem NavigateUrl="~/pages/WatchMovies.aspx" Text="Movies" Value="Movies">
                             </asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/pages/OtherVideos.aspx" Text="Other Videos" 
                                 Value="Other Videos"></asp:MenuItem>
-                        </asp:MenuItem>                       
+                       
                         <asp:MenuItem NavigateUrl="~/pages/UserAccount.aspx" 
                             Text="My Account" Value="My Account"></asp:MenuItem>
                     </Items>
