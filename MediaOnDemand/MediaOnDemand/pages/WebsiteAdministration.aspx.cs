@@ -475,6 +475,7 @@ namespace MediaOnDemand
             {
                 this.lblPageSize.Visible = false;
                 this.ddlPageSize.Visible = false;
+                this.btnDeleteAllRecords.Visible = false;
             }
             else
             {
@@ -645,5 +646,18 @@ namespace MediaOnDemand
         }
 
         #endregion
+
+        protected void gvMedia_DataBound(object sender, EventArgs e)
+        {
+            StorageMediaDataContext context = new StorageMediaDataContext();
+
+            IQueryable<StoredMedia> sm = from StoredMedia in context.StoredMedias 
+                            select StoredMedia;
+
+            if (sm.Count() > 0)
+                this.btnDeleteAllRecords.Visible = true;
+
+
+        }
     }
 }
