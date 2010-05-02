@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MediaOnDemandLibrary {
+namespace MediaOnDemand {
     
     
     public partial class StreamMusic {
