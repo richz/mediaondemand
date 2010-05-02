@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MediaOnDemand {
+namespace MediaOnDemandLibrary {
     
     
     public partial class WatchMovies {

@@ -8,18 +8,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MediaOnDemand.Account {
+namespace MediaOnDemand {
     
     
     public partial class ChangePassword {
         
         /// <summary>
-        /// passwordChange control.
+        /// changePassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ChangePassword passwordChange;
+        protected global::System.Web.UI.WebControls.ChangePassword changePassword;
     }
 }

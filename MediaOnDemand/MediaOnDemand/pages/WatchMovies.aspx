@@ -5,7 +5,7 @@
     TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
-    <script src="../js/playMedia.js" type="text/javascript"></script>
+<script src="../js/playMedia.js" type="text/javascript"></script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -91,6 +91,10 @@
                                 <asp:BoundField DataField="medDuration" HeaderText="Duration" ReadOnly="True" SortExpression="medDuration" />
                                 <asp:BoundField DataField="medVideoType" HeaderText="Video Type" 
                                     SortExpression="medVideoType" />
+                                <asp:BoundField DataField="medDateAdded" DataFormatString="{0:G}" 
+                                    HeaderText="Date Added" SortExpression="medDateAdded">
+                                    <HeaderStyle Font-Underline="True" />
+                                </asp:BoundField>
                             </Columns>
                             <EmptyDataTemplate>
                                 <center>
@@ -111,9 +115,10 @@
         </ContentTemplate>
     </asp:UpdatePanel>
     <asp:LinqDataSource ID="lnqMovies" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
-        Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre, medDuration, medVideoType)"
+        Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre, medDuration, medVideoType, medDateAdded)"
         TableName="StoredMedias" 
-    Where="medIsViewable == @medIsViewable &amp;&amp; medMediaType == @medMediaType">
+    
+        Where="medIsViewable == @medIsViewable &amp;&amp; medMediaType == @medMediaType">
         <WhereParameters>
             <asp:Parameter DefaultValue="Y" Name="medIsViewable" Type="Char" />
             <asp:Parameter DefaultValue="movie" Name="medMediaType" Type="String" />

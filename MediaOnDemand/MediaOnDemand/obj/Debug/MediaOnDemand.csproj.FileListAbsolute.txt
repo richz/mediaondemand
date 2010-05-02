@@ -42,3 +42,5 @@ E:\Hosted Websites\MediaOnDemand\MediaOnDemand\bin\zh-CHT\AjaxControlToolkit.res
 E:\Hosted Websites\MediaOnDemand\MediaOnDemand\obj\Debug\ResolveAssemblyReference.cache
 E:\Hosted Websites\MediaOnDemand\MediaOnDemand\obj\Debug\MediaOnDemand.dll
 E:\Hosted Websites\MediaOnDemand\MediaOnDemand\obj\Debug\MediaOnDemand.pdb
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\MediaOnDemandLibrary.dll
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\MediaOnDemandLibrary.pdb

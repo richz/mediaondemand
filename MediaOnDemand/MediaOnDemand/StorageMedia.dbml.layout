@@ -8,5 +8,11 @@
         <elementListCompartment Id="d7cffc8e-b3f6-4143-bff8-efda4c17669c" absoluteBounds="3.39, 2.585, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="21eb4108-34bf-4618-b922-bd03dbcb43b6" absoluteBounds="1.25, 2.625, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/StorageMediaDataContext/UserAccountSetting" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d3acf9ae-c59a-4880-a3ab-21616efd35db" absoluteBounds="1.2650000000000001, 3.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

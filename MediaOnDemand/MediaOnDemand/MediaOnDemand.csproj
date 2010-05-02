@@ -62,8 +62,6 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="pages\ChangePassword.aspx" />
-    <Content Include="pages\ChangePasswordSuccess.aspx" />
     <Content Include="pages\Register.aspx" />
     <Content Include="bin\MediaOnDemand.dll" />
     <Content Include="bin\MediaOnDemand.pdb" />
@@ -80,20 +78,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pages\ChangePassword.aspx.cs">
-      <DependentUpon>ChangePassword.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\ChangePassword.aspx.designer.cs">
-      <DependentUpon>ChangePassword.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="pages\ChangePasswordSuccess.aspx.cs">
-      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\ChangePasswordSuccess.aspx.designer.cs">
-      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
-    </Compile>
     <Compile Include="pages\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -205,6 +189,20 @@
     <Compile Include="pages\UserManagement.aspx.designer.cs">
       <DependentUpon>UserManagement.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\UserAccount.aspx.cs">
+      <DependentUpon>UserAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\UserAccount.aspx.designer.cs">
+      <DependentUpon>UserAccount.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnetdb.mdf">
@@ -232,13 +230,25 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\MediaOnDemandLibrary.dll" />
+    <Content Include="bin\MediaOnDemandLibrary.pdb" />
+    <Content Include="js\ControlProperties.js" />
     <Content Include="Machine.config file\Machine.config" />
+    <Content Include="pages\sourceMailFile.txt" />
+    <Content Include="pages\ChangePassword.aspx" />
+    <Content Include="pages\UserAccount.aspx" />
     <None Include="StorageMedia.dbml.layout">
       <DependentUpon>StorageMedia.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MediaOnDemandLibrary\MediaOnDemandLibrary.csproj">
+      <Project>{38E41635-F6CD-4454-98F5-6CF2E225AE6D}</Project>
+      <Name>MediaOnDemandLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="aspnet_client\system_web\4_0_30128\" />

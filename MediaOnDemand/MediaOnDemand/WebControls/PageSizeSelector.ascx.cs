@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 
-namespace MediaOnDemand.WebControls
+namespace MediaOnDemandLibrary.WebControls
 {
     public partial class PageSizeSelector : System.Web.UI.UserControl
     {

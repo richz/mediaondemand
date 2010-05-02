@@ -10,7 +10,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h1>Music</h1>   
+    <h1>Music</h1>   
 
 <form id"musicForm">
 <script type="text/javascript"><%= postBackStr %></script>
@@ -32,6 +32,8 @@
         </tr>
         <tr>
             <td id="PageSize" style="width: 75%">
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
                 <table>
                     <tr>
                         <td>
@@ -45,6 +47,8 @@
                                 <asp:ListItem Value="all" Selected="True">All</asp:ListItem>
                             </asp:DropDownList>
                         </td>
+                        </ContentTemplate>
+                        </asp:UpdatePanel>
                     </tr>
                 </table>
             </td>
@@ -54,6 +58,9 @@
         </tr>
         <tr>
             <td colspan="2">
+            <asp:UpdatePanel ID="gridViewUpdatePanel" runat="server">
+        <ContentTemplate>
+        <center>
                 <asp:GridView ID="gvMusic" Width="100%" runat="server" AllowPaging="True" AllowSorting="True"
                     AutoGenerateColumns="False" CellPadding="4" DataSourceID="lnqMusic" EnableModelValidation="True"
                     ForeColor="#333333" GridLines="None" OnDataBound="gvMusic_DataBound">
@@ -74,6 +81,11 @@
                         <asp:BoundField DataField="medGenre" HeaderText="Genre" ReadOnly="True" SortExpression="medGenre" />
                         <asp:BoundField DataField="medDuration" HeaderText="Duration" ReadOnly="True" SortExpression="medDuration" />
                         <asp:BoundField DataField="medAlbum" HeaderText="Album" ReadOnly="True" SortExpression="medAlbum" />
+                        <asp:BoundField DataField="medDateAdded" DataFormatString="{0:G}" 
+                            HeaderText="Date Added">
+                            <HeaderStyle Font-Underline="True" />
+                            <ItemStyle Font-Underline="False" />
+                        </asp:BoundField>
                     </Columns>
                     <EmptyDataTemplate>
                         <center>
@@ -90,6 +102,9 @@
             </td>
         </tr>
     </table>
+    </center>
+    </ContentTemplate>
+    </asp:UpdatePanel>
     <asp:LinqDataSource ID="lnqMusic" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
         Select="new (medTitle, medArtist, medDescription, medGenre, medDuration, medAlbum, medId, medLocation, medIsViewable, medDateAdded, medMediaType)"
         TableName="StoredMedias" Where="medMediaType == @medMediaType &amp;&amp; medIsViewable == @medIsViewable">

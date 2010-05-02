@@ -72,6 +72,14 @@ namespace MediaOnDemand
 				return this.GetTable<StoredMedia>();
 			}
 		}
+		
+		public System.Data.Linq.Table<UserAccountSetting> UserAccountSettings
+		{
+			get
+			{
+				return this.GetTable<UserAccountSetting>();
+			}
+		}
 	}
 	
 	[Table(Name="dbo.StoredMedia")]
@@ -420,6 +428,51 @@ namespace MediaOnDemand
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.UserAccountSettings")]
+	public partial class UserAccountSetting
+	{
+		
+		private string _acctUserName;
+		
+		private char _acctMustChangePassword;
+		
+		public UserAccountSetting()
+		{
+		}
+		
+		[Column(Storage="_acctUserName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string acctUserName
+		{
+			get
+			{
+				return this._acctUserName;
+			}
+			set
+			{
+				if ((this._acctUserName != value))
+				{
+					this._acctUserName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_acctMustChangePassword", DbType="Char(1) NOT NULL")]
+		public char acctMustChangePassword
+		{
+			get
+			{
+				return this._acctMustChangePassword;
+			}
+			set
+			{
+				if ((this._acctMustChangePassword != value))
+				{
+					this._acctMustChangePassword = value;
+				}
 			}
 		}
 	}
