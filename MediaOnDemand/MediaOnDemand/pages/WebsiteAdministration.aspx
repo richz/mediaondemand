@@ -48,25 +48,23 @@
     </tr>      
     </table>
     <br />
-    <br />
-    <table>
+       <table>
     <tr>
-    <td class="style2">
-    <table>
-    <tr>
-    <td colspan="2"><asp:Button ID="btnAddAllFromNetworkFolder" runat="server" 
-            Text="Add all files from network folder" 
+
+    <td align="left"><asp:Button ID="btnAddAllFromNetworkFolder" runat="server" 
+            Text="Add all media files" 
             onclick="btnAddAllFromNetworkFolder_Click" /> 
     </td>
-    <td><asp:Button ID="btnDeleteAllRecords" runat="server" Text="Delete All Records" 
+    <td align="right"><asp:Button ID="btnDeleteAllRecords" runat="server" Text="Delete All Records" 
             onclick="btnDeleteAllRecords_Click" />
     </td>
+         
     </tr>
-    </table>           
-    </td>  
-    
+    <tr>
+    <td>
+    </td>
     </tr>
-        <tr>
+            <tr>
             <td colspan="2">                        
                 <table>
                 

@@ -17,7 +17,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     
-    <div class="page" >
+    <div class="page">
         <div class="header">
             <div class="title">
                 <h1>
