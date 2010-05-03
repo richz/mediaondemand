@@ -55,7 +55,7 @@
         <tr>
             <td colspan="2">
                
-                <cc1:Media_Player_Control ID="wmPlayer" Height="300px" Width="100%" AutoStart="true"
+                <cc1:Media_Player_Control ID="wmPlayer" Height="400px" Width="500px" AutoStart="true"
                     runat="server" />             
                                     
                 <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server" />
