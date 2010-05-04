@@ -41,16 +41,17 @@
                         </td>
                         <td>
                             <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
-                                <asp:ListItem>10</asp:ListItem>
+                                <asp:ListItem Selected="True">10</asp:ListItem>
                                 <asp:ListItem>20</asp:ListItem>
                                 <asp:ListItem>50</asp:ListItem>
-                                <asp:ListItem Value="all" Selected="True">All</asp:ListItem>
+                                <asp:ListItem Value="all">All</asp:ListItem>
                             </asp:DropDownList>
                         </td>
-                        </ContentTemplate>
-                        </asp:UpdatePanel>
+                        
                     </tr>
                 </table>
+            </ContentTemplate>
+                        </asp:UpdatePanel>
             </td>
             <td align="right">
                 <asp:Label ID="lblRecordCount" runat="server" Text=""></asp:Label>
@@ -63,7 +64,7 @@
         <center>
                 <asp:GridView ID="gvMusic" Width="100%" runat="server" AllowPaging="True" AllowSorting="True"
                     AutoGenerateColumns="False" CellPadding="4" DataSourceID="lnqMusic" EnableModelValidation="True"
-                    ForeColor="#333333" GridLines="None" OnDataBound="gvMusic_DataBound">
+                    ForeColor="#333333" GridLines="None">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
@@ -105,9 +106,14 @@
     </center>
     </ContentTemplate>
     </asp:UpdatePanel>
+    </td>
+    </tr>
+    </table>
     <asp:LinqDataSource ID="lnqMusic" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
         Select="new (medTitle, medArtist, medDescription, medGenre, medDuration, medAlbum, medId, medLocation, medIsViewable, medDateAdded, medMediaType)"
-        TableName="StoredMedias" Where="medMediaType == @medMediaType &amp;&amp; medIsViewable == @medIsViewable">
+        TableName="StoredMedias" 
+    Where="medMediaType == @medMediaType &amp;&amp; medIsViewable == @medIsViewable" 
+    onselected="lnqMusic_Selected">
         <WhereParameters>
             <asp:Parameter DefaultValue="music" Name="medMediaType" Type="String" />
             <asp:Parameter DefaultValue="Y" Name="medIsViewable" Type="Char" />

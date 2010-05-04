@@ -25,12 +25,12 @@ namespace MediaOnDemand
 
             if (!IsPostBack)
             {
-                if(this.gvMusic.Rows.Count > 0)
-                    this.gvMusic.PageSize = this.GetGridViewRecordCountByCurrentMediaType();
-                this.ddlPageSize.SelectedIndex = this.ddlPageSize.Items.Count - 1;
-                UpdateRecordCount();
+                this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
                 this.gvMusic.Sort("medTitle", SortDirection.Ascending);
-                
+
+                this.wmPlayer.AutoStart = true;
+                this.gvMusic.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].Value);                
+                this.gvMusic.Sort("medTitle", SortDirection.Ascending);
             }
 
             this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
@@ -46,16 +46,14 @@ namespace MediaOnDemand
 
         protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!this.ddlPageSize.SelectedValue.Equals("all"))
-            {   
-                //this.ddlPageSize.SelectedIndex = this.ddlPageSize.Items.Count - 1;
-                this.gvMusic.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue);
+            if (this.ddlPageSize.SelectedValue.Equals("all"))
+            {
+                this.gvMusic.PageSize = Convert.ToInt32(Session["TotalRowCount"].ToString());
             }
             else
-                this.gvMusic.PageSize = this.GetGridViewRecordCountByCurrentMediaType();                       
+                this.gvMusic.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue);                
 
-            this.gvMusic.PageIndex = 0;
-            UpdateRecordCount();
+            this.gvMusic.PageIndex = 0;            
         }
 
         #endregion
@@ -67,7 +65,7 @@ namespace MediaOnDemand
             //Record Per Page Display
             int iTotalRecords = 0;
 
-            iTotalRecords = this.GetGridViewRecordCountByCurrentMediaType();
+            iTotalRecords = Convert.ToInt32(Session["TotalRowCount"].ToString());
 
             int iEndRecord = gvMusic.PageSize * (gvMusic.PageIndex + 1);
             int iStartsRecods = iEndRecord - gvMusic.PageSize;
@@ -101,9 +99,12 @@ namespace MediaOnDemand
 
         #endregion
 
-        protected void gvMusic_DataBound(object sender, EventArgs e)
+        protected void lnqMusic_Selected(object sender, LinqDataSourceStatusEventArgs e)
         {
-            if ((sender as GridView).Rows.Count == 0)
+            Session["TotalRowCount"] = e.TotalRowCount;
+            UpdateRecordCount();
+
+            if (e.TotalRowCount == 0)
             {
                 this.wmPlayer.Visible = false;
                 this.lblPageSize.Visible = false;
