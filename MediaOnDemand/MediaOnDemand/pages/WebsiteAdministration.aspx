@@ -23,8 +23,6 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <%--<asp:ToolkitScriptManager ID="ToolkitScriptManager" runat="server">
-    </asp:ToolkitScriptManager>--%>
    
     <h1>Website Administration</h1>    
     <table>
@@ -121,11 +119,7 @@
             <td colspan="2">
                 <asp:GridView ID="gvMedia" runat="server" AutoGenerateColumns="False" DataSourceID="lnqMedia"
                     EnableModelValidation="True" DataKeyNames="medId" CellPadding="4" ForeColor="#333333"
-                    GridLines="None" AllowPaging="True" AllowSorting="True" 
-                    onpageindexchanged="gvMedia_PageIndexChanged" 
-                    onpageindexchanging="gvMedia_PageIndexChanging" 
-                    onrowdeleted="gvMedia_RowDeleted" onrowdeleting="gvMedia_RowDeleting" 
-                    ondatabound="gvMedia_DataBound">
+                    GridLines="None" AllowPaging="True" AllowSorting="True">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:TemplateField>
@@ -174,7 +168,7 @@
     
     <asp:LinqDataSource ID="lnqMedia" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
         TableName="StoredMedias" Where="medMediaType == @medMediaType" EnableDelete="True"
-        EnableInsert="True" EnableUpdate="True">
+        EnableInsert="True" EnableUpdate="True" onselected="lnqMedia_Selected">
         <WhereParameters>
             <asp:ControlParameter ControlID="ddlMediaTypes" Name="medMediaType" PropertyName="SelectedValue"
                 Type="String" />

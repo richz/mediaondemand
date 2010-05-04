@@ -46,9 +46,9 @@ namespace MediaOnDemand
                 this.btnApplyChanges.Visible = false;
                 this.btnAddNewMediaRow.Enabled = true;
                 this.hdnNetworkFolder.Value = this.videosFolder;
+                this.gvMedia.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
                 this.gvMedia.Sort("medTitle", SortDirection.Ascending);
-                UpdateRecordCount();
-
+                
                 //if (Directory.Exists(this.rootVideosFolder) && Directory.Exists(this.rootMusicFolder))
                 //{
                 //    //
@@ -82,34 +82,7 @@ namespace MediaOnDemand
                 //else
                 //{
                 //    //Missing Directories
-                //}
-
-                //this.AddNewMediaPanel.Visible = false;
-                this.btnAddNewMediaRow.Enabled = true;
-
-                //Hide Page Size Controls if no records, else show
-                if (GetGridViewRecordCountByCurrentMediaType() == 0)
-                {
-                    this.lblPageSize.Visible = false;
-                    this.ddlPageSize.Visible = false;
-                }
-                else
-                {
-                    this.lblPageSize.Visible = true;
-                    this.ddlPageSize.Visible = true;
-                }
-
-            }
-
-            if (this.ddlMediaTypes.SelectedValue.Equals("music"))
-            {
-                this.gvMedia.Columns[10].Visible = true;
-                this.gvMedia.Columns[13].Visible = false;
-            }
-            else
-            {
-                this.gvMedia.Columns[13].Visible = true;
-                this.gvMedia.Columns[10].Visible = false;
+                //}        
             }
         }
 
@@ -132,6 +105,8 @@ namespace MediaOnDemand
                         this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
                         this.lnqMedia.Where = "medMediaType == \"music\"";
                         this.hdnNetworkFolder.Value = this.musicFolder;
+                        this.gvMedia.Columns[10].Visible = true;
+                        this.gvMedia.Columns[13].Visible = false;
                     }
                     break;
                 case "movie":
@@ -139,6 +114,8 @@ namespace MediaOnDemand
                         this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
                         this.lnqMedia.Where = "medMediaType == \"movie\"";
                         this.hdnNetworkFolder.Value = this.moviesFolder;
+                        this.gvMedia.Columns[13].Visible = true;
+                        this.gvMedia.Columns[10].Visible = false;
                     }
                     break;
                 case "documentary":
@@ -146,7 +123,8 @@ namespace MediaOnDemand
                         this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
                         this.lnqMedia.Where = "medMediaType == \"documentary\"";
                         this.hdnNetworkFolder.Value = this.documentariesFolder;
-
+                        this.gvMedia.Columns[13].Visible = true;
+                        this.gvMedia.Columns[10].Visible = false;
                     }
                     break;
                 case "tv":
@@ -154,7 +132,8 @@ namespace MediaOnDemand
                         this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
                         this.lnqMedia.Where = "medMediaType == \"tv\"";
                         this.hdnNetworkFolder.Value = this.tvFolder;
-
+                        this.gvMedia.Columns[13].Visible = true;
+                        this.gvMedia.Columns[10].Visible = false;
                     }
                     break;
                 case "basketball":
@@ -162,7 +141,8 @@ namespace MediaOnDemand
                         this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
                         this.lnqMedia.Where = "medMediaType == \"basketball\"";
                         this.hdnNetworkFolder.Value = this.basketballFolder;
-
+                        this.gvMedia.Columns[13].Visible = true;
+                        this.gvMedia.Columns[10].Visible = false;
                     }
                     break;
                 case "musicvideo":
@@ -170,12 +150,15 @@ namespace MediaOnDemand
                         this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
                         this.lnqMedia.Where = "medMediaType == \"musicvideo\"";
                         this.hdnNetworkFolder.Value = this.musicVideosFolder;
-
+                        this.gvMedia.Columns[13].Visible = true;
+                        this.gvMedia.Columns[10].Visible = false;
                     }
                     break;
             }
 
-            UpdateRecordCount();
+            this.ddlPageSize.SelectedIndex = 0;
+            this.gvMedia.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].ToString());
+            this.gvMedia.PageIndex = 0;
         }
 
         protected void btnAddNewMediaRow_Click(object sender, EventArgs e)
@@ -193,8 +176,7 @@ namespace MediaOnDemand
                 this.hdnAlbum.Value = "";
                 this.hdnMedId.Value = "";
                 this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
-
-                //Session["updateMode"] = "add";
+                
                 this.hdnUpdateMode.Value = "add";
                 this.btnAddNewMediaRow.Text = "Cancel";
                 this.btnApplyChanges.Visible = true;
@@ -205,8 +187,6 @@ namespace MediaOnDemand
             {
                 this.btnAddNewMediaRow.Text = "Add new media";
                 this.btnApplyChanges.Visible = false;
-
-                //Session["updateMode"] = "none";
                 this.hdnUpdateMode.Value = "none";
             }
         }
@@ -267,8 +247,6 @@ namespace MediaOnDemand
                 {
                 }
             }
-
-            //this.AddNewMediaPanel.Visible = false;
             this.btnApplyChanges.Visible = false;
             this.btnAddNewMediaRow.Text = "Add new media";
             this.btnAddNewMediaRow.Visible = true;
@@ -279,7 +257,6 @@ namespace MediaOnDemand
 
         protected void lnkEdit_Click(object sender, EventArgs e)
         {
-            //Session["updateMode"] = "edit";
             this.hdnUpdateMode.Value = "edit";
 
             this.btnAddNewMediaRow.Text = "Cancel";
@@ -305,7 +282,7 @@ namespace MediaOnDemand
                 medDescription = "",
                 medGenre = genre,
                 medMediaType = mediaType,
-                medDuration = duration,//0.0f,
+                medDuration = duration,
                 medAlbum = album,
                 medFileExt = fileExt,
             };
@@ -423,7 +400,7 @@ namespace MediaOnDemand
             }
 
             //Hide Page Size Controls if no records, else show
-            if (GetGridViewRecordCountByCurrentMediaType() == 0)
+            if (Convert.ToInt32(Session["TotalRowCount"].ToString()) == 0)
             {
                 this.lblPageSize.Visible = false;
                 this.ddlPageSize.Visible = false;
@@ -434,18 +411,7 @@ namespace MediaOnDemand
                 this.ddlPageSize.Visible = true;
             }
 
-            this.gvMedia.DataBind();
-            UpdateRecordCount();
-        }
-
-        protected void gvMedia_PageIndexChanged(object sender, EventArgs e)
-        {
-            UpdateRecordCount();
-        }
-
-        protected void gvMedia_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-
+            this.gvMedia.DataBind();            
         }
 
         protected void btnDeleteAllRecords_Click(object sender, EventArgs e)
@@ -453,8 +419,8 @@ namespace MediaOnDemand
             StorageMediaDataContext context = new StorageMediaDataContext();
 
             foreach (StoredMedia sm in context.StoredMedias)
-                //if (sm.medMediaType.Trim().Equals(this.ddlMediaTypes.SelectedValue))
-                //{
+                if (sm.medMediaType.Trim().Equals(this.ddlMediaTypes.SelectedValue))
+                {
                     context.StoredMedias.DeleteOnSubmit(sm);
 
                     try
@@ -465,10 +431,9 @@ namespace MediaOnDemand
                     {
 
                     }
-                //}
+                }
 
-            this.gvMedia.DataBind();
-            UpdateRecordCount();
+            this.gvMedia.DataBind();            
 
             //Hide Page Size Controls if no records, else show
             if (GetGridViewRecordCountByCurrentMediaType() == 0)
@@ -498,28 +463,7 @@ namespace MediaOnDemand
             else
                 this.gvMedia.PageSize = this.GetGridViewRecordCountByCurrentMediaType();
 
-            this.gvMedia.PageIndex = 0;
-            UpdateRecordCount();
-        }
-
-        protected void gvMedia_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-
-        }
-
-        protected void gvMedia_RowDeleted(object sender, GridViewDeletedEventArgs e)
-        {
-            //Hide Page Size Controls if no records, else show
-            if (GetGridViewRecordCountByCurrentMediaType() == 0)
-            {
-                this.lblPageSize.Visible = false;
-                this.ddlPageSize.Visible = false;
-            }
-            else
-            {
-                this.lblPageSize.Visible = true;
-                this.ddlPageSize.Visible = true;
-            }
+            this.gvMedia.PageIndex = 0;            
         }
 
         #endregion
@@ -562,7 +506,7 @@ namespace MediaOnDemand
             //Record Per Page Display
             int iTotalRecords = 0;
 
-            iTotalRecords = this.GetGridViewRecordCountByCurrentMediaType();
+            iTotalRecords = Convert.ToInt32(Session["TotalRowCount"].ToString());
 
             int iEndRecord = gvMedia.PageSize * (gvMedia.PageIndex + 1);
             int iStartsRecods = iEndRecord - gvMedia.PageSize;
@@ -647,17 +591,23 @@ namespace MediaOnDemand
 
         #endregion
 
-        protected void gvMedia_DataBound(object sender, EventArgs e)
+        protected void lnqMedia_Selected(object sender, LinqDataSourceStatusEventArgs e)
         {
-            StorageMediaDataContext context = new StorageMediaDataContext();
+            Session["TotalRowCount"] = e.TotalRowCount;
+            UpdateRecordCount();
 
-            IQueryable<StoredMedia> sm = from StoredMedia in context.StoredMedias 
-                            select StoredMedia;
-
-            if (sm.Count() > 0)
+            if (e.TotalRowCount > 0)
+            {
+                this.lblPageSize.Visible = true;
+                this.ddlPageSize.Visible = true;
                 this.btnDeleteAllRecords.Visible = true;
-
-
+            }
+            else
+            {
+                this.lblPageSize.Visible = false;
+                this.ddlPageSize.Visible = false;
+                this.btnDeleteAllRecords.Visible = false;
+            }
         }
     }
 }
