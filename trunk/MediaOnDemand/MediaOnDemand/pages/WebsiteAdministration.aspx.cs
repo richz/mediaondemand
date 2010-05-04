@@ -347,43 +347,48 @@ namespace MediaOnDemand
             int filesAdded = 0;
             int totalFiles = 0;
 
-            //Movies
-            int[] filesCount = addFilesFromFolder(moviesFolder, "movie");
+            int[] filesCount = addFilesFromFolder(this.hdnNetworkFolder.Value, this.ddlMediaTypes.SelectedValue);
             filesAdded += filesCount[0];
             duplicates += filesCount[1];
             totalFiles += filesCount[2];
 
-            //TV
-            filesCount = addFilesFromFolder(tvFolder, "tv");
-            filesAdded += filesCount[0];
-            duplicates += filesCount[1];
-            totalFiles += filesCount[2];
+            ////Movies
+            //int[] filesCount = addFilesFromFolder(moviesFolder, "movie");
+            //filesAdded += filesCount[0];
+            //duplicates += filesCount[1];
+            //totalFiles += filesCount[2];
 
-            //Basketball
-            filesCount = addFilesFromFolder(basketballFolder, "basketball");
-            filesAdded += filesCount[0];
-            duplicates += filesCount[1];
-            totalFiles += filesCount[2];
+            ////TV
+            //filesCount = addFilesFromFolder(tvFolder, "tv");
+            //filesAdded += filesCount[0];
+            //duplicates += filesCount[1];
+            //totalFiles += filesCount[2];
 
-            //Documentary
-            filesCount = addFilesFromFolder(documentariesFolder, "documentary");
-            filesAdded += filesCount[0];
-            duplicates += filesCount[1];
-            totalFiles += filesCount[2];
+            ////Basketball
+            //filesCount = addFilesFromFolder(basketballFolder, "basketball");
+            //filesAdded += filesCount[0];
+            //duplicates += filesCount[1];
+            //totalFiles += filesCount[2];
 
-            //Music Videos
-            filesCount = addFilesFromFolder(musicVideosFolder, "musicvideo");
-            filesAdded += filesCount[0];
-            duplicates += filesCount[1];
-            totalFiles += filesCount[2];
+            ////Documentary
+            //filesCount = addFilesFromFolder(documentariesFolder, "documentary");
+            //filesAdded += filesCount[0];
+            //duplicates += filesCount[1];
+            //totalFiles += filesCount[2];
 
-            //Music
-            filesCount = addFilesFromFolder(musicFolder, "music");
-            filesAdded += filesCount[0];
-            duplicates += filesCount[1];
-            totalFiles += filesCount[2];
+            ////Music Videos
+            //filesCount = addFilesFromFolder(musicVideosFolder, "musicvideo");
+            //filesAdded += filesCount[0];
+            //duplicates += filesCount[1];
+            //totalFiles += filesCount[2];
 
-            if (duplicates == totalFiles)
+            ////Music
+            //filesCount = addFilesFromFolder(musicFolder, "music");
+            //filesAdded += filesCount[0];
+            //duplicates += filesCount[1];
+            //totalFiles += filesCount[2];
+
+            if (duplicates == totalFiles && totalFiles > 0)
             {
                 this.lblFolderMessage.ForeColor = Color.Red;
                 this.lblFolderMessage.Text = "All " + duplicates + " files were duplicates, no new files were added";
@@ -392,6 +397,11 @@ namespace MediaOnDemand
             {
                 this.lblFolderMessage.ForeColor = Color.Red;
                 this.lblFolderMessage.Text = "Found " + duplicates + " duplicate(s), only " + (totalFiles - duplicates) + " files were added";
+            }
+            else if(totalFiles == 0)
+            {
+                this.lblFolderMessage.ForeColor = Color.Red;
+                this.lblFolderMessage.Text = "No files were found in the specified directory";
             }
             else
             {
