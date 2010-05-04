@@ -13,7 +13,7 @@ namespace MediaOnDemand
     public partial class OtherVideos : System.Web.UI.Page
     {
         #region Page Event Handlers
-
+        
         protected string postBackStr;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -23,19 +23,21 @@ namespace MediaOnDemand
                 this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
                 this.wmPlayer.MovieURL = "";
                 this.wmPlayer.AutoStart = true;
-                this.ddlPageSize.SelectedIndex = this.ddlPageSize.Items.Count - 1;
-                this.lnqVideos.Where = "medMediaType == \"" + this.ddlMediaTypes.SelectedValue + "\"";
-
-                if (this.gvVideos.Rows.Count > 0)
-                {
-                    this.wmPlayer.Visible = true;
-                    this.gvVideos.PageSize = this.GetGridViewRecordCountByCurrentMediaType();
-                }
-                else
-                    this.wmPlayer.Visible = false;
-
+                this.gvVideos.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
+                this.lnqVideos.Where = "medMediaType == \"" + this.ddlMediaTypes.Items[0].Value + "\"";
                 this.gvVideos.Sort("medTitle", SortDirection.Ascending);
-                UpdateRecordCount();
+
+                this.GetGridViewRecordCountByCurrentMediaType();
+
+                //if (this.gvVideos.Rows.Count > 0)
+                //{
+                //    this.wmPlayer.Visible = true;
+                //    this.gvVideos.PageSize = Session["TotalRowCount"];
+                //}
+                //else
+                //    this.wmPlayer.Visible = false;
+                
+                //UpdateRecordCount();
             }
 
             this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
@@ -67,15 +69,14 @@ namespace MediaOnDemand
 
         protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!this.ddlPageSize.SelectedValue.Equals("all"))
+            if (this.ddlPageSize.SelectedValue.Equals("all"))
             {
-                this.gvVideos.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue);
+                this.gvVideos.PageSize = Convert.ToInt32(Session["TotalRowCount"].ToString());               
             }
             else
-                this.gvVideos.PageSize = this.GetGridViewRecordCountByCurrentMediaType();
+                this.gvVideos.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue);                
 
-            this.gvVideos.PageIndex = 0;
-            UpdateRecordCount();
+            this.gvVideos.PageIndex = 0;            
         }
 
         #endregion
@@ -87,7 +88,7 @@ namespace MediaOnDemand
             //Record Per Page Display
             int iTotalRecords = 0;
 
-            iTotalRecords = this.GetGridViewRecordCountByCurrentMediaType();
+            iTotalRecords = Convert.ToInt32(Session["TotalRowCount"].ToString());//Convert.ToInt32(this.hdnTotalRowCount.Value);//this.GetGridViewRecordCountByCurrentMediaType();
 
             int iEndRecord = gvVideos.PageSize * (gvVideos.PageIndex + 1);
             int iStartsRecods = iEndRecord - gvVideos.PageSize;
@@ -112,7 +113,7 @@ namespace MediaOnDemand
             var recs =
 
                 (from StoredMedia in context.StoredMedias
-                 where StoredMedia.medMediaType == "tv" || StoredMedia.medMediaType == "basketball" || StoredMedia.medMediaType == "documentary" || StoredMedia.medMediaType == "musicvideo"
+                 where StoredMedia.medMediaType == this.ddlMediaTypes.SelectedValue                 
                  select StoredMedia
                 );
 
@@ -143,18 +144,13 @@ namespace MediaOnDemand
             }
         }
 
-        protected void gvMovies_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-
-        }
-
         protected void ddlMediaTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Reset Page Index for Grid
             this.gvVideos.PageIndex = 0;
 
             switch (this.ddlMediaTypes.SelectedValue)
-            {
+            {   
                 case "documentary":
                     {
                         this.lnqVideos.Where = "medMediaType == \"documentary\"";
@@ -177,10 +173,17 @@ namespace MediaOnDemand
                     }
                     break;
             }
+        }
 
+        protected void gvVideos_PageIndexChanged(object sender, EventArgs e)
+        {
+            //UpdateRecordCount();
+        }
+
+        protected void lnqVideos_Selected(object sender, LinqDataSourceStatusEventArgs e)
+        {   
+            Session["TotalRowCount"] = e.TotalRowCount;
             UpdateRecordCount();
-            this.gvVideos.DataBind();
-
         }
     }
 }
