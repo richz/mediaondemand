@@ -22,21 +22,41 @@
     <center>
     <table width="400px" style="height:300px">
 <tr>
-<td align="right" style="width:45%">
- <asp:Label ID="lblChooseMediaType" runat="server" 
-                    Text="Please choose a media type:" 
-                    ondatabinding="ddlMediaTypes_SelectedIndexChanged"></asp:Label>
-</td>
-<td align="left">
+
+<td>
     <asp:UpdatePanel ID="updatePanel" runat="server">
     <ContentTemplate>
-    <asp:DropDownList ID="ddlMediaTypes" runat="server" 
+    
+    <table>
+    <tr>
+   <td align="right" style="width:50%">
+ <asp:Label ID="lblChooseMediaType" runat="server" Text="Please choose a media type:"></asp:Label>
+</td>
+  
+    <td align="left">
+     <asp:DropDownList ID="ddlMediaTypes" runat="server" 
             onselectedindexchanged="ddlMediaTypes_SelectedIndexChanged" AutoPostBack="true">                            
                     <asp:ListItem Value="tv" Selected="True">TV</asp:ListItem>                    
                     <asp:ListItem Value="basketball">Basketball</asp:ListItem>
                     <asp:ListItem Value="documentary">Documentaries</asp:ListItem>
                     <asp:ListItem Value="musicvideo">Music Videos</asp:ListItem>                                                                     
         </asp:DropDownList>
+    </td>
+    </tr>
+    <tr>
+   <td align="right" style="width:50%">
+ <asp:Label ID="lblShows" runat="server" Text="Please choose a show:"></asp:Label>
+</td>
+  
+    <td align="left">
+     <asp:DropDownList ID="ddlShows" runat="server" 
+            onselectedindexchanged="ddlMediaTypes_SelectedIndexChanged" AutoPostBack="true">
+        </asp:DropDownList>
+    </td>
+    </tr>
+    </table>
+   
+        
     </ContentTemplate>
     </asp:UpdatePanel>
 
@@ -95,8 +115,7 @@
                     <td colspan="2">
                         <asp:GridView ID="gvVideos" Width="100%" runat="server" AllowPaging="True" AllowSorting="True"
                             AutoGenerateColumns="False" DataSourceID="lnqVideos" CellPadding="4" ForeColor="#333333"
-                            GridLines="None" OnDataBound="gvMovies_DataBound" 
-                            onpageindexchanged="gvVideos_PageIndexChanged">
+                            GridLines="None">
                             <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                             <Columns>
                                 <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
