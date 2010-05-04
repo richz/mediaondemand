@@ -20,26 +20,26 @@ namespace MediaOnDemand
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["SelectedGenreIndex"] = this.ddlGenre.SelectedIndex;
+
             if (!IsPostBack)
             {
                 this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
                 this.wmPlayer.MovieURL = "";
                 this.wmPlayer.AutoStart = true;
+
                 this.ddlPageSize.SelectedIndex = Convert.ToInt32(this.ddlPageSize.Items[0].Value);                
                 this.gvMovies.Sort("medTitle", SortDirection.Ascending);
-                //UpdateRecordCount();
             }
             
             this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
-            this.lblFileMessages.Text = "";
+            //this.lblFileMessages.Text = "";
             this.lblMessage.Text = "";
         }
 
         #endregion
 
-        #region Controls Event Handlers
-
-        
+        #region Controls Event Handlers        
 
         protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -57,6 +57,35 @@ namespace MediaOnDemand
         #endregion
 
         #region Helper Methods
+
+        private void SetList()
+        {
+            List<String> genres = new List<string>();
+
+            this.ddlGenre.Items.Clear();
+
+            StorageMediaDataContext context = new StorageMediaDataContext();
+
+            foreach (StoredMedia sm in context.StoredMedias)
+            {
+                if (sm.medMediaType.Trim().Equals("movie"))
+                {
+                    DirectoryInfo dir = new DirectoryInfo(sm.medLocation);
+                    string item = dir.Parent.Name;
+
+                    if (!genres.Contains(item))
+                        genres.Add(item);
+                }
+            }
+
+            string [] arr = genres.ToArray();
+            Array.Sort(arr);
+
+            genres = arr.ToList();
+
+            foreach (string genre in genres)
+                this.ddlGenre.Items.Add(genre);
+        }
 
         private void UpdateRecordCount()
         {
@@ -97,9 +126,15 @@ namespace MediaOnDemand
 
         #endregion
 
-        protected void gvMovies_DataBound(object sender, EventArgs e)
+        protected void lnqMovies_Selected(object sender, LinqDataSourceStatusEventArgs e)
         {
-            if ((sender as GridView).Rows.Count == 0)
+            Session["TotalRowCount"] = e.TotalRowCount;
+            UpdateRecordCount();
+            this.SetList();
+
+            this.ddlGenre.SelectedIndex = Convert.ToInt32(Session["SelectedGenreIndex"].ToString());
+
+            if (e.TotalRowCount == 0)
             {
                 this.wmPlayer.Visible = false;
                 this.lblPageSize.Visible = false;
@@ -115,10 +150,9 @@ namespace MediaOnDemand
             }
         }
 
-        protected void lnqMovies_Selected(object sender, LinqDataSourceStatusEventArgs e)
+        protected void ddlGenre_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Session["TotalRowCount"] = e.TotalRowCount;
-            UpdateRecordCount();
+            this.lnqMovies.WhereParameters[2].DefaultValue = this.ddlGenre.SelectedValue;
         }
     }
 }

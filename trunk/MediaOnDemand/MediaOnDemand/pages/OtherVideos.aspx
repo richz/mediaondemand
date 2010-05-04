@@ -45,12 +45,12 @@
     </tr>
     <tr>
    <td align="right" style="width:50%">
- <asp:Label ID="lblShows" runat="server" Text="Please choose a show:"></asp:Label>
+ <asp:Label ID="lblList" runat="server" Text="Please choose an option:"></asp:Label>
 </td>
   
     <td align="left">
-     <asp:DropDownList ID="ddlShows" runat="server" 
-            onselectedindexchanged="ddlMediaTypes_SelectedIndexChanged" AutoPostBack="true">
+     <asp:DropDownList ID="ddlList" runat="server" AutoPostBack="true" 
+            onselectedindexchanged="ddlList_SelectedIndexChanged">
         </asp:DropDownList>
     </td>
     </tr>
@@ -75,7 +75,7 @@
         <tr>
             <td colspan="2">
                
-                <cc1:Media_Player_Control ID="wmPlayer" Height="400px" Width="500px" AutoStart="true"
+                <cc1:Media_Player_Control ID="wmPlayer" Height="350px" Width="450px" AutoStart="true"
                     runat="server" />             
                                     
                 <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server" />
@@ -159,12 +159,14 @@
         </ContentTemplate>
     </asp:UpdatePanel>
     <asp:LinqDataSource ID="lnqVideos" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
-        Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre, medDuration, medVideoType, medDateAdded)"
-        TableName="StoredMedias" Where="medMediaType == @medMediaType" 
+        Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre, medDuration, medVideoType, medDateAdded, medMediaType)"
+        TableName="StoredMedias" Where="medGenre == @medGenre &amp;&amp; medMediaType == @medMediaType" 
     onselected="lnqVideos_Selected">
         <WhereParameters>
-            <asp:ControlParameter ControlID="ddlMediaTypes" Name="medMediaType" 
+            <asp:ControlParameter ControlID="ddlList" Name="medGenre" 
                 PropertyName="SelectedValue" Type="String" />
+            <asp:ControlParameter ControlID="ddlMediaTypes" Name="medMediaType" 
+                PropertyName="SelectedValue" Type="String" DefaultValue="tv" />
         </WhereParameters>
     </asp:LinqDataSource>
 <asp:HiddenField ID="hdnTotalRowCount" runat="server" />

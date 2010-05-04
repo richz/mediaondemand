@@ -18,11 +18,17 @@ namespace MediaOnDemand
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["SelectedListIndex"] = this.ddlList.SelectedIndex;
+
             if (!IsPostBack)
             {
                 this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
                 this.wmPlayer.MovieURL = "";
                 this.wmPlayer.AutoStart = true;
+
+                this.ddlList.SelectedIndex = 0;
+                this.lnqVideos.WhereParameters.Add("medGenre", this.ddlList.SelectedValue);
+
                 this.gvVideos.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
                 this.lnqVideos.Where = "medMediaType == \"" + this.ddlMediaTypes.Items[0].Value + "\"";
                 this.gvVideos.Sort("medTitle", SortDirection.Ascending);
@@ -94,13 +100,23 @@ namespace MediaOnDemand
 
         }
 
-        private List<String> GetShowNames()
+        private void SetList()
         {
-            List<String> shows = new List<string>();
+            this.ddlList.Items.Clear();
 
+            StorageMediaDataContext context = new StorageMediaDataContext();
 
+            foreach (StoredMedia sm in context.StoredMedias)
+            {
+                if(sm.medMediaType.Trim().Equals(this.ddlMediaTypes.SelectedValue))
+                {
+                    DirectoryInfo dir = new DirectoryInfo(sm.medLocation);
+                    string item = dir.Parent.Name;
 
-            return shows;
+                    if (!this.ddlList.Items.Contains(new ListItem(item)))
+                        this.ddlList.Items.Add(item);
+                }
+            }            
         }
 
         #endregion
@@ -136,15 +152,28 @@ namespace MediaOnDemand
                     }
                     break;
             }
+
+            this.ddlList.SelectedIndex = 0;
         }        
 
         protected void lnqVideos_Selected(object sender, LinqDataSourceStatusEventArgs e)
         {   
             Session["TotalRowCount"] = e.TotalRowCount;
-            this.ddlShows.Items.Clear();
-
-
             UpdateRecordCount();
+
+            this.SetList();
+
+            if (this.ddlList.Items.Count > 0)
+            {
+                this.ddlList.SelectedIndex = Convert.ToInt32(Session["SelectedListIndex"]);
+                this.lblList.Visible = true;
+                this.ddlList.Visible = true;
+            }
+            else
+            {
+                this.lblList.Visible = false;
+                this.ddlList.Visible = false;
+            }
 
             if (e.TotalRowCount == 0)
             {
@@ -152,20 +181,28 @@ namespace MediaOnDemand
                 this.lblPageSize.Visible = false;
                 this.ddlPageSize.Visible = false;
                 this.lblRecordCount.Visible = false;
-                this.lblShows.Visible = false;
-                this.ddlShows.Visible = false;
+                this.lblChooseMediaType.Visible = false;
+                this.ddlMediaTypes.Visible = false;
+                this.lblList.Visible = false;
+                this.ddlList.Visible = false;
             }
             else
             {
                 this.wmPlayer.Visible = true;
                 this.lblPageSize.Visible = true;
-                this.ddlPageSize.Visible = true;
+                this.ddlPageSize.Visible = true;                
+                this.lblRecordCount.Visible = true;
                 this.lblChooseMediaType.Visible = true;
                 this.ddlMediaTypes.Visible = true;
-                this.lblRecordCount.Visible = true;
-                this.lblShows.Visible = true;
-                this.ddlShows.Visible = true;
+                this.lblList.Visible = true;
+                this.ddlList.Visible = true;
             }
+        }
+
+        protected void ddlList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Filter by list item
+            this.lnqVideos.WhereParameters[1].DefaultValue = this.ddlList.SelectedValue;
         }
     }
 }

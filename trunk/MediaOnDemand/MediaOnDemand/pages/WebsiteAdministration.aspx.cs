@@ -45,10 +45,10 @@ namespace MediaOnDemand
                 this.btnAddNewMediaRow.Text = "Add new media";
                 this.btnApplyChanges.Visible = false;
                 this.btnAddNewMediaRow.Enabled = true;
-                this.hdnNetworkFolder.Value = this.videosFolder;
+                this.hdnNetworkFolder.Value = this.moviesFolder;
                 this.gvMedia.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
                 this.gvMedia.Sort("medTitle", SortDirection.Ascending);
-                
+
                 //if (Directory.Exists(this.rootVideosFolder) && Directory.Exists(this.rootMusicFolder))
                 //{
                 //    //
@@ -176,7 +176,7 @@ namespace MediaOnDemand
                 this.hdnAlbum.Value = "";
                 this.hdnMedId.Value = "";
                 this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
-                
+
                 this.hdnUpdateMode.Value = "add";
                 this.btnAddNewMediaRow.Text = "Cancel";
                 this.btnApplyChanges.Visible = true;
@@ -205,8 +205,8 @@ namespace MediaOnDemand
                     this.addNewMediaRecord(this.hdnTitle.Value, this.hdnLocation.Value, Convert.ToChar(this.hdnIsViewable.Value), this.hdnArtist.Value, this.hdnDescription.Value, this.hdnGenre.Value, this.hdnMediaType.Value, duration, this.hdnAlbum.Value, fileExt);
                 }
                 catch (Exception ex)
-                { 
-                }                
+                {
+                }
             }
             else //Edit
             {
@@ -278,7 +278,7 @@ namespace MediaOnDemand
                 medLocation = filePath,
                 medDateAdded = DateTime.Now,
                 medIsViewable = 'Y',
-                medArtist = "",
+                medArtist = artist,
                 medDescription = "",
                 medGenre = genre,
                 medMediaType = mediaType,
@@ -298,34 +298,71 @@ namespace MediaOnDemand
             fileCount[2] = Directory.GetFiles(directory, "*.*", SearchOption.AllDirectories).Length;
 
             string mediaName;
-            string genre;
+            string genre = "";
+            string artist = "";
 
             foreach (String filePath in Directory.GetFiles(directory, "*.*", SearchOption.AllDirectories))
             {
                 FileInfo file = new FileInfo(filePath);
                 mediaName = Path.GetFileNameWithoutExtension(filePath);
 
-                if (file.Directory.Parent.Name.Equals("movie"))
+                switch (file.Directory.Parent.Name)
                 {
+                    case "movie":
+                    case "tv":
+                        {
+                            mediaType = file.Directory.Parent.Name;
 
-                    mediaType = file.Directory.Parent.Name;
-
-                    genre = file.Directory.Name;
+                            genre = file.Directory.Name;
+                        }
+                        break;
+                    case "music":
+                        {
+                            mediaType = file.Directory.Parent.Name;
+                            artist = file.Directory.Name;
+                        }
+                        break;
+                    case "documentary":
+                        {
+                            mediaType = file.Directory.Parent.Name;
+                            genre = file.Directory.Name;
+                        }
+                        break;
+                    case "basketball":
+                        {
+                            mediaType = file.Directory.Parent.Name;
+                            genre = file.Directory.Name;
+                        }
+                        break;
+                    case "musicvideo":
+                        {
+                            mediaType = file.Directory.Parent.Name;
+                            genre = file.Directory.Name;
+                        }
+                        break;
                 }
-                else
-                {
 
-                    mediaType = file.Directory.Parent.Name;
+                //if (file.Directory.Parent.Name.Equals("movie"))
+                //{
 
-                    genre = "";
-                }
+                //    mediaType = file.Directory.Parent.Name;
+
+                //    genre = file.Directory.Name;
+                //}
+                //else
+                //{
+
+                //    mediaType = file.Directory.Parent.Name;
+
+                //    genre = "";
+                //}
 
 
                 if (!StoredMediaRecordExistsByTitle(mediaName))
                 {
                     try
                     {
-                        this.addNewMediaRecord(mediaName, filePath, 'Y', "", "", genre, mediaType, 0.0f, "", file.Extension);
+                        this.addNewMediaRecord(mediaName, filePath, 'Y', artist, "", genre, mediaType, 0.0f, "", file.Extension);
 
                         fileCount[0]++;
 
@@ -398,7 +435,7 @@ namespace MediaOnDemand
                 this.lblFolderMessage.ForeColor = Color.Red;
                 this.lblFolderMessage.Text = "Found " + duplicates + " duplicate(s), only " + (totalFiles - duplicates) + " files were added";
             }
-            else if(totalFiles == 0)
+            else if (totalFiles == 0)
             {
                 this.lblFolderMessage.ForeColor = Color.Red;
                 this.lblFolderMessage.Text = "No files were found in the specified directory";
@@ -421,7 +458,7 @@ namespace MediaOnDemand
                 this.ddlPageSize.Visible = true;
             }
 
-            this.gvMedia.DataBind();            
+            this.gvMedia.DataBind();
         }
 
         protected void btnDeleteAllRecords_Click(object sender, EventArgs e)
@@ -443,7 +480,7 @@ namespace MediaOnDemand
                     }
                 }
 
-            this.gvMedia.DataBind();            
+            this.gvMedia.DataBind();
 
             //Hide Page Size Controls if no records, else show
             if (GetGridViewRecordCountByCurrentMediaType() == 0)
@@ -473,7 +510,7 @@ namespace MediaOnDemand
             else
                 this.gvMedia.PageSize = this.GetGridViewRecordCountByCurrentMediaType();
 
-            this.gvMedia.PageIndex = 0;            
+            this.gvMedia.PageIndex = 0;
         }
 
         #endregion
