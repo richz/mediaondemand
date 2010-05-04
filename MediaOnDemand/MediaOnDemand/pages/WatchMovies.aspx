@@ -65,10 +65,10 @@
                                 </td>
                                 <td>
                                     <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
-                                        <asp:ListItem>10</asp:ListItem>
+                                        <asp:ListItem Selected="True">10</asp:ListItem>
                                         <asp:ListItem>20</asp:ListItem>
                                         <asp:ListItem>50</asp:ListItem>
-                                        <asp:ListItem Value="all" Selected="True">All</asp:ListItem>
+                                        <asp:ListItem Value="all">All</asp:ListItem>
                                     </asp:DropDownList>
                                 </td>
                             </tr>
