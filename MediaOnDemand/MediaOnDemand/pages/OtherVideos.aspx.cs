@@ -26,18 +26,6 @@ namespace MediaOnDemand
                 this.gvVideos.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
                 this.lnqVideos.Where = "medMediaType == \"" + this.ddlMediaTypes.Items[0].Value + "\"";
                 this.gvVideos.Sort("medTitle", SortDirection.Ascending);
-
-                this.GetGridViewRecordCountByCurrentMediaType();
-
-                //if (this.gvVideos.Rows.Count > 0)
-                //{
-                //    this.wmPlayer.Visible = true;
-                //    this.gvVideos.PageSize = Session["TotalRowCount"];
-                //}
-                //else
-                //    this.wmPlayer.Visible = false;
-                
-                //UpdateRecordCount();
             }
 
             this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
@@ -106,48 +94,23 @@ namespace MediaOnDemand
 
         }
 
-        private int GetGridViewRecordCountByCurrentMediaType()
+        private List<String> GetShowNames()
         {
-            StorageMediaDataContext context = new StorageMediaDataContext();
+            List<String> shows = new List<string>();
 
-            var recs =
 
-                (from StoredMedia in context.StoredMedias
-                 where StoredMedia.medMediaType == this.ddlMediaTypes.SelectedValue                 
-                 select StoredMedia
-                );
 
-            return recs.Count();
+            return shows;
         }
 
         #endregion
-
-        protected void gvMovies_DataBound(object sender, EventArgs e)
-        {
-            if ((sender as GridView).Rows.Count == 0)
-            {
-                this.wmPlayer.Visible = false;
-                this.lblPageSize.Visible = false;
-                this.ddlPageSize.Visible = false;
-                this.lblRecordCount.Visible = false;
-                //this.lblChooseMediaType.Visible = false;
-                //this.ddlMediaTypes.Visible = false;
-            }
-            else
-            {
-                this.wmPlayer.Visible = true;
-                this.lblPageSize.Visible = true;
-                this.ddlPageSize.Visible = true;
-                this.lblChooseMediaType.Visible = true;
-                this.ddlMediaTypes.Visible = true;
-                this.lblRecordCount.Visible = true;
-            }
-        }
 
         protected void ddlMediaTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Reset Page Index for Grid
             this.gvVideos.PageIndex = 0;
+            this.ddlPageSize.SelectedIndex = 0;
+            this.gvVideos.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
 
             switch (this.ddlMediaTypes.SelectedValue)
             {   
@@ -173,17 +136,36 @@ namespace MediaOnDemand
                     }
                     break;
             }
-        }
-
-        protected void gvVideos_PageIndexChanged(object sender, EventArgs e)
-        {
-            //UpdateRecordCount();
-        }
+        }        
 
         protected void lnqVideos_Selected(object sender, LinqDataSourceStatusEventArgs e)
         {   
             Session["TotalRowCount"] = e.TotalRowCount;
+            this.ddlShows.Items.Clear();
+
+
             UpdateRecordCount();
+
+            if (e.TotalRowCount == 0)
+            {
+                this.wmPlayer.Visible = false;
+                this.lblPageSize.Visible = false;
+                this.ddlPageSize.Visible = false;
+                this.lblRecordCount.Visible = false;
+                this.lblShows.Visible = false;
+                this.ddlShows.Visible = false;
+            }
+            else
+            {
+                this.wmPlayer.Visible = true;
+                this.lblPageSize.Visible = true;
+                this.ddlPageSize.Visible = true;
+                this.lblChooseMediaType.Visible = true;
+                this.ddlMediaTypes.Visible = true;
+                this.lblRecordCount.Visible = true;
+                this.lblShows.Visible = true;
+                this.ddlShows.Visible = true;
+            }
         }
     }
 }

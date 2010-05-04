@@ -23,15 +23,6 @@ namespace MediaOnDemand {
         protected global::System.Web.UI.WebControls.Label lblFileMessages;
         
         /// <summary>
-        /// lblChooseMediaType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblChooseMediaType;
-        
-        /// <summary>
         /// updatePanel control.
         /// </summary>
         /// <remarks>
@@ -41,6 +32,15 @@ namespace MediaOnDemand {
         protected global::System.Web.UI.UpdatePanel updatePanel;
         
         /// <summary>
+        /// lblChooseMediaType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblChooseMediaType;
+        
+        /// <summary>
         /// ddlMediaTypes control.
         /// </summary>
         /// <remarks>
@@ -48,6 +48,24 @@ namespace MediaOnDemand {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMediaTypes;
+        
+        /// <summary>
+        /// lblShows control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblShows;
+        
+        /// <summary>
+        /// ddlShows control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlShows;
         
         /// <summary>
         /// lblMessage control.
