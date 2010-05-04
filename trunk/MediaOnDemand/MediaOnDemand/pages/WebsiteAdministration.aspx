@@ -37,8 +37,7 @@
             onselectedindexchanged="ddlMediaTypes_SelectedIndexChanged" AutoPostBack="true">
             <asp:ListItem Value="movie" Selected="True">Movies</asp:ListItem>                    
                     <asp:ListItem Value="tv">TV</asp:ListItem>                    
-                    <asp:ListItem Value="basketball">Basketball</asp:ListItem>
-                    <asp:ListItem Value="documentary">Documentaries</asp:ListItem>
+                    <asp:ListItem Value="basketball">Basketball</asp:ListItem>                    
                     <asp:ListItem Value="musicvideo">Music Videos</asp:ListItem>                   
                     <asp:ListItem Value="music">Music</asp:ListItem>                    
         </asp:DropDownList>
