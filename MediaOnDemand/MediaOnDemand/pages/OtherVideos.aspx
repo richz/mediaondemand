@@ -37,8 +37,7 @@
      <asp:DropDownList ID="ddlMediaTypes" runat="server" 
             onselectedindexchanged="ddlMediaTypes_SelectedIndexChanged" AutoPostBack="true">                            
                     <asp:ListItem Value="tv" Selected="True">TV</asp:ListItem>                    
-                    <asp:ListItem Value="basketball">Basketball</asp:ListItem>
-                    <asp:ListItem Value="documentary">Documentaries</asp:ListItem>
+                    <asp:ListItem Value="basketball">Basketball</asp:ListItem>                    
                     <asp:ListItem Value="musicvideo">Music Videos</asp:ListItem>                                                                     
         </asp:DropDownList>
     </td>
@@ -160,13 +159,13 @@
     </asp:UpdatePanel>
     <asp:LinqDataSource ID="lnqVideos" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
         Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre, medDuration, medVideoType, medDateAdded, medMediaType)"
-        TableName="StoredMedias" Where="medGenre == @medGenre &amp;&amp; medMediaType == @medMediaType" 
+        TableName="StoredMedias" Where="medMediaType == @medMediaType &amp;&amp; medGenre == @medGenre" 
     onselected="lnqVideos_Selected">
         <WhereParameters>
-            <asp:ControlParameter ControlID="ddlList" Name="medGenre" 
-                PropertyName="SelectedValue" Type="String" />
             <asp:ControlParameter ControlID="ddlMediaTypes" Name="medMediaType" 
                 PropertyName="SelectedValue" Type="String" DefaultValue="tv" />
+            <asp:ControlParameter ControlID="ddlList" Name="medGenre" 
+                PropertyName="SelectedValue" Type="String" DefaultValue="" />
         </WhereParameters>
     </asp:LinqDataSource>
 <asp:HiddenField ID="hdnTotalRowCount" runat="server" />

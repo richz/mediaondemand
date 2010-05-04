@@ -27,7 +27,7 @@ namespace MediaOnDemand
                 this.wmPlayer.AutoStart = true;
 
                 this.ddlList.SelectedIndex = 0;
-                this.lnqVideos.WhereParameters.Add("medGenre", this.ddlList.SelectedValue);
+                //this.lnqVideos.WhereParameters.Add("medGenre", this.ddlList.SelectedValue);
 
                 this.gvVideos.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
                 this.lnqVideos.Where = "medMediaType == \"" + this.ddlMediaTypes.Items[0].Value + "\"";
@@ -130,30 +130,32 @@ namespace MediaOnDemand
 
             switch (this.ddlMediaTypes.SelectedValue)
             {   
-                case "documentary":
-                    {
-                        this.lnqVideos.Where = "medMediaType == \"documentary\"";
-
-                    }
-                    break;
                 case "tv":
                     {
-                        this.lnqVideos.Where = "medMediaType == \"tv\"";
+                        this.lnqVideos.WhereParameters["medMediaType"].DefaultValue = "\"tv\"";
+                        //this.lnqVideos.Where = "medMediaType == \"tv\"";
                     }
                     break;
                 case "basketball":
                     {
-                        this.lnqVideos.Where = "medMediaType == \"basketball\"";
+                        this.lnqVideos.WhereParameters["medMediaType"].DefaultValue = "\"basketball\"";
+                        //this.lnqVideos.Where = "medMediaType == \"basketball\"";
                     }
                     break;
                 case "musicvideo":
                     {
-                        this.lnqVideos.Where = "medMediaType == \"musicvideo\"";
+                        this.lnqVideos.WhereParameters["medMediaType"].DefaultValue = "\"musicvideo\"";
+                        //this.lnqVideos.Where = "medMediaType == \"musicvideo\"";
                     }
                     break;
             }
 
-            this.ddlList.SelectedIndex = 0;
+            this.SetList();
+            
+            if(this.ddlList.Items.Count > 0)
+                this.ddlList.SelectedIndex = 0;
+
+            this.gvVideos.DataBind();
         }        
 
         protected void lnqVideos_Selected(object sender, LinqDataSourceStatusEventArgs e)
@@ -166,8 +168,9 @@ namespace MediaOnDemand
             if (this.ddlList.Items.Count > 0)
             {
                 this.ddlList.SelectedIndex = Convert.ToInt32(Session["SelectedListIndex"]);
+                this.lnqVideos.WhereParameters["medGenre"].DefaultValue = this.ddlList.Items[0].Value;
                 this.lblList.Visible = true;
-                this.ddlList.Visible = true;
+                this.ddlList.Visible = true;                
             }
             else
             {
@@ -181,8 +184,8 @@ namespace MediaOnDemand
                 this.lblPageSize.Visible = false;
                 this.ddlPageSize.Visible = false;
                 this.lblRecordCount.Visible = false;
-                this.lblChooseMediaType.Visible = false;
-                this.ddlMediaTypes.Visible = false;
+                //this.lblChooseMediaType.Visible = false;
+                //this.ddlMediaTypes.Visible = false;
                 this.lblList.Visible = false;
                 this.ddlList.Visible = false;
             }
@@ -192,8 +195,8 @@ namespace MediaOnDemand
                 this.lblPageSize.Visible = true;
                 this.ddlPageSize.Visible = true;                
                 this.lblRecordCount.Visible = true;
-                this.lblChooseMediaType.Visible = true;
-                this.ddlMediaTypes.Visible = true;
+                //this.lblChooseMediaType.Visible = true;
+                //this.ddlMediaTypes.Visible = true;
                 this.lblList.Visible = true;
                 this.ddlList.Visible = true;
             }
@@ -202,7 +205,8 @@ namespace MediaOnDemand
         protected void ddlList_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Filter by list item
-            this.lnqVideos.WhereParameters[1].DefaultValue = this.ddlList.SelectedValue;
+            this.lnqVideos.WhereParameters["medGenre"].DefaultValue = this.ddlList.SelectedValue;
+            this.gvVideos.DataBind();
         }
     }
 }
