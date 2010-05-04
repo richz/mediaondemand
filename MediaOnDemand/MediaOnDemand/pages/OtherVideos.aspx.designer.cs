@@ -50,22 +50,22 @@ namespace MediaOnDemand {
         protected global::System.Web.UI.WebControls.DropDownList ddlMediaTypes;
         
         /// <summary>
-        /// lblShows control.
+        /// lblList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblShows;
+        protected global::System.Web.UI.WebControls.Label lblList;
         
         /// <summary>
-        /// ddlShows control.
+        /// ddlList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlShows;
+        protected global::System.Web.UI.WebControls.DropDownList ddlList;
         
         /// <summary>
         /// lblMessage control.

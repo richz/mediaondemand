@@ -14,13 +14,22 @@ namespace MediaOnDemand {
     public partial class WatchMovies {
         
         /// <summary>
-        /// lblFileMessages control.
+        /// lblGenre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFileMessages;
+        protected global::System.Web.UI.WebControls.Label lblGenre;
+        
+        /// <summary>
+        /// ddlGenre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlGenre;
         
         /// <summary>
         /// lblMessage control.

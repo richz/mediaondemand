@@ -15,13 +15,24 @@
     <form id="watchMovieForm">
 <script type="text/javascript"><%= postBackStr %></script>
 
-    <asp:Label ID="lblFileMessages" runat="server" Text="Label"></asp:Label>
-
+<%--    <asp:Label ID="lblFileMessages" runat="server" Text="Label"></asp:Label>
+--%>
     <center>
     <table width="400px" style="height:300px">
 
 <tr>
 <td colspan="2">
+   <tr>
+   <td align="right" style="width:50%">
+ <asp:Label ID="lblGenre" runat="server" Text="Please choose a genre:"></asp:Label>
+</td>
+  
+    <td align="left">
+     <asp:DropDownList ID="ddlGenre" runat="server" AutoPostBack="true" 
+            onselectedindexchanged="ddlGenre_SelectedIndexChanged">
+        </asp:DropDownList>
+    </td>
+    </tr>
 </td>
 </tr>
         <tr>
@@ -71,7 +82,7 @@
                     <td colspan="2">
                         <asp:GridView ID="gvMovies" Width="100%" runat="server" AllowPaging="True" AllowSorting="True"
                             AutoGenerateColumns="False" DataSourceID="lnqMovies" CellPadding="4" ForeColor="#333333"
-                            GridLines="None" OnDataBound="gvMovies_DataBound">
+                            GridLines="None">
                             <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                             <Columns>
                                 <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
@@ -119,11 +130,13 @@
         TableName="StoredMedias" 
     
         
-        Where="medIsViewable == @medIsViewable &amp;&amp; medMediaType == @medMediaType" 
+        Where="medIsViewable == @medIsViewable &amp;&amp; medMediaType == @medMediaType &amp;&amp; medGenre == @medGenre" 
         onselected="lnqMovies_Selected">
         <WhereParameters>
             <asp:Parameter DefaultValue="Y" Name="medIsViewable" Type="Char" />
             <asp:Parameter DefaultValue="movie" Name="medMediaType" Type="String" />
+            <asp:ControlParameter ControlID="ddlGenre" DefaultValue="Comedy" 
+                Name="medGenre" PropertyName="SelectedValue" Type="String" />
         </WhereParameters>
     </asp:LinqDataSource>
     </form>

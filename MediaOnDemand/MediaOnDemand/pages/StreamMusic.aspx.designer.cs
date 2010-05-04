@@ -23,6 +23,24 @@ namespace MediaOnDemand {
         protected global::System.Web.UI.WebControls.Label lblFileMessages;
         
         /// <summary>
+        /// lblArtist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblArtist;
+        
+        /// <summary>
+        /// ddlArtist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlArtist;
+        
+        /// <summary>
         /// lblMessage control.
         /// </summary>
         /// <remarks>

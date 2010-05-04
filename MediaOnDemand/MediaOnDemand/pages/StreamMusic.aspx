@@ -15,9 +15,34 @@
 <form id"musicForm">
 <script type="text/javascript"><%= postBackStr %></script>
 
+
+
     <asp:Label ID="lblFileMessages" runat="server" Text="Label"></asp:Label>
 
     <table width="100%">
+
+   <tr>
+   <td>
+   <center>
+   <table>
+   <tr>
+      <td align="right" style="width:50%">
+ <asp:Label ID="lblArtist" runat="server" Text="Please choose a genre:"></asp:Label>
+   
+    <td align="left">
+    <asp:DropDownList ID="ddlArtist" runat="server" AutoPostBack="true" 
+            onselectedindexchanged="ddlArtist_SelectedIndexChanged">
+        </asp:DropDownList>
+    </td>
+   </tr>
+   </table>
+   </center>
+
+
+</td>
+
+  
+    </tr>
         <tr>
             <td colspan="2">
                 <asp:Label ID="lblMessage" runat="server" Font-Bold="true" Text=""></asp:Label>
@@ -109,14 +134,17 @@
     </td>
     </tr>
     </table>
+    
     <asp:LinqDataSource ID="lnqMusic" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
         Select="new (medTitle, medArtist, medDescription, medGenre, medDuration, medAlbum, medId, medLocation, medIsViewable, medDateAdded, medMediaType)"
         TableName="StoredMedias" 
-    Where="medMediaType == @medMediaType &amp;&amp; medIsViewable == @medIsViewable" 
+    Where="medMediaType == @medMediaType &amp;&amp; medIsViewable == @medIsViewable &amp;&amp; medArtist == @medArtist" 
     onselected="lnqMusic_Selected">
         <WhereParameters>
             <asp:Parameter DefaultValue="music" Name="medMediaType" Type="String" />
             <asp:Parameter DefaultValue="Y" Name="medIsViewable" Type="Char" />
+            <asp:ControlParameter ControlID="ddlArtist" Name="medArtist" 
+                PropertyName="SelectedValue" Type="String" />
         </WhereParameters>
     </asp:LinqDataSource>
     
