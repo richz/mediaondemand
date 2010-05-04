@@ -78,10 +78,10 @@
                                 </td>
                                 <td>
                                     <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
-                                        <asp:ListItem>10</asp:ListItem>
+                                        <asp:ListItem Selected="True">10</asp:ListItem>
                                         <asp:ListItem>20</asp:ListItem>
                                         <asp:ListItem>50</asp:ListItem>
-                                        <asp:ListItem Value="all" Selected="True">All</asp:ListItem>
+                                        <asp:ListItem Value="all">All</asp:ListItem>
                                     </asp:DropDownList>
                                 </td>
                             </tr>
@@ -95,7 +95,8 @@
                     <td colspan="2">
                         <asp:GridView ID="gvVideos" Width="100%" runat="server" AllowPaging="True" AllowSorting="True"
                             AutoGenerateColumns="False" DataSourceID="lnqVideos" CellPadding="4" ForeColor="#333333"
-                            GridLines="None" OnDataBound="gvMovies_DataBound" OnRowDataBound="gvMovies_RowDataBound">
+                            GridLines="None" OnDataBound="gvMovies_DataBound" 
+                            onpageindexchanged="gvVideos_PageIndexChanged">
                             <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                             <Columns>
                                 <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
@@ -140,12 +141,15 @@
     </asp:UpdatePanel>
     <asp:LinqDataSource ID="lnqVideos" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
         Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre, medDuration, medVideoType, medDateAdded)"
-        TableName="StoredMedias" Where="medIsViewable == @medIsViewable">
+        TableName="StoredMedias" Where="medMediaType == @medMediaType" 
+    onselected="lnqVideos_Selected">
         <WhereParameters>
-            <asp:Parameter DefaultValue="Y" Name="medIsViewable" Type="Char" />
+            <asp:ControlParameter ControlID="ddlMediaTypes" Name="medMediaType" 
+                PropertyName="SelectedValue" Type="String" />
         </WhereParameters>
     </asp:LinqDataSource>
-    <asp:HiddenField ID="hdnMediaType" runat="server" />
+<asp:HiddenField ID="hdnTotalRowCount" runat="server" />
+<asp:HiddenField ID="hdnMediaType" runat="server" />
     </form>
 
 </asp:Content>
