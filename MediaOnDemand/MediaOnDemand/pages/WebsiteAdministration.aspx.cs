@@ -23,7 +23,7 @@ namespace MediaOnDemand
 
         //Subfolders
         string moviesFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Videos/movie/");
-        string documentariesFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Videos/documentary/");
+        //string documentariesFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Videos/documentary/");
         string musicVideosFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Videos/musicvideo/");
         string tvFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Videos/tv/");
         string basketballFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Videos/basketball/");
@@ -118,15 +118,15 @@ namespace MediaOnDemand
                         this.gvMedia.Columns[10].Visible = false;
                     }
                     break;
-                case "documentary":
-                    {
-                        this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
-                        this.lnqMedia.Where = "medMediaType == \"documentary\"";
-                        this.hdnNetworkFolder.Value = this.documentariesFolder;
-                        this.gvMedia.Columns[13].Visible = true;
-                        this.gvMedia.Columns[10].Visible = false;
-                    }
-                    break;
+                //case "documentary":
+                //    {
+                //        this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
+                //        this.lnqMedia.Where = "medMediaType == \"documentary\"";
+                //        this.hdnNetworkFolder.Value = this.documentariesFolder;
+                //        this.gvMedia.Columns[13].Visible = true;
+                //        this.gvMedia.Columns[10].Visible = false;
+                //    }
+                //    break;
                 case "tv":
                     {
                         this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
@@ -322,12 +322,12 @@ namespace MediaOnDemand
                             artist = file.Directory.Name;
                         }
                         break;
-                    case "documentary":
-                        {
-                            mediaType = file.Directory.Parent.Name;
-                            genre = file.Directory.Name;
-                        }
-                        break;
+                    //case "documentary":
+                    //    {
+                    //        mediaType = file.Directory.Parent.Name;
+                    //        genre = file.Directory.Name;
+                    //    }
+                    //    break;
                     case "basketball":
                         {
                             mediaType = file.Directory.Parent.Name;
