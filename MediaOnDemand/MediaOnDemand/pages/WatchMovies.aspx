@@ -28,9 +28,13 @@
 </td>
   
     <td align="left">
+    <asp:UpdatePanel ID="genreUpdatePanel" runat="server">
+        <ContentTemplate>
      <asp:DropDownList ID="ddlGenre" runat="server" AutoPostBack="true" 
             onselectedindexchanged="ddlGenre_SelectedIndexChanged">
         </asp:DropDownList>
+        </ContentTemplate>
+        </asp:UpdatePanel>
     </td>
     </tr>
 </td>
