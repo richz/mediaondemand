@@ -71,7 +71,7 @@
                     <td colspan="2">
                         <asp:GridView ID="gvMovies" Width="100%" runat="server" AllowPaging="True" AllowSorting="True"
                             AutoGenerateColumns="False" DataSourceID="lnqMovies" CellPadding="4" ForeColor="#333333"
-                            GridLines="None" OnDataBound="gvMovies_DataBound" OnRowDataBound="gvMovies_RowDataBound">
+                            GridLines="None" OnDataBound="gvMovies_DataBound">
                             <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                             <Columns>
                                 <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
@@ -118,7 +118,9 @@
         Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre, medDuration, medVideoType, medDateAdded)"
         TableName="StoredMedias" 
     
-        Where="medIsViewable == @medIsViewable &amp;&amp; medMediaType == @medMediaType">
+        
+        Where="medIsViewable == @medIsViewable &amp;&amp; medMediaType == @medMediaType" 
+        onselected="lnqMovies_Selected">
         <WhereParameters>
             <asp:Parameter DefaultValue="Y" Name="medIsViewable" Type="Char" />
             <asp:Parameter DefaultValue="movie" Name="medMediaType" Type="String" />

@@ -25,18 +25,9 @@ namespace MediaOnDemand
                 this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
                 this.wmPlayer.MovieURL = "";
                 this.wmPlayer.AutoStart = true;
-                this.ddlPageSize.SelectedIndex = this.ddlPageSize.Items.Count - 1;                
-
-                if (this.gvMovies.Rows.Count > 0)
-                {
-                    this.wmPlayer.Visible = true;
-                    this.gvMovies.PageSize = this.GetGridViewRecordCountByCurrentMediaType(); 
-                }
-                else
-                    this.wmPlayer.Visible = false;
-
+                this.ddlPageSize.SelectedIndex = Convert.ToInt32(this.ddlPageSize.Items[0].Value);                
                 this.gvMovies.Sort("medTitle", SortDirection.Ascending);
-                UpdateRecordCount();
+                //UpdateRecordCount();
             }
             
             this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
@@ -52,15 +43,15 @@ namespace MediaOnDemand
 
         protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!this.ddlPageSize.SelectedValue.Equals("all"))
+            if (this.ddlPageSize.SelectedValue.Equals("all"))
             {
-                this.gvMovies.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue);
+                this.gvMovies.PageSize = Convert.ToInt32(Session["TotalRowCount"].ToString());                
             }
             else
-                this.gvMovies.PageSize = this.GetGridViewRecordCountByCurrentMediaType();
+                this.gvMovies.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue);
 
             this.gvMovies.PageIndex = 0;
-            UpdateRecordCount();
+            //UpdateRecordCount();
         }
 
         #endregion
@@ -72,7 +63,7 @@ namespace MediaOnDemand
             //Record Per Page Display
             int iTotalRecords = 0;
 
-            iTotalRecords = this.GetGridViewRecordCountByCurrentMediaType();
+            iTotalRecords = Convert.ToInt32(Session["TotalRowCount"].ToString());
 
             int iEndRecord = gvMovies.PageSize * (gvMovies.PageIndex + 1);
             int iStartsRecods = iEndRecord - gvMovies.PageSize;
@@ -90,19 +81,19 @@ namespace MediaOnDemand
 
         }
 
-        private int GetGridViewRecordCountByCurrentMediaType()
-        {
-            StorageMediaDataContext context = new StorageMediaDataContext();
+        //private int GetGridViewRecordCountByCurrentMediaType()
+        //{
+        //    StorageMediaDataContext context = new StorageMediaDataContext();
 
-            var recs =
+        //    var recs =
 
-                (from StoredMedia in context.StoredMedias
-                 where StoredMedia.medMediaType == "movie"
-                 select StoredMedia
-                );
+        //        (from StoredMedia in context.StoredMedias
+        //         where StoredMedia.medMediaType == "movie"
+        //         select StoredMedia
+        //        );
 
-            return recs.Count();
-        }
+        //    return recs.Count();
+        //}
 
         #endregion
 
@@ -124,10 +115,10 @@ namespace MediaOnDemand
             }
         }
 
-        protected void gvMovies_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void lnqMovies_Selected(object sender, LinqDataSourceStatusEventArgs e)
         {
-            
+            Session["TotalRowCount"] = e.TotalRowCount;
+            UpdateRecordCount();
         }
-
     }
 }
