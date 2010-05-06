@@ -62,7 +62,7 @@
                             <asp:MenuItem NavigateUrl="~/pages/WatchMovies.aspx" Text="Movies" Value="Movies">
                             </asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/pages/OtherVideos.aspx" Text="Other Videos" 
-                                Value="Other Videos"></asp:MenuItem>
+                                Value="Videos"></asp:MenuItem>
                         
                         <asp:MenuItem NavigateUrl="~/pages/UserManagement.aspx" 
                             Text="Administer User Accounts" Value="Administer User Accounts"></asp:MenuItem>
@@ -98,7 +98,7 @@
                             <asp:MenuItem NavigateUrl="~/pages/WatchMovies.aspx" Text="Movies" Value="Movies">
                             </asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/pages/OtherVideos.aspx" Text="Other Videos" 
-                                Value="Other Videos"></asp:MenuItem>
+                                Value="Videos"></asp:MenuItem>
                        
                         <asp:MenuItem NavigateUrl="~/pages/UserAccount.aspx" 
                             Text="My Account" Value="My Account"></asp:MenuItem>

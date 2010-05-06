@@ -12,9 +12,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h1>Other Videos</h1>   
+    <h1>Videos</h1>   
 
-<form id="watchVideosForm">
+<%--<form id="watchVideosForm">--%>
+
 <script type="text/javascript"><%= postBackStr %></script>
 
     <asp:Label ID="lblFileMessages" runat="server" Text="Label"></asp:Label>
@@ -35,7 +36,8 @@
   
     <td align="left">
      <asp:DropDownList ID="ddlMediaTypes" runat="server" 
-            onselectedindexchanged="ddlMediaTypes_SelectedIndexChanged" AutoPostBack="true">                            
+            onselectedindexchanged="ddlMediaTypes_SelectedIndexChanged" 
+            AutoPostBack="true" onload="ddlMediaTypes_Load">                            
                     <asp:ListItem Value="tv" Selected="True">TV</asp:ListItem>                    
                     <asp:ListItem Value="basketball">Basketball</asp:ListItem>                    
                     <asp:ListItem Value="musicvideo">Music Videos</asp:ListItem>                                                                     
@@ -48,8 +50,7 @@
 </td>
   
     <td align="left">
-     <asp:DropDownList ID="ddlList" runat="server" AutoPostBack="true" 
-            onselectedindexchanged="ddlList_SelectedIndexChanged">
+     <asp:DropDownList ID="ddlList" runat="server" AutoPostBack="true">
         </asp:DropDownList>
     </td>
     </tr>
@@ -170,6 +171,7 @@
     </asp:LinqDataSource>
 <asp:HiddenField ID="hdnTotalRowCount" runat="server" />
 <asp:HiddenField ID="hdnMediaType" runat="server" />
-    </form>
+    
+    <%--</form>--%>
 
 </asp:Content>

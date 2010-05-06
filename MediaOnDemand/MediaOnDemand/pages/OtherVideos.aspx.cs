@@ -17,20 +17,15 @@ namespace MediaOnDemand
         protected string postBackStr;
 
         protected void Page_Load(object sender, EventArgs e)
-        {
-            Session["SelectedListIndex"] = this.ddlList.SelectedIndex;
+        {           
 
             if (!IsPostBack)
-            {
+            {  
                 this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
                 this.wmPlayer.MovieURL = "";
                 this.wmPlayer.AutoStart = true;
 
-                this.ddlList.SelectedIndex = 0;
-                //this.lnqVideos.WhereParameters.Add("medGenre", this.ddlList.SelectedValue);
-
                 this.gvVideos.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
-                this.lnqVideos.Where = "medMediaType == \"" + this.ddlMediaTypes.Items[0].Value + "\"";
                 this.gvVideos.Sort("medTitle", SortDirection.Ascending);
             }
 
@@ -42,24 +37,6 @@ namespace MediaOnDemand
         #endregion
 
         #region Controls Event Handlers
-
-        protected void lnkMovieLink_Click(object sender, EventArgs e)
-        {
-            //this.wmPlayer.MovieURL = "";
-
-            LinkButton movieLink = (sender as LinkButton);
-
-            string location = movieLink.CommandArgument;
-            
-            if ((new FileInfo(location)).Exists)
-            {
-                //this.wmPlayer.MovieURL = location;
-                this.lblMessage.Text = "Please click the Play button if the movie does not start";
-
-            }
-            else
-                this.lblFileMessages.Text = "File could not be found";
-        }
 
         protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -82,7 +59,7 @@ namespace MediaOnDemand
             //Record Per Page Display
             int iTotalRecords = 0;
 
-            iTotalRecords = Convert.ToInt32(Session["TotalRowCount"].ToString());//Convert.ToInt32(this.hdnTotalRowCount.Value);//this.GetGridViewRecordCountByCurrentMediaType();
+            iTotalRecords = Convert.ToInt32(Session["TotalRowCount"].ToString());
 
             int iEndRecord = gvVideos.PageSize * (gvVideos.PageIndex + 1);
             int iStartsRecods = iEndRecord - gvVideos.PageSize;
@@ -132,30 +109,26 @@ namespace MediaOnDemand
             {   
                 case "tv":
                     {
-                        this.lnqVideos.WhereParameters["medMediaType"].DefaultValue = "\"tv\"";
-                        //this.lnqVideos.Where = "medMediaType == \"tv\"";
+                        this.lnqVideos.WhereParameters["medMediaType"].DefaultValue = "\"tv\"";                        
                     }
                     break;
                 case "basketball":
                     {
-                        this.lnqVideos.WhereParameters["medMediaType"].DefaultValue = "\"basketball\"";
-                        //this.lnqVideos.Where = "medMediaType == \"basketball\"";
+                        this.lnqVideos.WhereParameters["medMediaType"].DefaultValue = "\"basketball\"";                        
                     }
                     break;
                 case "musicvideo":
                     {
-                        this.lnqVideos.WhereParameters["medMediaType"].DefaultValue = "\"musicvideo\"";
-                        //this.lnqVideos.Where = "medMediaType == \"musicvideo\"";
+                        this.lnqVideos.WhereParameters["medMediaType"].DefaultValue = "\"musicvideo\"";                        
                     }
                     break;
             }
 
-            this.SetList();
-            
-            if(this.ddlList.Items.Count > 0)
+            if (Convert.ToInt32(Session["TotalRowCount"].ToString()) > 0)
+            {
+                SetList();
                 this.ddlList.SelectedIndex = 0;
-
-            this.gvVideos.DataBind();
+            }
         }        
 
         protected void lnqVideos_Selected(object sender, LinqDataSourceStatusEventArgs e)
@@ -163,29 +136,12 @@ namespace MediaOnDemand
             Session["TotalRowCount"] = e.TotalRowCount;
             UpdateRecordCount();
 
-            this.SetList();
-
-            if (this.ddlList.Items.Count > 0)
-            {
-                this.ddlList.SelectedIndex = Convert.ToInt32(Session["SelectedListIndex"]);
-                this.lnqVideos.WhereParameters["medGenre"].DefaultValue = this.ddlList.Items[0].Value;
-                this.lblList.Visible = true;
-                this.ddlList.Visible = true;                
-            }
-            else
-            {
-                this.lblList.Visible = false;
-                this.ddlList.Visible = false;
-            }
-
             if (e.TotalRowCount == 0)
             {
                 this.wmPlayer.Visible = false;
                 this.lblPageSize.Visible = false;
                 this.ddlPageSize.Visible = false;
-                this.lblRecordCount.Visible = false;
-                //this.lblChooseMediaType.Visible = false;
-                //this.ddlMediaTypes.Visible = false;
+                this.lblRecordCount.Visible = false;                
                 this.lblList.Visible = false;
                 this.ddlList.Visible = false;
             }
@@ -194,19 +150,20 @@ namespace MediaOnDemand
                 this.wmPlayer.Visible = true;
                 this.lblPageSize.Visible = true;
                 this.ddlPageSize.Visible = true;                
-                this.lblRecordCount.Visible = true;
-                //this.lblChooseMediaType.Visible = true;
-                //this.ddlMediaTypes.Visible = true;
+                this.lblRecordCount.Visible = true;                
                 this.lblList.Visible = true;
                 this.ddlList.Visible = true;
             }
         }
 
-        protected void ddlList_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlMediaTypes_Load(object sender, EventArgs e)
         {
-            //Filter by list item
-            this.lnqVideos.WhereParameters["medGenre"].DefaultValue = this.ddlList.SelectedValue;
-            this.gvVideos.DataBind();
+            if (!IsPostBack)
+            {
+                SetList();
+                this.ddlList.SelectedIndex = 0;
+            }
+
         }
     }
 }
