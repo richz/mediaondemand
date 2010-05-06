@@ -12,7 +12,7 @@
     
     <h1>Movies</h1>   
     
-    <form id="watchMovieForm">
+    <%--<form id="watchMovieForm">--%>
 <script type="text/javascript"><%= postBackStr %></script>
 
 <%--    <asp:Label ID="lblFileMessages" runat="server" Text="Label"></asp:Label>
@@ -143,5 +143,5 @@
                 Name="medGenre" PropertyName="SelectedValue" Type="String" />
         </WhereParameters>
     </asp:LinqDataSource>
-    </form>
+    <%--</form>--%>
 </asp:Content>

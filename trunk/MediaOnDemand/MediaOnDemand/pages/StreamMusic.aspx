@@ -12,7 +12,8 @@
 
     <h1>Music</h1>   
 
-<form id"musicForm">
+<%--<form id"musicForm">--%>
+
 <script type="text/javascript"><%= postBackStr %></script>
 
 
@@ -28,11 +29,15 @@
    <tr>
       <td align="right" style="width:50%">
  <asp:Label ID="lblArtist" runat="server" Text="Please choose a genre:"></asp:Label>
-   
+   </td>
     <td align="left">
+     <asp:UpdatePanel ID="artistUpdatePanel" runat="server">
+        <ContentTemplate>
     <asp:DropDownList ID="ddlArtist" runat="server" AutoPostBack="true" 
             onselectedindexchanged="ddlArtist_SelectedIndexChanged">
         </asp:DropDownList>
+        </ContentTemplate>
+        </asp:UpdatePanel>
     </td>
    </tr>
    </table>
@@ -148,5 +153,5 @@
         </WhereParameters>
     </asp:LinqDataSource>
     
-    </form>
+    <%--</form>--%>
 </asp:Content>
