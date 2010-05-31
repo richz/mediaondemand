@@ -30,7 +30,7 @@ namespace MediaOnDemand
 
         void Session_Start(object sender, EventArgs e)
         {
-            // Code that runs when a new session is started
+            // Code that runs when a new session is started            
 
         }
 
@@ -41,6 +41,7 @@ namespace MediaOnDemand
             // is set to InProc in the Web.config file. If session mode is set to StateServer 
             // or SQLServer, the event is not raised.
 
+            Response.Redirect("~/pages/Login.aspx");
         }
 
     }

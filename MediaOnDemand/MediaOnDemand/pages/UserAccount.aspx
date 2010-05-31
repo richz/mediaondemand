@@ -1,9 +1,12 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UserAccount.aspx.cs" Inherits="MediaOnDemand.UserAccount" Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UserAccount.aspx.cs" Inherits="MediaOnDemand.UserAccount"%>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="LeftColumn" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+
+ <h1>MY ACCOUNT</h1>    
 
 <table>
 <tr>

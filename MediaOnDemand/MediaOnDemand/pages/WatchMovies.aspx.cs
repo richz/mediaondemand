@@ -20,6 +20,8 @@ namespace MediaOnDemand
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.Title = "Media On Demand - " + User.Identity.Name;
+
             Session["SelectedGenreIndex"] = this.ddlGenre.SelectedIndex;
 
             if (!IsPostBack)
