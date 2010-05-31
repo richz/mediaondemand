@@ -1,12 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
-    CodeBehind="StreamMusic.aspx.cs" Inherits="MediaOnDemand.StreamMusic" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="StreamMusic.aspx.cs" Inherits="MediaOnDemand.StreamMusic" %>
 
 <%@ Register Assembly="Media-Player-ASP.NET-Control" Namespace="Media_Player_ASP.NET_Control"
     TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <title>Listen to Music</title>
 
-    <script src="../js/playMedia.js" type="text/javascript"></script>
+<script src="../js/playMedia.js" type="text/javascript"></script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -15,8 +14,6 @@
 <%--<form id"musicForm">--%>
 
 <script type="text/javascript"><%= postBackStr %></script>
-
-
 
     <asp:Label ID="lblFileMessages" runat="server" Text="Label"></asp:Label>
 

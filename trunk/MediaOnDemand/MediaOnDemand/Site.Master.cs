@@ -4,6 +4,7 @@ using System.Data.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
 namespace MediaOnDemand
 {
@@ -11,7 +12,8 @@ namespace MediaOnDemand
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+                this.MainContent.Page.Title = "Media On Demand - " + Membership.GetUser().UserName;
         }
     }
 }

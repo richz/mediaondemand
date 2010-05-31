@@ -17,10 +17,11 @@ namespace MediaOnDemand
         protected string postBackStr;
 
         protected void Page_Load(object sender, EventArgs e)
-        {           
+        {
+            this.Title = "Media On Demand - " + User.Identity.Name;
 
             if (!IsPostBack)
-            {  
+            {
                 this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
                 this.wmPlayer.MovieURL = "";
                 this.wmPlayer.AutoStart = true;
