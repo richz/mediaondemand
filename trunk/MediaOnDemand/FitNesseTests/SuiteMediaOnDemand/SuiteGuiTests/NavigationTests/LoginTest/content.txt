@@ -5,4 +5,4 @@
 
 !|SWATFixture|
 |AttachToWindow|${mainWindow}|
-|AssertElementExistsWithTimeout|Expression|innerHTML:HOME2|10000|h1|
+|AssertElementExistsWithTimeout|Expression|innerHTML:HOME|10000|h1|
