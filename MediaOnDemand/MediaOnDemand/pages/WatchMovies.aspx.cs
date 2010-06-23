@@ -34,6 +34,8 @@ namespace MediaOnDemand
                 this.gvMovies.Sort("medTitle", SortDirection.Ascending);
             }
             
+            
+
             this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
             //this.lblFileMessages.Text = "";
             this.lblMessage.Text = "";
