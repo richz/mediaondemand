@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WatchMovies.aspx.cs" Inherits="MediaOnDemand.WatchMovies" %>
 
+<%@ Register Assembly="ASPNetVideo.NET3" Namespace="ASPNetVideo" TagPrefix="ASPNetVideo" %>
+
 <%@ Register Assembly="Media-Player-ASP.NET-Control" Namespace="Media_Player_ASP.NET_Control"
     TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -11,6 +13,11 @@
     
     <h1>Movies</h1>   
     
+    
+    <ASPNetVideo:QuickTime ID="qtPlayer" runat="server">
+    </ASPNetVideo:QuickTime>
+    
+    
     <%--<form id="watchMovieForm">--%>
 <script type="text/javascript"><%= postBackStr %></script>
 
@@ -20,8 +27,8 @@
     <table width="400px" style="height:300px">
 
 <tr>
-<td colspan="2">
-   <tr>
+
+   
    <td align="right" style="width:50%">
  <asp:Label ID="lblGenre" runat="server" Text="Please choose a genre:"></asp:Label>
 </td>
@@ -36,8 +43,8 @@
         </asp:UpdatePanel>
     </td>
     </tr>
-</td>
-</tr>
+
+
         <tr>
             <td colspan="2">
                 <asp:Label ID="lblMessage" runat="server" Font-Bold="true" Text=""></asp:Label>
