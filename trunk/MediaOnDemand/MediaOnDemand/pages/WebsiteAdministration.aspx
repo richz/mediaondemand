@@ -1,5 +1,6 @@
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
-    CodeBehind="WebsiteAdministration.aspx.cs" Inherits="MediaOnDemand.WebsiteAdministration" %>
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WebsiteAdministration.aspx.cs" Inherits="MediaOnDemand.WebsiteAdministration" %>
+
+<%@ Register Assembly="MattBerseth.WebControls.AJAX" Namespace="MattBerseth.WebControls.AJAX.Progress" TagPrefix="mb" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
@@ -7,7 +8,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
-
+   
     <script src="../js/WebAdmin.js" type="text/javascript"></script>
 
     <style type="text/css">
@@ -20,10 +21,10 @@
             width: 578px;
         }
     </style>
-
+       
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-   
+        
     <h1>Website Administration</h1>    
     <table>
     <tr>
@@ -48,9 +49,11 @@
        <table>
     <tr>
 
-    <td align="left"><asp:Button ID="btnAddAllFromNetworkFolder" runat="server" 
+    <td align="left">       
+    
+    <asp:Button ID="btnAddAllFromNetworkFolder" runat="server" 
             Text="Add all media files" 
-            onclick="btnAddAllFromNetworkFolder_Click" /> 
+            onclick="btnAddAllFromNetworkFolder_Click"/> 
     </td>
     <td align="right"><asp:Button ID="btnDeleteAllRecords" Visible="false" runat="server" Text="Delete All Records" 
             onclick="btnDeleteAllRecords_Click" />
@@ -78,6 +81,14 @@
             </td>  
             
         </tr>
+        
+        <tr>
+        <td colspan="2">                
+                        
+                        
+        </td>
+        </tr>
+        
         <tr>
         
         <td colspan="2" align="center">
@@ -186,5 +197,5 @@
    <asp:HiddenField ID="hdnMedId" runat="server" />   
    <asp:HiddenField ID="hdnUpdateMode" runat="server" />
     <asp:HiddenField ID="hdnNetworkFolder" runat="server" />
-    
+       
 </asp:Content>

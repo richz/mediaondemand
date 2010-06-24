@@ -21,7 +21,7 @@
 
    <tr>
    <td>
-   <center>
+   
    <table>
    <tr>
       <td align="right" style="width:50%">
@@ -30,21 +30,22 @@
     <td align="left">
      <asp:UpdatePanel ID="artistUpdatePanel" runat="server">
         <ContentTemplate>
-    <asp:DropDownList ID="ddlArtist" runat="server" AutoPostBack="true" 
-            onselectedindexchanged="ddlArtist_SelectedIndexChanged">
+    <asp:DropDownList ID="ddlArtist" runat="server" AutoPostBack="true" onselectedindexchanged="ddlArtist_SelectedIndexChanged">
         </asp:DropDownList>
         </ContentTemplate>
         </asp:UpdatePanel>
     </td>
    </tr>
    </table>
-   </center>
+   
 
 
 </td>
 
-  
-    </tr>
+  <td>
+  </td>
+  </tr>
+    
         <tr>
             <td colspan="2">
                 <asp:Label ID="lblMessage" runat="server" Font-Bold="true" Text=""></asp:Label>

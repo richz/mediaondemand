@@ -18,10 +18,11 @@ namespace MediaOnDemand
         //Main Folders
         string rootMediaFilesFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/");
         string videosFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Videos/");
-        string musicFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/music/");
+        string audioFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Audio/");
         string picturesFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Pictures/");
 
         //Subfolders
+        string musicFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Audio/music");
         string moviesFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Videos/movie/");
         //string documentariesFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Videos/documentary/");
         string musicVideosFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Videos/musicvideo/");
@@ -34,6 +35,7 @@ namespace MediaOnDemand
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
                 this.ddlMediaTypes.SelectedIndex = 0;
@@ -48,6 +50,8 @@ namespace MediaOnDemand
                 this.hdnNetworkFolder.Value = this.moviesFolder;
                 this.gvMedia.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
                 this.gvMedia.Sort("medTitle", SortDirection.Ascending);
+
+                this.btnDeleteAllRecords.Visible = true;
 
                 //if (Directory.Exists(this.rootVideosFolder) && Directory.Exists(this.rootMusicFolder))
                 //{
@@ -300,69 +304,29 @@ namespace MediaOnDemand
             string mediaName;
             string genre = "";
             string artist = "";
+            string album = "";
 
             foreach (String filePath in Directory.GetFiles(directory, "*.*", SearchOption.AllDirectories))
             {
                 FileInfo file = new FileInfo(filePath);
                 mediaName = Path.GetFileNameWithoutExtension(filePath);
 
-                switch (file.Directory.Parent.Name)
+                if (Directory.GetParent(directory).GetDirectories()[0].Name.Equals("music"))
                 {
-                    case "movie":
-                    case "tv":
-                        {
-                            mediaType = file.Directory.Parent.Name;
-
-                            genre = file.Directory.Name;
-                        }
-                        break;
-                    case "music":
-                        {
-                            mediaType = file.Directory.Parent.Name;
-                            artist = file.Directory.Name;
-                        }
-                        break;
-                    //case "documentary":
-                    //    {
-                    //        mediaType = file.Directory.Parent.Name;
-                    //        genre = file.Directory.Name;
-                    //    }
-                    //    break;
-                    case "basketball":
-                        {
-                            mediaType = file.Directory.Parent.Name;
-                            genre = file.Directory.Name;
-                        }
-                        break;
-                    case "musicvideo":
-                        {
-                            mediaType = file.Directory.Parent.Name;
-                            genre = file.Directory.Name;
-                        }
-                        break;
+                    mediaType = "music";
+                    artist = file.Directory.Parent.Name;
+                    album = file.Directory.Name;
                 }
-
-                //if (file.Directory.Parent.Name.Equals("movie"))
-                //{
-
-                //    mediaType = file.Directory.Parent.Name;
-
-                //    genre = file.Directory.Name;
-                //}
-                //else
-                //{
-
-                //    mediaType = file.Directory.Parent.Name;
-
-                //    genre = "";
-                //}
-
-
+                else
+                {
+                    mediaType = file.Directory.Parent.Name;
+                    genre = file.Directory.Name;
+                }
                 if (!StoredMediaRecordExistsByTitle(mediaName))
                 {
                     try
                     {
-                        this.addNewMediaRecord(mediaName, filePath, 'Y', artist, "", genre, mediaType, 0.0f, "", file.Extension);
+                        this.addNewMediaRecord(mediaName, filePath, 'Y', artist, "", genre, mediaType, 0.0f, album, file.Extension);
 
                         fileCount[0]++;
 
@@ -487,7 +451,7 @@ namespace MediaOnDemand
             {
                 this.lblPageSize.Visible = false;
                 this.ddlPageSize.Visible = false;
-                this.btnDeleteAllRecords.Visible = false;
+                //this.btnDeleteAllRecords.Visible = false;
             }
             else
             {
@@ -647,13 +611,13 @@ namespace MediaOnDemand
             {
                 this.lblPageSize.Visible = true;
                 this.ddlPageSize.Visible = true;
-                this.btnDeleteAllRecords.Visible = true;
+                //this.btnDeleteAllRecords.Visible = true;
             }
             else
             {
                 this.lblPageSize.Visible = false;
                 this.ddlPageSize.Visible = false;
-                this.btnDeleteAllRecords.Visible = false;
+                //this.btnDeleteAllRecords.Visible = false;
             }
         }
     }
