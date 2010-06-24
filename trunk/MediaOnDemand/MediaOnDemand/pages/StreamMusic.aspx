@@ -25,7 +25,7 @@
    <table>
    <tr>
       <td align="right" style="width:50%">
- <asp:Label ID="lblArtist" runat="server" Text="Please choose a genre:"></asp:Label>
+ <asp:Label ID="lblArtist" runat="server" Text="Please choose an artist:"></asp:Label>
    </td>
     <td align="left">
      <asp:UpdatePanel ID="artistUpdatePanel" runat="server">
