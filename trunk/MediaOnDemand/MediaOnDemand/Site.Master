@@ -54,6 +54,7 @@
                     <DynamicMenuStyle BackColor="#E3EAEB" />
                     <DynamicSelectedStyle BackColor="#1C5E55" />
                     <Items>
+                    <asp:MenuItem NavigateUrl="~/pages/SampleProgressControl.aspx" Text="Progress Indicator"/>
                         <asp:MenuItem NavigateUrl="~/pages/Home.aspx" Text="Home"/>
                         <asp:MenuItem NavigateUrl="~/pages/About.aspx" Text="About"/>
                         <asp:MenuItem NavigateUrl="~/pages/StreamMusic.aspx" Text="Listen to Music" 
