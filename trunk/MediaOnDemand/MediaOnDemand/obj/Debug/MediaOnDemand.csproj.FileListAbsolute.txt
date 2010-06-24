@@ -44,3 +44,5 @@ E:\Hosted Websites\MediaOnDemand\MediaOnDemand\obj\Debug\MediaOnDemand.dll
 E:\Hosted Websites\MediaOnDemand\MediaOnDemand\obj\Debug\MediaOnDemand.pdb
 E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\MediaOnDemandLibrary.dll
 E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\MediaOnDemandLibrary.pdb
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\ASPNetVideo.NET3.dll
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\MattBerseth.WebControls.AJAX.pdb
