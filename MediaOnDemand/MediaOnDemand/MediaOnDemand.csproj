@@ -34,6 +34,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\2008 MediaOnDemand\MediaOnDemand\MediaOnDemand\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="ASPNetVideo.NET3, Version=2.5.0.0, Culture=neutral, PublicKeyToken=9ebf40eaef1b6523, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\GAMER\Desktop\ASPNetVideoSetup\ASP.NET 3.5 WebControl (Visual Studio 2008)\ASPNetVideo.NET3.dll</HintPath>
+    </Reference>
+    <Reference Include="MattBerseth.WebControls.AJAX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Media-Player-ASP.NET-Control, Version=1.0.3141.38822, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -129,6 +134,13 @@
     </Compile>
     <Compile Include="pages\OtherVideos.aspx.designer.cs">
       <DependentUpon>OtherVideos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\SampleProgressControl.aspx.cs">
+      <DependentUpon>SampleProgressControl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\SampleProgressControl.aspx.designer.cs">
+      <DependentUpon>SampleProgressControl.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\StreamMusic.aspx.cs">
       <DependentUpon>StreamMusic.aspx</DependentUpon>
@@ -264,6 +276,17 @@
     <None Include="UserManagement.dbml.layout">
       <DependentUpon>UserManagement.dbml</DependentUpon>
     </None>
+    <Content Include="bin\AjaxControlToolkit.dll" />
+    <Content Include="bin\AjaxControlToolkit.pdb" />
+    <Content Include="bin\MattBerseth.WebControls.AJAX.dll" />
+    <Content Include="bin\MattBerseth.WebControls.AJAX.pdb" />
+    <EmbeddedResource Include="images\progress.gif" />
+    <EmbeddedResource Include="images\progress_bg.gif" />
+    <EmbeddedResource Include="js\ProgressBehavior.js" />
+    <Content Include="js\ProgressIndicator.js" />
+    <Content Include="pages\SampleProgressControl.aspx" />
+    <EmbeddedResource Include="Styles\progress.css" />
+    <Content Include="WebControls\mp4-streamer.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="aspnet_client\system_web\4_0_30128\" />
