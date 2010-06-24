@@ -81,7 +81,7 @@ namespace MediaOnDemand
                 if (sm.medMediaType.Trim().Equals("music"))
                 {
                     DirectoryInfo dir = new DirectoryInfo(sm.medLocation);
-                    string item = dir.Parent.Name;
+                    string item = dir.Parent.Parent.Name;
 
                     if (!genres.Contains(item))
                         genres.Add(item);
@@ -95,6 +95,17 @@ namespace MediaOnDemand
 
             foreach (string genre in genres)
                 this.ddlArtist.Items.Add(genre);
+
+            if (this.ddlArtist.Items.Count == 0)
+            {
+                this.lblArtist.Visible = false;
+                this.ddlArtist.Visible = false;
+            }
+            else
+            {
+                this.lblArtist.Visible = true;
+                this.ddlArtist.Visible = true;
+            }
         }
 
         private void UpdateRecordCount()
@@ -153,8 +164,6 @@ namespace MediaOnDemand
                 this.ddlPageSize.Visible = false;
                 this.lblRecordCount.Visible = false;
 
-                this.lblArtist.Visible = false;
-                this.ddlArtist.Visible = false;
             }
             else
             {
@@ -163,8 +172,6 @@ namespace MediaOnDemand
                 this.ddlPageSize.Visible = true;
                 this.lblRecordCount.Visible = true;
 
-                this.lblArtist.Visible = true;
-                this.ddlArtist.Visible = true;
             }
         }
 

@@ -33,12 +33,12 @@ namespace MediaOnDemand
                 this.ddlPageSize.SelectedIndex = Convert.ToInt32(this.ddlPageSize.Items[0].Value);                
                 this.gvMovies.Sort("medTitle", SortDirection.Ascending);
             }
-            
-            
 
             this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
             //this.lblFileMessages.Text = "";
             this.lblMessage.Text = "";
+
+            
         }
 
         #endregion
@@ -89,6 +89,17 @@ namespace MediaOnDemand
 
             foreach (string genre in genres)
                 this.ddlGenre.Items.Add(genre);
+
+            if (this.ddlGenre.Items.Count == 0)
+            {
+                this.lblGenre.Visible = false;
+                this.ddlGenre.Visible = false;
+            }
+            else
+            {
+                this.lblGenre.Visible = true;
+                this.ddlGenre.Visible = true;
+            }
         }
 
         private void UpdateRecordCount()

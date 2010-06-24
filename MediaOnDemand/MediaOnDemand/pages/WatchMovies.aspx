@@ -1,9 +1,10 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WatchMovies.aspx.cs" Inherits="MediaOnDemand.WatchMovies" %>
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WatchMovies.aspx.cs" Inherits="MediaOnDemand.WatchMovies" %>
 
 <%@ Register Assembly="ASPNetVideo.NET3" Namespace="ASPNetVideo" TagPrefix="ASPNetVideo" %>
 
 <%@ Register Assembly="Media-Player-ASP.NET-Control" Namespace="Media_Player_ASP.NET_Control"
     TagPrefix="cc1" %>
+    
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
 <script src="../js/playMedia.js" type="text/javascript"></script>
@@ -13,10 +14,7 @@
     
     <h1>Movies</h1>   
     
-    
-    <ASPNetVideo:QuickTime ID="qtPlayer" runat="server">
-    </ASPNetVideo:QuickTime>
-    
+      
     
     <%--<form id="watchMovieForm">--%>
 <script type="text/javascript"><%= postBackStr %></script>

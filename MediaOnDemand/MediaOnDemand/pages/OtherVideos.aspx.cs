@@ -145,6 +145,8 @@ namespace MediaOnDemand
                 this.lblRecordCount.Visible = false;                
                 this.lblList.Visible = false;
                 this.ddlList.Visible = false;
+                this.lblChooseMediaType.Visible = false;
+                this.ddlMediaTypes.Visible = false;
             }
             else
             {
@@ -154,6 +156,8 @@ namespace MediaOnDemand
                 this.lblRecordCount.Visible = true;                
                 this.lblList.Visible = true;
                 this.ddlList.Visible = true;
+                this.lblChooseMediaType.Visible = true;
+                this.ddlMediaTypes.Visible = true;
             }
         }
 
