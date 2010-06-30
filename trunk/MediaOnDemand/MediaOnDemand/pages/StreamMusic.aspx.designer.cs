@@ -14,6 +14,15 @@ namespace MediaOnDemand {
     public partial class StreamMusic {
         
         /// <summary>
+        /// hdnMediaUrl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnMediaUrl;
+        
+        /// <summary>
         /// lblFileMessages control.
         /// </summary>
         /// <remarks>
@@ -57,24 +66,6 @@ namespace MediaOnDemand {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMessage;
-        
-        /// <summary>
-        /// wmPlayer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Media_Player_ASP.NET_Control.Media_Player_Control wmPlayer;
-        
-        /// <summary>
-        /// hdnMediaUrl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnMediaUrl;
         
         /// <summary>
         /// UpdatePanel1 control.

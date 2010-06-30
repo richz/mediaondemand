@@ -20,8 +20,9 @@
 
     <asp:Label ID="lblFileMessages" runat="server" Text="Label"></asp:Label>
 
-    <center>
-    <table width="400px" style="height:300px">
+    <center>  
+ 
+    <table width="60%" style="height:20%">
 <tr>
 
 <td>
@@ -74,10 +75,9 @@
         </tr>
         <tr>
             <td colspan="2">
-               
-                <cc1:Media_Player_Control ID="wmPlayer" Height="350px" Width="450px" AutoStart="true"
-                    runat="server" />             
-                                    
+                <div id="mediaplayer">
+                </div>      
+                
                 <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server" />
                 
             </td>

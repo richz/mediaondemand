@@ -23,14 +23,16 @@ namespace MediaOnDemand
             if (!IsPostBack)
             {
                 this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
-                this.wmPlayer.MovieURL = "";
-                this.wmPlayer.AutoStart = true;
+                
+                SetList();
+                if (this.ddlList.Items.Count > 0)
+                    this.ddlList.SelectedIndex = 0;
 
                 this.gvVideos.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
                 this.gvVideos.Sort("medTitle", SortDirection.Ascending);
             }
 
-            this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
+            //this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
             this.lblFileMessages.Text = "";
             this.lblMessage.Text = "";
         }
@@ -125,10 +127,15 @@ namespace MediaOnDemand
                     break;
             }
 
+            SetList();
+            if (this.ddlList.Items.Count > 0)
+                this.ddlList.SelectedIndex = 0;
+
             if (Convert.ToInt32(Session["TotalRowCount"].ToString()) > 0)
             {
                 SetList();
-                this.ddlList.SelectedIndex = 0;
+                if(this.ddlList.Items.Count > 0)
+                    this.ddlList.SelectedIndex = 0;
             }
         }        
 
@@ -139,35 +146,36 @@ namespace MediaOnDemand
 
             if (e.TotalRowCount == 0)
             {
-                this.wmPlayer.Visible = false;
+                //this.wmPlayer.Visible = false;
                 this.lblPageSize.Visible = false;
                 this.ddlPageSize.Visible = false;
                 this.lblRecordCount.Visible = false;                
                 this.lblList.Visible = false;
                 this.ddlList.Visible = false;
-                this.lblChooseMediaType.Visible = false;
-                this.ddlMediaTypes.Visible = false;
+                //this.lblChooseMediaType.Visible = false;
+                //this.ddlMediaTypes.Visible = false;
             }
             else
             {
-                this.wmPlayer.Visible = true;
+                //this.wmPlayer.Visible = true;
                 this.lblPageSize.Visible = true;
                 this.ddlPageSize.Visible = true;                
                 this.lblRecordCount.Visible = true;                
                 this.lblList.Visible = true;
                 this.ddlList.Visible = true;
-                this.lblChooseMediaType.Visible = true;
-                this.ddlMediaTypes.Visible = true;
+                //this.lblChooseMediaType.Visible = true;
+                //this.ddlMediaTypes.Visible = true;                
             }
         }
 
         protected void ddlMediaTypes_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                SetList();
-                this.ddlList.SelectedIndex = 0;
-            }
+            //if (!IsPostBack)
+            //{
+               // SetList();
+               // if(this.ddlList.Items.Count > 0)
+                 //   this.ddlList.SelectedIndex = 0;
+            //}
 
         }
     }
