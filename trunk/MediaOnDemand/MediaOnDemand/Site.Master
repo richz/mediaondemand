@@ -65,6 +65,44 @@
             <div class="clear hideSkiplink">
             <asp:LoginView ID="lvMenu" runat="server">
                 <RoleGroups>
+                    <asp:RoleGroup Roles="Site Administrator">
+                    <ContentTemplate>
+                     <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" 
+                    EnableViewState="False" IncludeStyleBlock="false" Orientation="Horizontal" 
+                    BackColor="#E3EAEB" DynamicHorizontalOffset="2" Font-Names="Verdana" 
+                    Font-Size="0.8em" ForeColor="#666666" StaticSubMenuIndent="10px">
+                    <DynamicHoverStyle BackColor="#666666" ForeColor="White" />
+                    <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                    <DynamicMenuStyle BackColor="#E3EAEB" />
+                    <DynamicSelectedStyle BackColor="#1C5E55" />
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/pages/SampleProgressControl.aspx" Text="SampleProgressControl"/>
+                        <asp:MenuItem NavigateUrl="~/pages/Home.aspx" Text="Home"/>
+                        <asp:MenuItem NavigateUrl="~/pages/About.aspx" Text="About"/>
+                        <asp:MenuItem NavigateUrl="~/pages/StreamMusic.aspx" Text="Listen to Music" 
+                            Value="Listen to Music"></asp:MenuItem>
+                        
+                            <asp:MenuItem NavigateUrl="~/pages/WatchMovies.aspx" Text="Movies" Value="Movies">
+                            </asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/pages/OtherVideos.aspx" Text="Other Videos" 
+                                Value="Videos"></asp:MenuItem>
+                        
+                        <asp:MenuItem NavigateUrl="~/pages/UserManagement.aspx" 
+                            Text="Administer User Accounts" Value="Administer User Accounts"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/pages/WebsiteAdministration.aspx" 
+                            Text="Administer Website" Value="Administer Website"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/pages/UserAccount.aspx" 
+                            Text="My Account" Value="My Account"></asp:MenuItem>
+                    </Items>
+                    <StaticHoverStyle BackColor="#666666" ForeColor="White" />
+                    <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                    <StaticSelectedStyle BackColor="#1C5E55" />
+                    <StaticItemTemplate>
+                        <%# Eval("Text") %>
+                    </StaticItemTemplate>
+                </asp:Menu>
+                    </ContentTemplate>
+                    </asp:RoleGroup>
                     <asp:RoleGroup Roles="Administrator">
                     <ContentTemplate>
                      <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" 
@@ -76,7 +114,6 @@
                     <DynamicMenuStyle BackColor="#E3EAEB" />
                     <DynamicSelectedStyle BackColor="#1C5E55" />
                     <Items>
-                    <asp:MenuItem NavigateUrl="~/pages/SampleProgressControl.aspx" Text="Progress Indicator"/>
                         <asp:MenuItem NavigateUrl="~/pages/Home.aspx" Text="Home"/>
                         <asp:MenuItem NavigateUrl="~/pages/About.aspx" Text="About"/>
                         <asp:MenuItem NavigateUrl="~/pages/StreamMusic.aspx" Text="Listen to Music" 

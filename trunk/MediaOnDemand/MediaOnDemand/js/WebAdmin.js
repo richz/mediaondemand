@@ -29,7 +29,7 @@
     var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
     var layer = document.createElement('div');
     layer.style.zIndex = 2;
-    layer.id = 'layer';
+    layer.id = 'lightBoxBackGround';
     layer.style.position = 'absolute';    
     layer.style.top = '0px';
     layer.style.left = '0px';
