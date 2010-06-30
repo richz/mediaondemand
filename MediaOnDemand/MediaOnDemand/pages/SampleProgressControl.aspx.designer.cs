@@ -50,15 +50,6 @@ namespace MediaOnDemand {
         protected global::System.Web.UI.WebControls.Panel panel;
         
         /// <summary>
-        /// ProgressControl12 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::MattBerseth.WebControls.AJAX.Progress.ProgressControl ProgressControl12;
-        
-        /// <summary>
         /// btnPopup control.
         /// </summary>
         /// <remarks>
@@ -75,14 +66,5 @@ namespace MediaOnDemand {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ModalPopupExtender mdpPopup;
-        
-        /// <summary>
-        /// ProgressControl4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::MattBerseth.WebControls.AJAX.Progress.ProgressControl ProgressControl4;
     }
 }

@@ -93,16 +93,22 @@
     <div id="Div1" class="demo">
             <h3>Modal Popup</h3>
             <asp:Panel ID="panel" runat="server" CssClass="popup" style="display:none">
-                <mb:ProgressControl ID="ProgressControl12" runat="server" CssClass="xp" Mode="Continuous" Width="175px" />            
-                Loading ...
+                <mb:ProgressControl runat="server">
+                </mb:ProgressControl>
+
+                <%--<mb:ProgressControl ID="ProgressControl12" runat="server" CssClass="xp" Mode="Continuous" Width="175px" />            
+                Loading ...--%>
             </asp:Panel>
             <asp:Button ID="btnPopup" runat="server" Text="Show Popup" />
+            
             <ajaxtoolkit:modalpopupextender ID="mdpPopup" BehaviorID="mdp" runat="server" TargetControlID="btnPopup" PopupControlID="panel" BackgroundCssClass="modalBackground" />
         </div> 
         
         <div id="skins" class="demo">
             <h3>JavaScript/CSS based Progress Indicator</h3>
-            <mb:ProgressControl ID="ProgressControl4" runat="server" CssClass="green" Mode="Manual" Width="200px" />            
+            <mb:ProgressControl runat="server">
+            </mb:ProgressControl>
+            <%--<mb:ProgressControl ID="ProgressControl4" runat="server" CssClass="green" Mode="Manual" Width="200px" />            --%>
             <br />
             <%--<mb:ProgressControl ID="ProgressControl5" runat="server" CssClass="yelllow" Mode="Manual" Width="200px" />            
             <br />
