@@ -7,12 +7,34 @@
 <head runat="server">
     <%--<title>Media On Demand</title>--%>
     <link href="Styles/Site.css" rel="stylesheet" type="text/css" />
+
+    <script src="js/playMedia.js" type="text/javascript"></script>
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
-       
+    
     </asp:ContentPlaceHolder>
 </head>
 <body>
+
+<script type="text/javascript">
+
+    window.onresize = resize;
+
+    function resize() {
+        var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
+        var height = document.documentElement.scrollHeight;
+        var lightBoxBackGround = document.getElementById('lightBoxBackGround');
+        
+        if (lightBoxBackGround != null) {
+
+            lightBoxBackGround.style.height = height + 'px';
+            lightBoxBackGround.style.width = width + 'px';
+
+        }
+    }
     
+</script>   
+    
+
     <form runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
@@ -119,11 +141,11 @@
                
             </div>
         </div>
-        
+        <div class="midsection">
         <table style="width:100%">
         
         <tr style="width:100%">
-        <td class="leftColumn" style="width:0%">
+        <td class="leftCol" style="width:10%">
         <asp:ContentPlaceHolder ID="LeftColumn" runat="server">
         </asp:ContentPlaceHolder>
         </td>
@@ -133,8 +155,9 @@
             </asp:ContentPlaceHolder>
         </div>
         </td>
-        <td class="rightColumn" style="width:0%">
+        <td class="rightColumn" style="width:15%">
         <asp:ContentPlaceHolder ID="RightColumn" runat="server">
+        
         </asp:ContentPlaceHolder>
         </td>
         </tr>
@@ -142,13 +165,13 @@
         <div class="clear">
         
         </div>
-        
+        </div>
        <div class="footer">
         <asp:Label ID="lblCopyright" runat="server" Text="Copyright 2010 Cesar Paguada"></asp:Label>
     </div>
         
-    </div>
     
+    </div>
     </form>
 </body>
 </html>
