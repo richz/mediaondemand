@@ -13,10 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		MediaOnDemand.vsmdi = MediaOnDemand.vsmdi
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MattBerseth.WebControls.AJAX", "MattBerseth.WebControls.Progress\MattBerseth.WebControls.AJAX.csproj", "{0974665B-43B2-40B8-A33C-1F533FA5C49A}"
+EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = MediaOnDemand.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -34,6 +33,10 @@ Global
 		{579605B3-08C5-4BAF-9A8E-3850A0535C52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{579605B3-08C5-4BAF-9A8E-3850A0535C52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{579605B3-08C5-4BAF-9A8E-3850A0535C52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0974665B-43B2-40B8-A33C-1F533FA5C49A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0974665B-43B2-40B8-A33C-1F533FA5C49A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0974665B-43B2-40B8-A33C-1F533FA5C49A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0974665B-43B2-40B8-A33C-1F533FA5C49A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
