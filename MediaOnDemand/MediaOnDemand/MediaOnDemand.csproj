@@ -284,6 +284,7 @@
     <EmbeddedResource Include="images\progress_bg.gif" />
     <EmbeddedResource Include="js\ProgressBehavior.js" />
     <Content Include="js\ProgressIndicator.js" />
+    <Content Include="js\site.js" />
     <Content Include="pages\SampleProgressControl.aspx" />
     <EmbeddedResource Include="Styles\progress.css" />
     <Content Include="WebControls\mp4-streamer.ashx" />
