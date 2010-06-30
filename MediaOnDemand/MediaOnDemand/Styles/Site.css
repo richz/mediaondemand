@@ -10,12 +10,35 @@
 	visibility:hidden;
 }
 
+.emptyMediaPlayer {
+
+width: 0px;
+height: 0px;
+}
+
+.videoMediaPlayer
+{
+ width:550px;
+ height:300px;
+}
+
+.musicMediaPlayer
+{
+ width:550px;
+ height:45px;
+}
+
+.midsection
+{
+	
+}
+
 /* DEFAULTS
 ----------------------------------------------------------*/
 
 body   
 {
-    background: #b6b7bc;
+    background: #b6b7bc;    
     font-size: .80em;
     font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
     margin: 0px;
@@ -102,9 +125,10 @@ first child of the left and right table columns */
 .page
 {
     width: 1024px;
-    background-color: #fff;
+    /*background-color: #fff;*/
+    background-color: #C7CEDE;
     margin: 20px auto 0px auto;
-    border: 1px solid #496077;
+    border: 4px solid #496077;
     
 }
 
@@ -115,6 +139,7 @@ first child of the left and right table columns */
     padding: 0px;
     background: #4b6c9e;
     width: 100%;
+    
 }
 
 .header h1
@@ -133,6 +158,7 @@ first child of the left and right table columns */
     padding: 0px 12px;
     margin: 12px 8px 8px 8px;
     min-height: 420px;
+    
 }
 
 .leftCol
@@ -256,7 +282,7 @@ div.accountInfo
 
 .clear
 {
-    clear: both;
+    clear:both;
 }
 
 .title
@@ -265,6 +291,7 @@ div.accountInfo
     float: left;
     text-align: left;
     width: auto;
+    height:100px;
 }
 
 .loginDisplay
