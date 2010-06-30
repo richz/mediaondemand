@@ -11,105 +11,78 @@
 namespace MediaOnDemand {
     
     
-    public partial class WatchMovies {
+    public partial class SampleProgressControl {
         
         /// <summary>
-        /// hdnMediaUrl control.
+        /// Head1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnMediaUrl;
+        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
         
         /// <summary>
-        /// lblMessage control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// lblGenre control.
+        /// scriptManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGenre;
+        protected global::System.Web.UI.ScriptManager scriptManager;
         
         /// <summary>
-        /// genreUpdatePanel control.
+        /// panel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel genreUpdatePanel;
+        protected global::System.Web.UI.WebControls.Panel panel;
         
         /// <summary>
-        /// ddlGenre control.
+        /// ProgressControl12 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGenre;
+        protected global::MattBerseth.WebControls.AJAX.Progress.ProgressControl ProgressControl12;
         
         /// <summary>
-        /// gridViewUpdatePanel control.
+        /// btnPopup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel gridViewUpdatePanel;
+        protected global::System.Web.UI.WebControls.Button btnPopup;
         
         /// <summary>
-        /// lblPageSize control.
+        /// mdpPopup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPageSize;
+        protected global::AjaxControlToolkit.ModalPopupExtender mdpPopup;
         
         /// <summary>
-        /// ddlPageSize control.
+        /// ProgressControl4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPageSize;
-        
-        /// <summary>
-        /// lblRecordCount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRecordCount;
-        
-        /// <summary>
-        /// gvMovies control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMovies;
-        
-        /// <summary>
-        /// lnqMovies control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource lnqMovies;
+        protected global::MattBerseth.WebControls.AJAX.Progress.ProgressControl ProgressControl4;
     }
 }

@@ -27,14 +27,14 @@ namespace MediaOnDemand
             if (!IsPostBack)
             {
                 this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
-                this.wmPlayer.MovieURL = "";
-                this.wmPlayer.AutoStart = true;
+                //this.wmPlayer.MovieURL = "";
+                //this.wmPlayer.AutoStart = true;
 
                 this.ddlPageSize.SelectedIndex = Convert.ToInt32(this.ddlPageSize.Items[0].Value);                
                 this.gvMovies.Sort("medTitle", SortDirection.Ascending);
             }
 
-            this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
+            //this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
             //this.lblFileMessages.Text = "";
             this.lblMessage.Text = "";
 
@@ -151,14 +151,14 @@ namespace MediaOnDemand
 
             if (e.TotalRowCount == 0)
             {
-                this.wmPlayer.Visible = false;
+                //this.wmPlayer.Visible = false;
                 this.lblPageSize.Visible = false;
                 this.ddlPageSize.Visible = false;
                 this.lblRecordCount.Visible = false;
             }
             else
             {
-                this.wmPlayer.Visible = true;
+                //this.wmPlayer.Visible = true;
                 this.lblPageSize.Visible = true;
                 this.ddlPageSize.Visible = true;
                 this.lblRecordCount.Visible = true;
