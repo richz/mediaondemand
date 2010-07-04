@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MediaOnDemandLibrary;
 
 namespace MediaOnDemand
 {
@@ -12,11 +13,21 @@ namespace MediaOnDemand
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
         }
 
         protected void mainLogin_LoggedIn(object sender, EventArgs e)
         {    
+            
+        }
 
+        protected void mainLogin_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                TextBox userNameBox = WebHelper.GetControlById(this.mainLogin, "UserName") as TextBox;
+                userNameBox.Focus();
+            }
         }
     }
 }

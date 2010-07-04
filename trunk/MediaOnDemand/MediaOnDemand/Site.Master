@@ -23,6 +23,13 @@
         var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
         var height = document.documentElement.scrollHeight;
         var lightBoxBackGround = document.getElementById('lightBoxBackGround');
+
+        //var page = document.getElementById('page');
+        //page.style.width = .8 * width;
+        //page.style.height = .9 * height;
+
+        var footer = document.getElementById('footer');
+        footer.style.width = .8 * width;
         
         if (lightBoxBackGround != null) {
 
@@ -39,7 +46,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     
-    <div class="page">
+    <div id="page" class="page">
         <div class="header">
             <div class="title">
                 <h1>
@@ -76,7 +83,7 @@
                     <DynamicMenuStyle BackColor="#E3EAEB" />
                     <DynamicSelectedStyle BackColor="#1C5E55" />
                     <Items>
-                        <asp:MenuItem NavigateUrl="~/pages/SampleProgressControl.aspx" Text="SampleProgressControl"/>
+                        <asp:MenuItem NavigateUrl="~/pages/Progress.aspx" Text="Progress"/>
                         <asp:MenuItem NavigateUrl="~/pages/Home.aspx" Text="Home"/>
                         <asp:MenuItem NavigateUrl="~/pages/About.aspx" Text="About"/>
                         <asp:MenuItem NavigateUrl="~/pages/StreamMusic.aspx" Text="Listen to Music" 
@@ -182,28 +189,21 @@
         <table style="width:100%">
         
         <tr style="width:100%">
-        <td class="leftCol" style="width:10%">
-        <asp:ContentPlaceHolder ID="LeftColumn" runat="server">
-        </asp:ContentPlaceHolder>
-        </td>
+
         <td style="width:80%">
         <div class="main">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>
         </td>
-        <td class="rightColumn" style="width:15%">
-        <asp:ContentPlaceHolder ID="RightColumn" runat="server">
-        
-        </asp:ContentPlaceHolder>
-        </td>
+
         </tr>
              </table>   
         <div class="clear">
         
         </div>
         </div>
-       <div class="footer">
+       <div id="footer" class="footer">
         <asp:Label ID="lblCopyright" runat="server" Text="Copyright 2010 Cesar Paguada"></asp:Label>
     </div>
         

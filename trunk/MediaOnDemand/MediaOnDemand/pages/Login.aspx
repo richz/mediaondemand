@@ -11,7 +11,8 @@
           CreateUserUrl="~/pages/Register.aspx" 
           DestinationPageUrl="~/pages/Home.aspx" 
           PasswordRecoveryUrl="~/pages/PasswordRecovery.aspx" 
-          PasswordRecoveryText="Forgot Password?" onloggedin="mainLogin_LoggedIn">
+          PasswordRecoveryText="Forgot Password?" onloggedin="mainLogin_LoggedIn" 
+          onload="mainLogin_Load">
           <LayoutTemplate>
               <table border="0" cellpadding="1" cellspacing="0" 
                   style="border-collapse:collapse;">
