@@ -1,4 +1,45 @@
-﻿function showBox() {
+﻿function showProgress() {
+
+    var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
+    var height = document.documentElement.scrollHeight;
+    var layer = document.createElement('div');
+    layer.style.zIndex = 2;
+    layer.id = 'lightBoxBackGround';
+    layer.style.position = 'absolute';
+    layer.style.top = '0px';
+    layer.style.left = '0px';
+    layer.style.height = height + 'px';
+    layer.style.width = width + 'px';
+    layer.style.backgroundColor = 'black';
+    layer.style.opacity = '.6';
+    layer.style.filter += ("progid:DXImageTransform.Microsoft.Alpha(opacity=60)");
+    document.body.appendChild(layer);
+
+    var div = document.createElement('div');
+    div.style.zIndex = 3;
+    div.id = 'box';
+    div.style.position = (navigator.userAgent.indexOf('MSIE 6') > -1) ? 'absolute' : 'fixed';
+    div.style.top = '50px';
+    div.style.left = (width / 2) - (width / 12) + 'px';
+    div.style.height = '66px';
+    div.style.width = '66px';
+    div.style.backgroundColor = 'white';
+    div.style.border = '2px solid silver';
+    div.style.padding = '20px';
+
+    div.innerHTML = '<div><img alt="Processing" src="../images/ajax-loaderCircle.gif" /></div>';
+
+    document.body.appendChild(div);
+
+}
+
+function ForcePostBack() {
+
+    //Force page postback
+    __doPostBack('__Page', 'MyCustomArgument');
+}
+
+function showBox() {
 
     var hdnUpdateMode = document.getElementById('ctl00_MainContent_hdnUpdateMode').getAttribute('value');
 
@@ -27,13 +68,14 @@
     var mediaType = document.getElementById('ctl00_MainContent_hdnMediaType').getAttribute('value') == null ? '' : document.getElementById('ctl00_MainContent_hdnMediaType').getAttribute('value');
     
     var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
+    var height = document.documentElement.scrollHeight;
     var layer = document.createElement('div');
     layer.style.zIndex = 2;
     layer.id = 'lightBoxBackGround';
     layer.style.position = 'absolute';    
     layer.style.top = '0px';
     layer.style.left = '0px';
-    layer.style.height = document.documentElement.scrollHeight + 'px';
+    layer.style.height = height + 'px';
     layer.style.width = width + 'px';
     layer.style.backgroundColor = 'black';
     layer.style.opacity = '.6';
@@ -147,7 +189,8 @@ function Save() {
 
 function CloseLightBox() {
 
-    document.body.removeChild(document.getElementById('layer'));
+    document.body.removeChild(document.getElementById('lightBoxBackGround'));
     document.body.removeChild(document.getElementById('box'));
 
 }
+

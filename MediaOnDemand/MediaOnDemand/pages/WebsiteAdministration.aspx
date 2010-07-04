@@ -1,201 +1,291 @@
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WebsiteAdministration.aspx.cs" Inherits="MediaOnDemand.WebsiteAdministration" %>
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WebsiteAdministration.aspx.cs"
+    Inherits="MediaOnDemand.WebsiteAdministration" %>
 
-<%@ Register Assembly="MattBerseth.WebControls.AJAX" Namespace="MattBerseth.WebControls.AJAX.Progress" TagPrefix="mb" %>
-
+<%@ Register Assembly="MattBerseth.WebControls.AJAX" Namespace="MattBerseth.WebControls.AJAX.Progress"
+    TagPrefix="mb" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
     Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
-   
     <script src="../js/WebAdmin.js" type="text/javascript"></script>
 
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+
     <style type="text/css">
-        .style1
-        {
-            width: 184px;
-        }
-        .style2
-        {
-            width: 578px;
-        }
+    
+    img.hide
+    {
+    	visibility:hidden;
+    }
+    
     </style>
-       
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
+        type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+
+            $('img').addClass('hide');
+
+            $("#ctl00_MainContent_btnAddAllFromNetworkFolder").click(function() {
+
+            var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
+            var height = document.documentElement.scrollHeight;
+            var layer = document.createElement('div');
+            layer.style.zIndex = 2;
+            layer.id = 'lightBoxBackGround';
+            layer.style.position = 'absolute';
+            layer.style.top = '0px';
+            layer.style.left = '0px';
+            layer.style.height = height + 'px';
+            layer.style.width = width + 'px';
+            layer.style.backgroundColor = 'black';
+            layer.style.opacity = '.1';
+            layer.style.filter += ("progid:DXImageTransform.Microsoft.Alpha(opacity=60)");
+            
+            document.body.appendChild(layer);
+
+            $('img').removeClass('hide');
+
+            //var progressIndicator = document.getElementById('ProgressIndicator');
+            //progressIndicator.style.top = height / 2;
+            //progressIndicator.style.left = width / 2;
+            
+                var intervalID = setInterval(updateProgress, 40);
+                $.ajax({
+                    type: "POST",
+                    url: "WebsiteAdministration.aspx/addFilesFromFolder",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    async: true,
+                    success: function(msg) {
+                        $("#progressbar").progressbar("value", 100);
+                        $("#result").text(msg.d);
+                        clearInterval(intervalID);
+
+                        $('img').addClass('hide');
+
+                        document.body.removeChild(document.getElementById('lightBoxBackGround'));
+                        
+                        ForcePostBack();
+
+                    }
+                });
+
+                return false;
+            });
+
+            $("#ctl00_MainContent_btnDeleteAllRecords").click(function() {
+
+            var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
+            var height = document.documentElement.scrollHeight;
+            var layer = document.createElement('div');
+            layer.style.zIndex = 2;
+            layer.id = 'lightBoxBackGround';
+            layer.style.position = 'absolute';
+            layer.style.top = '0px';
+            layer.style.left = '0px';
+            layer.style.height = height + 'px';
+            layer.style.width = width + 'px';
+            layer.style.backgroundColor = 'black';
+            layer.style.opacity = '.1';
+            layer.style.filter += ("progid:DXImageTransform.Microsoft.Alpha(opacity=60)");
+
+            document.body.appendChild(layer);
+
+                $('img').removeClass('hide');
+
+                //var progressIndicator = document.getElementById('ProgressIndicator');
+                //progressIndicator.style.top = height / 2;
+                //progressIndicator.style.left = width / 2;
+
+                var intervalID = setInterval(updateProgress, 40);
+                $.ajax({
+                    type: "POST",
+                    url: "WebsiteAdministration.aspx/deleteAllRecordsForType",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    async: true,
+                    success: function(msg) {
+                        $("#progressbar").progressbar("value", 100);
+                        $("#result").text(msg.d);
+                        clearInterval(intervalID);
+
+                        $('img').addClass('hide');
+
+                        document.body.removeChild(document.getElementById('lightBoxBackGround'));                        
+
+                        ForcePostBack();
+                    }
+                });
+
+                return false;
+            });
+
+            function updateProgress() {
+
+                //                var value = $("#progressbar").progressbar("option", "value");
+                //                if (value < 100) {
+                //                    $("#progressbar").progressbar("value", value + 1);
+                //                }
+            }
+
+        });
+   
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-        
-    <h1>Website Administration</h1>    
-    <table>
-    <tr>
- <td>
-                <asp:Label ID="lblChooseMediaType" runat="server" 
-                    Text="Please choose a media type:" 
-                    ondatabinding="ddlMediaTypes_SelectedIndexChanged"></asp:Label>
-            </td>
-    <td>
-        <asp:DropDownList ID="ddlMediaTypes" runat="server" 
-            onselectedindexchanged="ddlMediaTypes_SelectedIndexChanged" AutoPostBack="true">
-            <asp:ListItem Value="movie" Selected="True">Movies</asp:ListItem>                    
-                    <asp:ListItem Value="tv">TV</asp:ListItem>                    
-                    <asp:ListItem Value="basketball">Basketball</asp:ListItem>                    
-                    <asp:ListItem Value="musicvideo">Music Videos</asp:ListItem>                   
-                    <asp:ListItem Value="music">Music</asp:ListItem>                    
-        </asp:DropDownList>
-    </td>
-    </tr>      
-    </table>
-    <br />
-       <table>
-    <tr>
 
-    <td align="left">       
-    
-    <asp:Button ID="btnAddAllFromNetworkFolder" runat="server" 
-            Text="Add all media files" 
-            onclick="btnAddAllFromNetworkFolder_Click"/> 
-    </td>
-    <td align="right"><asp:Button ID="btnDeleteAllRecords" Visible="false" runat="server" Text="Delete All Records" 
-            onclick="btnDeleteAllRecords_Click" />
-    </td>
-         
-    </tr>
-    <tr>
-    <td>
-    </td>
-    </tr>
+    <script type="text/javascript"><%= postBackStr %></script>
+
+    <h1>
+        Website Administration</h1>
+    <br />
+    <br />
+    <br />
+    <center>
+        <table width="80%">
             <tr>
-            <td colspan="2">                        
-                <table>
-                
-                    <tr>
-                        <td align="left">
-                            <asp:Button ID="btnApplyChanges" runat="server" Text="Apply changes"
-                                OnClick="btnApplyChanges_Click" />
-                        </td>
-                        <td align="right">
-                            <asp:Button ID="btnAddNewMediaRow" runat="server" Text="Add new media" OnClick="btnAddNewMediaRow_Click" />
-                        </td>
-                    </tr>                    
-                </table>
-            </td>  
-            
-        </tr>
-        
-        <tr>
-        <td colspan="2">                
-                        
-                        
-        </td>
-        </tr>
-        
-        <tr>
-        
-        <td colspan="2" align="center">
-        
-        <asp:UpdatePanel ID="upFolderStatus" runat="server">
-        <ContentTemplate>
-        <asp:Label ID="lblFolderMessage" runat="server" ForeColor="Red"></asp:Label>
-        </ContentTemplate>
-    </asp:UpdatePanel>       
-        
-        </td>        
-        </tr>
-        <tr>
-                
-        <td id="PageSize" style="width:75%">
-        <table>
-        <tr>
-        <td>
-            <asp:Label ID="lblPageSize" runat="server" Text="Items per page: "></asp:Label>
-        </td>
-        <td>
-        <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" 
-                onselectedindexchanged="ddlPageSize_SelectedIndexChanged">
-                <asp:ListItem>10</asp:ListItem>
-                <asp:ListItem>20</asp:ListItem>
-                <asp:ListItem>50</asp:ListItem>
-                <asp:ListItem Value="all">All</asp:ListItem>
-            </asp:DropDownList>
-        </td>
-        </tr>
+                <td id="Td1" style="width: 75%" align="left" colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                <asp:Label ID="lblChooseMediaType" runat="server" Text="Please choose a media type:"
+                                    OnDataBinding="ddlMediaTypes_SelectedIndexChanged"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:DropDownList ID="ddlMediaTypes" runat="server" OnSelectedIndexChanged="ddlMediaTypes_SelectedIndexChanged"
+                                    AutoPostBack="true">
+                                    <asp:ListItem Value="movie" Selected="True">Movies</asp:ListItem>
+                                    <asp:ListItem Value="tv">TV</asp:ListItem>
+                                    <asp:ListItem Value="basketball">Basketball</asp:ListItem>
+                                    <asp:ListItem Value="musicvideo">Music Videos</asp:ListItem>
+                                    <asp:ListItem Value="music">Music</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <asp:Button ID="btnAddAllFromNetworkFolder" runat="server" Text="Add all files from folder" />
+                </td>
+                <td align="left">
+                    <asp:Button ID="btnDeleteAllRecords" runat="server" Text="Delete All Records" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="left">
+                    <asp:Button ID="btnAddNewMediaRow" runat="server" Text="Add new media" OnClick="btnAddNewMediaRow_Click" />
+                </td>
+            </tr>
         </table>
-        </td>        
-            <td align="right">            
-               <asp:Label ID="lblRecordCount" runat="server" Text=""></asp:Label>
-            </td>          
-        </tr>
-        <tr>
-            <td colspan="2">
-                <asp:GridView ID="gvMedia" runat="server" AutoGenerateColumns="False" DataSourceID="lnqMedia"
-                    EnableModelValidation="True" DataKeyNames="medId" CellPadding="4" ForeColor="#333333"
-                    GridLines="None" AllowPaging="True" AllowSorting="True">
-                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                    <Columns>
-                        <asp:TemplateField>
-                            <ItemTemplate>
-                                <asp:LinkButton ID="lnkEdit" CommandArgument='<%# Bind("medId") %>' runat="server"
-                                    OnClick="lnkEdit_Click">Edit</asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:BoundField DataField="medTitle" HeaderText="Title" SortExpression="medTitle" />
-                        <asp:BoundField DataField="medLocation" HeaderText="Location" SortExpression="medLocation" />
-                        <asp:BoundField DataField="medDescription" HeaderText="Description" SortExpression="medDescription" />
-                        <asp:BoundField DataField="medIsViewable" HeaderText="Is Viewable" 
-                            SortExpression="medIsViewable" />
-                        <asp:BoundField DataField="medDateAdded" HeaderText="Date Added" 
-                            SortExpression="medDateAdded" />
-                        <asp:BoundField DataField="medArtist" HeaderText="Artist" SortExpression="medArtist" />
-                        <asp:BoundField DataField="medGenre" HeaderText="Genre" SortExpression="medGenre" />
-                        <asp:BoundField DataField="medMediaType" HeaderText="Media Type" SortExpression="medMediaType" />
-                        <asp:BoundField DataField="medDuration" HeaderText="Duration" SortExpression="medDuration" />
-                        <asp:BoundField DataField="medAlbum" HeaderText="Album" SortExpression="medAlbum" />
-                        <asp:BoundField DataField="medVideoType" HeaderText="Video Type" SortExpression="medVideoType" />
-                        <asp:CommandField ShowDeleteButton="True" />
-                        <asp:BoundField DataField="medId" Visible="false" HeaderText="Id" InsertVisible="False" ReadOnly="True"
-                            SortExpression="medId" />
-                        
-                    </Columns>
-                    <EditRowStyle BackColor="#999999" />
-                    <EmptyDataTemplate>
-                        <center>
-                            <asp:Label ID="lblNoRecsFound" runat="server" Text="No records found"></asp:Label>
-                        </center>
-                    </EmptyDataTemplate>
-                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" 
-                        Wrap="True" />
-                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" Wrap="False"/>
-                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                </asp:GridView>
-            </td>
-            
-        </tr>
-    </table>
-    <br />
-    <br />
-    
+        <div id="ProgressIndicator" style="z-index:3;">
+        
+        <img id="progressImg" alt="Progress" style="z-index:4" src="../images/ajax-loaderCircle.gif"/>
+        
+        </div>
+        <table>
+            <tr>
+                <td id="PageSize" align="left">
+                    <table>
+                        <tr>
+                            <td>
+                                <asp:Label ID="lblPageSize" runat="server" Text="Items per page: "></asp:Label>
+                            </td>
+                            <td>
+                                <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
+                                    <asp:ListItem>10</asp:ListItem>
+                                    <asp:ListItem>20</asp:ListItem>
+                                    <asp:ListItem>50</asp:ListItem>
+                                    <asp:ListItem Value="all">All</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td align="left">
+                    <asp:Label ID="lblRecordCount" runat="server" Text=""></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div style="text-align: center">
+                        <asp:GridView ID="gvMedia" runat="server" AutoGenerateColumns="False" DataSourceID="lnqMedia"
+                            EnableModelValidation="True" DataKeyNames="medId" CellPadding="4" ForeColor="#333333"
+                            GridLines="None" AllowPaging="True" AllowSorting="True">
+                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                            <Columns>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lnkEdit" CommandArgument='<%# Bind("medId") %>' runat="server"
+                                            OnClick="lnkEdit_Click">Edit</asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="medTitle" HeaderText="Title" SortExpression="medTitle" />
+                                <asp:BoundField DataField="medLocation" HeaderText="Location" SortExpression="medLocation"
+                                    Visible="False" />
+                                <asp:BoundField DataField="medDescription" HeaderText="Description" SortExpression="medDescription" />
+                                <asp:BoundField DataField="medIsViewable" HeaderText="Is Viewable" SortExpression="medIsViewable" />
+                                <asp:BoundField DataField="medDateAdded" HeaderText="Date Added" SortExpression="medDateAdded" />
+                                <asp:BoundField DataField="medArtist" HeaderText="Artist" SortExpression="medArtist"
+                                    Visible="False" />
+                                <asp:BoundField DataField="medGenre" HeaderText="Genre" SortExpression="medGenre" />
+                                <asp:BoundField DataField="medMediaType" HeaderText="Media Type" SortExpression="medMediaType" />
+                                <asp:BoundField DataField="medDuration" HeaderText="Duration" SortExpression="medDuration"
+                                    Visible="False" />
+                                <asp:BoundField DataField="medAlbum" HeaderText="Album" SortExpression="medAlbum"
+                                    Visible="False" />
+                                <asp:BoundField DataField="medFileExt" HeaderText="File Type" SortExpression="medFileExt" />
+                                <asp:CommandField ShowDeleteButton="True" />
+                            </Columns>
+                            <EditRowStyle BackColor="#999999" />
+                            <EmptyDataTemplate>
+                                <center>
+                                    <asp:Label ID="lblNoRecsFound" runat="server" Text=""></asp:Label>
+                                </center>
+                            </EmptyDataTemplate>
+                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" Wrap="True" />
+                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" Wrap="False" />
+                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        </asp:GridView>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </center>
     <asp:LinqDataSource ID="lnqMedia" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
         TableName="StoredMedias" Where="medMediaType == @medMediaType" EnableDelete="True"
-        EnableInsert="True" EnableUpdate="True" onselected="lnqMedia_Selected">
+        EnableInsert="True" EnableUpdate="True" OnSelected="lnqMedia_Selected">
         <WhereParameters>
             <asp:ControlParameter ControlID="ddlMediaTypes" Name="medMediaType" PropertyName="SelectedValue"
                 Type="String" />
         </WhereParameters>
     </asp:LinqDataSource>
-        
-     <asp:HiddenField ID="hdnTitle" runat="server" />
-   <asp:HiddenField ID="hdnLocation" runat="server" />
-   <asp:HiddenField ID="hdnIsViewable" runat="server" />
-   <asp:HiddenField ID="hdnArtist" runat="server" />
-   <asp:HiddenField ID="hdnDescription" runat="server" />
-   <asp:HiddenField ID="hdnGenre" runat="server" />
-   <asp:HiddenField ID="hdnMediaType" runat="server" />
-   <asp:HiddenField ID="hdnDuration" runat="server" />
-   <asp:HiddenField ID="hdnAlbum" runat="server" />
-   <asp:HiddenField ID="hdnMedId" runat="server" />   
-   <asp:HiddenField ID="hdnUpdateMode" runat="server" />
+    <asp:HiddenField ID="hdnTitle" runat="server" />
+    <asp:HiddenField ID="hdnLocation" runat="server" />
+    <asp:HiddenField ID="hdnIsViewable" runat="server" />
+    <asp:HiddenField ID="hdnArtist" runat="server" />
+    <asp:HiddenField ID="hdnDescription" runat="server" />
+    <asp:HiddenField ID="hdnGenre" runat="server" />
+    <asp:HiddenField ID="hdnMediaType" runat="server" />
+    <asp:HiddenField ID="hdnDuration" runat="server" />
+    <asp:HiddenField ID="hdnAlbum" runat="server" />
+    <asp:HiddenField ID="hdnMedId" runat="server" />
+    <asp:HiddenField ID="hdnUpdateMode" runat="server" />
     <asp:HiddenField ID="hdnNetworkFolder" runat="server" />
-       
 </asp:Content>
