@@ -22,6 +22,11 @@
     	visibility:hidden;
     }
     
+    #progressbar.hide
+    {
+    	visibility:hidden;
+    }
+    
     </style>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>
@@ -33,32 +38,39 @@
 
         $(document).ready(function() {
 
+            $("#progressbar").progressbar({ value: 0 });
+
+            $("#progressbar").addClass('hide');
+
             $('img').addClass('hide');
 
             $("#ctl00_MainContent_btnAddAllFromNetworkFolder").click(function() {
 
-            var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
-            var height = document.documentElement.scrollHeight;
-            var layer = document.createElement('div');
-            layer.style.zIndex = 2;
-            layer.id = 'lightBoxBackGround';
-            layer.style.position = 'absolute';
-            layer.style.top = '0px';
-            layer.style.left = '0px';
-            layer.style.height = height + 'px';
-            layer.style.width = width + 'px';
-            layer.style.backgroundColor = 'black';
-            layer.style.opacity = '.1';
-            layer.style.filter += ("progid:DXImageTransform.Microsoft.Alpha(opacity=60)");
-            
-            document.body.appendChild(layer);
+                $("#progressbar").removeClass('hide');
 
-            $('img').removeClass('hide');
+                var hdnProcessType = document.getElementById('ctl00_MainContent_hdnProcessType');
+                hdnProcessType.setAttribute('value', 'add');
 
-            //var progressIndicator = document.getElementById('ProgressIndicator');
-            //progressIndicator.style.top = height / 2;
-            //progressIndicator.style.left = width / 2;
-            
+                var filesToProcess = document.getElementById('ctl00_MainContent_hdnFilesToProcess').value;
+
+                var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
+                var height = document.documentElement.scrollHeight;
+                var layer = document.createElement('div');
+                layer.style.zIndex = 2;
+                layer.id = 'lightBoxBackGround';
+                layer.style.position = 'absolute';
+                layer.style.top = '0px';
+                layer.style.left = '0px';
+                layer.style.height = height + 'px';
+                layer.style.width = width + 'px';
+                layer.style.backgroundColor = 'black';
+                layer.style.opacity = '.1';
+                layer.style.filter += ("progid:DXImageTransform.Microsoft.Alpha(opacity=60)");
+
+                document.body.appendChild(layer);
+
+                //$('img').removeClass('hide');
+
                 var intervalID = setInterval(updateProgress, 40);
                 $.ajax({
                     type: "POST",
@@ -72,12 +84,13 @@
                         $("#result").text(msg.d);
                         clearInterval(intervalID);
 
-                        $('img').addClass('hide');
+                        //$('img').addClass('hide');
+
+                        $("#progressbar").addClass('hide');
 
                         document.body.removeChild(document.getElementById('lightBoxBackGround'));
-                        
-                        ForcePostBack();
 
+                        ForcePostBack();
                     }
                 });
 
@@ -86,27 +99,30 @@
 
             $("#ctl00_MainContent_btnDeleteAllRecords").click(function() {
 
-            var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
-            var height = document.documentElement.scrollHeight;
-            var layer = document.createElement('div');
-            layer.style.zIndex = 2;
-            layer.id = 'lightBoxBackGround';
-            layer.style.position = 'absolute';
-            layer.style.top = '0px';
-            layer.style.left = '0px';
-            layer.style.height = height + 'px';
-            layer.style.width = width + 'px';
-            layer.style.backgroundColor = 'black';
-            layer.style.opacity = '.1';
-            layer.style.filter += ("progid:DXImageTransform.Microsoft.Alpha(opacity=60)");
+                $("#progressbar").removeClass('hide');
 
-            document.body.appendChild(layer);
+                var hdnProcessType = document.getElementById('ctl00_MainContent_hdnProcessType');
+                hdnProcessType.setAttribute('value', 'del');
 
-                $('img').removeClass('hide');
+                var filesToProcess = document.getElementById('ctl00_MainContent_hdnFilesToProcess').value;
 
-                //var progressIndicator = document.getElementById('ProgressIndicator');
-                //progressIndicator.style.top = height / 2;
-                //progressIndicator.style.left = width / 2;
+                var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
+                var height = document.documentElement.scrollHeight;
+                var layer = document.createElement('div');
+                layer.style.zIndex = 2;
+                layer.id = 'lightBoxBackGround';
+                layer.style.position = 'absolute';
+                layer.style.top = '0px';
+                layer.style.left = '0px';
+                layer.style.height = height + 'px';
+                layer.style.width = width + 'px';
+                layer.style.backgroundColor = 'black';
+                layer.style.opacity = '.1';
+                layer.style.filter += ("progid:DXImageTransform.Microsoft.Alpha(opacity=60)");
+
+                document.body.appendChild(layer);
+
+                //$('img').removeClass('hide');
 
                 var intervalID = setInterval(updateProgress, 40);
                 $.ajax({
@@ -121,9 +137,11 @@
                         $("#result").text(msg.d);
                         clearInterval(intervalID);
 
-                        $('img').addClass('hide');
+                        //$('img').addClass('hide');
 
-                        document.body.removeChild(document.getElementById('lightBoxBackGround'));                        
+                        $("#progressbar").addClass('hide');
+
+                        document.body.removeChild(document.getElementById('lightBoxBackGround'));
 
                         ForcePostBack();
                     }
@@ -132,12 +150,24 @@
                 return false;
             });
 
-            function updateProgress() {
+            function updateProgress(filesToProcess) {
 
-                //                var value = $("#progressbar").progressbar("option", "value");
-                //                if (value < 100) {
-                //                    $("#progressbar").progressbar("value", value + 1);
-                //                }
+                var filesToProcess = document.getElementById('ctl00_MainContent_hdnFilesToProcess').value;
+
+                var increment;
+
+                if (document.getElementById('ctl00_MainContent_hdnProcessType').value == 'add') {
+
+                    increment = (100 / filesToProcess) + .25;
+
+                }
+                else
+                    increment = (50 / filesToProcess) + 3.5;
+
+                var value = $("#progressbar").progressbar("option", "value");
+                if (value < 100) {
+                    $("#progressbar").progressbar("value", value + increment);
+                }
             }
 
         });
@@ -148,6 +178,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <script type="text/javascript"><%= postBackStr %></script>
+
+    
+
+
 
     <h1>
         Website Administration</h1>
@@ -192,11 +226,15 @@
                 </td>
             </tr>
         </table>
-        <div id="ProgressIndicator" style="z-index:3;">
+        
+        <div id="progressbar" style="z-index:3; background-color:White; width:500px; height:20px">
+    
+    </div>
+        
+        <%--<div id="ProgressIndicator" style="z-index:3;">
         
         <img id="progressImg" alt="Progress" style="z-index:4" src="../images/ajax-loaderCircle.gif"/>
-        
-        </div>
+        </div>--%>
         <table>
             <tr>
                 <td id="PageSize" align="left">
@@ -288,4 +326,7 @@
     <asp:HiddenField ID="hdnMedId" runat="server" />
     <asp:HiddenField ID="hdnUpdateMode" runat="server" />
     <asp:HiddenField ID="hdnNetworkFolder" runat="server" />
+    
+    <asp:HiddenField ID="hdnFilesToProcess" runat="server" />
+    <asp:HiddenField ID="hdnProcessType" runat="server" />
 </asp:Content>

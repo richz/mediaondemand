@@ -33,6 +33,7 @@ namespace MediaOnDemand
         //Set values
         static string networkFolder = "";
         static string mediaType = "";
+        static int filesToProcess;
 
         protected string postBackStr;
 
@@ -60,12 +61,12 @@ namespace MediaOnDemand
                 //default
                 this.hdnNetworkFolder.Value = WebsiteAdministration.networkFolder = WebsiteAdministration.moviesFolder;
                 this.hdnMediaType.Value = WebsiteAdministration.mediaType = "movie";
-
+                
                 this.gvMedia.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
                 this.gvMedia.Sort("medTitle", SortDirection.Ascending);
 
                 this.btnDeleteAllRecords.Visible = true;
-
+                
                 //if (Directory.Exists(this.rootVideosFolder) && Directory.Exists(this.rootMusicFolder))
                 //{
                 //    //
@@ -102,6 +103,9 @@ namespace MediaOnDemand
                 //}        
             }
 
+            WebsiteAdministration.filesToProcess = Directory.GetFiles(WebsiteAdministration.networkFolder, "*.*", SearchOption.AllDirectories).Length;
+            this.hdnFilesToProcess.Value = WebsiteAdministration.filesToProcess + "";
+
             gvMedia.DataBind();            
         }
 
@@ -115,8 +119,8 @@ namespace MediaOnDemand
             string mediaType = WebsiteAdministration.mediaType;
 
             int[] fileCount = new int[] { 0, 0, 0 };
-            fileCount[2] = Directory.GetFiles(directory, "*.*", SearchOption.AllDirectories).Length;
-
+            WebsiteAdministration.filesToProcess = fileCount[2] = Directory.GetFiles(directory, "*.*", SearchOption.AllDirectories).Length;            
+            
             string mediaName;
             string genre = "";
             string artist = "";
@@ -146,7 +150,7 @@ namespace MediaOnDemand
                 foreach (StoredMedia sm in context.StoredMedias)
                     if (sm.medTitle.Trim().Equals(mediaName))
                         recordExists = true;
-                
+
                 if (!recordExists)
                 {
                     try
@@ -165,7 +169,7 @@ namespace MediaOnDemand
                             medAlbum = album,
                             medFileExt = fileExt,
                         };
-                        
+
                         context.StoredMedias.InsertOnSubmit(media);
 
                         context.SubmitChanges();
@@ -178,7 +182,11 @@ namespace MediaOnDemand
                     }
                 }
                 else
-                    fileCount[1]++;
+                {
+                    fileCount[1]++;                    
+                }
+
+                //WebsiteAdministration.filesToProcess--;
             }
 
             return "All finished!";
@@ -356,6 +364,9 @@ namespace MediaOnDemand
                     }
                     break;
             }
+
+            WebsiteAdministration.filesToProcess = Directory.GetFiles(WebsiteAdministration.networkFolder, "*.*", SearchOption.AllDirectories).Length;
+            this.hdnFilesToProcess.Value = WebsiteAdministration.filesToProcess + "";
 
             this.ddlPageSize.SelectedIndex = 0;
             this.gvMedia.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].ToString());
