@@ -30,7 +30,8 @@ namespace MediaOnDemand
 
         void Session_Start(object sender, EventArgs e)
         {
-            // Code that runs when a new session is started            
+            // Code that runs when a new session is started     
+            Session["CustomSessionId"] = Guid.NewGuid();
 
         }
 

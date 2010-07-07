@@ -34,6 +34,7 @@ namespace MediaOnDemand
         static string networkFolder = "";
         static string mediaType = "";
         static int filesToProcess;
+        static int filesProcessed = 0;
 
         protected string postBackStr;
 
@@ -43,6 +44,10 @@ namespace MediaOnDemand
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["CustomSessionId"] == null)
+            {
+                Response.Redirect("~/pages/Login.aspx");
+            }
 
             if (!IsPostBack)
             {
@@ -103,7 +108,8 @@ namespace MediaOnDemand
                 //}        
             }
 
-            WebsiteAdministration.filesToProcess = Directory.GetFiles(WebsiteAdministration.networkFolder, "*.*", SearchOption.AllDirectories).Length;
+            if(!WebsiteAdministration.networkFolder.Equals(String.Empty))
+                WebsiteAdministration.filesToProcess = Directory.GetFiles(WebsiteAdministration.networkFolder, "*.*", SearchOption.AllDirectories).Length;
             this.hdnFilesToProcess.Value = WebsiteAdministration.filesToProcess + "";
 
             gvMedia.DataBind();            
@@ -111,9 +117,28 @@ namespace MediaOnDemand
 
         #endregion
 
+
         [System.Web.Services.WebMethod]
+        [System.Web.Script.Services.ScriptMethod()]
+        public static int GetFilesToProcess()
+        {
+             return WebsiteAdministration.filesToProcess;
+        }
+
+
+        [System.Web.Services.WebMethod]
+        [System.Web.Script.Services.ScriptMethod()]
+        public static int GetFilesProcessed()
+        {
+            return WebsiteAdministration.filesProcessed;            
+        }
+
+        [System.Web.Services.WebMethod]
+        [System.Web.Script.Services.ScriptMethod()] 
         public static string addFilesFromFolder()
-        {   
+        {
+            WebsiteAdministration.filesProcessed = 0;
+
             //Do work
             string directory = WebsiteAdministration.networkFolder;
             string mediaType = WebsiteAdministration.mediaType;
@@ -186,15 +211,19 @@ namespace MediaOnDemand
                     fileCount[1]++;                    
                 }
 
-                //WebsiteAdministration.filesToProcess--;
+                WebsiteAdministration.filesProcessed++;
+                //WebsiteAdministration.filesToProcess++;
             }
 
             return "All finished!";
         }
 
         [System.Web.Services.WebMethod]
+        [System.Web.Script.Services.ScriptMethod()] 
         public static string deleteAllRecordsForType()
         {
+            WebsiteAdministration.filesProcessed = 0;
+
             StorageMediaDataContext context = new StorageMediaDataContext();
 
             foreach (StoredMedia sm in context.StoredMedias)
@@ -205,6 +234,8 @@ namespace MediaOnDemand
                     try
                     {
                         context.SubmitChanges();
+                        WebsiteAdministration.filesProcessed++;
+                        //WebsiteAdministration.filesToProcess++;
                     }
                     catch (Exception ex)
                     {

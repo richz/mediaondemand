@@ -1,6 +1,8 @@
 <%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WebsiteAdministration.aspx.cs"
     Inherits="MediaOnDemand.WebsiteAdministration" %>
 
+<%@ Register Assembly="EO.Web" Namespace="EO.Web" TagPrefix="eo" %>
+
 <%@ Register Assembly="MattBerseth.WebControls.AJAX" Namespace="MattBerseth.WebControls.AJAX.Progress"
     TagPrefix="mb" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
@@ -25,6 +27,11 @@
     #progressbar.hide
     {
     	visibility:hidden;
+    }    
+    
+    #lblProgressPercentage.hide
+    {
+    	visibility:hidden;
     }
     
     </style>
@@ -41,12 +48,14 @@
             $("#progressbar").progressbar({ value: 0 });
 
             $("#progressbar").addClass('hide');
+            //$("#lblProgressPercentage").addClass('hide');
 
             $('img').addClass('hide');
 
             $("#ctl00_MainContent_btnAddAllFromNetworkFolder").click(function() {
 
                 $("#progressbar").removeClass('hide');
+                $("#lblProgressPercentage").removeClass('hide');
 
                 var hdnProcessType = document.getElementById('ctl00_MainContent_hdnProcessType');
                 hdnProcessType.setAttribute('value', 'add');
@@ -71,7 +80,7 @@
 
                 //$('img').removeClass('hide');
 
-                var intervalID = setInterval(updateProgress, 40);
+                var intervalID = setInterval(updateProgress, 93);
                 $.ajax({
                     type: "POST",
                     url: "WebsiteAdministration.aspx/addFilesFromFolder",
@@ -80,13 +89,22 @@
                     dataType: "json",
                     async: true,
                     success: function(msg) {
-                        $("#progressbar").progressbar("value", 100);
+                    $("#progressbar").progressbar("value", 100);
+
+                    var lblProgressPercentage = document.getElementById('ctl00_MainContent_lblProgressPercentage');
+
+                    if (navigator.appName == 'Netscape')
+                        lblProgressPercentage.textContent = '';
+                    else
+                        lblProgressPercentage.innerText = '';
+
                         $("#result").text(msg.d);
                         clearInterval(intervalID);
 
                         //$('img').addClass('hide');
 
                         $("#progressbar").addClass('hide');
+                        $("#lblProgressPercentage").addClass('hide');
 
                         document.body.removeChild(document.getElementById('lightBoxBackGround'));
 
@@ -100,6 +118,7 @@
             $("#ctl00_MainContent_btnDeleteAllRecords").click(function() {
 
                 $("#progressbar").removeClass('hide');
+                $("#lblProgressPercentage").removeClass('hide');
 
                 var hdnProcessType = document.getElementById('ctl00_MainContent_hdnProcessType');
                 hdnProcessType.setAttribute('value', 'del');
@@ -124,7 +143,7 @@
 
                 //$('img').removeClass('hide');
 
-                var intervalID = setInterval(updateProgress, 40);
+                var intervalID = setInterval(updateProgress, 1);
                 $.ajax({
                     type: "POST",
                     url: "WebsiteAdministration.aspx/deleteAllRecordsForType",
@@ -134,11 +153,20 @@
                     async: true,
                     success: function(msg) {
                         $("#progressbar").progressbar("value", 100);
-                        $("#result").text(msg.d);
+
+                        var lblProgressPercentage = document.getElementById('ctl00_MainContent_lblProgressPercentage');
+
+                        if (navigator.appName == 'Netscape')
+                            lblProgressPercentage.textContent = '';
+                        else
+                            lblProgressPercentage.innerText = '';
+
+                        //$("#result").text(msg.d);
                         clearInterval(intervalID);
 
                         //$('img').addClass('hide');
 
+                        $("#lblProgressPercentage").addClass('hide');
                         $("#progressbar").addClass('hide');
 
                         document.body.removeChild(document.getElementById('lightBoxBackGround'));
@@ -154,20 +182,26 @@
 
                 var filesToProcess = document.getElementById('ctl00_MainContent_hdnFilesToProcess').value;
 
+                var oldPercentage = $("#progressbar").progressbar("value");
+
                 var increment;
 
-                if (document.getElementById('ctl00_MainContent_hdnProcessType').value == 'add') {
-
-                    increment = (100 / filesToProcess) + .25;
-
-                }
+                if (document.getElementById('ctl00_MainContent_hdnProcessType' == 'add'))
+                    increment = 100 / filesToProcess;
                 else
-                    increment = (50 / filesToProcess) + 3.5;
+                    increment = 425 / filesToProcess;
 
-                var value = $("#progressbar").progressbar("option", "value");
-                if (value < 100) {
-                    $("#progressbar").progressbar("value", value + increment);
-                }
+                $("#progressbar").progressbar("value", oldPercentage + increment);
+
+                var updatedPercentage = $("#progressbar").progressbar("value");
+
+                var lblProgressPercentage = document.getElementById('ctl00_MainContent_lblProgressPercentage');
+
+                if (navigator.appName == 'Netscape')
+                    lblProgressPercentage.textContent = updatedPercentage.toFixed(0) + '%';
+                else
+                    lblProgressPercentage.innerText = updatedPercentage.toFixed(0) + '%';
+
             }
 
         });
@@ -178,10 +212,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <script type="text/javascript"><%= postBackStr %></script>
-
-    
-
-
 
     <h1>
         Website Administration</h1>
@@ -227,9 +257,20 @@
             </tr>
         </table>
         
-        <div id="progressbar" style="z-index:3; background-color:White; width:500px; height:20px">
-    
-    </div>
+        <table>
+        <tr>
+        <td>
+        <div id="progressbar" style="z-index:3; border-style:double; background-color:White; width:400px; height:20px">
+        </div>
+        </td>       
+        <td>        
+            <asp:Label ID="lblProgressPercentage" runat="server" Text="">
+            </asp:Label>
+        </td>
+        </tr>
+        </table>
+        
+        
         
         <%--<div id="ProgressIndicator" style="z-index:3;">
         
@@ -273,21 +314,27 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:BoundField DataField="medTitle" HeaderText="Title" SortExpression="medTitle" />
-                                <asp:BoundField DataField="medLocation" HeaderText="Location" SortExpression="medLocation"
-                                    Visible="False" />
+                                <asp:BoundField DataField="medLocation" HeaderText="Location" 
+                                    SortExpression="medLocation" >
+                                    <HeaderStyle Width="50px" />
+                                    <ItemStyle Width="50px" />
+                                    <ControlStyle Width="50px"/>
+                                </asp:BoundField>
                                 <asp:BoundField DataField="medDescription" HeaderText="Description" SortExpression="medDescription" />
                                 <asp:BoundField DataField="medIsViewable" HeaderText="Is Viewable" SortExpression="medIsViewable" />
-                                <asp:BoundField DataField="medDateAdded" HeaderText="Date Added" SortExpression="medDateAdded" />
-                                <asp:BoundField DataField="medArtist" HeaderText="Artist" SortExpression="medArtist"
-                                    Visible="False" />
+                                <asp:BoundField DataField="medDateAdded" HeaderText="Date Added" 
+                                    SortExpression="medDateAdded" Visible="False" />
+                                <asp:BoundField DataField="medArtist" HeaderText="Artist" 
+                                    SortExpression="medArtist" />
                                 <asp:BoundField DataField="medGenre" HeaderText="Genre" SortExpression="medGenre" />
                                 <asp:BoundField DataField="medMediaType" HeaderText="Media Type" SortExpression="medMediaType" />
-                                <asp:BoundField DataField="medDuration" HeaderText="Duration" SortExpression="medDuration"
-                                    Visible="False" />
-                                <asp:BoundField DataField="medAlbum" HeaderText="Album" SortExpression="medAlbum"
-                                    Visible="False" />
+                                <asp:BoundField DataField="medDuration" HeaderText="Duration" 
+                                    SortExpression="medDuration" />
+                                <asp:BoundField DataField="medAlbum" HeaderText="Album" 
+                                    SortExpression="medAlbum" />
                                 <asp:BoundField DataField="medFileExt" HeaderText="File Type" SortExpression="medFileExt" />
                                 <asp:CommandField ShowDeleteButton="True" />
+                                
                             </Columns>
                             <EditRowStyle BackColor="#999999" />
                             <EmptyDataTemplate>
@@ -306,6 +353,12 @@
             </tr>
         </table>
     </center>
+    
+    <div style="visibility:hidden">
+    <asp:Button ID="btnApplyChanges" Visible="true" runat="server" Text="" 
+        onclick="btnApplyChanges_Click" />
+    </div>
+    
     <asp:LinqDataSource ID="lnqMedia" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
         TableName="StoredMedias" Where="medMediaType == @medMediaType" EnableDelete="True"
         EnableInsert="True" EnableUpdate="True" OnSelected="lnqMedia_Selected">

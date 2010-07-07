@@ -28,8 +28,8 @@
         //page.style.width = .8 * width;
         //page.style.height = .9 * height;
 
-        var footer = document.getElementById('footer');
-        footer.style.width = .8 * width;
+        //var footer = document.getElementById('footer');
+        //footer.style.width = .8 * width;
         
         if (lightBoxBackGround != null) {
 
@@ -43,7 +43,7 @@
     
 
     <form runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" EnablePageMethods="true" runat="server">
     </asp:ScriptManager>
     
     <div id="page" class="page">

@@ -1,4 +1,9 @@
-﻿function showProgress() {
+﻿function ShowColumnsMenu()
+{ 
+    
+}
+
+function showProgress() {
 
     var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
     var height = document.documentElement.scrollHeight;
