@@ -12,6 +12,11 @@ namespace MediaOnDemand
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["CustomSessionId"] == null)
+            {
+                Response.Redirect("~/pages/Login.aspx");
+            }
+
             if (!IsPostBack)
                 this.MainContent.Page.Title = "Media On Demand - " + Membership.GetUser().UserName;
         }

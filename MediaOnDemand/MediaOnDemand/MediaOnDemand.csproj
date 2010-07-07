@@ -38,6 +38,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\GAMER\Desktop\ASPNetVideoSetup\ASP.NET 3.5 WebControl (Visual Studio 2008)\ASPNetVideo.NET3.dll</HintPath>
     </Reference>
+    <Reference Include="EO.Web, Version=8.0.15.2, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\GAMER\Documents\Visual Studio 2008\Controls\EO.Web\EO.Web.dll</HintPath>
+    </Reference>
     <Reference Include="MattBerseth.WebControls.AJAX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Media-Player-ASP.NET-Control, Version=1.0.3141.38822, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -213,6 +217,10 @@
     <Compile Include="pages\UserAccount.aspx.designer.cs">
       <DependentUpon>UserAccount.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebService.asmx.cs">
+      <DependentUpon>WebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnetdb.mdf">
@@ -271,6 +279,7 @@
     </None>
     <Content Include="bin\AjaxControlToolkit.dll" />
     <Content Include="bin\AjaxControlToolkit.pdb" />
+    <Content Include="bin\EO.Web.dll" />
     <Content Include="bin\MattBerseth.WebControls.AJAX.dll" />
     <Content Include="bin\MattBerseth.WebControls.AJAX.pdb" />
     <EmbeddedResource Include="images\progress.gif" />
@@ -294,11 +303,13 @@
     <Content Include="images\ajax-loader.gif" />
     <Content Include="images\ajax-loaderCircle.gif" />
     <Content Include="images\ajax-loaderLoading.gif" />
+    <Content Include="images\btnShowContent.png" />
     <Content Include="images\progressImg.gif" />
     <Content Include="js\jquery-1.4.2.min.js" />
     <Content Include="js\jquery-ui-1.8.2.custom.min.js" />
     <Content Include="js\site.js" />
     <Content Include="WebControls\mp4-streamer.ashx" />
+    <Content Include="WebService.asmx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="aspnet_client\system_web\4_0_30128\" />
