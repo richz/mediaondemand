@@ -117,7 +117,7 @@ function playMedia(mediaUrl, mediaType) {
 
 function stop() {
 
-    if (navigator.appName == 'Microsoft Internet Explorer' && document.getElementById('player' != null))
+    if (navigator.appName == 'Microsoft Internet Explorer' && document.getElementById('player') != null)
         document.getElementById('player').stop();
 }
 
