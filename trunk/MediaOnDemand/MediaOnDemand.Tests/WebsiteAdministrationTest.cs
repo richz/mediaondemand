@@ -383,9 +383,9 @@ namespace MediaOnDemand.Tests
         public void btnAddAllFromNetworkFolder_ClickTest()
         {
             WebsiteAdministration_Accessor target = new WebsiteAdministration_Accessor(); // TODO: Initialize to an appropriate value
-            object sender = null; // TODO: Initialize to an appropriate value
-            EventArgs e = null; // TODO: Initialize to an appropriate value
-            target.btnAddAllFromNetworkFolder_Click(sender, e);
+            //object sender = null; // TODO: Initialize to an appropriate value
+            //EventArgs e = null; // TODO: Initialize to an appropriate value
+            //target.btnAddAllFromNetworkFolder_Click(sender, e);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
 
@@ -422,13 +422,13 @@ namespace MediaOnDemand.Tests
         [DeploymentItem("MediaOnDemand.dll")]
         public void addFilesFromFolderTest()
         {
-            WebsiteAdministration_Accessor target = new WebsiteAdministration_Accessor(); // TODO: Initialize to an appropriate value
+            //WebsiteAdministration_Accessor target = new WebsiteAdministration_Accessor(); // TODO: Initialize to an appropriate value
             string directory = string.Empty; // TODO: Initialize to an appropriate value
             string mediaType = string.Empty; // TODO: Initialize to an appropriate value
-            int[] expected = null; // TODO: Initialize to an appropriate value
-            int[] actual;
-            actual = target.addFilesFromFolder(directory, mediaType);
-            Assert.AreEqual(expected, actual);
+            //int[] expected = null; // TODO: Initialize to an appropriate value
+            //int[] actual;
+            //actual = WebsiteAdministration.addFilesFromFolder(directory, mediaType);
+           // Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
