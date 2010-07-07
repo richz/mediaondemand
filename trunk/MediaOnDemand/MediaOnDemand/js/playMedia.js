@@ -25,18 +25,24 @@ function playMedia(mediaUrl, mediaType) {
     else  // video
     {
         playerHeight = .8 * document.documentElement.clientHeight;
-
     }
 
     playerWidth = .8 * document.documentElement.clientWidth;
 
     //playerClass = 'videoMediaPlayer';
 
-
+	var layer = document.createElement('div');
+	var box = document.createElement('div');	
+	var table = document.createElement('table');
+	var buttonRow = document.createElement('tr');
+	var playerRow = document.createElement('tr');
+	var playerCell = document.createElement('td');
+	var playerDiv = document.createElement('div');
+	var buttonCell = document.createElement('td');
+	var closeButton = document.createElement('input');
+	
     var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
-    var height = document.documentElement.scrollHeight;
-    var layer = document.createElement('div');
-    layer.style.zIndex = 2;
+    var height = document.documentElement.scrollHeight;        
     layer.id = 'lightBoxBackGround';
     layer.style.position = 'absolute';
     layer.style.top = '0px';
@@ -46,36 +52,25 @@ function playMedia(mediaUrl, mediaType) {
     layer.style.backgroundColor = 'black';
     layer.style.opacity = '.5';
     layer.style.filter += ("progid:DXImageTransform.Microsoft.Alpha(opacity=60)");
-    document.body.appendChild(layer);
+        
+	box.style.zIndex = 2;
+    box.id = 'box';
+    //box.style.position = (navigator.userAgent.indexOf('MSIE 6') > -1) ? 'absolute' : 'fixed';
+	box.style.position = 'absolute';
+	
+    box.style.top = .05 * width + 'px';
+    box.style.left = .1 * height + 'px';
 
-    var div = document.createElement('div');
-    div.style.zIndex = 3;
-    div.id = 'box';
-    div.style.position = (navigator.userAgent.indexOf('MSIE 6') > -1) ? 'absolute' : 'fixed';
-
-    div.style.top = .05 * width + 'px';
-    div.style.left = .1 * height + 'px';
-
-    div.style.height = playerHeight + 20 + 'px';
-    div.style.width = playerWidth + 20 + 'px';
-    div.style.backgroundColor = 'black';
-    div.style.border = '1px solid silver';
-    div.style.padding = '20px';
-
-    var closeButton = document.createElement('input');
+    box.style.height = playerHeight + 20 + 'px';
+    box.style.width = playerWidth + 20 + 'px';
+    box.style.backgroundColor = 'black';
+    box.style.border = '1px solid silver';
+    box.style.padding = '20px';
+    
     closeButton.setAttribute('type', 'button');
     closeButton.setAttribute('id', 'btnCloseLightBox');
     closeButton.setAttribute('onclick', 'CloseLightBox()');
-    closeButton.setAttribute('value', 'Close');
-
-    var playerDiv = document.createElement('div');
-
-    var buttonCell = document.createElement('td');
-    var buttonRow = document.createElement('tr');
-    var playerCell = document.createElement('td');
-    var playerRow = document.createElement('tr');
-
-    var table = document.createElement('table');
+    closeButton.setAttribute('value', 'Close');  
 
     if (mediaUrl != null) {
 
@@ -110,22 +105,22 @@ function playMedia(mediaUrl, mediaType) {
     playerRow.appendChild(playerCell);
     table.appendChild(buttonRow);
     table.appendChild(playerRow);
-    div.appendChild(table);
-    document.body.appendChild(div);
+    box.appendChild(table);    
+	document.body.appendChild(box);
+	document.body.appendChild(layer);
 
 }
 
 function stop() {
-
-    if (navigator.appName == 'Microsoft Internet Explorer' && document.getElementById('player') != null)
+    
         document.getElementById('player').stop();
 }
 
 function CloseLightBox() {
 
-    stop();
+	if (navigator.appName == 'Microsoft Internet Explorer' && document.getElementById('player') != null)
+		stop();
 
     document.body.removeChild(document.getElementById('lightBoxBackGround'));
-    document.body.removeChild(document.getElementById('box'));
-
+	document.body.removeChild(document.getElementById('box'));
 }
