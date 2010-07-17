@@ -141,9 +141,47 @@
                                 </asp:BoundField>
                             </Columns>
                             <EmptyDataTemplate>
-                                <center>
-                                    <asp:Label ID="lblNoRecsFound" runat="server" Text="No records found"></asp:Label>
-                                </center>
+                                <table cellspacing="0" cellpadding="4" border="0" id="ctl00_MainContent_gvMedia"
+                    style="color: #333333; border-collapse: collapse;" width="100%">
+                    <tr align="left" style="color: White; background-color: #284775;">
+                        <td colspan="12">
+                        </td>
+                    </tr>
+                    <tr style="color: White; background-color: #5D7B9D; font-weight: bold;">
+                       
+                        <th scope="col">
+                            <a style="color: White;"><u>Title</u></a>
+                        </th>
+                                             
+                        <th scope="col">
+                            <a style="color: White;"><u>Cast</u></a>
+                        </th>
+                        <th scope="col">
+                            <a style="color: White;"><u>Description</u></a>
+                        </th>
+                       
+                        <th scope="col">
+                            <a style="color: White;"><u>Genre</u></a>
+                        </th>
+                       
+                        <th scope="col">
+                            <a style="color: White;"><u>Duration</u></a>
+                        </th>
+                        <th scope="col">
+                            <a style="color: White;"><u>Video Type</u></a>
+                        </th>
+                        <th scope="col">
+                            <a style="color: White;"><u>Date Added</u></a>
+                        </th>
+                        </tr>
+                        <tr>
+                        <td colspan="10">
+                        <center>
+                        No records found
+                        </center>
+                        </td>
+                        </tr>
+                </table>
                             </EmptyDataTemplate>
                             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                             <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />

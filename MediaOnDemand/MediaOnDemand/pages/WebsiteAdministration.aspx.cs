@@ -51,6 +51,8 @@ namespace MediaOnDemand
 
             if (!IsPostBack)
             {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Show lightbox", "showBox();", true);
+
                 this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
 
                 this.ddlMediaTypes.SelectedIndex = 0;
@@ -62,16 +64,16 @@ namespace MediaOnDemand
                 //this.btnAddNewMediaRow.Text = "Add new media";
                 //this.btnApplyChanges.Visible = false;
                 this.btnAddNewMediaRow.Enabled = true;
-                
+
                 //default
                 this.hdnNetworkFolder.Value = WebsiteAdministration.networkFolder = WebsiteAdministration.moviesFolder;
                 this.hdnMediaType.Value = WebsiteAdministration.mediaType = "movie";
-                
+
                 this.gvMedia.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
                 this.gvMedia.Sort("medTitle", SortDirection.Ascending);
 
                 this.btnDeleteAllRecords.Visible = true;
-                
+
                 //if (Directory.Exists(this.rootVideosFolder) && Directory.Exists(this.rootMusicFolder))
                 //{
                 //    //
@@ -108,33 +110,13 @@ namespace MediaOnDemand
                 //}        
             }
 
-            if(!WebsiteAdministration.networkFolder.Equals(String.Empty))
-                WebsiteAdministration.filesToProcess = Directory.GetFiles(WebsiteAdministration.networkFolder, "*.*", SearchOption.AllDirectories).Length;
-            this.hdnFilesToProcess.Value = WebsiteAdministration.filesToProcess + "";
-
-            gvMedia.DataBind();            
+            gvMedia.DataBind();
         }
 
         #endregion
 
-
         [System.Web.Services.WebMethod]
         [System.Web.Script.Services.ScriptMethod()]
-        public static int GetFilesToProcess()
-        {
-             return WebsiteAdministration.filesToProcess;
-        }
-
-
-        [System.Web.Services.WebMethod]
-        [System.Web.Script.Services.ScriptMethod()]
-        public static int GetFilesProcessed()
-        {
-            return WebsiteAdministration.filesProcessed;            
-        }
-
-        [System.Web.Services.WebMethod]
-        [System.Web.Script.Services.ScriptMethod()] 
         public static string addFilesFromFolder()
         {
             WebsiteAdministration.filesProcessed = 0;
@@ -144,8 +126,8 @@ namespace MediaOnDemand
             string mediaType = WebsiteAdministration.mediaType;
 
             int[] fileCount = new int[] { 0, 0, 0 };
-            WebsiteAdministration.filesToProcess = fileCount[2] = Directory.GetFiles(directory, "*.*", SearchOption.AllDirectories).Length;            
-            
+            WebsiteAdministration.filesToProcess = fileCount[2] = Directory.GetFiles(directory, "*.*", SearchOption.AllDirectories).Length;
+
             string mediaName;
             string genre = "";
             string artist = "";
@@ -159,13 +141,11 @@ namespace MediaOnDemand
 
                 if (Directory.GetParent(directory).GetDirectories()[0].Name.Equals("music"))
                 {
-                    //mediaType = "music";
                     artist = file.Directory.Parent.Name;
                     album = file.Directory.Name;
                 }
                 else
                 {
-                    //mediaType = file.Directory.Parent.Name;
                     genre = file.Directory.Name;
                 }
 
@@ -208,18 +188,15 @@ namespace MediaOnDemand
                 }
                 else
                 {
-                    fileCount[1]++;                    
+                    fileCount[1]++;
                 }
-
-                WebsiteAdministration.filesProcessed++;
-                //WebsiteAdministration.filesToProcess++;
             }
 
             return "All finished!";
         }
 
         [System.Web.Services.WebMethod]
-        [System.Web.Script.Services.ScriptMethod()] 
+        [System.Web.Script.Services.ScriptMethod()]
         public static string deleteAllRecordsForType()
         {
             WebsiteAdministration.filesProcessed = 0;
@@ -234,8 +211,6 @@ namespace MediaOnDemand
                     try
                     {
                         context.SubmitChanges();
-                        WebsiteAdministration.filesProcessed++;
-                        //WebsiteAdministration.filesToProcess++;
                     }
                     catch (Exception ex)
                     {
@@ -243,98 +218,8 @@ namespace MediaOnDemand
                     }
                 }
 
-            //this.gvMedia.DataBind();
-
-            ////Hide Page Size Controls if no records, else show
-            //if (GetGridViewRecordCountByCurrentMediaType() == 0)
-            //{
-            //    this.lblPageSize.Visible = false;
-            //    this.ddlPageSize.Visible = false;
-            //    //this.btnDeleteAllRecords.Visible = false;
-            //}
-            //else
-            //{
-            //    this.lblPageSize.Visible = true;
-            //    this.ddlPageSize.Visible = true;
-            //}
-
-            //this.lblFolderMessage.Text = "";
-
             return "All finished!";
         }
-
-
-        //public static int[] addFilesFromFolder(string directory, string mediaType)
-        //{
-        //    int[] fileCount = new int[] { 0, 0, 0 };
-        //    fileCount[2] = Directory.GetFiles(directory, "*.*", SearchOption.AllDirectories).Length;
-
-        //    string mediaName;
-        //    string genre = "";
-        //    string artist = "";
-        //    string album = "";
-
-        //    foreach (String filePath in Directory.GetFiles(directory, "*.*", SearchOption.AllDirectories))
-        //    {
-        //        FileInfo file = new FileInfo(filePath);
-        //        mediaName = Path.GetFileNameWithoutExtension(filePath);
-        //        string fileExt = file.Extension;
-
-        //        if (Directory.GetParent(directory).GetDirectories()[0].Name.Equals("music"))
-        //        {
-        //            mediaType = "music";
-        //            artist = file.Directory.Parent.Name;
-        //            album = file.Directory.Name;
-        //        }
-        //        else
-        //        {
-        //            mediaType = file.Directory.Parent.Name;
-        //            genre = file.Directory.Name;
-        //        }
-
-        //        bool recordExists = false;
-        //        StorageMediaDataContext context = new StorageMediaDataContext();
-
-        //        foreach (StoredMedia sm in context.StoredMedias)
-        //            if (sm.medTitle.Trim().Equals(mediaName))
-        //                recordExists = true;
-
-        //        if (!recordExists)
-        //        {
-        //            try
-        //            {
-        //                StoredMedia media = new StoredMedia
-        //                {
-        //                    medTitle = mediaName,
-        //                    medLocation = filePath,
-        //                    medDateAdded = DateTime.Now,
-        //                    medIsViewable = 'Y',
-        //                    medArtist = artist,
-        //                    medDescription = "",
-        //                    medGenre = genre,
-        //                    medMediaType = mediaType,
-        //                    medDuration = new float(),
-        //                    medAlbum = album,
-        //                    medFileExt = fileExt,
-        //                };
-
-        //                context.StoredMedias.InsertOnSubmit(media);
-
-        //                context.SubmitChanges();
-
-        //                fileCount[0]++;
-
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //            }
-        //        }
-        //        else
-        //            fileCount[1]++;
-        //    }
-
-        //    return fileCount;
-        //}
 
         #region Control Event Handlers
 
@@ -346,9 +231,9 @@ namespace MediaOnDemand
             // Reset Page Index for Grid
             this.gvMedia.PageIndex = 0;
 
-            this.hdnMediaType.Value = WebsiteAdministration.mediaType = this.ddlMediaTypes.SelectedValue;            
+            this.hdnMediaType.Value = WebsiteAdministration.mediaType = this.ddlMediaTypes.SelectedValue;
 
-            this.lnqMedia.Where = "medMediaType == \"" + this.ddlMediaTypes.SelectedValue + "\"";  
+            this.lnqMedia.Where = "medMediaType == \"" + this.ddlMediaTypes.SelectedValue + "\"";
 
             switch (this.ddlMediaTypes.SelectedValue)
             {
@@ -356,7 +241,7 @@ namespace MediaOnDemand
                     {
                         this.hdnNetworkFolder.Value = WebsiteAdministration.networkFolder = WebsiteAdministration.musicFolder;
 
-                       // this.lnqMedia.Where = "medMediaType == \"music\"";                        
+                        // this.lnqMedia.Where = "medMediaType == \"music\"";                        
                         //this.gvMedia.Columns[10].Visible = true;
                         //this.gvMedia.Columns[13].Visible = false;
                     }
@@ -369,7 +254,7 @@ namespace MediaOnDemand
                         //this.gvMedia.Columns[13].Visible = true;
                         //this.gvMedia.Columns[10].Visible = false;
                     }
-                    break;                
+                    break;
                 case "tv":
                     {
                         this.hdnNetworkFolder.Value = WebsiteAdministration.networkFolder = WebsiteAdministration.tvFolder;
@@ -397,7 +282,6 @@ namespace MediaOnDemand
             }
 
             WebsiteAdministration.filesToProcess = Directory.GetFiles(WebsiteAdministration.networkFolder, "*.*", SearchOption.AllDirectories).Length;
-            this.hdnFilesToProcess.Value = WebsiteAdministration.filesToProcess + "";
 
             this.ddlPageSize.SelectedIndex = 0;
             this.gvMedia.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].ToString());
@@ -453,16 +337,17 @@ namespace MediaOnDemand
             }
             else //Edit
             {
-                string title = this.hdnTitle.Value;
-                string location = this.hdnLocation.Value;
-                char isViewable = Convert.ToChar(this.hdnIsViewable.Value);
-                string artist = this.hdnArtist.Value;
-                string description = this.hdnDescription.Value;
-                string genre = this.hdnGenre.Value;
-                string mediaType = this.hdnMediaType.Value;
-                float duration = this.hdnDuration.Value.Equals("") ? float.Parse("0.00") : float.Parse(this.hdnDuration.Value);
-                string album = this.hdnAlbum.Value;
-                string id = this.hdnMedId.Value;
+                string title = this.hdnTitle.Value.Trim();
+                string location = this.hdnLocation.Value.Trim();
+                char isViewable = Convert.ToChar(this.hdnIsViewable.Value.Trim());
+                string artist = this.hdnArtist.Value.Trim();
+                string description = this.hdnDescription.Value.Trim();
+                string genre = this.hdnGenre.Value.Trim();
+                string mediaType = this.hdnMediaType.Value.Trim();
+                float duration = this.hdnDuration.Value.Equals("") ? float.Parse("0.00") : float.Parse(this.hdnDuration.Value.Trim());
+                string album = this.hdnAlbum.Value.Trim();
+                string videoType = this.hdnVideoType.Value.Trim();
+                string id = this.hdnMedId.Value.Trim();
 
                 StorageMediaDataContext context = new StorageMediaDataContext();
 
@@ -481,6 +366,7 @@ namespace MediaOnDemand
                 row.medMediaType = mediaType;
                 row.medDuration = duration;
                 row.medAlbum = album;
+                row.medVideoType = videoType;                
 
                 try
                 {
@@ -501,9 +387,6 @@ namespace MediaOnDemand
         protected void lnkEdit_Click(object sender, EventArgs e)
         {
             this.hdnUpdateMode.Value = "edit";
-
-            //this.btnAddNewMediaRow.Text = "Cancel";
-            //this.btnApplyChanges.Visible = true;
 
             this.hdnMedId.Value = (sender as LinkButton).CommandArgument;
 
@@ -534,90 +417,6 @@ namespace MediaOnDemand
 
             context.SubmitChanges();
         }
-
-
-        //protected void btnaddallfromnetworkfolder_click(object sender, eventargs e)
-        //{
-        //    int duplicates = 0;
-        //    int filesadded = 0;
-        //    int totalfiles = 0;
-
-        //    int[] filescount = addfilesfromfolder(this.hdnnetworkfolder.value, this.ddlmediatypes.selectedvalue);
-        //    filesadded += filescount[0];
-        //    duplicates += filescount[1];
-        //    totalfiles += filescount[2];
-
-        //    ////movies
-        //    //int[] filescount = addfilesfromfolder(moviesfolder, "movie");
-        //    //filesadded += filescount[0];
-        //    //duplicates += filescount[1];
-        //    //totalfiles += filescount[2];
-
-        //    ////tv
-        //    //filescount = addfilesfromfolder(tvfolder, "tv");
-        //    //filesadded += filescount[0];
-        //    //duplicates += filescount[1];
-        //    //totalfiles += filescount[2];
-
-        //    ////basketball
-        //    //filescount = addfilesfromfolder(basketballfolder, "basketball");
-        //    //filesadded += filescount[0];
-        //    //duplicates += filescount[1];
-        //    //totalfiles += filescount[2];
-
-        //    ////documentary
-        //    //filescount = addfilesfromfolder(documentariesfolder, "documentary");
-        //    //filesadded += filescount[0];
-        //    //duplicates += filescount[1];
-        //    //totalfiles += filescount[2];
-
-        //    ////music videos
-        //    //filescount = addfilesfromfolder(musicvideosfolder, "musicvideo");
-        //    //filesadded += filescount[0];
-        //    //duplicates += filescount[1];
-        //    //totalfiles += filescount[2];
-
-        //    ////music
-        //    //filescount = addfilesfromfolder(musicfolder, "music");
-        //    //filesadded += filescount[0];
-        //    //duplicates += filescount[1];
-        //    //totalfiles += filescount[2];
-
-        //    if (duplicates == totalfiles && totalfiles > 0)
-        //    {
-        //        this.lblfoldermessage.forecolor = color.red;
-        //        this.lblfoldermessage.text = "all " + duplicates + " files were duplicates, no new files were added";
-        //    }
-        //    else if (duplicates > 0 && duplicates < totalfiles)
-        //    {
-        //        this.lblfoldermessage.forecolor = color.red;
-        //        this.lblfoldermessage.text = "found " + duplicates + " duplicate(s), only " + (totalfiles - duplicates) + " files were added";
-        //    }
-        //    else if (totalfiles == 0)
-        //    {
-        //        this.lblfoldermessage.forecolor = color.red;
-        //        this.lblfoldermessage.text = "no files were found in the specified directory";
-        //    }
-        //    else
-        //    {
-        //        this.lblfoldermessage.forecolor = color.green;
-        //        this.lblfoldermessage.text = "all " + totalfiles + " file(s) were added";
-        //    }
-
-        //    //hide page size controls if no records, else show
-        //    if (convert.toint32(session["totalrowcount"].tostring()) == 0)
-        //    {
-        //        this.lblpagesize.visible = false;
-        //        this.ddlpagesize.visible = false;
-        //    }
-        //    else
-        //    {
-        //        this.lblpagesize.visible = true;
-        //        this.ddlpagesize.visible = true;
-        //    }
-
-        //    this.gvmedia.databind();
-        //}
 
         protected void btnDeleteAllRecords_Click(object sender, EventArgs e)
         {
@@ -675,24 +474,29 @@ namespace MediaOnDemand
 
         #region Helper Methods
 
-        private void RetriveRowDataToEdit(string rowId)
+        private void RetriveRowDataToEdit(string mediaId)
         {
-            int index = IndexOfRowByDataKey(rowId);
+            StorageMediaDataContext context = new StorageMediaDataContext();
 
-            GridViewRow row = (index >= 0) ? this.gvMedia.Rows[index] : null;
-
-            if (row != null)
+            foreach (StoredMedia sm in context.StoredMedias)
             {
-                this.hdnTitle.Value = row.Cells[1].Text.Trim();
-                this.hdnLocation.Value = row.Cells[2].Text.Trim();
-                this.hdnIsViewable.Value = row.Cells[4].Text.Trim();
-                this.hdnArtist.Value = row.Cells[6].Text.Trim();
-                this.hdnDescription.Value = row.Cells[3].Text.Trim();
-                this.hdnGenre.Value = row.Cells[7].Text.Trim();
-                this.hdnMediaType.Value = row.Cells[8].Text.Trim();
-                this.hdnDuration.Value = row.Cells[9].Text.Trim();
-                this.hdnAlbum.Value = row.Cells[10].Text.Trim().Equals("&nbsp;") ? "" : row.Cells[10].Text.Trim();
+                if (sm.medId == Convert.ToInt32(mediaId))
+                {
+                    this.hdnTitle.Value = sm.medTitle.Trim();
+                    this.hdnLocation.Value = sm.medLocation.Trim();
+                    this.hdnIsViewable.Value = sm.medIsViewable.ToString().Trim();
+                    this.hdnArtist.Value = sm.medArtist != null ? sm.medArtist.Trim() :  "";
+                    this.hdnDescription.Value = sm.medDescription.Trim() != null ? sm.medDescription : "";
+                    this.hdnGenre.Value = sm.medGenre.Trim();
+                    this.hdnMediaType.Value = sm.medMediaType.Trim();
+                    this.hdnDuration.Value = sm.medDuration.ToString().Trim();
+                    this.hdnAlbum.Value = sm.medAlbum.Trim();
+                    this.hdnFileExt.Value = sm.medFileExt.Trim();
+                    
+                    return;
+                }
             }
+  
         }
 
         private int IndexOfRowByDataKey(string medId)
@@ -814,7 +618,25 @@ namespace MediaOnDemand
                 //this.btnDeleteAllRecords.Visible = false;
             }
 
-            
+
+        }
+
+        protected void gvMedia_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+        {
+            this.gvMedia.DataBind();
+        }
+
+        protected void gvMedia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvMedia_DataBound(object sender, EventArgs e)
+        {
+            GridView gvMedia = (sender as GridView);
+
+            if (gvMedia.Rows.Count == 0)
+                ;
         }
     }
 }
