@@ -13,6 +13,8 @@
 
 function playMedia(mediaUrl, mediaType) {
 
+    var browser = navigator.appName;
+
     var playerWidth = 0;
     var playerHeight = 0;
     var playerClass = '';
@@ -31,18 +33,18 @@ function playMedia(mediaUrl, mediaType) {
 
     //playerClass = 'videoMediaPlayer';
 
-	var layer = document.createElement('div');
-	var box = document.createElement('div');	
-	var table = document.createElement('table');
-	var buttonRow = document.createElement('tr');
-	var playerRow = document.createElement('tr');
-	var playerCell = document.createElement('td');
-	var playerDiv = document.createElement('div');
-	var buttonCell = document.createElement('td');
-	var closeButton = document.createElement('input');
-	
+    var layer = document.createElement('div');
+    var box = document.createElement('div');
+    var table = document.createElement('table');
+    var buttonRow = document.createElement('tr');
+    var playerRow = document.createElement('tr');
+    var playerCell = document.createElement('td');
+    var playerDiv = document.createElement('div');
+    var buttonCell = document.createElement('td');
+    var closeButton = document.createElement('input');
+
     var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
-    var height = document.documentElement.scrollHeight;        
+    var height = document.documentElement.scrollHeight;
     layer.id = 'lightBoxBackGround';
     layer.style.position = 'absolute';
     layer.style.top = '0px';
@@ -52,12 +54,12 @@ function playMedia(mediaUrl, mediaType) {
     layer.style.backgroundColor = 'black';
     layer.style.opacity = '.5';
     layer.style.filter += ("progid:DXImageTransform.Microsoft.Alpha(opacity=60)");
-        
-	box.style.zIndex = 2;
+
+    box.style.zIndex = 2;
     box.id = 'box';
     //box.style.position = (navigator.userAgent.indexOf('MSIE 6') > -1) ? 'absolute' : 'fixed';
-	box.style.position = 'absolute';
-	
+    box.style.position = 'absolute';
+
     box.style.top = .05 * width + 'px';
     box.style.left = .1 * height + 'px';
 
@@ -66,11 +68,11 @@ function playMedia(mediaUrl, mediaType) {
     box.style.backgroundColor = 'black';
     box.style.border = '1px solid silver';
     box.style.padding = '20px';
-    
+
     closeButton.setAttribute('type', 'button');
     closeButton.setAttribute('id', 'btnCloseLightBox');
     closeButton.setAttribute('onclick', 'CloseLightBox()');
-    closeButton.setAttribute('value', 'Close');  
+    closeButton.setAttribute('value', 'Close');
 
     if (mediaUrl != null) {
 
@@ -86,12 +88,23 @@ function playMedia(mediaUrl, mediaType) {
 
         playerDiv.innerHTML =
             '<object id="player" classid="clsid:22d6f312-b0f6-11d0-94ab-0080c74c7e95"'
-            + 'type="application/x-oleobject" width="' + playerWidth + 'px' + '" height="' + playerHeight + 'px' + '">'
+            + ' type="application/x-oleobject" width="' + playerWidth + 'px' + '" height="' + playerHeight + 'px' + '">'
             + '<param name="showControls" value="true">'
             + '<param name="fileName" value="' + mediaUrl + '">'
             + '<PARAM name="uiMode" value="mini">'
             + '<embed type="application/x-mplayer2" width="' + playerWidth + 'px' + '" height="' + playerHeight + 'px' + '"'
             + 'showcontrols="true" src="' + mediaUrl + '"><\/embed><\/object>';
+/*
+  //VLC Player
+       playerDiv.innerHTML = playerDiv.innerHTML + '<embed type="application/x-vlc-plugin"'
+       + ' name="VLC" autoplay="yes"'
+       + 'loop="no" volume="100" width="' + playerWidth + '" height="' + playerHeight + '" target="' + mediaUrl + '">'
+       + '<a href="javascript:;" onclick="document.VLC.play()">Play VLC</a>'
+       + '<a href="javascript:;" onclick="document.VLC.pause()">Pause VLC</a>'
+       + '<a href="javascript:;" onclick="document.VLC.stop()">Stop VLC</a>'
+       + '<a href="javascript:;" onclick="document.VLC.fullscreen()">Fullscreen</a>';
+*/
+
     }
     else
         playerDiv.innerHTML = '<h1>No media found</h1>';
@@ -105,22 +118,22 @@ function playMedia(mediaUrl, mediaType) {
     playerRow.appendChild(playerCell);
     table.appendChild(buttonRow);
     table.appendChild(playerRow);
-    box.appendChild(table);    
-	document.body.appendChild(box);
-	document.body.appendChild(layer);
+    box.appendChild(table);
+    document.body.appendChild(box);
+    document.body.appendChild(layer);
 
 }
 
 function stop() {
-    
-        document.getElementById('player').stop();
+
+    document.getElementById('player').stop();
 }
 
 function CloseLightBox() {
 
-	if (navigator.appName == 'Microsoft Internet Explorer' && document.getElementById('player') != null)
-		stop();
+    if (navigator.appName == 'Microsoft Internet Explorer' && document.getElementById('player') != null)
+        stop();
 
     document.body.removeChild(document.getElementById('lightBoxBackGround'));
-	document.body.removeChild(document.getElementById('box'));
+    document.body.removeChild(document.getElementById('box'));
 }

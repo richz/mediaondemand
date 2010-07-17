@@ -59,15 +59,6 @@ namespace MediaOnDemand {
         protected global::System.Web.UI.WebControls.Button btnAddNewMediaRow;
         
         /// <summary>
-        /// lblProgressPercentage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProgressPercentage;
-        
-        /// <summary>
         /// lblPageSize control.
         /// </summary>
         /// <remarks>
@@ -93,6 +84,15 @@ namespace MediaOnDemand {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblRecordCount;
+        
+        /// <summary>
+        /// gridViewPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel gridViewPanel;
         
         /// <summary>
         /// gvMedia control.
@@ -212,6 +212,24 @@ namespace MediaOnDemand {
         protected global::System.Web.UI.WebControls.HiddenField hdnMedId;
         
         /// <summary>
+        /// hdnFileExt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnFileExt;
+        
+        /// <summary>
+        /// hdnVideoType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnVideoType;
+        
+        /// <summary>
         /// hdnUpdateMode control.
         /// </summary>
         /// <remarks>
@@ -228,23 +246,5 @@ namespace MediaOnDemand {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnNetworkFolder;
-        
-        /// <summary>
-        /// hdnFilesToProcess control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnFilesToProcess;
-        
-        /// <summary>
-        /// hdnProcessType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnProcessType;
     }
 }
