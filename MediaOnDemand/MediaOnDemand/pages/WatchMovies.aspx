@@ -1,7 +1,8 @@
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WatchMovies.aspx.cs"
-    Inherits="MediaOnDemand.WatchMovies" %>
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WatchMovies.aspx.cs" Inherits="MediaOnDemand.WatchMovies" %>
 
-<%@ Register Assembly="ASPNetVideo.NET3" Namespace="ASPNetVideo" TagPrefix="ASPNetVideo" %>
+<%@ Register Assembly="JW-FLV-Player-Control" Namespace="JW_FLV_Player_Control" TagPrefix="cc2" %>
+
+
 <%@ Register Assembly="Media-Player-ASP.NET-Control" Namespace="Media_Player_ASP.NET_Control"
     TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -10,6 +11,21 @@
 
     <script type="text/javascript">
 
+
+        function showMediaInMainWindow() {
+
+            if (_arrWin[0]) {
+
+                var mediaUrl = document.getElementById('ctl00_MainContent_hdnMediaUrl').getAttribute('value');
+
+                _arrWin[0] = null;
+
+                var btnPlayInPopup = document.getElementById('btnPlayInPopup');
+
+                if (btnPlayInPopup != null)
+                    btnPlayInPopup.disabled = '';
+            }
+        } 
        
     </script>
 
@@ -40,11 +56,16 @@
                     </asp:UpdatePanel>
                 </td>
                 <td>
-                    <input type="button" id="btnPlayInPopup" disabled="disabled" value="Show In Popup Window" onclick="showMediaInPopupWindow()" />
-                </td>
+                    <input type="button" id="btnPlayInPopup" disabled="disabled" value="Show In Popup Window"
+                        onclick="showMediaInPopupWindow()" />
+                </td>                
             </tr>
+            
         </table>
         <div id="mediaPlayer">
+            
+            
+            
         </div>
     </center>
     <asp:UpdatePanel ID="gridViewUpdatePanel" runat="server">
@@ -81,7 +102,8 @@
                             <Columns>
                                 <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
                                     <ItemTemplate>
-                                        <a id="lnkMovieLink" href="#" onclick="ForcePostBack(this, 'video')" param='<%# Eval("medLocation") %>' mediaId='<%# Eval("medId") %>'>
+                                        <a id="lnkMovieLink" href="#" onclick="ForcePostBack(this, 'video')" param='<%# Eval("medLocation") %>'
+                                            mediaid='<%# Eval("medId") %>'>
                                             <asp:Label ID="lblTitle" runat="server" Text='<%# Eval("medTitle") %>'></asp:Label>
                                         </a>
                                     </ItemTemplate>

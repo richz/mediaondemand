@@ -186,12 +186,15 @@ namespace MediaOnDemand
                 this.lblPageSize.Visible = true;
                 this.ddlPageSize.Visible = true;
                 this.lblRecordCount.Visible = true;
-            }            
+            }
+
+            
         }
 
         protected void ddlGenre_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.lnqMovies.WhereParameters[2].DefaultValue = this.ddlGenre.SelectedValue;
         }
+
     }
 }

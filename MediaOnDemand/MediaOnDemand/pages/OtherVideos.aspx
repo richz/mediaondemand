@@ -9,6 +9,25 @@
 
     <script src="../js/playMedia.js" type="text/javascript"></script>
 
+    <script type="text/javascript">
+
+        function showMediaInMainWindow() {
+
+            if (_arrWin[0]) {
+
+                var mediaUrl = document.getElementById('ctl00_MainContent_hdnMediaUrl').getAttribute('value');
+
+                _arrWin[0] = null;
+
+                var btnPlayInPopup = document.getElementById('btnPlayInPopup');
+
+                if (btnPlayInPopup != null)
+                    btnPlayInPopup.disabled = '';
+            }
+        }
+    
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 

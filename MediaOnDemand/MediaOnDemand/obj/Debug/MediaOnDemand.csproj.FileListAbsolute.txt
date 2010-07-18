@@ -49,3 +49,4 @@ E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\MattBerseth.WebControls
 E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\JW-FLV-Player-Control.pdb
 E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\JW-FLV-Player-Control.xml
 E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\JW-FLV-Player-Control.dll
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\obj\Debug\MediaOnDemand.dll.licenses
