@@ -24,10 +24,9 @@
 
         window.onload = startVideo;
 
-        window.onresize = resize;
-
-
         function resize() {
+
+            
 
             var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
             var height = document.documentElement.scrollHeight;
@@ -48,12 +47,15 @@
             document.body.height = height;
 
             playMedia(mediaUrl, 'video');
-        }           
+        }
+
+
+        window.onresize = resize;      
     
     </script>
 
 </head>
-<body  style="background-color:Black; width:100%; height:100%">
+<body  style="background-color:Black; width:100%; height:100%" onresize="resize();">
     <form id="form" runat="server">
     <div>
         <center>
