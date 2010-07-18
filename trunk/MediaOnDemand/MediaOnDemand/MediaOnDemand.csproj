@@ -42,6 +42,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\GAMER\Documents\Visual Studio 2008\Controls\EO.Web\EO.Web.dll</HintPath>
     </Reference>
+    <Reference Include="FlashControl, Version=2.4.2276.31815, Culture=neutral, PublicKeyToken=0066be59ecd613cb, processorArchitecture=MSIL" />
     <Reference Include="MattBerseth.WebControls.AJAX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Media-Player-ASP.NET-Control, Version=1.0.3141.38822, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -87,6 +88,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="pages\PopupMedia.aspx.cs">
+      <DependentUpon>PopupMedia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\PopupMedia.aspx.designer.cs">
+      <DependentUpon>PopupMedia.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -268,6 +276,10 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JW-FLV-Player-Control\JW-FLV-Player-Control.vbproj">
+      <Project>{0D76D2A9-D312-436E-9A33-DC8A7CA39060}</Project>
+      <Name>JW-FLV-Player-Control</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MediaOnDemandLibrary\MediaOnDemandLibrary.csproj">
       <Project>{38E41635-F6CD-4454-98F5-6CF2E225AE6D}</Project>
       <Name>MediaOnDemandLibrary</Name>
@@ -280,10 +292,15 @@
     <Content Include="bin\AjaxControlToolkit.dll" />
     <Content Include="bin\AjaxControlToolkit.pdb" />
     <Content Include="bin\EO.Web.dll" />
+    <Content Include="bin\FlashControl.dll" />
+    <Content Include="bin\JW-FLV-Player-Control.dll" />
+    <Content Include="bin\JW-FLV-Player-Control.pdb" />
+    <Content Include="bin\JW-FLV-Player-Control.xml" />
     <Content Include="bin\MattBerseth.WebControls.AJAX.dll" />
     <Content Include="bin\MattBerseth.WebControls.AJAX.pdb" />
     <EmbeddedResource Include="images\progress.gif" />
     <EmbeddedResource Include="images\progress_bg.gif" />
+    <Content Include="bin\swfobject.js" />
     <Content Include="css\smoothness\images\ui-anim_basic_16x16.gif" />
     <Content Include="css\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="css\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -308,6 +325,7 @@
     <Content Include="js\jquery-1.4.2.min.js" />
     <Content Include="js\jquery-ui-1.8.2.custom.min.js" />
     <Content Include="js\site.js" />
+    <Content Include="pages\PopupMedia.aspx" />
     <Content Include="WebControls\mp4-streamer.ashx" />
     <Content Include="WebService.asmx" />
   </ItemGroup>

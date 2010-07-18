@@ -14,8 +14,6 @@
 
     <h1>Videos</h1>   
 
-<%--<form id="watchVideosForm">--%>
-
 <script type="text/javascript"><%= postBackStr %></script>
 
     <asp:Label ID="lblFileMessages" runat="server" Text="Label"></asp:Label>
@@ -65,26 +63,20 @@
 </td>
 </tr>
 <tr>
-<td colspan="2">
-</td>
+<td colspan="2" align="center">
+ 
+                    <input type="button" id="btnPlayInPopup" value="Show In Popup Window" onclick="showMediaInPopupWindow()" />
+                </td>
+
 </tr>
-        <tr>
-            <td colspan="2">
-                <asp:Label ID="lblMessage" runat="server" Font-Bold="true" Text=""></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <div id="mediaplayer">
-                </div>      
-                
-                <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server" />
-                
-            </td>
-        </tr>
+      
+        
     </table>
-    </center>
+   
     
+     <div id="mediaPlayer">
+                </div>  
+     </center>
     <asp:UpdatePanel ID="gridViewUpdatePanel" runat="server">
         <ContentTemplate>
         <center>
@@ -121,7 +113,7 @@
                                 <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
                                 
                                     <ItemTemplate>   
-                                              <a id="lnkVideoLink" href="#" onclick="ForcePostBack(this)" param='<%# Eval("medLocation") %>'>
+                                              <a id="lnkVideoLink" href="#" onclick="ForcePostBack(this, 'video')" param='<%# Eval("medLocation") %>' mediaId='<%# Eval("medId") %>'>
                                               <asp:Label ID="lblTitle" runat="server" Text='<%# Eval("medTitle") %>'></asp:Label>
                                               </a>                              
                                 
@@ -197,7 +189,7 @@
         </ContentTemplate>
     </asp:UpdatePanel>
     <asp:LinqDataSource ID="lnqVideos" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
-        Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre, medDuration, medVideoType, medDateAdded, medMediaType)"
+        Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre, medDuration, medVideoType, medDateAdded, medMediaType, medId, medFileExt)"
         TableName="StoredMedias" Where="medMediaType == @medMediaType &amp;&amp; medGenre == @medGenre" 
     onselected="lnqVideos_Selected">
         <WhereParameters>
@@ -210,6 +202,9 @@
 <asp:HiddenField ID="hdnTotalRowCount" runat="server" />
 <asp:HiddenField ID="hdnMediaType" runat="server" />
     
-    <%--</form>--%>
+    
+                <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server" />
+                <asp:HiddenField ID="hdnMediaId" Value="" runat="server" />
+                
 
 </asp:Content>
