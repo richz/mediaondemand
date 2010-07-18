@@ -1,139 +1,81 @@
-﻿function ForcePostBack(lnkMovieLink, mediaType) {
+﻿function showMediaInPopupWindow() {
 
-    var url = lnkMovieLink.getAttribute('param');
+    closeVideo();
 
-    document.getElementById('ctl00_MainContent_hdnMediaUrl').setAttribute('value', url);
+    var mediaUrl = document.getElementById('ctl00_MainContent_hdnMediaUrl').getAttribute('value');
+    var mediaId = document.getElementById('ctl00_MainContent_hdnMediaId').getAttribute('value');
 
-    playMedia(url, mediaType);
+    var queryString = '?mediaUrl=' + mediaUrl;
+
+    var windowOptions = 'width=400,height=300,toolbar=no, location=yes,directories=no,status=yes,menubar=no,scrollbars=no,copyhistory=no, resizable=yes';
+
+    if (_arrWin[0])
+        _arrWin[0].location = 'PopupMedia.aspx' + queryString;
+    else
+        _arrWin[0] = window.open('PopupMedia.aspx' + queryString, 'childWindow', windowOptions);
+
+}
+
+function ForcePostBack(lnkMovieLink, mediaType) {
+
+    var mediaUrl = lnkMovieLink.getAttribute('param');
+    var mediaId = lnkMovieLink.getAttribute('mediaId');
+
+    document.getElementById('ctl00_MainContent_hdnMediaUrl').setAttribute('value', mediaUrl);
+    document.getElementById('ctl00_MainContent_hdnMediaId').setAttribute('value', mediaId);
+
+    playMedia(mediaUrl, mediaType);
+
+    //playMedia(url, mediaType);
     //showLightBox(url, mediaType);
 
     //Force page postback to set Movie Url
     //__doPostBack('__Page', 'MyCustomArgument');
 }
 
+function closeVideo() {
+
+    if (navigator.appName == 'Microsoft Internet Explorer' && document.getElementById('player') != null)
+        stop();
+
+    var playerDiv = document.getElementById('mediaPlayer');
+
+    playerDiv.innerHTML = '';
+
+}
+
 function playMedia(mediaUrl, mediaType) {
 
-    var browser = navigator.appName;
+    var playerDiv = document.getElementById('mediaPlayer');
 
-    var playerWidth = 0;
-    var playerHeight = 0;
-    var playerClass = '';
-
-    if (mediaType == 'music') {
-
-        playerHeight = 45;
-
-    }
-    else  // video
-    {
-        playerHeight = .8 * document.documentElement.clientHeight;
-    }
-
-    playerWidth = .8 * document.documentElement.clientWidth;
-
-    //playerClass = 'videoMediaPlayer';
-
-    var layer = document.createElement('div');
-    var box = document.createElement('div');
-    var table = document.createElement('table');
-    var buttonRow = document.createElement('tr');
-    var playerRow = document.createElement('tr');
-    var playerCell = document.createElement('td');
-    var playerDiv = document.createElement('div');
-    var buttonCell = document.createElement('td');
-    var closeButton = document.createElement('input');
-
-    var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
-    var height = document.documentElement.scrollHeight;
-    layer.id = 'lightBoxBackGround';
-    layer.style.position = 'absolute';
-    layer.style.top = '0px';
-    layer.style.left = '0px';
-    layer.style.height = height + 'px';
-    layer.style.width = width + 'px';
-    layer.style.backgroundColor = 'black';
-    layer.style.opacity = '.5';
-    layer.style.filter += ("progid:DXImageTransform.Microsoft.Alpha(opacity=60)");
-
-    box.style.zIndex = 2;
-    box.id = 'box';
-    //box.style.position = (navigator.userAgent.indexOf('MSIE 6') > -1) ? 'absolute' : 'fixed';
-    box.style.position = 'absolute';
-
-    box.style.top = .05 * width + 'px';
-    box.style.left = .1 * height + 'px';
-
-    box.style.height = playerHeight + 20 + 'px';
-    box.style.width = playerWidth + 20 + 'px';
-    box.style.backgroundColor = 'black';
-    box.style.border = '1px solid silver';
-    box.style.padding = '20px';
-
-    closeButton.setAttribute('type', 'button');
-    closeButton.setAttribute('id', 'btnCloseLightBox');
-    closeButton.setAttribute('onclick', 'CloseLightBox()');
-    closeButton.setAttribute('value', 'Close');
-
-    if (mediaUrl != null) {
-
-        var player = document.getElementById('player');
-
-        if (player != null) {
-
-            stop();
-
-            playerDiv.removeChild(player);
-            playerDiv.setAttribute('class', 'emptyMediaPlayer');
-        }
+    if (-1 != navigator.userAgent.indexOf("MSIE")) {
 
         playerDiv.innerHTML =
             '<object id="player" classid="clsid:22d6f312-b0f6-11d0-94ab-0080c74c7e95"'
-            + ' type="application/x-oleobject" width="' + playerWidth + 'px' + '" height="' + playerHeight + 'px' + '">'
+            + ' type="application/x-ms-wmp" width="400px" height="300px">'
             + '<param name="showControls" value="true">'
             + '<param name="fileName" value="' + mediaUrl + '">'
-            + '<PARAM name="uiMode" value="mini">'
-            + '<embed type="application/x-mplayer2" width="' + playerWidth + 'px' + '" height="' + playerHeight + 'px' + '"'
-            + 'showcontrols="true" src="' + mediaUrl + '"><\/embed><\/object>';
-/*
-  //VLC Player
-       playerDiv.innerHTML = playerDiv.innerHTML + '<embed type="application/x-vlc-plugin"'
-       + ' name="VLC" autoplay="yes"'
-       + 'loop="no" volume="100" width="' + playerWidth + '" height="' + playerHeight + '" target="' + mediaUrl + '">'
-       + '<a href="javascript:;" onclick="document.VLC.play()">Play VLC</a>'
-       + '<a href="javascript:;" onclick="document.VLC.pause()">Pause VLC</a>'
-       + '<a href="javascript:;" onclick="document.VLC.stop()">Stop VLC</a>'
-       + '<a href="javascript:;" onclick="document.VLC.fullscreen()">Fullscreen</a>';
-*/
+            + '<param name="uiMode" value="full">'
+            + '<param name="StretchToFit" value="true">'
+            + '<param name="AutoSize" value="false">'
+            + '</object>';
 
     }
-    else
-        playerDiv.innerHTML = '<h1>No media found</h1>';
+    else if (-1 != navigator.userAgent.indexOf("Firefox")) {
 
-    playerDiv.style.Width = playerWidth;
-    playerDiv.style.Height = playerHeight;
-
-    buttonCell.appendChild(closeButton);
-    playerCell.appendChild(playerDiv);
-    buttonRow.appendChild(buttonCell);
-    playerRow.appendChild(playerCell);
-    table.appendChild(buttonRow);
-    table.appendChild(playerRow);
-    box.appendChild(table);
-    document.body.appendChild(box);
-    document.body.appendChild(layer);
+    playerDiv.innerHTML =
+            '<object id="player"'
+            + ' type="application/x-ms-wmp"  width="400px" height="300px">'
+            + '<param name="showControls" value="true">'
+            + '<param name="fileName" value="' + mediaUrl + '">'
+            + '<PARAM name="uiMode" value="full">'
+            + '<param name="StretchToFit" value="true">'
+            + '</object>';
+    }
 
 }
 
 function stop() {
 
     document.getElementById('player').stop();
-}
-
-function CloseLightBox() {
-
-    if (navigator.appName == 'Microsoft Internet Explorer' && document.getElementById('player') != null)
-        stop();
-
-    document.body.removeChild(document.getElementById('lightBoxBackGround'));
-    document.body.removeChild(document.getElementById('box'));
 }

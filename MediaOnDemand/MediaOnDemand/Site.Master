@@ -12,6 +12,8 @@
 
     <script type="text/javascript">
 
+    var _arrWin = new Array();
+
         function resize() {
             var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
             var height = document.documentElement.scrollHeight;
@@ -24,7 +26,21 @@
             }
         }
 
+        function cleanUp() {
+            
+//            var win;
+//            for (var i in _arrWin) {
+//                win = _arrWin[i];
+//                // check if window wasn't already closed
+//                if (win) {
+//                    win.close();
+//                }
+//            }         
+        }
+
         window.onresize = resize;
+
+        window.onClose = cleanUp;
       
     </script>
 
@@ -34,7 +50,7 @@
         
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body onUnload="cleanUp();">
 
     <form runat="server">
     <asp:ScriptManager ID="ScriptManager1" EnablePageMethods="true" runat="server">

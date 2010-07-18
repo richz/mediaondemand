@@ -22,8 +22,7 @@ namespace MediaOnDemand
             this.Title = "Media On Demand - " + User.Identity.Name;
 
             Session["SelectedArtistIndex"] = this.ddlArtist.SelectedIndex;
-
-            this.lblMessage.Text = "";
+                        
             this.lblFileMessages.Text = "";
             //this.wmPlayer.MovieURL = "";
 

@@ -34,7 +34,7 @@ namespace MediaOnDemand
 
             //this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
             this.lblFileMessages.Text = "";
-            this.lblMessage.Text = "";
+            
         }
 
         #endregion

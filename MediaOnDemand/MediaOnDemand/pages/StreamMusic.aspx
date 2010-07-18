@@ -12,15 +12,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h1>
         Music</h1>
-    <%--<form id"musicForm">--%>
     
-     <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server" />
-
     <script type="text/javascript"><%= postBackStr %></script>
 
     <asp:Label ID="lblFileMessages" runat="server" Text="Label"></asp:Label>
-    
-    <table width="100%">
+     <center>
+    <table>
         <tr>
             <td>
                 <table>
@@ -38,20 +35,20 @@
                         </td>
                     </tr>
                 </table>
-            </td>
-            <td>
-            </td>
+            </td>            
         </tr>
         <tr>
-            <td colspan="2">
-                <asp:Label ID="lblMessage" runat="server" Font-Bold="true" Text=""></asp:Label>
-            </td>
+        <td colspan="2" align="center">
+        <input type="button" id="btnPlayInPopup" value="Show In Popup Window" onclick="showMediaInPopupWindow()" />
+        </td>
         </tr>
         </table>
-        
-               <%--<div id="mediaplayer">
-               </div>
-        --%>
+       
+              <div id="mediaPlayer">
+              </div>
+              </center>
+            
+       
         <table width="100%">
         <tr>
             <td id="PageSize" style="width: 75%">
@@ -91,7 +88,7 @@
                                 <Columns>
                                     <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
                                         <ItemTemplate>
-                                            <a id="lnkMusicLink" href="#" onclick="ForcePostBack(this, 'music')" param='<%# Eval("medLocation") %>'>
+                                            <a id="lnkMusicLink" href="#" onclick="ForcePostBack(this, 'music')" param='<%# Eval("medLocation") %>' mediaId='<%# Eval("medId") %>'>
                                                 <asp:Label ID="lblTitle" runat="server" Text='<%# Eval("medTitle") %>'></asp:Label>
                                             </a>
                                         </ItemTemplate>
@@ -176,5 +173,8 @@
                 Type="String" />
         </WhereParameters>
     </asp:LinqDataSource>
-    <%--</form>--%>
+    
+     <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server" />
+     <asp:HiddenField ID="hdnMediaId" Value="" runat="server" />    
+    
 </asp:Content>

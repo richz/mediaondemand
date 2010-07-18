@@ -46,3 +46,6 @@ E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\MediaOnDemandLibrary.dl
 E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\MediaOnDemandLibrary.pdb
 E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\ASPNetVideo.NET3.dll
 E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\MattBerseth.WebControls.AJAX.pdb
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\JW-FLV-Player-Control.pdb
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\JW-FLV-Player-Control.xml
+E:\Projects\Web\Personal\MediaOnDemand\MediaOnDemand\bin\JW-FLV-Player-Control.dll

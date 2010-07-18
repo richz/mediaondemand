@@ -30,16 +30,40 @@ namespace MediaOnDemand
                 //this.wmPlayer.MovieURL = "";
                 //this.wmPlayer.AutoStart = true;
 
-                this.ddlPageSize.SelectedIndex = Convert.ToInt32(this.ddlPageSize.Items[0].Value);                
+                this.ddlPageSize.SelectedIndex = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
                 this.gvMovies.Sort("medTitle", SortDirection.Ascending);
             }
-
+            
             //this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
             //this.lblFileMessages.Text = "";
             this.lblMessage.Text = "";
-
+            
+            if (!String.IsNullOrEmpty(this.hdnMediaUrl.Value))
+            {
+                this.hdnMediaId.Value = GetMediaIdFromUrl(Path.GetFileNameWithoutExtension(this.hdnMediaUrl.Value), this.hdnMediaUrl.Value) + "";                
+            }
             
         }
+
+        private int GetMediaIdFromUrl(string mediaTitle, string mediaUrl)
+        {
+            int mediaId = -1;
+
+            StorageMediaDataContext context = new StorageMediaDataContext();
+
+            foreach (StoredMedia sm in context.StoredMedias)
+            {
+                if (sm.medLocation == mediaUrl && sm.medTitle.Equals(mediaTitle))
+                    mediaId = sm.medId;
+            }
+
+            return mediaId;
+        }
+
+        //[System.Web.Services.WebMethod]
+        //[System.Web.Script.Services.ScriptMethod()]
+        
+
 
         #endregion
 
