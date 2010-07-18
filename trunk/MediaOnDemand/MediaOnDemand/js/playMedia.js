@@ -5,14 +5,14 @@
     var btnPlayInPopup = document.getElementById('btnPlayInPopup');
 
     if (btnPlayInPopup != null)
-        btnPlayInPopup.disabled = 'disabled';
+        btnPlayInPopup.disabled = 'disabled';    
 
     var mediaUrl = document.getElementById('ctl00_MainContent_hdnMediaUrl').getAttribute('value');
     var mediaId = document.getElementById('ctl00_MainContent_hdnMediaId').getAttribute('value');
 
     var queryString = '?mediaUrl=' + mediaUrl;
 
-    var windowOptions = 'width=400,height=300,toolbar=no, location=yes,directories=no,status=yes,menubar=no,scrollbars=no,copyhistory=no, resizable=yes';
+    var windowOptions = 'width=400,height=300,toolbar=no, location=yes,directories=no,status=yes,menubar=no,scrollbars=no,copyhistory=no, resizable=no';
 
     if (_arrWin[0])
         _arrWin[0].location = 'PopupMedia.aspx' + queryString;
@@ -20,6 +20,23 @@
         _arrWin[0] = window.open('PopupMedia.aspx' + queryString, 'childWindow', windowOptions);
 
 }
+
+//function showMediaInMainWindow() {
+
+//    alert('hello');
+
+//    if (_arrWin[0]) {
+
+//        var mediaUrl = document.getElementById('ctl00_MainContent_hdnMediaUrl').getAttribute('value');
+
+//        _arrWin[0] = null;
+
+//        var btnPlayInPopup = document.getElementById('btnPlayInPopup');
+
+//        if (btnPlayInPopup != null)
+//            btnPlayInPopup.disabled = '';    
+//    }
+//}
 
 function ForcePostBack(lnkMovieLink, mediaType) {
 
@@ -31,11 +48,21 @@ function ForcePostBack(lnkMovieLink, mediaType) {
 
     var btnPlayInPopup = document.getElementById('btnPlayInPopup');
 
-    if (btnPlayInPopup != null)
-            btnPlayInPopup.disabled = '';
+    if (_arrWin[0]) {
+        var queryString = '?mediaUrl=' + mediaUrl;
+        _arrWin[0].location = 'PopupMedia.aspx' + queryString;
 
-    playMedia(mediaUrl, mediaType);
 
+        if (btnPlayInPopup != null)
+            btnPlayInPopup.disabled = 'disabled';
+    }
+    else {
+
+        if (btnPlayInPopup != null)
+            btnPlayInPopup.disabled = ''; 
+            
+        playMedia(mediaUrl, mediaType);
+    }
     //playMedia(url, mediaType);
     //showLightBox(url, mediaType);
 
@@ -55,6 +82,7 @@ function closeVideo() {
 }
 
 function playMedia(mediaUrl, mediaType) {
+
 
     var playerDiv = document.getElementById('mediaPlayer');
 

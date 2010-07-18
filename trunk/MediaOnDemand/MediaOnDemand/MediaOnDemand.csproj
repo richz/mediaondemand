@@ -300,6 +300,7 @@
     <Content Include="bin\MattBerseth.WebControls.AJAX.pdb" />
     <EmbeddedResource Include="images\progress.gif" />
     <EmbeddedResource Include="images\progress_bg.gif" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="bin\swfobject.js" />
     <Content Include="css\smoothness\images\ui-anim_basic_16x16.gif" />
     <Content Include="css\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
