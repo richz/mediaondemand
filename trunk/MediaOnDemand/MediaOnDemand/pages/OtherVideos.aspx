@@ -65,7 +65,7 @@
 <tr>
 <td colspan="2" align="center">
  
-                    <input type="button" id="btnPlayInPopup" value="Show In Popup Window" onclick="showMediaInPopupWindow()" />
+                    <input type="button" id="btnPlayInPopup"  disabled="disabled"  value="Show In Popup Window" onclick="showMediaInPopupWindow()" />
                 </td>
 
 </tr>

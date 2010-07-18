@@ -2,6 +2,11 @@
 
     closeVideo();
 
+    var btnPlayInPopup = document.getElementById('btnPlayInPopup');
+
+    if (btnPlayInPopup != null)
+        btnPlayInPopup.disabled = 'disabled';
+
     var mediaUrl = document.getElementById('ctl00_MainContent_hdnMediaUrl').getAttribute('value');
     var mediaId = document.getElementById('ctl00_MainContent_hdnMediaId').getAttribute('value');
 
@@ -23,6 +28,11 @@ function ForcePostBack(lnkMovieLink, mediaType) {
 
     document.getElementById('ctl00_MainContent_hdnMediaUrl').setAttribute('value', mediaUrl);
     document.getElementById('ctl00_MainContent_hdnMediaId').setAttribute('value', mediaId);
+
+    var btnPlayInPopup = document.getElementById('btnPlayInPopup');
+
+    if (btnPlayInPopup != null)
+            btnPlayInPopup.disabled = '';
 
     playMedia(mediaUrl, mediaType);
 

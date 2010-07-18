@@ -40,7 +40,7 @@
                     </asp:UpdatePanel>
                 </td>
                 <td>
-                    <input type="button" id="btnPlayInPopup" value="Show In Popup Window" onclick="showMediaInPopupWindow()" />
+                    <input type="button" id="btnPlayInPopup" disabled="disabled" value="Show In Popup Window" onclick="showMediaInPopupWindow()" />
                 </td>
             </tr>
         </table>
