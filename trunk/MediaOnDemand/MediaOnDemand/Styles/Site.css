@@ -7,12 +7,12 @@
 
 .alignLeft
 {
-	text-align:left;
+	text-align: left;
 }
 
 .alignRight
 {
-	text-align:right;
+	text-align: right;
 }
 
 .hide
@@ -20,33 +20,24 @@
 	visibility: hidden;
 }
 
-.emptyMediaPlayer
+.hiddenMediaPlayer
 {
-	width: 0px;
-	height: 0px;
+	display:none;
 }
 
-.videoMediaPlayer
+.visibleMediaPlayer
 {
-	width: 550px;
-}
-
-.musicMediaPlayer
-{
-	width: 550px;
-}
-
-.gridViewPanel
-{
-	width: 1000px;
-	height: 400px;
+	display:block;
+	background-color: Black;
+	width: 400px;
+	height: 300px;
 }
 
 .popupMedia
 {
-	width : 100%;
-	height : 100%;	
-	color : Black;
+	width: 100%;
+	height: 100%;
+	color: Black;
 }
 
 /* DEFAULTS
@@ -167,10 +158,8 @@ first child of the left and right table columns */
 
 .main
 {
-	padding: 0px 10px;
-	 /*margin: 12px 8px 8px 8px;*/
+	padding: 0px 10px; /*margin: 12px 8px 8px 8px;*/
 	min-height: 420px;
-	
 }
 
 .leftCol

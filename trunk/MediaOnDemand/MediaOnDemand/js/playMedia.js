@@ -7,64 +7,64 @@
     if (btnPlayInPopup != null)
         btnPlayInPopup.disabled = 'disabled';    
 
+
+    var mediaTitle = document.getElementById('ctl00_MainContent_hdnMediaTitle').getAttribute('value');
     var mediaUrl = document.getElementById('ctl00_MainContent_hdnMediaUrl').getAttribute('value');
     var mediaId = document.getElementById('ctl00_MainContent_hdnMediaId').getAttribute('value');
 
-    var queryString = '?mediaUrl=' + mediaUrl;
+    var queryString = '?mediaId=' + mediaId + '&mediaUrl=' + mediaUrl + '&mediaTitle=' + mediaTitle;
 
-    var windowOptions = 'width=400,height=300,toolbar=no, location=yes,directories=no,status=yes,menubar=no,scrollbars=no,copyhistory=no, resizable=no';
+    var windowOptions = 'width=400,height=350,toolbar=no, location=yes,directories=no,status=yes,menubar=no,scrollbars=no,copyhistory=no, resizable=no';
 
-    if (_arrWin[0])
-        _arrWin[0].location = 'PopupMedia.aspx' + queryString;
-    else
+    //$f().stop();
+
         _arrWin[0] = window.open('PopupMedia.aspx' + queryString, 'childWindow', windowOptions);
 
+        //document.getElementById('ctl00_MainContent_isPopupOpen').setAttribute('value') = 'Y';
+
+        //__doPostBack('__Page', 'MyCustomArgument');
 }
 
-//function showMediaInMainWindow() {
+function ForcePostBack(window, mediaUrl, mediaTitle, mediaType, lnkMovieLink, mediaId) {
 
-//    alert('hello');
+    if (window == 'mainwindow') {
+        var mediaUrl = mediaUrl;
+        var mediaId = mediaId;
 
-//    if (_arrWin[0]) {
+        document.getElementById('ctl00_MainContent_hdnMediaUrl').setAttribute('value', mediaUrl);
+        document.getElementById('ctl00_MainContent_hdnMediaId').setAttribute('value', mediaId);
+        document.getElementById('ctl00_MainContent_hdnMediaTitle').setAttribute('value', mediaTitle);
 
-//        var mediaUrl = document.getElementById('ctl00_MainContent_hdnMediaUrl').getAttribute('value');
+        var btnPlayInPopup = document.getElementById('btnPlayInPopup');
 
-//        _arrWin[0] = null;
-
-//        var btnPlayInPopup = document.getElementById('btnPlayInPopup');
-
-//        if (btnPlayInPopup != null)
-//            btnPlayInPopup.disabled = '';    
-//    }
-//}
-
-function ForcePostBack(lnkMovieLink, mediaType) {
-
-    var mediaUrl = lnkMovieLink.getAttribute('param');
-    var mediaId = lnkMovieLink.getAttribute('mediaId');
-
-    document.getElementById('ctl00_MainContent_hdnMediaUrl').setAttribute('value', mediaUrl);
-    document.getElementById('ctl00_MainContent_hdnMediaId').setAttribute('value', mediaId);
-
-    var btnPlayInPopup = document.getElementById('btnPlayInPopup');
-
-    if (_arrWin[0]) {
-        var queryString = '?mediaUrl=' + mediaUrl;
-        _arrWin[0].location = 'PopupMedia.aspx' + queryString;
+        if (_arrWin[0]) {            
+            var queryString = '?mediaId=' + mediaId + '&mediaUrl=' + mediaUrl + '&mediaTitle=' + mediaTitle;
+            _arrWin[0].location = 'PopupMedia.aspx' + queryString;
 
 
-        if (btnPlayInPopup != null)
-            btnPlayInPopup.disabled = 'disabled';
+            if (btnPlayInPopup != null)
+                btnPlayInPopup.disabled = 'disabled';
+        }
+        else {
+
+            if (btnPlayInPopup != null)
+                btnPlayInPopup.disabled = '';
+
+            playMedia(mediaUrl, mediaTitle, mediaType);
+        }
     }
     else {
 
-        if (btnPlayInPopup != null)
-            btnPlayInPopup.disabled = ''; 
-            
-        playMedia(mediaUrl, mediaType);
+        if (window = 'popup') {
+
+            var queryString = '?mediaId=' + mediaId + '&mediaUrl=' + mediaUrl + '&mediaTitle=' + mediaTitle;
+            window.location = 'PopupMedia.aspx' + queryString;
+
+            playMedia(mediaUrl, mediaTitle, mediaType);
+        
+        }
+    
     }
-    //playMedia(url, mediaType);
-    //showLightBox(url, mediaType);
 
     //Force page postback to set Movie Url
     //__doPostBack('__Page', 'MyCustomArgument');
@@ -72,48 +72,35 @@ function ForcePostBack(lnkMovieLink, mediaType) {
 
 function closeVideo() {
 
-    if (navigator.appName == 'Microsoft Internet Explorer' && document.getElementById('player') != null)
-        stop();
-
     var playerDiv = document.getElementById('mediaPlayer');
+
+    playerDiv.setAttribute('class', 'hiddenMediaPlayer');
 
     playerDiv.innerHTML = '';
 
 }
 
-function playMedia(mediaUrl, mediaType) {
-
+function playMedia(mediaUrl, mediaTitle, mediaType) {
 
     var playerDiv = document.getElementById('mediaPlayer');
 
-    if (-1 != navigator.userAgent.indexOf("MSIE")) {
+    if (mediaType == 'video') {
+        flowplayer("player", "../WebControls/flv flash player/flowplayer-3.2.2.swf", {
+
+            clip: {
+                url: mediaUrl,
+                autoPlay: true,                
+                bufferLength: 5,                
+                title: mediaTitle
+            }
+        });
+
+        playerDiv.setAttribute('class', 'visibleMediaPlayer');
+    }
+    else {
 
         playerDiv.innerHTML =
-            '<object id="player" classid="clsid:22d6f312-b0f6-11d0-94ab-0080c74c7e95"'
-            + ' type="application/x-ms-wmp" width="400px" height="300px">'
-            + '<param name="showControls" value="true">'
-            + '<param name="fileName" value="' + mediaUrl + '">'
-            + '<param name="uiMode" value="full">'
-            + '<param name="StretchToFit" value="true">'
-            + '<param name="AutoSize" value="false">'
-            + '</object>';
-
-    }
-    else if (-1 != navigator.userAgent.indexOf("Firefox")) {
-
-    playerDiv.innerHTML =
-            '<object id="player"'
-            + ' type="application/x-ms-wmp"  width="400px" height="300px">'
-            + '<param name="showControls" value="true">'
-            + '<param name="fileName" value="' + mediaUrl + '">'
-            + '<PARAM name="uiMode" value="full">'
-            + '<param name="StretchToFit" value="true">'
-            + '</object>';
-    }
-
-}
-
-function stop() {
-
-    document.getElementById('player').stop();
+        + '<embed src=\"../WebControls/mp3 flash player/player_mp3_js\" quality=\"high\" width=\"300\" height=\"52\" allowScriptAccess=\"always\" wmode=\"transparent\"  type=\"application/x-shockwave-flash\" flashvars=\"valid_sample_rate=true&external_url=' + mediaUrl + '\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\"> </embed>';        
+    
+    } 
 }

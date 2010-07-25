@@ -65,6 +65,13 @@
         </table>
        
               <div id="mediaPlayer">
+              
+                  
+              
+              <a id="player" href="" style="display: block; width: 100%; height: 100%">
+                                                                                 
+                           </a>
+              
               </div>
               </center>
             
@@ -108,7 +115,7 @@
                                 <Columns>
                                     <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
                                         <ItemTemplate>
-                                            <a id="lnkMusicLink" href="#" onclick="ForcePostBack(this, 'music')" param='<%# Eval("medLocation") %>' mediaId='<%# Eval("medId") %>'>
+                                            <a id="lnkMusicLink" href="#" onclick="ForcePostBack('mainwindow', '<%# Eval("medLocation") %>','<%# Eval("medTitle") %>' ,'music', this, '<%# Eval("medId") %>')">
                                                 <asp:Label ID="lblTitle" runat="server" Text='<%# Eval("medTitle") %>'></asp:Label>
                                             </a>
                                         </ItemTemplate>
@@ -196,5 +203,5 @@
     
      <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server" />
      <asp:HiddenField ID="hdnMediaId" Value="" runat="server" />    
-    
+    <asp:HiddenField ID="hdnMediaTitle" Value="" runat="server" />    
 </asp:Content>

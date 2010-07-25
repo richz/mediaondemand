@@ -15,25 +15,7 @@
         rel="stylesheet" type="text/css" />
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
         rel="stylesheet" type="text/css" />
-    <style type="text/css">
-        img.hide
-        {
-            visibility: hidden;
-        }
-        #progressbar.hide
-        {
-            visibility: hidden;
-        }
-        #lblProgressPercentage.hide
-        {
-            visibility: hidden;
-        }
-    </style>
-
-    <script type="text/javascript">
-        
-    </script>
-
+    
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
@@ -42,6 +24,24 @@
     <script type="text/javascript">
 
 
+        function resize() {
+            var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
+            var height = document.documentElement.scrollHeight;
+            var lightBoxBackGround = document.getElementById('lightBoxBackGround');
+
+            if (lightBoxBackGround != null) {
+
+                lightBoxBackGround.style.height = height + 'px';
+                lightBoxBackGround.style.width = width + 'px';
+
+                if (document.getElementById('progressImg') != null) {
+
+                    progressIndicator.style.top = ((.5 * height) - (.5 * progressIndicator.style.height)) + 'px';
+                    progressIndicator.style.left = ((.5 * width) - (.5 * progressIndicator.style.width)) + 'px';
+
+                }
+            }
+        }
 
         $(document).ready(function() {
 
@@ -72,26 +72,24 @@
 
             $("#ctl00_MainContent_btnDeleteAllRecords").click(function() {
 
-                showProgress();
+                if (confirm('Are you sure you want to delete all records?')) {
+                    showProgress();
+                    
+                    $.ajax({
+                        type: "POST",
+                        url: "WebsiteAdministration.aspx/deleteAllRecordsForType",
+                        data: "{}",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        async: true,
+                        success: function(msg) {
 
-                var intervalID = setInterval(updateProgress, 1);
-                $.ajax({
-                    type: "POST",
-                    url: "WebsiteAdministration.aspx/deleteAllRecordsForType",
-                    data: "{}",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    async: true,
-                    success: function(msg) {
+                            document.body.removeChild(document.getElementById('lightBoxBackGround'));
 
-                        clearInterval(intervalID);
-
-                        document.body.removeChild(document.getElementById('lightBoxBackGround'));
-
-                        ForcePostBack();
-                    }
-                });
-
+                            ForcePostBack();
+                        }
+                    });
+                }
                 return false;
             });
 
@@ -101,6 +99,8 @@
             }
 
         });
+
+        window.onresize = resize;
 
     </script>
 
@@ -173,7 +173,7 @@
             </td>
         </tr>
     </table>
-    <asp:Panel ID="gridViewPanel" CssClass="gridViewPanel" runat="server" ScrollBars="Auto">
+    <asp:Panel ID="gridViewPanel" runat="server" ScrollBars="Auto">
         <asp:GridView ID="gvMedia" runat="server" AutoGenerateColumns="False" DataSourceID="lnqMedia"
             PagerSettings-Position="TopAndBottom" EnableModelValidation="True" DataKeyNames="medId"
             CellPadding="4" ForeColor="#333333" PagerSettings-Mode="NumericFirstLast" GridLines="None"
@@ -201,14 +201,16 @@
                     Visible="False" />
                 <asp:BoundField DataField="medArtist" HeaderText="Artist" SortExpression="medArtist" />
                 <asp:BoundField DataField="medGenre" HeaderText="Genre" SortExpression="medGenre" />
+                <asp:BoundField DataField="medFileExt" HeaderText="File Type" 
+                    SortExpression="medFileExt" />
+                <asp:BoundField DataField="medDuration" HeaderText="Duration" 
+                    SortExpression="medDuration" />
+                <asp:BoundField DataField="medAlbum" HeaderText="Album" 
+                    SortExpression="medAlbum" />
                 <asp:BoundField DataField="medMediaType" HeaderText="Media Type" SortExpression="medMediaType" />
-                <asp:BoundField DataField="medDuration" HeaderText="Duration" SortExpression="medDuration" />
-                <asp:BoundField DataField="medAlbum" HeaderText="Album" SortExpression="medAlbum" />
-                <asp:BoundField DataField="medFileExt" HeaderText="File Type" SortExpression="medFileExt" />
             </Columns>
             <EditRowStyle BackColor="#FFFFFF" />
             <EmptyDataTemplate>
-            
                 <table cellspacing="0" cellpadding="4" border="0" id="ctl00_MainContent_gvMedia"
                     style="color: #333333; border-collapse: collapse;" width="100%">
                     <tr align="left" style="color: White; background-color: #284775;">
@@ -216,7 +218,6 @@
                         </td>
                     </tr>
                     <tr style="color: White; background-color: #5D7B9D; font-weight: bold;">
-                       
                         <th scope="col">
                             <a style="color: White;"><u>Title</u></a>
                         </th>
@@ -247,16 +248,15 @@
                         <th scope="col">
                             <a style="color: White;"><u>File Type</u></a>
                         </th>
-                        </tr>
-                        <tr>
+                    </tr>
+                    <tr>
                         <td colspan="10">
-                        <center>
-                        No records found
-                        </center>
+                            <center>
+                                No records found
+                            </center>
                         </td>
-                        </tr>
+                    </tr>
                 </table>
-                
             </EmptyDataTemplate>
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
             <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -270,11 +270,13 @@
         <asp:Button ID="btnApplyChanges" Visible="true" runat="server" Text="" OnClick="btnApplyChanges_Click" />
     </div>
     <asp:LinqDataSource ID="lnqMedia" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
-        TableName="StoredMedias" Where="medMediaType == @medMediaType" EnableDelete="True"
+        TableName="StoredMedias" 
+        Where="medMediaType == @medMediaType &amp;&amp; medFileExt == @medFileExt" EnableDelete="True"
         EnableInsert="True" EnableUpdate="True" OnSelected="lnqMedia_Selected">
         <WhereParameters>
             <asp:ControlParameter ControlID="ddlMediaTypes" Name="medMediaType" PropertyName="SelectedValue"
                 Type="String" />
+            <asp:Parameter DefaultValue=".flv" Name="medFileExt" Type="String" />
         </WhereParameters>
     </asp:LinqDataSource>
     <asp:HiddenField ID="hdnTitle" runat="server" />

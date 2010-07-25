@@ -323,10 +323,15 @@
     <Content Include="images\ajax-loaderLoading.gif" />
     <Content Include="images\btnShowContent.png" />
     <Content Include="images\progressImg.gif" />
+    <Content Include="js\swf flash player\flowplayer-3.2.2.min.js" />
     <Content Include="js\jquery-1.4.2.min.js" />
     <Content Include="js\jquery-ui-1.8.2.custom.min.js" />
     <Content Include="js\site.js" />
     <Content Include="pages\PopupMedia.aspx" />
+    <Content Include="Styles\style.css" />
+    <Content Include="WebControls\flv flash player\flowplayer-3.2.2.swf" />
+    <Content Include="WebControls\flv flash player\flowplayer.controls-3.2.1.swf" />
+    <Content Include="WebControls\mp3 flash player\player_mp3_js.swf" />
     <Content Include="WebControls\mp4-streamer.ashx" />
     <Content Include="WebService.asmx" />
   </ItemGroup>

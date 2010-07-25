@@ -98,11 +98,11 @@ namespace MediaOnDemand
             {
                 if (sm.medMediaType.Trim().Equals("movie"))
                 {
-                    DirectoryInfo dir = new DirectoryInfo(sm.medLocation);
-                    string item = dir.Parent.Name;
+                    //DirectoryInfo dir = new DirectoryInfo(sm.medLocation);
+                    //string item = dir.Parent.Name;
 
-                    if (!genres.Contains(item))
-                        genres.Add(item);
+                    if (!genres.Contains(sm.medGenre))
+                        genres.Add(sm.medGenre);
                 }
             }
 
@@ -193,7 +193,9 @@ namespace MediaOnDemand
 
         protected void ddlGenre_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.lnqMovies.WhereParameters[2].DefaultValue = this.ddlGenre.SelectedValue;
+            this.lnqMovies.WhereParameters[3].DefaultValue = this.ddlGenre.SelectedValue;
+
+            //this.gvMovies.DataBind();
         }
 
     }

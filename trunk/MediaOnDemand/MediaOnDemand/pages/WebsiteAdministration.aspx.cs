@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
 
+
 namespace MediaOnDemand
 {
     public partial class WebsiteAdministration : System.Web.UI.Page
@@ -111,9 +112,23 @@ namespace MediaOnDemand
             }
 
             gvMedia.DataBind();
+
         }
 
         #endregion
+
+
+        public static string GetRelativePath(string physicalPath)
+        {
+            string relativePath = "";
+
+            string AppPath = HttpContext.Current.Server.MapPath("~");
+            relativePath = String.Format("..{0}", physicalPath.Replace("Iomega-0a7441", "").Replace("\\\\\\", "/").Replace("\\", "/"));
+
+            return relativePath;
+
+            //return System.Web.HttpContext.Current.Server.UrlEncode(relativePath);        
+        }
 
         [System.Web.Services.WebMethod]
         [System.Web.Script.Services.ScriptMethod()]
@@ -135,60 +150,67 @@ namespace MediaOnDemand
 
             foreach (String filePath in Directory.GetFiles(directory, "*.*", SearchOption.AllDirectories))
             {
+
                 FileInfo file = new FileInfo(filePath);
-                mediaName = Path.GetFileNameWithoutExtension(filePath);
-                string fileExt = file.Extension;
 
-                if (Directory.GetParent(directory).GetDirectories()[0].Name.Equals("music"))
+                if (!file.Directory.Name.EndsWith("old"))
                 {
-                    artist = file.Directory.Parent.Name;
-                    album = file.Directory.Name;
-                }
-                else
-                {
-                    genre = file.Directory.Name;
-                }
 
-                bool recordExists = false;
-                StorageMediaDataContext context = new StorageMediaDataContext();
+                    mediaName = Path.GetFileNameWithoutExtension(filePath);
+                    string fileExt = file.Extension;
 
-                foreach (StoredMedia sm in context.StoredMedias)
-                    if (sm.medTitle.Trim().Equals(mediaName))
-                        recordExists = true;
-
-                if (!recordExists)
-                {
-                    try
+                    if (Directory.GetParent(directory).GetDirectories()[0].Name.Equals("music"))
                     {
-                        StoredMedia media = new StoredMedia
+                        artist = file.Directory.Parent.Name;
+                        album = file.Directory.Name;
+                    }
+                    else
+                    {
+                        genre = file.Directory.Name;
+                    }
+
+                    bool recordExists = false;
+                    StorageMediaDataContext context = new StorageMediaDataContext();
+
+                    foreach (StoredMedia sm in context.StoredMedias)
+                        if (sm.medTitle.Trim().Equals(mediaName))
+                            recordExists = true;
+
+                    if (!recordExists)
+                    {
+                        try
                         {
-                            medTitle = mediaName,
-                            medLocation = filePath,
-                            medDateAdded = DateTime.Now,
-                            medIsViewable = 'Y',
-                            medArtist = artist,
-                            medDescription = "",
-                            medGenre = genre,
-                            medMediaType = mediaType,
-                            medDuration = new float(),
-                            medAlbum = album,
-                            medFileExt = fileExt,
-                        };
+                            StoredMedia media = new StoredMedia
+                            {
+                                medTitle = mediaName,
+                                medLocation = GetRelativePath(filePath),
+                                medDateAdded = DateTime.Now,
+                                medIsViewable = 'Y',
+                                medArtist = artist,
+                                medDescription = "",
+                                medGenre = genre,
+                                medMediaType = mediaType,
+                                medDuration = new float(),
+                                medAlbum = album,
+                                medFileExt = fileExt
 
-                        context.StoredMedias.InsertOnSubmit(media);
+                            };
 
-                        context.SubmitChanges();
+                            context.StoredMedias.InsertOnSubmit(media);
 
-                        fileCount[0]++;
+                            context.SubmitChanges();
 
+                            fileCount[0]++;
+
+                        }
+                        catch (Exception ex)
+                        {
+                        }
                     }
-                    catch (Exception ex)
+                    else
                     {
+                        fileCount[1]++;
                     }
-                }
-                else
-                {
-                    fileCount[1]++;
                 }
             }
 
@@ -366,7 +388,7 @@ namespace MediaOnDemand
                 row.medMediaType = mediaType;
                 row.medDuration = duration;
                 row.medAlbum = album;
-                row.medVideoType = videoType;                
+                row.medVideoType = videoType;
 
                 try
                 {
@@ -485,18 +507,18 @@ namespace MediaOnDemand
                     this.hdnTitle.Value = sm.medTitle.Trim();
                     this.hdnLocation.Value = sm.medLocation.Trim();
                     this.hdnIsViewable.Value = sm.medIsViewable.ToString().Trim();
-                    this.hdnArtist.Value = sm.medArtist != null ? sm.medArtist.Trim() :  "";
+                    this.hdnArtist.Value = sm.medArtist != null ? sm.medArtist.Trim() : "";
                     this.hdnDescription.Value = sm.medDescription.Trim() != null ? sm.medDescription : "";
                     this.hdnGenre.Value = sm.medGenre.Trim();
                     this.hdnMediaType.Value = sm.medMediaType.Trim();
                     this.hdnDuration.Value = sm.medDuration.ToString().Trim();
                     this.hdnAlbum.Value = sm.medAlbum.Trim();
                     this.hdnFileExt.Value = sm.medFileExt.Trim();
-                    
+
                     return;
                 }
             }
-  
+
         }
 
         private int IndexOfRowByDataKey(string medId)

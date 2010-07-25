@@ -1,20 +1,28 @@
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WatchMovies.aspx.cs" Inherits="MediaOnDemand.WatchMovies" %>
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WatchMovies.aspx.cs"
+    Inherits="MediaOnDemand.WatchMovies" %>
 
 <%@ Register Assembly="JW-FLV-Player-Control" Namespace="JW_FLV_Player_Control" TagPrefix="cc2" %>
-
-
 <%@ Register Assembly="Media-Player-ASP.NET-Control" Namespace="Media_Player_ASP.NET_Control"
     TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
     <script src="../js/playMedia.js" type="text/javascript"></script>
 
+    <!-- 
+		include flowplayer JavaScript file that does  
+		Flash embedding and provides the Flowplayer API.
+	-->
+
+    <script type="text/javascript" src="../js/swf flash player/flowplayer-3.2.2.min.js"></script>
+
+    <!-- some minimal styling, can be removed -->
+<%--    <link rel="stylesheet" type="text/css" href="../Styles/style.css" />
+--%>
     <script type="text/javascript">
 
 
         function showMediaInMainWindow() {
 
-            if (_arrWin[0]) {
 
                 var mediaUrl = document.getElementById('ctl00_MainContent_hdnMediaUrl').getAttribute('value');
 
@@ -24,7 +32,8 @@
 
                 if (btnPlayInPopup != null)
                     btnPlayInPopup.disabled = '';
-            }
+
+                document.getElementById('isPopupOpen').setAttribute('value') = 'N';
         } 
        
     </script>
@@ -58,15 +67,18 @@
                 <td>
                     <input type="button" id="btnPlayInPopup" disabled="disabled" value="Show In Popup Window"
                         onclick="showMediaInPopupWindow()" />
-                </td>                
+                </td>
             </tr>
-            
         </table>
-        <div id="mediaPlayer">
+        <div id="mediaPlayer" class="hiddenMediaPlayer">
+            <!-- this A tag is where your Flowplayer will be placed. it can be anywhere -->
+             
+                           <a id="player" href="" style="display: block; width: 100%; height: 100%">
+                                                                                 
+                           </a>
             
-            
-            
-        </div>
+        </div>        
+                           
     </center>
     <asp:UpdatePanel ID="gridViewUpdatePanel" runat="server">
         <ContentTemplate>
@@ -102,8 +114,7 @@
                             <Columns>
                                 <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
                                     <ItemTemplate>
-                                        <a id="lnkMovieLink" href="#" onclick="ForcePostBack(this, 'video')" param='<%# Eval("medLocation") %>'
-                                            mediaid='<%# Eval("medId") %>'>
+                                        <a id="lnkMovieLink" href="#" onclick="ForcePostBack('mainwindow', '<%# Eval("medLocation") %>','<%# Eval("medTitle") %>' ,'video', this, '<%# Eval("medId") %>')">
                                             <asp:Label ID="lblTitle" runat="server" Text='<%# Eval("medTitle") %>'></asp:Label>
                                         </a>
                                     </ItemTemplate>
@@ -114,7 +125,7 @@
                                     SortExpression="medDescription" />
                                 <asp:BoundField DataField="medGenre" HeaderText="Genre" ReadOnly="True" SortExpression="medGenre" />
                                 <asp:BoundField DataField="medDuration" HeaderText="Duration" ReadOnly="True" SortExpression="medDuration" />
-                                <asp:BoundField DataField="medVideoType" HeaderText="Video Type" SortExpression="medVideoType" />
+                                <asp:BoundField DataField="medFileExt" HeaderText="File Extension" SortExpression="medFileExt" />
                                 <asp:BoundField DataField="medDateAdded" DataFormatString="{0:G}" HeaderText="Date Added"
                                     SortExpression="medDateAdded">
                                     <HeaderStyle Font-Underline="True" />
@@ -173,15 +184,18 @@
     </asp:UpdatePanel>
     <asp:LinqDataSource ID="lnqMovies" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
         Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre, medDuration, medVideoType, medDateAdded, medId, medMediaType, medFileExt)"
-        TableName="StoredMedias" Where="medIsViewable == @medIsViewable &amp;&amp; medMediaType == @medMediaType &amp;&amp; medGenre == @medGenre"
+        TableName="StoredMedias" Where="medIsViewable == @medIsViewable &amp;&amp; medMediaType == @medMediaType &amp;&amp; medGenre == @medGenre &amp;&amp; medFileExt == @medFileExt"
         OnSelected="lnqMovies_Selected">
         <WhereParameters>
             <asp:Parameter DefaultValue="Y" Name="medIsViewable" Type="Char" />
             <asp:Parameter DefaultValue="movie" Name="medMediaType" Type="String" />
+            <asp:Parameter DefaultValue=".flv" Name="medFileExt" />
             <asp:ControlParameter ControlID="ddlGenre" DefaultValue="Comedy" Name="medGenre"
                 PropertyName="SelectedValue" Type="String" />
         </WhereParameters>
     </asp:LinqDataSource>
     <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server" />
     <asp:HiddenField ID="hdnMediaId" Value="" runat="server" />
+    <asp:HiddenField ID="hdnMediaTitle" Value="" runat="server" />
+    <asp:HiddenField ID="isPopupOpen" Value="" runat="server" />
 </asp:Content>

@@ -94,6 +94,11 @@
    
     
      <div id="mediaPlayer">
+     
+     <a id="player" href="" style="display: block; width: 100%; height: 100%">
+                                                                                 
+                           </a>
+     
                 </div>  
      </center>
     <asp:UpdatePanel ID="gridViewUpdatePanel" runat="server">
@@ -132,7 +137,7 @@
                                 <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
                                 
                                     <ItemTemplate>   
-                                              <a id="lnkVideoLink" href="#" onclick="ForcePostBack(this, 'video')" param='<%# Eval("medLocation") %>' mediaId='<%# Eval("medId") %>'>
+                                              <a id="lnkVideoLink" href="#" onclick="ForcePostBack('mainwindow', '<%# Eval("medLocation") %>','<%# Eval("medTitle") %>' ,'video', this, '<%# Eval("medId") %>')">
                                               <asp:Label ID="lblTitle" runat="server" Text='<%# Eval("medTitle") %>'></asp:Label>
                                               </a>                              
                                 
