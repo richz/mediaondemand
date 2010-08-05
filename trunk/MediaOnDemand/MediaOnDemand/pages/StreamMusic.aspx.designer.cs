@@ -50,13 +50,13 @@ namespace MediaOnDemand {
         protected global::System.Web.UI.WebControls.DropDownList ddlArtist;
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// gridViewUpdatePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.UpdatePanel gridViewUpdatePanel;
         
         /// <summary>
         /// lblPageSize control.
@@ -84,15 +84,6 @@ namespace MediaOnDemand {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblRecordCount;
-        
-        /// <summary>
-        /// gridViewUpdatePanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel gridViewUpdatePanel;
         
         /// <summary>
         /// gvMusic control.
@@ -138,5 +129,14 @@ namespace MediaOnDemand {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnMediaTitle;
+        
+        /// <summary>
+        /// hdnTotalRowCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnTotalRowCount;
     }
 }

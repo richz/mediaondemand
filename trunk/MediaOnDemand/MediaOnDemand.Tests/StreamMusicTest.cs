@@ -127,23 +127,6 @@ namespace MediaOnDemand.Tests
         }
 
         /// <summary>
-        ///A test for GetGridViewRecordCountByCurrentMediaType
-        ///</summary>
-        [TestMethod()]
-        [HostType("ASP.NET")]
-        [UrlToTest("http://localhost:90")]
-        [DeploymentItem("MediaOnDemand.dll")]
-        public void GetGridViewRecordCountByCurrentMediaTypeTest()
-        {
-            StreamMusic_Accessor target = new StreamMusic_Accessor(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            actual = target.GetGridViewRecordCountByCurrentMediaType();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
         ///A test for ddlPageSize_SelectedIndexChanged
         ///</summary>
         [TestMethod()]

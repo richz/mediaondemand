@@ -23,33 +23,6 @@ namespace MediaOnDemand {
         protected global::System.Web.UI.WebControls.Label lblFileMessages;
         
         /// <summary>
-        /// updatePanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updatePanel;
-        
-        /// <summary>
-        /// lblChooseMediaType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblChooseMediaType;
-        
-        /// <summary>
-        /// ddlMediaTypes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMediaTypes;
-        
-        /// <summary>
         /// lblList control.
         /// </summary>
         /// <remarks>
@@ -59,13 +32,22 @@ namespace MediaOnDemand {
         protected global::System.Web.UI.WebControls.Label lblList;
         
         /// <summary>
-        /// ddlList control.
+        /// updatePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlList;
+        protected global::System.Web.UI.UpdatePanel updatePanel;
+        
+        /// <summary>
+        /// ddlShows control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlShows;
         
         /// <summary>
         /// gridViewUpdatePanel control.

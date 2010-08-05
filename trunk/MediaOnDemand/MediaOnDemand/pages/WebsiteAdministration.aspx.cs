@@ -537,7 +537,7 @@ namespace MediaOnDemand
             //Record Per Page Display
             int iTotalRecords = 0;
 
-            iTotalRecords = Convert.ToInt32(Session["TotalRowCount"].ToString());
+            iTotalRecords = Convert.ToInt32(this.hdnTotalRowCount.Value);
 
             int iEndRecord = gvMedia.PageSize * (gvMedia.PageIndex + 1);
             int iStartsRecods = iEndRecord - gvMedia.PageSize;
@@ -624,7 +624,7 @@ namespace MediaOnDemand
 
         protected void lnqMedia_Selected(object sender, LinqDataSourceStatusEventArgs e)
         {
-            Session["TotalRowCount"] = e.TotalRowCount;
+            this.hdnTotalRowCount.Value = e.TotalRowCount.ToString();
             UpdateRecordCount();
 
             if (e.TotalRowCount > 0)

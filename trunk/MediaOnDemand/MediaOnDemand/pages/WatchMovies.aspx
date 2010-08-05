@@ -65,8 +65,8 @@
                     </asp:UpdatePanel>
                 </td>
                 <td>
-                    <input type="button" id="btnPlayInPopup" disabled="disabled" value="Show In Popup Window"
-                        onclick="showMediaInPopupWindow()" />
+                    <%--<input type="button" id="btnPlayInPopup" disabled="disabled" value="Show In Popup Window"
+                        onclick="showMediaInPopupWindow()" />--%>
                 </td>
             </tr>
         </table>
@@ -198,4 +198,5 @@
     <asp:HiddenField ID="hdnMediaId" Value="" runat="server" />
     <asp:HiddenField ID="hdnMediaTitle" Value="" runat="server" />
     <asp:HiddenField ID="isPopupOpen" Value="" runat="server" />
+    <asp:HiddenField ID="hdnTotalRowCount" runat="server" />
 </asp:Content>

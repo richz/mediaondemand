@@ -50,7 +50,7 @@
                                 <ContentTemplate>
                                     <asp:DropDownList ID="ddlArtist" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlArtist_SelectedIndexChanged">
                                     </asp:DropDownList>
-                                </ContentTemplate>
+                              </ContentTemplate>
                             </asp:UpdatePanel>
                         </td>
                     </tr>
@@ -59,7 +59,7 @@
         </tr>
         <tr>
         <td colspan="2" align="center">
-        <input type="button" id="btnPlayInPopup" value="Show In Popup Window"  disabled="disabled"  onclick="showMediaInPopupWindow()" />
+        <%--<input type="button" id="btnPlayInPopup" value="Show In Popup Window"  disabled="disabled"  onclick="showMediaInPopupWindow()" />--%>
         </td>
         </tr>
         </table>
@@ -75,12 +75,12 @@
               </div>
               </center>
             
-       
+         <asp:UpdatePanel ID="gridViewUpdatePanel" runat="server">
+                    <ContentTemplate>
         <table width="100%">
         <tr>
             <td id="PageSize" style="width: 75%">
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>
+               
                         <table>
                             <tr>
                                 <td>
@@ -96,17 +96,17 @@
                                 </td>
                             </tr>
                         </table>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+                  
             </td>
             <td align="right">
+               
                 <asp:Label ID="lblRecordCount" runat="server" Text=""></asp:Label>
+               
             </td>
         </tr>
         <tr>
             <td colspan="2">
-                <asp:UpdatePanel ID="gridViewUpdatePanel" runat="server">
-                    <ContentTemplate>
+              
                         <center>
                             <asp:GridView ID="gvMusic" Width="100%" runat="server" AllowPaging="True" AllowSorting="True"
                                 AutoGenerateColumns="False" CellPadding="4" DataSourceID="lnqMusic" EnableModelValidation="True"
@@ -184,11 +184,12 @@
                             </asp:GridView>
                             </td> </tr> </table>
                         </center>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+                
             </td>
         </tr>
-    </table>
+    </table>   
+     </ContentTemplate>
+                </asp:UpdatePanel>
     <asp:LinqDataSource ID="lnqMusic" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
         Select="new (medTitle, medArtist, medDescription, medGenre, medDuration, medAlbum, medId, medLocation, medIsViewable, medDateAdded, medMediaType)"
         TableName="StoredMedias" Where="medMediaType == @medMediaType &amp;&amp; medIsViewable == @medIsViewable &amp;&amp; medArtist == @medArtist"
@@ -204,4 +205,5 @@
      <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server" />
      <asp:HiddenField ID="hdnMediaId" Value="" runat="server" />    
     <asp:HiddenField ID="hdnMediaTitle" Value="" runat="server" />    
+    <asp:HiddenField ID="hdnTotalRowCount" runat="server" />
 </asp:Content>

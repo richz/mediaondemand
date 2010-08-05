@@ -42,49 +42,48 @@
     <table width="60%" style="height:20%">
 <tr>
 
-<td>
-    <asp:UpdatePanel ID="updatePanel" runat="server">
-    <ContentTemplate>
+<td>   
     
     <table>
     <tr>
    <td align="right" style="width:50%">
- <asp:Label ID="lblChooseMediaType" runat="server" Text="Please choose a media type:"></asp:Label>
+ <%--<asp:Label ID="lblChooseMediaType" runat="server" Text="Please choose a media type:"></asp:Label>--%>
 </td>
   
     <td align="left">
-     <asp:DropDownList ID="ddlMediaTypes" runat="server" 
+  <%--   <asp:DropDownList ID="ddlMediaTypes" runat="server" 
             onselectedindexchanged="ddlMediaTypes_SelectedIndexChanged" 
             AutoPostBack="true" onload="ddlMediaTypes_Load">                            
                     <asp:ListItem Value="tv" Selected="True">TV</asp:ListItem>                    
                     <asp:ListItem Value="basketball">Basketball</asp:ListItem>                    
                     <asp:ListItem Value="musicvideo">Music Videos</asp:ListItem>                                                                     
-        </asp:DropDownList>
+        </asp:DropDownList>--%>
     </td>
     </tr>
     <tr>
    <td align="right" style="width:50%">
- <asp:Label ID="lblList" runat="server" Text="Please choose an option:"></asp:Label>
-</td>
-  
+  <asp:Label ID="lblList" runat="server" Text="Please choose a Show:"></asp:Label>
+</td>  
     <td align="left">
-     <asp:DropDownList ID="ddlList" runat="server" AutoPostBack="true">
+ <asp:UpdatePanel ID="updatePanel" runat="server">
+    <ContentTemplate>
+     <asp:DropDownList ID="ddlShows" runat="server" AutoPostBack="true" 
+            onselectedindexchanged="ddlShows_SelectedIndexChanged">
         </asp:DropDownList>
+        
+         </ContentTemplate>
+    </asp:UpdatePanel>
+        
     </td>
     </tr>
     </table>
-   
         
-    </ContentTemplate>
-    </asp:UpdatePanel>
-
-    
 </td>
 </tr>
 <tr>
 <td colspan="2" align="center">
  
-                    <input type="button" id="btnPlayInPopup"  disabled="disabled"  value="Show In Popup Window" onclick="showMediaInPopupWindow()" />
+                    <%--<input type="button" id="btnPlayInPopup"  disabled="disabled"  value="Show In Popup Window" onclick="showMediaInPopupWindow()" />--%>
                 </td>
 
 </tr>
@@ -213,14 +212,14 @@
         </ContentTemplate>
     </asp:UpdatePanel>
     <asp:LinqDataSource ID="lnqVideos" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
-        Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre, medDuration, medVideoType, medDateAdded, medMediaType, medId, medFileExt)"
-        TableName="StoredMedias" Where="medMediaType == @medMediaType &amp;&amp; medGenre == @medGenre" 
+        Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre, medDuration, medVideoType, medDateAdded, medMediaType, medId, medFileExt, medAlbum)"
+        TableName="StoredMedias" Where="medGenre == @medGenre &amp;&amp; medMediaType == @medMediaType &amp;&amp; medIsViewable == @medIsViewable" 
     onselected="lnqVideos_Selected">
         <WhereParameters>
-            <asp:ControlParameter ControlID="ddlMediaTypes" Name="medMediaType" 
-                PropertyName="SelectedValue" Type="String" DefaultValue="tv" />
-            <asp:ControlParameter ControlID="ddlList" Name="medGenre" 
-                PropertyName="SelectedValue" Type="String" DefaultValue="" />
+            <asp:ControlParameter ControlID="ddlShows" Name="medGenre" 
+                PropertyName="SelectedValue" Type="String" />
+            <asp:Parameter DefaultValue="tv" Name="medMediaType" Type="String" />
+            <asp:Parameter DefaultValue="Y" Name="medIsViewable" Type="Char" />
         </WhereParameters>
     </asp:LinqDataSource>
 <asp:HiddenField ID="hdnTotalRowCount" runat="server" />
@@ -229,6 +228,7 @@
     
                 <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server" />
                 <asp:HiddenField ID="hdnMediaId" Value="" runat="server" />
+                
                 
 
 </asp:Content>

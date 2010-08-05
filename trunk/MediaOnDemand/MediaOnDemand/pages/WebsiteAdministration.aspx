@@ -293,4 +293,5 @@
     <asp:HiddenField ID="hdnVideoType" runat="server" />
     <asp:HiddenField ID="hdnUpdateMode" runat="server" />
     <asp:HiddenField ID="hdnNetworkFolder" runat="server" />
+    <asp:HiddenField ID="hdnTotalRowCount" runat="server" />
 </asp:Content>

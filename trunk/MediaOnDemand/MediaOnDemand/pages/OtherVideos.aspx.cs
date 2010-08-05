@@ -25,8 +25,8 @@ namespace MediaOnDemand
                 this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
                 
                 SetList();
-                if (this.ddlList.Items.Count > 0)
-                    this.ddlList.SelectedIndex = 0;
+                if (this.ddlShows.Items.Count > 0)
+                    this.ddlShows.SelectedIndex = 0;
 
                 this.gvVideos.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
                 this.gvVideos.Sort("medTitle", SortDirection.Ascending);
@@ -45,7 +45,7 @@ namespace MediaOnDemand
         {
             if (this.ddlPageSize.SelectedValue.Equals("all"))
             {
-                this.gvVideos.PageSize = Convert.ToInt32(Session["TotalRowCount"].ToString());               
+                this.gvVideos.PageSize = Convert.ToInt32(this.hdnTotalRowCount.Value);               
             }
             else
                 this.gvVideos.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue);                
@@ -62,7 +62,7 @@ namespace MediaOnDemand
             //Record Per Page Display
             int iTotalRecords = 0;
 
-            iTotalRecords = Convert.ToInt32(Session["TotalRowCount"].ToString());
+            iTotalRecords = Convert.ToInt32(this.hdnTotalRowCount.Value);
 
             int iEndRecord = gvVideos.PageSize * (gvVideos.PageIndex + 1);
             int iStartsRecods = iEndRecord - gvVideos.PageSize;
@@ -82,19 +82,19 @@ namespace MediaOnDemand
 
         private void SetList()
         {
-            this.ddlList.Items.Clear();
+            this.ddlShows.Items.Clear();
 
             StorageMediaDataContext context = new StorageMediaDataContext();
 
             foreach (StoredMedia sm in context.StoredMedias)
             {
-                if(sm.medMediaType.Trim().Equals(this.ddlMediaTypes.SelectedValue))
+                if(sm.medMediaType.Trim().Equals("tv"))
                 {
                     DirectoryInfo dir = new DirectoryInfo(sm.medLocation);
                     string item = dir.Parent.Name;
 
-                    if (!this.ddlList.Items.Contains(new ListItem(item)))
-                        this.ddlList.Items.Add(item);
+                    if (!this.ddlShows.Items.Contains(new ListItem(item)))
+                        this.ddlShows.Items.Add(item);
                 }
             }            
         }
@@ -104,6 +104,8 @@ namespace MediaOnDemand
         protected void ddlMediaTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Reset Page Index for Grid
+           
+            /*
             this.gvVideos.PageIndex = 0;
             this.ddlPageSize.SelectedIndex = 0;
             this.gvVideos.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
@@ -131,17 +133,18 @@ namespace MediaOnDemand
             if (this.ddlList.Items.Count > 0)
                 this.ddlList.SelectedIndex = 0;
 
-            if (Convert.ToInt32(Session["TotalRowCount"].ToString()) > 0)
+            if (Convert.ToInt32(this.hdnTotalRowCount.Value) > 0)
             {
                 SetList();
                 if(this.ddlList.Items.Count > 0)
                     this.ddlList.SelectedIndex = 0;
             }
+             */
         }        
 
         protected void lnqVideos_Selected(object sender, LinqDataSourceStatusEventArgs e)
         {   
-            Session["TotalRowCount"] = e.TotalRowCount;
+            this.hdnTotalRowCount.Value = e.TotalRowCount.ToString();
             UpdateRecordCount();
 
             if (e.TotalRowCount == 0)
@@ -150,8 +153,8 @@ namespace MediaOnDemand
                 this.lblPageSize.Visible = false;
                 this.ddlPageSize.Visible = false;
                 this.lblRecordCount.Visible = false;                
-                this.lblList.Visible = false;
-                this.ddlList.Visible = false;
+                //this.lblList.Visible = false;
+                //this.ddlShows.Visible = false;
                 //this.lblChooseMediaType.Visible = false;
                 //this.ddlMediaTypes.Visible = false;
             }
@@ -161,8 +164,8 @@ namespace MediaOnDemand
                 this.lblPageSize.Visible = true;
                 this.ddlPageSize.Visible = true;                
                 this.lblRecordCount.Visible = true;                
-                this.lblList.Visible = true;
-                this.ddlList.Visible = true;
+                //this.lblList.Visible = true;
+                //this.ddlList.Visible = true;
                 //this.lblChooseMediaType.Visible = true;
                 //this.ddlMediaTypes.Visible = true;                
             }
@@ -177,6 +180,13 @@ namespace MediaOnDemand
                  //   this.ddlList.SelectedIndex = 0;
             //}
 
+        }
+
+        protected void ddlShows_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.lnqVideos.WhereParameters[0].DefaultValue = this.ddlShows.SelectedValue;
+            this.ddlPageSize.SelectedIndex = 0;
+            this.gvVideos.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
         }
     }
 }

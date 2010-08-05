@@ -60,11 +60,6 @@ namespace MediaOnDemand
             return mediaId;
         }
 
-        //[System.Web.Services.WebMethod]
-        //[System.Web.Script.Services.ScriptMethod()]
-        
-
-
         #endregion
 
         #region Controls Event Handlers        
@@ -73,7 +68,7 @@ namespace MediaOnDemand
         {
             if (this.ddlPageSize.SelectedValue.Equals("all"))
             {
-                this.gvMovies.PageSize = Convert.ToInt32(Session["TotalRowCount"].ToString());                
+                this.gvMovies.PageSize = Convert.ToInt32(this.hdnTotalRowCount.Value);                
             }
             else
                 this.gvMovies.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue);
@@ -131,7 +126,7 @@ namespace MediaOnDemand
             //Record Per Page Display
             int iTotalRecords = 0;
 
-            iTotalRecords = Convert.ToInt32(Session["TotalRowCount"].ToString());
+            iTotalRecords = Convert.ToInt32(this.hdnTotalRowCount.Value);
 
             int iEndRecord = gvMovies.PageSize * (gvMovies.PageIndex + 1);
             int iStartsRecods = iEndRecord - gvMovies.PageSize;
@@ -167,7 +162,7 @@ namespace MediaOnDemand
 
         protected void lnqMovies_Selected(object sender, LinqDataSourceStatusEventArgs e)
         {
-            Session["TotalRowCount"] = e.TotalRowCount;
+            this.hdnTotalRowCount.Value = e.TotalRowCount.ToString();
             UpdateRecordCount();
             this.SetList();
 
@@ -187,7 +182,6 @@ namespace MediaOnDemand
                 this.ddlPageSize.Visible = true;
                 this.lblRecordCount.Visible = true;
             }
-
             
         }
 
@@ -195,7 +189,8 @@ namespace MediaOnDemand
         {
             this.lnqMovies.WhereParameters[3].DefaultValue = this.ddlGenre.SelectedValue;
 
-            //this.gvMovies.DataBind();
+            this.ddlPageSize.SelectedIndex = 0;
+            this.gvMovies.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
         }
 
     }

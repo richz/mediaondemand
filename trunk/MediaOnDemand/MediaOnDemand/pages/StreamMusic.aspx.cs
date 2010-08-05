@@ -20,8 +20,6 @@ namespace MediaOnDemand
         protected void Page_Load(object sender, EventArgs e)
         {
             this.Title = "Media On Demand - " + User.Identity.Name;
-
-            Session["SelectedArtistIndex"] = this.ddlArtist.SelectedIndex;
                         
             this.lblFileMessages.Text = "";
             //this.wmPlayer.MovieURL = "";
@@ -33,11 +31,14 @@ namespace MediaOnDemand
 
                 //this.wmPlayer.AutoStart = true;
 
+                this.SetList();
                 this.ddlArtist.SelectedIndex = 0;
                 this.lnqMusic.WhereParameters.Add("medArtist", this.ddlArtist.SelectedValue);
 
                 this.gvMusic.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
                 this.gvMusic.Sort("medTitle", SortDirection.Ascending);
+
+                                
             }            
 
             //this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;            
@@ -56,7 +57,7 @@ namespace MediaOnDemand
         {
             if (this.ddlPageSize.SelectedValue.Equals("all"))
             {
-                this.gvMusic.PageSize = Convert.ToInt32(Session["TotalRowCount"].ToString());
+                this.gvMusic.PageSize = Convert.ToInt32(this.hdnTotalRowCount.Value);
             }
             else
                 this.gvMusic.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue);
@@ -70,7 +71,7 @@ namespace MediaOnDemand
 
         private void SetList()
         {
-            List<String> genres = new List<string>();
+            List<String> artists = new List<string>();
 
             this.ddlArtist.Items.Clear();
 
@@ -83,18 +84,18 @@ namespace MediaOnDemand
                     DirectoryInfo dir = new DirectoryInfo(sm.medLocation);
                     string item = dir.Parent.Parent.Name;
 
-                    if (!genres.Contains(item))
-                        genres.Add(item);
+                    if (!artists.Contains(item))
+                        artists.Add(item);
                 }
             }
 
-            string[] arr = genres.ToArray();
+            string[] arr = artists.ToArray();
             Array.Sort(arr);
 
-            genres = arr.ToList();
+            artists = arr.ToList();
 
-            foreach (string genre in genres)
-                this.ddlArtist.Items.Add(genre);
+            foreach (string artist in artists)
+                this.ddlArtist.Items.Add(artist);
 
             if (this.ddlArtist.Items.Count == 0)
             {
@@ -113,7 +114,7 @@ namespace MediaOnDemand
             //Record Per Page Display
             int iTotalRecords = 0;
 
-            iTotalRecords = Convert.ToInt32(Session["TotalRowCount"].ToString());
+            iTotalRecords = Convert.ToInt32(this.hdnTotalRowCount.Value);
 
             int iEndRecord = gvMusic.PageSize * (gvMusic.PageIndex + 1);
             int iStartsRecods = iEndRecord - gvMusic.PageSize;
@@ -131,31 +132,12 @@ namespace MediaOnDemand
 
         }
 
-        private int GetGridViewRecordCountByCurrentMediaType()
-        {
-            StorageMediaDataContext context = new StorageMediaDataContext();
-
-            var recs =
-
-                (from StoredMedia in context.StoredMedias
-                 where StoredMedia.medMediaType == "music"
-                 select StoredMedia
-                );
-
-            return recs.Count();
-        }
-
         #endregion
 
         protected void lnqMusic_Selected(object sender, LinqDataSourceStatusEventArgs e)
         {
-            Session["TotalRowCount"] = e.TotalRowCount;
-            UpdateRecordCount();
-
-            this.SetList();
-
-
-            this.ddlArtist.SelectedIndex = Convert.ToInt32(Session["SelectedArtistIndex"].ToString());
+            this.hdnTotalRowCount.Value = e.TotalRowCount.ToString();
+            UpdateRecordCount();            
 
             if (e.TotalRowCount == 0)
             {
@@ -178,6 +160,8 @@ namespace MediaOnDemand
         protected void ddlArtist_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.lnqMusic.WhereParameters[2].DefaultValue = this.ddlArtist.SelectedValue;
+            this.ddlPageSize.SelectedIndex = 0;
+            this.gvMusic.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
         }
     }
 }
