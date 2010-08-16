@@ -36,6 +36,7 @@ namespace MediaOnDemand
                 this.lnqMusic.WhereParameters.Add("medArtist", this.ddlArtist.SelectedValue);
 
                 this.gvMusic.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
+                
                 this.gvMusic.Sort("medTitle", SortDirection.Ascending);
 
                                 
@@ -57,7 +58,7 @@ namespace MediaOnDemand
         {
             if (this.ddlPageSize.SelectedValue.Equals("all"))
             {
-                this.gvMusic.PageSize = Convert.ToInt32(this.hdnTotalRowCount.Value);
+                this.gvMusic.PageSize = Convert.ToInt32(Session["TotalRowCount"].ToString());
             }
             else
                 this.gvMusic.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue);
@@ -114,7 +115,7 @@ namespace MediaOnDemand
             //Record Per Page Display
             int iTotalRecords = 0;
 
-            iTotalRecords = Convert.ToInt32(this.hdnTotalRowCount.Value);
+            iTotalRecords = Convert.ToInt32(Session["TotalRowCount"].ToString());
 
             int iEndRecord = gvMusic.PageSize * (gvMusic.PageIndex + 1);
             int iStartsRecods = iEndRecord - gvMusic.PageSize;
@@ -136,7 +137,7 @@ namespace MediaOnDemand
 
         protected void lnqMusic_Selected(object sender, LinqDataSourceStatusEventArgs e)
         {
-            this.hdnTotalRowCount.Value = e.TotalRowCount.ToString();
+            Session["TotalRowCount"] = e.TotalRowCount.ToString();
             UpdateRecordCount();            
 
             if (e.TotalRowCount == 0)

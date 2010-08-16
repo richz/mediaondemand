@@ -59,7 +59,6 @@
     <Reference Include="System.Web.Extensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -185,16 +184,23 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="StoredMediaManagement.cs" />
+    <Compile Include="UserControls\MediaControls\MediaPlaylist.ascx.cs">
+      <DependentUpon>MediaPlaylist.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\MediaControls\MediaPlaylist.ascx.designer.cs">
+      <DependentUpon>MediaPlaylist.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserManagement.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UserManagement.dbml</DependentUpon>
     </Compile>
-    <Compile Include="WebControls\PageSizeSelector.ascx.cs">
+    <Compile Include="UserControls\PageSizeSelector.ascx.cs">
       <DependentUpon>PageSizeSelector.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebControls\PageSizeSelector.ascx.designer.cs">
+    <Compile Include="UserControls\PageSizeSelector.ascx.designer.cs">
       <DependentUpon>PageSizeSelector.ascx</DependentUpon>
     </Compile>
     <Compile Include="pages\PasswordRecovery.aspx.cs">
@@ -246,7 +252,7 @@
     <Content Include="pages\WatchMovies.aspx" />
     <Content Include="pages\WebsiteAdministration.aspx" />
     <Content Include="Site.Master" />
-    <Content Include="WebControls\PageSizeSelector.ascx" />
+    <Content Include="UserControls\PageSizeSelector.ascx" />
     <Content Include="pages\PasswordRecovery.aspx" />
     <Content Include="pages\UserManagement.aspx" />
     <None Include="StorageMedia.dbml">
@@ -286,6 +292,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClientBin\VideoPlayer.xap" />
     <None Include="UserManagement.dbml.layout">
       <DependentUpon>UserManagement.dbml</DependentUpon>
     </None>
@@ -302,6 +309,7 @@
     <EmbeddedResource Include="images\progress_bg.gif" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="bin\swfobject.js" />
+    <Content Include="ClientBin\Bear.wmv" />
     <Content Include="css\smoothness\images\ui-anim_basic_16x16.gif" />
     <Content Include="css\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="css\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -317,28 +325,37 @@
     <Content Include="css\smoothness\images\ui-icons_888888_256x240.png" />
     <Content Include="css\smoothness\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="css\smoothness\jquery-ui-1.8.2.custom.css" />
+    <Content Include="images\addButton.png" />
     <Content Include="images\ajax-loader-bar.gif" />
     <Content Include="images\ajax-loader.gif" />
     <Content Include="images\ajax-loaderCircle.gif" />
     <Content Include="images\ajax-loaderLoading.gif" />
     <Content Include="images\btnShowContent.png" />
+    <Content Include="images\playButton.jpg" />
     <Content Include="images\progressImg.gif" />
+    <Content Include="js\animatedcollapse.js" />
+    <Content Include="js\flowplayer.playlist-3.0.8.js" />
+    <Content Include="js\MediaPlaylist.js" />
+    <Content Include="js\PageGridView.js" />
     <Content Include="js\swf flash player\flowplayer-3.2.2.min.js" />
     <Content Include="js\jquery-1.4.2.min.js" />
     <Content Include="js\jquery-ui-1.8.2.custom.min.js" />
     <Content Include="js\site.js" />
     <Content Include="pages\PopupMedia.aspx" />
+    <Content Include="Styles\FlowPlayerPlaylist.css" />
     <Content Include="Styles\style.css" />
-    <Content Include="WebControls\flv flash player\flowplayer-3.2.2.swf" />
-    <Content Include="WebControls\flv flash player\flowplayer.controls-3.2.1.swf" />
-    <Content Include="WebControls\mp3 flash player\player_mp3_js.swf" />
-    <Content Include="WebControls\mp4-streamer.ashx" />
+    <Content Include="UserControls\flv flash player\flowplayer-3.2.2.swf" />
+    <Content Include="UserControls\flv flash player\flowplayer.controls-3.2.1.swf" />
+    <Content Include="UserControls\MediaControls\MediaPlaylist.ascx" />
+    <Content Include="UserControls\mp3 flash player\player_mp3_js.swf" />
+    <Content Include="UserControls\mp4-streamer.ashx" />
     <Content Include="WebService.asmx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="aspnet_client\system_web\4_0_30128\" />
     <Folder Include="aspnet_client\system_web\4_0_30319\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="pages\App_LocalResources\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

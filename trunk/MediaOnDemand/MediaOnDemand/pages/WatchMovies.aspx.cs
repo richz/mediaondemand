@@ -7,8 +7,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Diagnostics;
 using System.IO;
-using System.Windows.Forms;
 using MediaOnDemand;
+using MediaOnDemand.UserControls.MediaControls;
+using System.Web.Caching;
 
 namespace MediaOnDemand
 {
@@ -17,21 +18,26 @@ namespace MediaOnDemand
         #region Page Event Handlers
 
         protected string postBackStr;
-
+        private List<Pair> playList;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             this.Title = "Media On Demand - " + User.Identity.Name;
-
-            Session["SelectedGenreIndex"] = this.ddlGenre.SelectedIndex;
-
+            
             if (!IsPostBack)
             {
+                this.playList = new List<Pair>();
+
+                Cache.Insert("MediaPlayList", playList);
+                
                 this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
+                SetList();
                 //this.wmPlayer.MovieURL = "";
                 //this.wmPlayer.AutoStart = true;
 
                 this.ddlPageSize.SelectedIndex = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
                 this.gvMovies.Sort("medTitle", SortDirection.Ascending);
+
             }
             
             //this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
@@ -44,6 +50,19 @@ namespace MediaOnDemand
             }
             
         }
+
+        [System.Web.Services.WebMethod]
+        [System.Web.Script.Services.ScriptMethod()]
+        public static string AddPlayListItemToCache()
+        {
+            
+
+            //(Cache["MediaPlayList"] as List<Pair>).Add(new Pair("Title", "Location"));
+
+
+            return "All finished!";
+        }
+
 
         private int GetMediaIdFromUrl(string mediaTitle, string mediaUrl)
         {
@@ -68,13 +87,12 @@ namespace MediaOnDemand
         {
             if (this.ddlPageSize.SelectedValue.Equals("all"))
             {
-                this.gvMovies.PageSize = Convert.ToInt32(this.hdnTotalRowCount.Value);                
+                this.gvMovies.PageSize = Convert.ToInt32(Session["TotalRowCount"].ToString());                
             }
             else
                 this.gvMovies.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue);
 
-            this.gvMovies.PageIndex = 0;
-            //UpdateRecordCount();
+            this.gvMovies.PageIndex = 0;            
         }
 
         #endregion
@@ -93,9 +111,6 @@ namespace MediaOnDemand
             {
                 if (sm.medMediaType.Trim().Equals("movie"))
                 {
-                    //DirectoryInfo dir = new DirectoryInfo(sm.medLocation);
-                    //string item = dir.Parent.Name;
-
                     if (!genres.Contains(sm.medGenre))
                         genres.Add(sm.medGenre);
                 }
@@ -126,7 +141,7 @@ namespace MediaOnDemand
             //Record Per Page Display
             int iTotalRecords = 0;
 
-            iTotalRecords = Convert.ToInt32(this.hdnTotalRowCount.Value);
+            iTotalRecords = Convert.ToInt32(Session["TotalRowCount"].ToString());
 
             int iEndRecord = gvMovies.PageSize * (gvMovies.PageIndex + 1);
             int iStartsRecods = iEndRecord - gvMovies.PageSize;
@@ -144,30 +159,13 @@ namespace MediaOnDemand
 
         }
 
-        //private int GetGridViewRecordCountByCurrentMediaType()
-        //{
-        //    StorageMediaDataContext context = new StorageMediaDataContext();
-
-        //    var recs =
-
-        //        (from StoredMedia in context.StoredMedias
-        //         where StoredMedia.medMediaType == "movie"
-        //         select StoredMedia
-        //        );
-
-        //    return recs.Count();
-        //}
-
         #endregion
 
         protected void lnqMovies_Selected(object sender, LinqDataSourceStatusEventArgs e)
         {
-            this.hdnTotalRowCount.Value = e.TotalRowCount.ToString();
+            Session["TotalRowCount"] = e.TotalRowCount.ToString();
             UpdateRecordCount();
-            this.SetList();
-
-            this.ddlGenre.SelectedIndex = Convert.ToInt32(Session["SelectedGenreIndex"].ToString());
-
+    
             if (e.TotalRowCount == 0)
             {
                 //this.wmPlayer.Visible = false;
@@ -191,6 +189,90 @@ namespace MediaOnDemand
 
             this.ddlPageSize.SelectedIndex = 0;
             this.gvMovies.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
+        }
+
+        protected void gvMovies_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.hdnSelectedMedia.Value = (gvMovies.SelectedRow.FindControl("lblTitle") as Label).Text;
+
+            //this.mediaPlaylist.Playlist.Add(this.hdnSelectedMedia.Value);
+
+            int i = 0;
+            i++;
+        }
+
+        protected void btnAddSelectedMediaToPlaylist_Click(object sender, EventArgs e)
+        {
+            bool atLeastOneRowSelected = false;
+
+            StorageMediaDataContext context = new StorageMediaDataContext();
+            
+            foreach(GridViewRow row in gvMovies.Rows)
+            {
+                CheckBox cbMediaSelector = row.FindControl("cbMediaSelector") as CheckBox;
+
+                if (cbMediaSelector != null)
+                {
+                    cbMediaSelector.Checked = true;
+
+                    atLeastOneRowSelected = true;
+
+                    foreach (StoredMedia sm in context.StoredMedias)
+                    {
+                        //if (sm.medId == Convert.ToInt32() && !this.mediaPlaylist.PlayListContains(sm.medTitle))
+                        //    this.mediaPlaylist.PlaylistItems.Add(sm.medTitle);
+                    }
+
+                    cbMediaSelector.Checked = false;
+                }
+            }
+        }
+
+        protected void gvMovies_DataBound(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void lnkAddSelected_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lnkRemoveSelected_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnRemoveAllSelected_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void GridViewMediaSelector_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void btnAddToPlaylist_Click(object sender, EventArgs e)
+        {
+            //this.mediaPlaylist.PlayList.Items.Add(
+
+            string mediaId = (sender as Button).CommandArgument;
+
+            StorageMediaDataContext context = new StorageMediaDataContext();
+
+            var result = from StoredMedia sm in context.StoredMedias
+                         where sm.medId == Convert.ToInt32(mediaId)
+                         select sm;
+
+            StoredMedia media = result.First();
+            
+            
+        }
+
+        protected void btnAddAllMediaToPlaylist_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

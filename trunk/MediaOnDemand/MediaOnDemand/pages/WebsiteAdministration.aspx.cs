@@ -8,7 +8,6 @@ using System.Web.UI.WebControls;
 using System.IO;
 using System.Data;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Threading;
 
 
@@ -19,17 +18,17 @@ namespace MediaOnDemand
         #region Private Fields
 
         //Main Folders
-        static string rootMediaFilesFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/");
-        static string videosFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Videos/");
-        static string audioFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Audio/");
-        static string picturesFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Pictures/");
+        static string rootMediaFilesFolder = HttpContext.Current.Server.MapPath("~/mediafiles/");
+        static string videosFolder = HttpContext.Current.Server.MapPath("~/mediafiles/videos/");
+        static string audioFolder = HttpContext.Current.Server.MapPath("~/mediafiles/audio/");
+        static string picturesFolder = HttpContext.Current.Server.MapPath("~/mediafiles/pictures/");
 
         //Subfolders
-        static string musicFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Audio/music");
-        static string moviesFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Videos/movie/");
-        static string musicVideosFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Videos/musicvideo/");
-        static string tvFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Videos/tv/");
-        static string basketballFolder = HttpContext.Current.Server.MapPath("~/MediaFiles/Videos/basketball/");
+        static string musicFolder = HttpContext.Current.Server.MapPath("~/mediafiles/audio/music");
+        static string moviesFolder = HttpContext.Current.Server.MapPath("~/mediafiles/videos/movie/");
+        static string musicVideosFolder = HttpContext.Current.Server.MapPath("~/mediafiles/videos/musicvideo/");
+        static string tvFolder = HttpContext.Current.Server.MapPath("~/mediafiles/videos/tv/");
+        static string basketballFolder = HttpContext.Current.Server.MapPath("~/mediafiles/videos/basketball/");
 
         //Set values
         static string networkFolder = "";

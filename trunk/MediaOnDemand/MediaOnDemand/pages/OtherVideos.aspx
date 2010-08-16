@@ -92,7 +92,7 @@
     </table>
    
     
-     <div id="mediaPlayer">
+     <div id="mediaPlayer" class="hidden">
      
      <a id="player" href="" style="display: block; width: 100%; height: 100%">
                                                                                  

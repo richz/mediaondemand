@@ -191,11 +191,29 @@
                 </asp:LoginView>
             </div>
         </div>
-        <div class="main">
+        
+        
+      <table width="100%">
+      <tr>
+      <td style="width:10%">
+      <asp:ContentPlaceHolder ID="LeftColumn" runat="server">
+            </asp:ContentPlaceHolder>     
+      </td>
+      <td style="width:80">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
-        <div id="footer" class="footer">
+            </asp:ContentPlaceHolder>            
+   
+      </td>
+      <td style="width:10%">
+        <asp:ContentPlaceHolder ID="RightColumn" runat="server">
+            </asp:ContentPlaceHolder>   
+      </td>
+      </tr>
+      </table>
+      
+      
+              
+               <div id="footer" class="footer">
             <asp:Label ID="lblCopyright" runat="server" Text="Copyright 2010 Cesar Paguada"></asp:Label>
         </div>
     </div>

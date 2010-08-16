@@ -5,7 +5,7 @@
     var btnPlayInPopup = document.getElementById('btnPlayInPopup');
 
     if (btnPlayInPopup != null)
-        btnPlayInPopup.disabled = 'disabled';    
+        btnPlayInPopup.disabled = 'disabled';
 
 
     var mediaTitle = document.getElementById('ctl00_MainContent_hdnMediaTitle').getAttribute('value');
@@ -16,68 +16,21 @@
 
     var windowOptions = 'width=400,height=350,toolbar=no, location=yes,directories=no,status=yes,menubar=no,scrollbars=no,copyhistory=no, resizable=no';
 
-    //$f().stop();
+    _arrWin[0] = window.open('PopupMedia.aspx' + queryString, 'childWindow', windowOptions);
 
-        _arrWin[0] = window.open('PopupMedia.aspx' + queryString, 'childWindow', windowOptions);
-
-        //document.getElementById('ctl00_MainContent_isPopupOpen').setAttribute('value') = 'Y';
-
-        //__doPostBack('__Page', 'MyCustomArgument');
-}
-
-function ForcePostBack(window, mediaUrl, mediaTitle, mediaType, lnkMovieLink, mediaId) {
-
-    if (window == 'mainwindow') {
-        var mediaUrl = mediaUrl;
-        var mediaId = mediaId;
-
-        document.getElementById('ctl00_MainContent_hdnMediaUrl').setAttribute('value', mediaUrl);
-        document.getElementById('ctl00_MainContent_hdnMediaId').setAttribute('value', mediaId);
-        document.getElementById('ctl00_MainContent_hdnMediaTitle').setAttribute('value', mediaTitle);
-
-        var btnPlayInPopup = document.getElementById('btnPlayInPopup');
-
-        if (_arrWin[0]) {            
-            var queryString = '?mediaId=' + mediaId + '&mediaUrl=' + mediaUrl + '&mediaTitle=' + mediaTitle;
-            _arrWin[0].location = 'PopupMedia.aspx' + queryString;
-
-
-            if (btnPlayInPopup != null)
-                btnPlayInPopup.disabled = 'disabled';
-        }
-        else {
-
-            if (btnPlayInPopup != null)
-                btnPlayInPopup.disabled = '';
-
-            playMedia(mediaUrl, mediaTitle, mediaType);
-        }
-    }
-    else {
-
-        if (window = 'popup') {
-
-            var queryString = '?mediaId=' + mediaId + '&mediaUrl=' + mediaUrl + '&mediaTitle=' + mediaTitle;
-            window.location = 'PopupMedia.aspx' + queryString;
-
-            playMedia(mediaUrl, mediaTitle, mediaType);
-        
-        }
-    
-    }
-
-    //Force page postback to set Movie Url
     //__doPostBack('__Page', 'MyCustomArgument');
 }
 
-function closeVideo() {
+function ForcePostBack(mediaUrl, mediaTitle, mediaType, lnkMovieLink, mediaId) {
 
-    var playerDiv = document.getElementById('mediaPlayer');
+    document.getElementById('ctl00_MainContent_hdnMediaUrl').setAttribute('value', mediaUrl);
+    document.getElementById('ctl00_MainContent_hdnMediaId').setAttribute('value', mediaId);
+    document.getElementById('ctl00_MainContent_hdnMediaTitle').setAttribute('value', mediaTitle);
 
-    playerDiv.setAttribute('class', 'hiddenMediaPlayer');
+    playMedia(mediaUrl, mediaTitle, mediaType);
 
-    playerDiv.innerHTML = '';
-
+    //Force page postback to set Movie Url
+    //__doPostBack('__Page', 'MyCustomArgument');
 }
 
 function playMedia(mediaUrl, mediaTitle, mediaType) {
@@ -85,22 +38,85 @@ function playMedia(mediaUrl, mediaTitle, mediaType) {
     var playerDiv = document.getElementById('mediaPlayer');
 
     if (mediaType == 'video') {
-        flowplayer("player", "../WebControls/flv flash player/flowplayer-3.2.2.swf", {
+       
+        if (!FlowPlayerPlaylist_Contains(mediaUrl)) {
+            $("#playlist").prepend('<a href="' + mediaUrl + '">' + mediaTitle + '</span></a>');
 
-            clip: {
-                url: mediaUrl,
-                autoPlay: true,                
-                bufferLength: 5,                
-                title: mediaTitle
-            }
-        });
+            $f('player').play(mediaUrl);
 
-        playerDiv.setAttribute('class', 'visibleMediaPlayer');
+            document.getElementById('mediaPlaylist').setAttribute('class', 'shown');    
+        }
     }
     else {
 
-        playerDiv.innerHTML =
-        + '<embed src=\"../WebControls/mp3 flash player/player_mp3_js\" quality=\"high\" width=\"300\" height=\"52\" allowScriptAccess=\"always\" wmode=\"transparent\"  type=\"application/x-shockwave-flash\" flashvars=\"valid_sample_rate=true&external_url=' + mediaUrl + '\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\"> </embed>';        
-    
-    } 
+        $f("player", "http://releases.flowplayer.org/swf/flowplayer-3.2.2.swf", {
+            clip: {
+                url: mediaUrl,
+                autoPlay: true,
+                bufferLength: 10,
+                title: mediaTitle
+            },
+            plugins: {
+                audio: {
+                    url: '/my-plugins/flowplayer.audio.swf'
+                }
+            }
+        });
+
+    }
+}
+
+function AddToFlowPlayerPlaylist(mediaUrl, mediaTitle) {
+
+    if (!FlowPlayerPlaylist_Contains(mediaUrl)) {
+
+        animatedcollapse.show('collapsiblePlayerDiv');
+        $("#playlist").append('<a href="' + mediaUrl + '">' + mediaTitle + '</span></a>');
+    }
+
+    document.getElementById('mediaPlaylist').setAttribute('class', 'shown');
+
+//    if ($("#playlist").children().length == 0) {
+//        $f('player').play(mediaUrl);
+//    }
+}
+
+function ClearPlaylist() {
+
+    $("#playlist").empty();
+    $f("player").stop();    
+}
+
+function FlowPlayerPlaylist_Contains(item) {
+
+    var contains = false;
+
+    var expItem1 = location.href.substring(location.href, location.href.indexOf('pages'));
+    var expItem2 = encodeURI(item.substring(item.indexOf('mediafiles')));
+
+    var expItem = expItem1.concat(expItem2);
+
+    var i = 0;
+
+    for (i = 0; i < $("#playlist").children().length; i++) {
+
+        var itemHref = $("#playlist")[0].children[i].href;
+
+        if (itemHref == expItem) {
+            contains = true;
+        }
+
+    }
+
+    return contains;
+
+}
+
+
+
+
+function sleep(ms) {
+    var dt = new Date();
+    dt.setTime(dt.getTime() + ms);
+    while (new Date().getTime() < dt.getTime());
 }

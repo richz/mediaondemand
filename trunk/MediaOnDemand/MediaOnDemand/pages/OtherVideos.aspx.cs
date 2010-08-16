@@ -45,7 +45,7 @@ namespace MediaOnDemand
         {
             if (this.ddlPageSize.SelectedValue.Equals("all"))
             {
-                this.gvVideos.PageSize = Convert.ToInt32(this.hdnTotalRowCount.Value);               
+                this.gvVideos.PageSize = Convert.ToInt32(Session["TotalRowCount"].ToString());               
             }
             else
                 this.gvVideos.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue);                
@@ -62,7 +62,7 @@ namespace MediaOnDemand
             //Record Per Page Display
             int iTotalRecords = 0;
 
-            iTotalRecords = Convert.ToInt32(this.hdnTotalRowCount.Value);
+            iTotalRecords = Convert.ToInt32(Session["TotalRowCount"].ToString());
 
             int iEndRecord = gvVideos.PageSize * (gvVideos.PageIndex + 1);
             int iStartsRecods = iEndRecord - gvVideos.PageSize;
@@ -143,8 +143,8 @@ namespace MediaOnDemand
         }        
 
         protected void lnqVideos_Selected(object sender, LinqDataSourceStatusEventArgs e)
-        {   
-            this.hdnTotalRowCount.Value = e.TotalRowCount.ToString();
+        {
+            Session["TotalRowCount"] = e.TotalRowCount.ToString();
             UpdateRecordCount();
 
             if (e.TotalRowCount == 0)
