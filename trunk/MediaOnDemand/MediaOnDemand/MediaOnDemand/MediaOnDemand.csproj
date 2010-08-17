@@ -74,7 +74,7 @@
     <Content Include="pages\Register.aspx" />
     <Content Include="bin\MediaOnDemand.dll" />
     <Content Include="bin\MediaOnDemand.pdb" />
-    <Content Include="Default.aspx" />
+    <Content Include="Defaultold.aspx" />
     <Content Include="Global.asax" />
     <Content Include="js\Pages\WebsiteAdministration\WebAdmin.js" />
     <Content Include="obj\Debug\MediaOnDemand.csproj.FileListAbsolute.txt" />
@@ -84,6 +84,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -91,12 +98,12 @@
     <Compile Include="pages\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
+    <Compile Include="Defaultold.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>Default.aspx</DependentUpon>
+      <DependentUpon>Defaultold.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Defaultold.aspx.designer.cs">
+      <DependentUpon>Defaultold.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -287,6 +294,7 @@
     <EmbeddedResource Include="images\ProgressIndicator\progress_bg.gif" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="bin\swfobject.js" />
+    <Content Include="Default.aspx" />
     <Content Include="images\Buttons\addButton.png" />
     <Content Include="images\ProgressIndicator\ajax-loader-bar.gif" />
     <Content Include="images\ProgressIndicator\ajax-loader.gif" />
