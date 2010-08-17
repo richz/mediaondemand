@@ -1,5 +1,0 @@
-﻿function CheckBox_Checked() {
-
-    
-
-}
