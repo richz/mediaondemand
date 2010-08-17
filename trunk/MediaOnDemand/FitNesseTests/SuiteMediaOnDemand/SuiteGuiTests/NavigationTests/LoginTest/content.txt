@@ -1,8 +1,0 @@
-!|SWATFixture|
-|OpenBrowser|
-
-!include .SuiteMediaOnDemand.SuiteMediaOnDemandMacros.LoginToSite
-
-!|SWATFixture|
-|AttachToWindow|${mainWindow}|
-|AssertElementExistsWithTimeout|Expression|innerHTML:HOME2|10000|h1|
