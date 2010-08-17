@@ -1,0 +1,3 @@
+!|SWATFixture|
+|@@StimulateElement|Expression|innerHTML:Log Out|onclick|a|
+|@@AttachToWindow|Media On Demand|
