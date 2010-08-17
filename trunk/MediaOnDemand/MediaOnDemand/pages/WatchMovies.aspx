@@ -1,17 +1,29 @@
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WatchMovies.aspx.cs"
+<%@ Page Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="WatchMovies.aspx.cs"
     Inherits="MediaOnDemand.WatchMovies" Culture="auto" UICulture="auto" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
-    <script src="../js/playMedia.js" type="text/javascript"></script>
+    <script src="../js/MediaPlayback/playMedia.js" type="text/javascript"></script>
 
-    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
 
-    <script type="text/javascript" src="../js/animatedcollapse.js">
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
+        type="text/javascript"></script>
+
+    <script src="../js/WebControls/PageGridView.js" type="text/javascript"></script>
+
+    <link href="../styles/WebControls/MediaControls/VideoPlayers/FlashPlayer/FlowPlayer/FlowPlayerPlaylist.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="../js/MediaControls/VideoPlayers/FlashPlayer/FlowPlayer/flowplayer-3.2.2.min.js"></script>
+
+    <script src="../js/MediaControls/VideoPlayers/FlashPlayer/FlowPlayer/flowplayer.playlist-3.0.8.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="../js/VisualEffects/animatedcollapse.js">
 
         /***********************************************
         * Animated Collapsible DIV v2.4- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
@@ -20,11 +32,11 @@
         ***********************************************/
 
     </script>
-    
+
     <script type="text/javascript">
 
         animatedcollapse.addDiv('collapsiblePlayerDiv', 'fade=1,height=400px')
-        
+
         animatedcollapse.ontoggle = function($, divobj, state) { //fires each time a DIV is expanded/contracted
             //$: Access to jQuery
             //divobj: DOM reference to DIV being expanded/ collapsed. Use "divobj.id" to get its ID
@@ -33,64 +45,44 @@
 
         animatedcollapse.init()
 
-</script>
-
-    <!-- 
-		include flowplayer JavaScript file that does  
-		Flash embedding and provides the Flowplayer API.
-	-->
-
-    <script src="../js/PageGridView.js" type="text/javascript"></script>
-
-    <link href="../Styles/FlowPlayerPlaylist.css" rel="stylesheet" type="text/css" />
-
-    <script type="text/javascript" src="../js/swf flash player/flowplayer-3.2.2.min.js"></script>
-
-    <script src="../js/flowplayer.playlist-3.0.8.js" type="text/javascript"></script>
-
-    <!-- some minimal styling, can be removed -->
-    <%--    <link rel="stylesheet" type="text/css" href="../Styles/style.css" />
---%>
-
-    <script type="text/javascript">
-       
-       
     </script>
 
 </asp:Content>
 <asp:Content ContentPlaceHolderID="LeftColumn" runat="server">
-    
-    
     <div id="mediaPlaylist" class="hidden">
-    
-    <h2>
-    Media Playlist
-    </h2>
-    
-    <div id="playlist" class="clips petrol" style="float: left">
+        <h2>
+            Media Playlist
+        </h2>
+        <div id="playlist" class="clips petrol" style="float: left">
+        </div>
+        <br />
+        <div>
+        <input id="btnClearPlaylist" onclick="ClearPlaylist()" type="button" value="Clear" />
     </div>
-    <input id="btnClearPlaylist" onclick="ClearPlaylist()" type="button"
-        value="Clear" />
-        
     </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+   
+    <table width="100%">
+   <tr>
+   <td>
     <h1>
         Movies</h1>
-
-    <script type="text/javascript"><%= postBackStr %></script>
-
-    <table width="100%">
+   </td>
+   </tr>
         <tr>
-            <td>
+            <td align="left">
                 <table width="75%" style="height: 100%">
                     <tr style="height: 20px">
-                        <td colspan="2">
+                        <td>
                             <asp:Label ID="lblMessage" runat="server" Font-Bold="True"></asp:Label>
                         </td>
                     </tr>
-                    <tr style="height: 20px">
-                        <td align="right" style="width: 50%">
+                    <tr style="height: 20px;">
+                        <td align="left">
+                        <table>
+                        <tr>
+                      <td align="right" style="width: 50%">
                             <asp:Label ID="lblGenre" runat="server" Text="Please choose a genre:"></asp:Label>
                         </td>
                         <td align="left">
@@ -101,66 +93,73 @@
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </td>
-                        <td>
-                        </td>
-                    </tr>
+                        </tr>
+                        </table>
+                        </td>                      
+                     </tr>
                 </table>
             </td>
         </tr>
         <tr>
             <td>
+            <table width="100%">
+            <tr>           
+            <td>          
             
-                <center>
-     
- <a href="javascript:animatedcollapse.show('collapsiblePlayerDiv')">Show player</a> || <a href="javascript:animatedcollapse.hide('collapsiblePlayerDiv')">Hide player</a>
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                
+                     <div id="mediaPlayer" class="visibleVideoPlayer">
+                            <!-- this A tag is where your Flowplayer will be placed. it can be anywhere -->
+                            
+                            
+                            <a id="player"></a>
+                         
+                            <script type="text/javascript">
 
-<div id="collapsiblePlayerDiv" style="display:none">
-
-                    <div id="mediaPlayer" class="visibleMediaPlayer">
-                        <!-- this A tag is where your Flowplayer will be placed. it can be anywhere -->
-                        <a id="player" style="display: block; width: 100%; height: 100%"></a>
-
-                        <script type="text/javascript">
-
-                            flowplayer("player", "../UserControls/flv flash player/flowplayer-3.2.2.swf", {
-
-                                // show playlist buttons in controlbar
-                                plugins: {
-                                    controls: {
-                                        playlist: true,
-                                        // use tube skin with a different background color
-                                        url: '../UserControls/flv flash player/flowplayer.controls-3.2.1.swf'
-
+                                flowplayer("player", "../usercontrols/MediaControls/VideoPlayers/FlashPlayer/FlowPlayer/flowplayer-3.2.2.swf", {
+                                    
+                                    // show playlist buttons in controlbar
+                                    plugins: {
+                                        controls: {
+                                            autoPlay: true,
+                                            playlist: true,
+                                            // use tube skin with a different background color
+                                            url: '../usercontrols/MediaControls/VideoPlayers/FlashPlayer/FlowPlayer/flowplayer.controls-3.2.1.swf'
+                                        }
                                     }
-                                }
-                            });
+                                });
 
-                            $f("player").playlist("div.petrol", {
+                                $f("player").playlist("div.petrol", {
 
-                                // CSS class name of a playing entry
-                                playingClass: 'playing',
+                                    // CSS class name of a playing entry
+                                    playingClass: 'playing',
 
-                                // CSS class name of a paused entry
-                                pausedClass: 'paused',
+                                    // CSS class name of a paused entry
+                                    pausedClass: 'paused',
 
-                                // CSS class name for an entry that is loading
-                                progressClass: 'progress',
+                                    // CSS class name for an entry that is loading
+                                    progressClass: 'progress',
 
-                                // if true, then each clip is advanced to the next clip when it ends
-                                loop: true,
+                                    // if true, then each clip is advanced to the next clip when it ends
+                                    loop: true,
 
-                                /*
-                                when set to true and the splash image is clicked, then the first clip is played.
-                                this has an effect on the manual configuration only
-                                */
-                                playOnClick: true
-                            });
+                                    /*
+                                    when set to true and the splash image is clicked, then the first clip is played.
+                                    this has an effect on the manual configuration only
+                                    */
+                                    playOnClick: true
+                                });
                                 
-                        </script>
-
-                    </div>
-                    </div>
-                </center>
+                            </script>
+                    </div>     
+                    
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+                        
+            </td>
+            </tr>
+            </table>
             </td>
         </tr>
         <tr>
@@ -194,28 +193,20 @@
                                 <td colspan="2">
                                     <asp:GridView ID="gvMovies" Width="100%" runat="server" AllowPaging="True" AllowSorting="True"
                                         AutoGenerateColumns="False" DataSourceID="lnqMovies" CellPadding="4" ForeColor="#333333"
-                                        GridLines="None" OnSelectedIndexChanged="gvMovies_SelectedIndexChanged" OnDataBound="gvMovies_DataBound">
+                                        GridLines="None" OnSelectedIndexChanged="gvMovies_SelectedIndexChanged">
                                         <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Add to Playlist">
                                                 <ItemTemplate>
                                                     <a id="btnAddToPlaylist" type="button" onclick="AddToFlowPlayerPlaylist('<%# Eval("medLocation") %>', '<%# Eval("medTitle") %>')">
-                                                        <img src="../images/addButton.png" alt="Add to Playlist">
+                                                        <img src="../images/Buttons/addButton.png" alt="Add to Playlist">
                                                     </a>
                                                 </ItemTemplate>
                                                 <HeaderStyle Font-Underline="True" />
-                                            </asp:TemplateField>
-                                            <%--
-                                            <asp:TemplateField>
-                                                <ItemTemplate>                                                
-                                                    <asp:CheckBox ID="cbMediaSelector" CommandArgument='<%# Eval("medId") %>' onclick="GridViewMediaSelector_Click" runat="server"/>
-                                                    
-                                                </ItemTemplate>
-                                            </asp:TemplateField>--%>
-                                            <%--<asp:BoundField DataField="medId" HeaderText="Media Id"/>--%>
+                                            </asp:TemplateField>                                          
                                             <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
                                                 <ItemTemplate>
-                                                    <a id="lnkMovieLink" href="#" onclick="ForcePostBack('<%# Eval("medLocation") %>','<%# Eval("medTitle") %>' ,'video', this, '<%# Eval("medId") %>')">
+                                                    <a id="lnkMovieLink" href="#" onclick="playMedia('<%# Eval("medLocation") %>','<%# Eval("medTitle") %>' ,'video')">
                                                         <asp:Label ID="lblTitle" runat="server" Text='<%# Eval("medTitle") %>'></asp:Label>
                                                     </a>
                                                 </ItemTemplate>

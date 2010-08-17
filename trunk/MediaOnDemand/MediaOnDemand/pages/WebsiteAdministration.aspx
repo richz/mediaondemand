@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WebsiteAdministration.aspx.cs"
+<%@ Page Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="WebsiteAdministration.aspx.cs"
     Inherits="MediaOnDemand.WebsiteAdministration" %>
 
 <%@ Register Assembly="EO.Web" Namespace="EO.Web" TagPrefix="eo" %>
@@ -9,7 +9,7 @@
     Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
-    <script src="../js/WebAdmin.js" type="text/javascript"></script>
+    <script src="../js/Pages/WebsiteAdministration/WebAdmin.js" type="text/javascript"></script>
 
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
         rel="stylesheet" type="text/css" />
@@ -22,7 +22,6 @@
         type="text/javascript"></script>
 
     <script type="text/javascript">
-
 
         function resize() {
             var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
@@ -38,7 +37,6 @@
 
                     progressIndicator.style.top = ((.5 * height) - (.5 * progressIndicator.style.height)) + 'px';
                     progressIndicator.style.left = ((.5 * width) - (.5 * progressIndicator.style.width)) + 'px';
-
                 }
             }
         }
@@ -95,9 +93,8 @@
 
             function updateProgress(filesToProcess) {
 
-                // Not used right now
+                // Not used right now, using gif image
             }
-
         });
 
         window.onresize = resize;

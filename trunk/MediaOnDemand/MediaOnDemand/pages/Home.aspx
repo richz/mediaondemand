@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="MediaOnDemand.Home" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="MediaOnDemand.Home" %>
 
 <%@ Register Assembly="Media-Player-ASP.NET-Control" Namespace="Media_Player_ASP.NET_Control"
     TagPrefix="cc1" %>
@@ -10,9 +10,20 @@
     
      <h1>HOME</h1>   
     
-    <div class="main">
-<center>
+    <table width="85%">
+    <tr>
+    <td>
+    <h1>MOVIES</h1>   
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <h1>MUSIC</h1> 
+    </td>
+    </tr>
+    </table>
+    
+    
+    
 
-</center>
-</div>
 </asp:Content>

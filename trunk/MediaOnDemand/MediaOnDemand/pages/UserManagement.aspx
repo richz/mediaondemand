@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UserManagement.aspx.cs"
+<%@ Page Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="UserManagement.aspx.cs"
     Inherits="MediaOnDemand.UserManagement"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">

@@ -76,24 +76,14 @@
     <Content Include="bin\MediaOnDemand.pdb" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="js\jquery-1.3.2-vsdoc.js" />
-    <Content Include="js\jquery-1.3.2.js" />
-    <Content Include="js\jquery-1.3.2.min.js" />
-    <Content Include="js\WebAdmin.js" />
+    <Content Include="js\Pages\WebsiteAdministration\WebAdmin.js" />
     <Content Include="obj\Debug\MediaOnDemand.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\MediaOnDemand.dll" />
     <Content Include="obj\Debug\MediaOnDemand.pdb" />
-    <Content Include="Styles\Site.css" />
+    <Content Include="styles\Global\Site.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pages\PopupMedia.aspx.cs">
-      <DependentUpon>PopupMedia.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\PopupMedia.aspx.designer.cs">
-      <DependentUpon>PopupMedia.aspx</DependentUpon>
-    </Compile>
     <Compile Include="pages\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -168,12 +158,12 @@
       <DependentUpon>WebsiteAdministration.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Site.Master.cs">
-      <DependentUpon>Site.Master</DependentUpon>
+    <Compile Include="LoggedIn.Master.cs">
+      <DependentUpon>LoggedIn.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Site.Master.designer.cs">
-      <DependentUpon>Site.Master</DependentUpon>
+    <Compile Include="LoggedIn.Master.designer.cs">
+      <DependentUpon>LoggedIn.Master</DependentUpon>
     </Compile>
     <Compile Include="StorageMedia.cs">
       <DependentUpon>StorageMedia.dbml</DependentUpon>
@@ -184,23 +174,16 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="StoredMediaManagement.cs" />
-    <Compile Include="UserControls\MediaControls\MediaPlaylist.ascx.cs">
-      <DependentUpon>MediaPlaylist.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControls\MediaControls\MediaPlaylist.ascx.designer.cs">
-      <DependentUpon>MediaPlaylist.ascx</DependentUpon>
-    </Compile>
     <Compile Include="UserManagement.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UserManagement.dbml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\PageSizeSelector.ascx.cs">
+    <Compile Include="usercontrols\PageSizeSelector.ascx.cs">
       <DependentUpon>PageSizeSelector.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserControls\PageSizeSelector.ascx.designer.cs">
+    <Compile Include="usercontrols\PageSizeSelector.ascx.designer.cs">
       <DependentUpon>PageSizeSelector.ascx</DependentUpon>
     </Compile>
     <Compile Include="pages\PasswordRecovery.aspx.cs">
@@ -242,7 +225,7 @@
     <Content Include="App_Data\aspnetdb_log.ldf">
       <DependentUpon>aspnetdb.mdf</DependentUpon>
     </Content>
-    <Content Include="js\playMedia.js" />
+    <Content Include="js\MediaPlayback\playMedia.js" />
     <Content Include="LoggedOut.Master" />
     <Content Include="pages\About.aspx" />
     <Content Include="pages\Home.aspx" />
@@ -251,8 +234,8 @@
     <Content Include="pages\StreamMusic.aspx" />
     <Content Include="pages\WatchMovies.aspx" />
     <Content Include="pages\WebsiteAdministration.aspx" />
-    <Content Include="Site.Master" />
-    <Content Include="UserControls\PageSizeSelector.ascx" />
+    <Content Include="LoggedIn.Master" />
+    <Content Include="usercontrols\PageSizeSelector.ascx" />
     <Content Include="pages\PasswordRecovery.aspx" />
     <Content Include="pages\UserManagement.aspx" />
     <None Include="StorageMedia.dbml">
@@ -292,7 +275,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClientBin\VideoPlayer.xap" />
     <None Include="UserManagement.dbml.layout">
       <DependentUpon>UserManagement.dbml</DependentUpon>
     </None>
@@ -305,57 +287,35 @@
     <Content Include="bin\JW-FLV-Player-Control.xml" />
     <Content Include="bin\MattBerseth.WebControls.AJAX.dll" />
     <Content Include="bin\MattBerseth.WebControls.AJAX.pdb" />
-    <EmbeddedResource Include="images\progress.gif" />
-    <EmbeddedResource Include="images\progress_bg.gif" />
+    <EmbeddedResource Include="images\ProgressIndicator\progress.gif" />
+    <EmbeddedResource Include="images\ProgressIndicator\progress_bg.gif" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="bin\swfobject.js" />
-    <Content Include="ClientBin\Bear.wmv" />
-    <Content Include="css\smoothness\images\ui-anim_basic_16x16.gif" />
-    <Content Include="css\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="css\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="css\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="css\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="css\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="css\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="css\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="css\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="css\smoothness\images\ui-icons_222222_256x240.png" />
-    <Content Include="css\smoothness\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="css\smoothness\images\ui-icons_454545_256x240.png" />
-    <Content Include="css\smoothness\images\ui-icons_888888_256x240.png" />
-    <Content Include="css\smoothness\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="css\smoothness\jquery-ui-1.8.2.custom.css" />
-    <Content Include="images\addButton.png" />
-    <Content Include="images\ajax-loader-bar.gif" />
-    <Content Include="images\ajax-loader.gif" />
-    <Content Include="images\ajax-loaderCircle.gif" />
-    <Content Include="images\ajax-loaderLoading.gif" />
-    <Content Include="images\btnShowContent.png" />
-    <Content Include="images\playButton.jpg" />
-    <Content Include="images\progressImg.gif" />
-    <Content Include="js\animatedcollapse.js" />
-    <Content Include="js\flowplayer.playlist-3.0.8.js" />
-    <Content Include="js\MediaPlaylist.js" />
-    <Content Include="js\PageGridView.js" />
-    <Content Include="js\swf flash player\flowplayer-3.2.2.min.js" />
-    <Content Include="js\jquery-1.4.2.min.js" />
-    <Content Include="js\jquery-ui-1.8.2.custom.min.js" />
-    <Content Include="js\site.js" />
-    <Content Include="pages\PopupMedia.aspx" />
-    <Content Include="Styles\FlowPlayerPlaylist.css" />
-    <Content Include="Styles\style.css" />
-    <Content Include="UserControls\flv flash player\flowplayer-3.2.2.swf" />
-    <Content Include="UserControls\flv flash player\flowplayer.controls-3.2.1.swf" />
-    <Content Include="UserControls\MediaControls\MediaPlaylist.ascx" />
-    <Content Include="UserControls\mp3 flash player\player_mp3_js.swf" />
-    <Content Include="UserControls\mp4-streamer.ashx" />
+    <Content Include="images\Buttons\addButton.png" />
+    <Content Include="images\ProgressIndicator\ajax-loader-bar.gif" />
+    <Content Include="images\ProgressIndicator\ajax-loader.gif" />
+    <Content Include="images\ProgressIndicator\ajax-loaderCircle.gif" />
+    <Content Include="images\Buttons\btnShowContent.png" />
+    <Content Include="images\Buttons\playButton.jpg" />
+    <Content Include="images\ProgressIndicator\progressImg.gif" />
+    <Content Include="js\VisualEffects\animatedcollapse.js" />
+    <Content Include="js\MediaControls\VideoPlayers\FlashPlayer\FlowPlayer\flowplayer.playlist-3.0.8.js" />
+    <Content Include="js\WebControls\PageGridView.js" />
+    <Content Include="js\MediaControls\VideoPlayers\FlashPlayer\FlowPlayer\flowplayer-3.2.2.min.js" />
+    <Content Include="js\Global\site.js" />
+    <Content Include="styles\WebControls\MediaControls\VideoPlayers\FlashPlayer\FlowPlayer\FlowPlayerPlaylist.css" />
+    <Content Include="styles\style.css" />
+    <Content Include="usercontrols\MediaControls\AudioPlayers\FlashPlayer\FlowPlayer\flowplayer.audio-3.2.0.swf" />
+    <Content Include="usercontrols\MediaControls\VideoPlayers\FlashPlayer\FlowPlayer\flowplayer-3.2.2.swf" />
+    <Content Include="usercontrols\MediaControls\VideoPlayers\FlashPlayer\FlowPlayer\flowplayer.controls-3.2.1.swf" />
+    <Content Include="usercontrols\mp3 flash player\player_mp3_js.swf" />
     <Content Include="WebService.asmx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="aspnet_client\system_web\4_0_30128\" />
     <Folder Include="aspnet_client\system_web\4_0_30319\" />
     <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="pages\App_LocalResources\" />
+    <Folder Include="styles\JQuery\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
