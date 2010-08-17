@@ -1,0 +1,21 @@
+
+            // Count backward from 5 to zero.
+            int counter;
+            if (!IsPostBack)  counter = 5;
+            else counter = ((int) ViewState["counter"]) - 1;
+ 
+            if (counter < 0)
+            {
+                Response.Write("Mission accomplished!");
+                return;
+            }
+            ViewState["counter"] = counter;
+            Response.Write("Countdown: " + counter);
+ 
+            // Force immediate postback.
+            string sCommand = 
+                "<script type=\"text/javascript\">" + "document.forms[0].submit()</script>";
+            RegisterStartupScript("Progress", sCommand);
+
+            // Simulate the the next piece of the application.
+            System.Threading.Thread.Sleep(1000);
