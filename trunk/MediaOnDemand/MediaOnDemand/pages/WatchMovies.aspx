@@ -105,10 +105,7 @@
             <table width="100%">
             <tr>           
             <td>          
-            
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                <ContentTemplate>
-                
+                            
                      <div id="mediaPlayer" class="visibleVideoPlayer">
                             <!-- this A tag is where your Flowplayer will be placed. it can be anywhere -->
                             
@@ -153,10 +150,6 @@
                                 
                             </script>
                     </div>     
-                    
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-                        
             </td>
             </tr>
             </table>
