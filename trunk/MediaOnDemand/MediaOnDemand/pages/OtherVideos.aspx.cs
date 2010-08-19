@@ -90,11 +90,16 @@ namespace MediaOnDemand
             {
                 if(sm.medMediaType.Trim().Equals("tv"))
                 {
-                    DirectoryInfo dir = new DirectoryInfo(sm.medLocation);
-                    string item = dir.Parent.Name;
+                    if (Directory.Exists(sm.medLocation))
+                    {
+                        DirectoryInfo dir = new DirectoryInfo(sm.medLocation);
+                        string item = dir.Parent.Name;
 
-                    if (!this.ddlShows.Items.Contains(new ListItem(item)))
-                        this.ddlShows.Items.Add(item);
+                        if (!this.ddlShows.Items.Contains(new ListItem(item)))
+                            this.ddlShows.Items.Add(item);
+                    }
+                    else
+                        this.ddlShows.Items.Add("No shows were found");
                 }
             }            
         }

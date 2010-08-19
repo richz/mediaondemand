@@ -87,8 +87,13 @@
               </table>
           </LayoutTemplate>
       </asp:Login>
-     
-                
+                     
                 </div>
+                <br />
+                
+                <div>
+     
+      <asp:LinkButton ID="lnkContinueAsGuest" PostBackUrl="~/pages/Home.aspx" runat="server">Continue as Guest</asp:LinkButton>
+     </div>
                 </center>
 </asp:Content>
