@@ -258,6 +258,8 @@
     <EmbeddedResource Include="images\ProgressIndicator\progress.gif" />
     <EmbeddedResource Include="images\ProgressIndicator\progress_bg.gif" />
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <Content Include="bin\MediaOnDemandLibrary.dll" />
+    <Content Include="bin\MediaOnDemandLibrary.pdb" />
     <Content Include="Default.aspx" />
     <Content Include="images\Buttons\addButton.png" />
     <Content Include="images\ProgressIndicator\ajax-loader-bar.gif" />
@@ -282,7 +284,6 @@
   <ItemGroup>
     <Folder Include="aspnet_client\system_web\4_0_30128\" />
     <Folder Include="aspnet_client\system_web\4_0_30319\" />
-    <Folder Include="bin\" />
     <Folder Include="obj\" />
     <Folder Include="styles\JQuery\" />
   </ItemGroup>
