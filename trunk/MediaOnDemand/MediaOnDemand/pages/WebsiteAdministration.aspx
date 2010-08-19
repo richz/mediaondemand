@@ -1,9 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="WebsiteAdministration.aspx.cs"
     Inherits="MediaOnDemand.WebsiteAdministration" %>
 
-<%@ Register Assembly="EO.Web" Namespace="EO.Web" TagPrefix="eo" %>
-<%@ Register Assembly="MattBerseth.WebControls.AJAX" Namespace="MattBerseth.WebControls.AJAX.Progress"
-    TagPrefix="mb" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
     Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
