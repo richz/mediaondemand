@@ -270,8 +270,7 @@
         OnSelected="lnqMovies_Selected">
         <WhereParameters>
             <asp:Parameter DefaultValue="Y" Name="medIsViewable" Type="Char" />
-            <asp:Parameter DefaultValue="movie" Name="medMediaType" Type="String" />
-            <asp:Parameter DefaultValue=".flv" Name="medFileExt" />
+            <asp:Parameter DefaultValue="movie" Name="medMediaType" Type="String" />            
             <asp:ControlParameter ControlID="ddlGenre" DefaultValue="Comedy" Name="medGenre"
                 PropertyName="SelectedValue" Type="String" />
         </WhereParameters>

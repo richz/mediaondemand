@@ -51,6 +51,11 @@ namespace MediaOnDemand
 
             if (!IsPostBack)
             {
+                if (!Directory.Exists(rootMediaFilesFolder) || !Directory.Exists(videosFolder) || !Directory.Exists(audioFolder) || !Directory.Exists(picturesFolder) || !Directory.Exists(musicFolder) || !Directory.Exists(moviesFolder) || !Directory.Exists(musicVideosFolder) || !Directory.Exists(tvFolder) || !Directory.Exists(basketballFolder))
+                {
+                    this.btnAddAllFromNetworkFolder.Enabled = false;                    
+                }
+
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Show lightbox", "showBox();", true);
 
                 this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
@@ -343,8 +348,13 @@ namespace MediaOnDemand
             if (this.hdnUpdateMode.Value.Equals("add"))
             {
                 float duration = this.hdnDuration.Value.Equals("") ? 0.0f : float.Parse(this.hdnDuration.Value);
-                FileInfo file = new FileInfo(this.hdnLocation.Value);
-                string fileExt = file.Extension;
+                string fileExt = "";
+
+                if (Directory.Exists(this.hdnLocation.Value))
+                {
+                    FileInfo file = new FileInfo(this.hdnLocation.Value);
+                    fileExt = file.Extension;
+                }
 
                 try
                 {
