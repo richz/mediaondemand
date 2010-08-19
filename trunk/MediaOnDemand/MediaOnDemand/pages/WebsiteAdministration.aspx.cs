@@ -301,9 +301,7 @@ namespace MediaOnDemand
                     }
                     break;
             }
-
-            WebsiteAdministration.filesToProcess = Directory.GetFiles(WebsiteAdministration.networkFolder, "*.*", SearchOption.AllDirectories).Length;
-
+            
             this.ddlPageSize.SelectedIndex = 0;
             this.gvMedia.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].ToString());
             this.gvMedia.PageIndex = 0;
