@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="MediaOnDemand">
+</Property><Property Name="Solution File" Value="C:\Users\cpagu002\My Projects\Software Projects\Development\Personal\MediaOnDemand\MediaOnDemand.sln">
+</Property><Property Name="Date" Value="Tuesday, March 08, 2011">
+</Property><Property Name="Time" Value="21:56 PM">
+</Property></Properties><Event ErrorLevel="0" Project="MediaOnDemand" Source="MediaOnDemand\MediaOnDemand.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="MediaOnDemand" Source="MediaOnDemand\MediaOnDemand.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="MediaOnDemandLibrary" Source="MediaOnDemandLibrary\MediaOnDemandLibrary.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="MediaOnDemandLibrary" Source="MediaOnDemandLibrary\MediaOnDemandLibrary.csproj" Description="Converted">
+</Event><Event ErrorLevel="2" Project="MediaOnDemand" Source="MediaOnDemand\MediaOnDemand.csproj" Description="">
+</Event><Event ErrorLevel="0" Project="" Source="MediaOnDemand.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="MediaOnDemand.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="MediaOnDemandLibrary" Source="MediaOnDemandLibrary\MediaOnDemandLibrary.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
