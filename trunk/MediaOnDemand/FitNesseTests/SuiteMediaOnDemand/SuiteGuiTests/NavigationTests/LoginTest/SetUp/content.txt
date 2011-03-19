@@ -1,5 +1,0 @@
-!include .SwatSetup
-
-!define loginUserName {admin}
-!define loginPassword {password#}
-!define mainWindow (Media On Demand - ${loginUserName})
