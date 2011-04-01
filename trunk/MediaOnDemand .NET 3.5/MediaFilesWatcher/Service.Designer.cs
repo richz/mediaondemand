@@ -30,10 +30,8 @@
         {
             this.fileSystemWatcher = new System.IO.FileSystemWatcher();
             this.eventLog = new System.Diagnostics.EventLog();
-            this.decryptedDvdFolderWatcher = new System.IO.FileSystemWatcher();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.decryptedDvdFolderWatcher)).BeginInit();
             // 
             // fileSystemWatcher
             // 
@@ -55,17 +53,11 @@
             this.eventLog.Log = "Application";
             this.eventLog.Source = "MediaFilesWatcher";
             // 
-            // decryptedDvdFolderWatcher
-            // 
-            this.decryptedDvdFolderWatcher.EnableRaisingEvents = true;
-            this.decryptedDvdFolderWatcher.NotifyFilter = System.IO.NotifyFilters.FileName;
-            // 
             // Service
             // 
             this.ServiceName = "MediaFiles File Watcher";
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.decryptedDvdFolderWatcher)).EndInit();
 
         }
 
@@ -73,6 +65,5 @@
 
         private System.IO.FileSystemWatcher fileSystemWatcher;
         private System.Diagnostics.EventLog eventLog;
-        private System.IO.FileSystemWatcher decryptedDvdFolderWatcher;
     }
 }
