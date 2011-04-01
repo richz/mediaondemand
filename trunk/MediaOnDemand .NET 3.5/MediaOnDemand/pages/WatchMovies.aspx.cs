@@ -22,11 +22,13 @@ namespace MediaOnDemand
         protected void Page_Load(object sender, EventArgs e)
         {
             this.Title = "Media On Demand - " + User.Identity.Name;
-
+            
             Session["SelectedGenreIndex"] = this.ddlGenre.SelectedIndex;
 
             if (!IsPostBack)
             {
+                Session["SelectedGenreIndex"] = 1;
+
                 this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
 
                 this.ddlPageSize.SelectedIndex = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
@@ -63,11 +65,11 @@ namespace MediaOnDemand
 
         protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.ddlPageSize.SelectedValue.Equals("all"))
-            {
-                this.gvMovies.PageSize = Convert.ToInt32(Session["TotalRowCount"].ToString());
-            }
-            else
+            //if (this.ddlPageSize.SelectedValue.Equals("all"))
+            //{
+            //    this.gvMovies.PageSize = Convert.ToInt32(Session["TotalRowCount"].ToString());
+            //}
+            //else
                 this.gvMovies.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue);
 
             this.gvMovies.PageIndex = 0;
@@ -100,17 +102,20 @@ namespace MediaOnDemand
             Array.Sort(arr);
 
             genres = arr.ToList();
-
+            
             foreach (string genre in genres)
                 this.ddlGenre.Items.Add(genre);
-
+            
             if (this.ddlGenre.Items.Count > 0)
             {
-
                 WebHelper.SortDropDownListItems(ddlGenre);
+
+                this.ddlGenre.Items.Insert(0, new ListItem("All", "all"));
 
                 this.lblGenre.Visible = true;
                 this.ddlGenre.Visible = true;
+
+                this.ddlGenre.SelectedIndex = 1;
             }
             else
             {
@@ -172,7 +177,15 @@ namespace MediaOnDemand
 
         protected void ddlGenre_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.lnqMovies.WhereParameters[2].DefaultValue = this.ddlGenre.SelectedValue;
+            if (this.ddlGenre.SelectedIndex != 0)
+            {
+                if (this.lnqMovies.WhereParameters.Count < 3)
+                    this.lnqMovies.WhereParameters.Add(new Parameter("medGenre", TypeCode.String, this.ddlGenre.SelectedValue));
+                else
+                    this.lnqMovies.WhereParameters[2].DefaultValue = this.ddlGenre.SelectedValue;
+            }
+            else
+                this.lnqMovies.WhereParameters.RemoveAt(2);
         }
 
     }

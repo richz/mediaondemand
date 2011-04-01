@@ -21,30 +21,7 @@
     <h1>
         Movies</h1>
     <script type="text/javascript"><%= postBackStr %></script>
-    <%--<div id="fade" class="black_overlay">
-        <div id="light" class="white_content">
-        </div>
-    </div>--%>
-    <%--<div style="width: 90%; height: 90%; margin-left: auto; margin-right: auto">
-        <table border="0" cellpadding="0" align="left">
-            <tr>
-                <td>
-                    <div id="playerDiv" style="display: none">
-                         <object id="mediaPlayer" autosize="-1" classid="CLSID:22d6f312-b0f6-11d0-94ab-0080c74c7e95"
-                        codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701"
-                        standby="Loading Microsoft Windows Media Player components..." type="application/x-oleobject">
-                        <param name="fileName" value="\\192.168.0.130\mediafiles\videos\movie\Adventure\vob\Avatar.VOB" />
-                        <param name="animationatStart" value="true" />
-                        <param name="transparentatStart" value="true" />
-                        <param name="autoStart" value="true" />
-                        <param name="showControls" value="false" />
-                        <param name="loop" value="true" />
-                    </object>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>--%>
+  
     <div style="margin-left: auto; margin-left: auto">
         <table width="75%" style="height: 100%">
             <tr style="height: 20px">
@@ -81,8 +58,8 @@
                                     <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
                                         <asp:ListItem Selected="True">10</asp:ListItem>
                                         <asp:ListItem>20</asp:ListItem>
-                                        <asp:ListItem>50</asp:ListItem>
-                                        <asp:ListItem Value="all">All</asp:ListItem>
+                                        <%--<asp:ListItem>50</asp:ListItem>
+                                        <asp:ListItem Value="all">All</asp:ListItem>--%>
                                     </asp:DropDownList>
                                 </td>
                             </tr>

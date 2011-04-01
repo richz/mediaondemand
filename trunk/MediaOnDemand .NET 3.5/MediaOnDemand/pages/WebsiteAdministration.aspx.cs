@@ -292,6 +292,19 @@ namespace MediaOnDemand
             return "All finished!";
         }
 
+        [System.Web.Services.WebMethod]
+        [System.Web.Script.Services.ScriptMethod()]
+        public static string syncAllMediaRecords()
+        {
+            deleteAllMediaRecords();
+            string directory = WebsiteAdministration.networkFolder;
+            WebsiteAdministration.networkFolder = rootMediaFilesFolder;
+            addFilesFromFolder();
+            WebsiteAdministration.networkFolder = directory;
+
+            return "All finished!";
+        }
+        
         #region Control Event Handlers
 
         protected void ddlMediaTypes_SelectedIndexChanged(object sender, EventArgs e)

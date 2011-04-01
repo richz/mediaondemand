@@ -120,6 +120,34 @@
                 return false;
             });
 
+            $("#ctl00_MainContent_btnSyncRecordsWithMediaFiles").click(function () {
+
+                var response = confirm("Are you sure you want to sync all the records?\nFiles will be deleted and re-added.");
+                if (response == true) {
+                    showProgress();
+
+                    var intervalID = setInterval(updateProgress, 1);
+                    $.ajax({
+                        type: "POST",
+                        url: "WebsiteAdministration.aspx/syncAllMediaRecords",
+                        data: "{}",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        async: true,
+                        success: function (msg) {
+
+                            clearInterval(intervalID);
+
+                            document.body.removeChild(document.getElementById('lightBoxBackGround'));
+
+                            ForcePostBack();
+                        }
+                    });
+                }
+
+                return false;
+            });
+            
             function updateProgress(filesToProcess) {
 
                 // Not used right now
@@ -138,7 +166,7 @@
     <br />
     <table width="100%">
         <tr>
-            <td style="width: 75%" class="alignLeft" colspan="2">
+            <td style="width: 75%" class="alignLeft" colspan="3">
                 <table>
                     <tr>
                         <td>
@@ -161,23 +189,26 @@
             </td>
         </tr>
         <tr>
-            <td class="alignLeft">
-                <asp:Button ID="btnAddAllFromNetworkFolder" runat="server" Text="Add all media of selected type" />
+            <td class="alignLeft" style="width:25%">
+                <asp:Button ID="btnAddAllFromNetworkFolder" Width="200px" runat="server" Text="Add all media of selected type" />
             </td>
-            <td class="alignRight">
-                <asp:Button ID="btnDeleteAllFromNetworkFolder" runat="server" Text="Delete all media of selected type" />
+            <td align="center">
+                <asp:Button ID="btnSyncRecordsWithMediaFiles" Visible="false" runat="server" Text="Sync Records with MediaFiles"/>
+            </td>
+            <td class="alignRight"  style="width:25%">
+                <asp:Button ID="btnDeleteAllFromNetworkFolder" Width="210px" runat="server" Text="Delete all media of selected type" />
             </td>
         </tr>
         <tr>
             <td class="alignLeft">
-                <asp:Button ID="btnAddNewMediaRow" runat="server" Text="Add new media" OnClick="btnAddNewMediaRow_Click" />
+                <asp:Button ID="btnAddNewMediaRow" Width="110px" runat="server" Text="Add new media" OnClick="btnAddNewMediaRow_Click" />
             </td>
-            <td class="alignRight">
-                <asp:Button ID="btnDeleteAllRecords" runat="server" Text="Delete all records" />
+            <td class="alignRight" colspan="2">
+                <asp:Button ID="btnDeleteAllRecords" Width="120px" runat="server" Text="Delete all records" />
             </td>
         </tr>
         <tr style="width: 1000px">
-            <td id="PageSize" class="alignLeft">
+            <td id="PageSize" class="alignLeft" colspan="2">
                 <table>
                     <tr>
                         <td>
