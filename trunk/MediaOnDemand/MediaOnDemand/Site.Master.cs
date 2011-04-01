@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
+using System.IO;
 
 namespace MediaOnDemand
 {
@@ -22,9 +23,6 @@ namespace MediaOnDemand
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
                 {
                     this.MainContent.Page.Title = "Media On Demand - " + Membership.GetUser().UserName;
-
-
-
                 }
                 else
                 {
@@ -32,20 +30,19 @@ namespace MediaOnDemand
                 }
             }
 
-
             // Allowing only for development purposes
-            //if (HttpContext.Current.User.Identity.IsAuthenticated)
-            //{
-                //if (HttpContext.Current.User.IsInRole("Site Administrator"))
-                //{
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                if (HttpContext.Current.User.IsInRole("Site Administrator"))
+                {
                     this.NavigationMenu.Items.Add(new MenuItem("Administer Media", "", "", "~/pages/WebsiteAdministration.aspx"));
-                //}
-                //if (HttpContext.Current.User.IsInRole("Administrator"))
-                //{
+                    this.NavigationMenu.Items.Add(new MenuItem("Administer Site", "", "", "~/pages/SiteAdministration.aspx"));
+                }
+                if (HttpContext.Current.User.IsInRole("Administrator"))
+                {
                     this.NavigationMenu.Items.Add(new MenuItem("Administer Users", "", "", "~/pages/UserManagement.aspx"));
-                //}
-            //}
-        }
-
+                }
+            }
+        }       
     }
 }

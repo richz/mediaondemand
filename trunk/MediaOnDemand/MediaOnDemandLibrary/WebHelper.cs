@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace MediaOnDemandLibrary
 {
@@ -22,5 +23,22 @@ namespace MediaOnDemandLibrary
                 }
             return null;
         }
+
+
+        public static void SortDropDownListItems(DropDownList dropDown)
+        {
+            string[] arr = new string[dropDown.Items.Count];
+
+            for (int i = 0; i < dropDown.Items.Count; i++)
+                arr[i] = dropDown.Items[i].Value;
+
+            Array.Sort(arr);
+
+            dropDown.Items.Clear();
+
+            foreach (string str in arr)
+                dropDown.Items.Add(str);
+        }
+
     }
 }

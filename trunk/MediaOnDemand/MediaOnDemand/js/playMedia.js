@@ -1,48 +1,84 @@
 ﻿function showMediaInPopupWindow(mediaType) {
+    var browser = BrowserDetect.browser;
+    var position = 0;
+
+    if (browser == 'IE' && document.getElementById('player') != null) // stop player - IE working only 
+    {
+        position = document.getElementById('player').currentPosition;
+        document.getElementById('player').Stop();
+    }
 
     if (mediaType == 'video')
         CloseVideo();
     else // music 
     {
-        playerDiv.innerHTML = str;
+        var musicplayer = document.getElementById('musicPlayer');
+        if (musicplayer != null)
+            musicplayer.innerHTML = '';
     }
-    
+
     var mediaUrl = document.getElementById('ctl00_MainContent_hdnMediaUrl').getAttribute('value');
     var mediaId = document.getElementById('ctl00_MainContent_hdnMediaId').getAttribute('value');
 
-    var queryString = '?mediaUrl=' + mediaUrl;
+    var width;
+    var height;
+
+    if (mediaType == 'video') {
+        width = 400;
+        height = 300;
+    }
+    else {
+        width = 400;
+        height = 135;
+    }
+
+    var queryString = '?mediaUrl=' + mediaUrl + '&mediaType=' + mediaType + '&mediaPos=' + position;
 
     if (_arrWin[0] != null) // popup window is open
     {
-        _arrWin[0].location = 'PopupMedia.aspx' + queryString;
+        _arrWin[0].close();
+        _arrWin[0] = null;
+        //_arrWin[0].location = 'PopupMedia.aspx' + queryString;
     }
-    else {
-        var windowOptions;
-        if (mediaType == 'video')
-            windowOptions = 'width=400,height=300,toolbar=no, location=yes,directories=no,status=yes,menubar=no,scrollbars=no,copyhistory=no, resizable=yes';
-        else // music
-        {
-            windowOptions = 'width=250,height=20,toolbar=no, location=yes,directories=no,status=yes,menubar=no,scrollbars=no,copyhistory=no, resizable=no';
-        }
+    var windowOptions;
+    if (mediaType == 'video')
+        windowOptions = 'width=' + width + ',height=' + height + ',toolbar=no, location=yes,directories=no,status=yes,menubar=no,scrollbars=no,copyhistory=no, resizable=yes';
+    else // music
+    {
+        windowOptions = 'width=' + width + ',height=' + height + ',toolbar=no, location=yes,directories=no,status=yes,menubar=no,scrollbars=no,copyhistory=no, resizable=no';
+    }
 
-        _arrWin[0] = window.open('PopupMedia.aspx' + queryString, 'childWindow', windowOptions);
-    }
+    _arrWin[0] = window.open('PopupMedia.aspx' + queryString, 'childWindow', windowOptions);
+
 }
 
-//function showMediaInMainWindow(mediaUrl) {
+//function playMediaInMainWindow(mediaType, mediaUrl, position) {
 
 //    if (_arrWin[0]) {
 
-//        var mediaUrl = document.getElementById('ctl00_MainContent_hdnMediaUrl').getAttribute('value');
+//        var mainWindow = window.opener;
+//        var page;
 
-//        _arrWin[0] = null;
+//        switch (mediaType) {
+//            case 'music':
+//                page = 'StreamMusic.aspx';
+//                break;
+//            case 'movie':
+//                page = 'WatchMovies.aspx';
+//                break;
+//            case 'tv':
+//                page = 'WatchTvSeries.aspx';
+//                break;
 
-//        playMedia(mediaUrl, 'video', false);
+//                var queryString = '?playInMainWindow=true' + '&mediaUrl=' + mediaUrl + '&mediaType=' + mediaType + '&mediaPos=' + position;
 
-////        var btnPlayInPopup = document.getElementById('btnPlayInPopup');
+//                mainWindow.location = page + queryString;
 
-////        if (btnPlayInPopup != null)
-////            btnPlayInPopup.disabled = '';    
+//                alert(mainWindow.location);
+
+//                _arrWin[0] = null;
+//                self.close();
+//        }
 //    }
 //}
 
@@ -54,10 +90,21 @@ function ForcePostBack(lnkMovieLink, mediaType) {
     document.getElementById('ctl00_MainContent_hdnMediaUrl').setAttribute('value', mediaUrl);
     document.getElementById('ctl00_MainContent_hdnMediaId').setAttribute('value', mediaId);
 
-    playMedia(mediaUrl, mediaType, false);
-
+    if (_arrWin[0] != null) // popup window is open
+    {
+        showMediaInPopupWindow(mediaType);
+    }
+    else {
+        playMedia(mediaUrl, mediaType, false, 0);
+    }
     //Force page postback to set Movie Url
     //__doPostBack('__Page', 'MyCustomArgument');
+}
+
+function RemoveChildWindow() {
+
+    _arrWin[0] = null;
+
 }
 
 function CloseVideo() {
@@ -65,96 +112,17 @@ function CloseVideo() {
     if (navigator.appName == 'Microsoft Internet Explorer' && document.getElementById('player') != null)
         stop();
 
-    //    var playerDiv = document.getElementById('videoPlayer');
+    var lightBox = document.getElementById('lightBoxBackGround');
 
-    //    playerDiv.innerHTML = '';
+    if (lightBox != null) {
+        document.body.removeChild(lightBox);
+        document.body.removeChild(document.getElementById('mediaBox'));
+    }
 
-    document.body.removeChild(document.getElementById('lightBoxBackGround'));
-    document.body.removeChild(document.getElementById('mediaBox'));
-
-//    if (_arrWin[0])
-//        _arrWin[0] = null;
-
-    javascript:scroll(0, 0);
+    javascript: scroll(0, 0);
 }
 
-//function StopMusicPlayer() {
-//    if (navigator.appName == 'Microsoft Internet Explorer' && document.getElementById('player') != null)
-//        stop();
-
-//    var browser = BrowserDetect.browser;
-//    var str = '';
-
-//    switch (browser) {
-//        case 'FireFox':
-//            {
-//                str = '<object id="player"'
-
-//                if (mediaType == 'video') {
-//                    str += ' type="application/x-ms-wmp" width="100%" height="100%" autosize="-1">';
-//                }
-//                else // music 
-//                {
-//                    str += ' type="application/x-ms-wmp" width="400px" height="45px">';
-//                }
-
-//                str += '<param name="showControls" value="true">'
-//                    + '<param name="fileName" value="">'
-//                    + '<param name="uiMode" value="full">'
-//                    + '<param name="StretchToFit" value="true">'
-//                    + '<param name="Autostart" value="1">'
-//                    + '<param name="AutoSize" value="-1">'
-//                    + '</object>';
-//            }
-//            break;
-//        case 'IE':
-//            {
-//                str = '<object id="player" classid="clsid:22d6f312-b0f6-11d0-94ab-0080c74c7e95"';
-
-//                if (mediaType == 'video') {
-//                    str += ' type="application/x-ms-wmp" width="100%" height="100%" autosize="-1">';
-//                }
-//                else // music 
-//                {
-//                    str += ' type="application/x-ms-wmp" width="400px" height="43px">';
-//                }
-
-//                str += '<param name="showControls" value="true">'
-//                + '<param name="fileName" value="">'
-//                + '<param name="uiMode" value="full">'
-//                + '<param name="StretchToFit" value="true">'
-//                + '<param name="AutoSize" value="-1">'
-//                + '</object>';
-//            }
-//            break;
-//        case 'Chrome':
-//            {
-//                str = '<object id="player"'
-
-//                if (mediaType == 'video') {
-//                    str += ' type="application/x-ms-wmp" width="100%" height="100%" autosize="-1">';
-//                }
-//                else {
-//                    str += ' type="application/x-ms-wmp" width="400px" height="45px">';
-//                }
-
-//                str += '<param name="showControls" value="true">'
-//                + '<param name="fileName" value="">'
-//                + '<param name="uiMode" value="full">'
-//                + '<param name="StretchToFit" value="true">'
-//                + '<param name="AutoSize" value="-1">'
-//                + '</object>';
-//            }
-//            break;
-
-//    }
-
-//    playerDiv.innerHTML = str;
-
-//    
-//}
-
-function playMedia(mediaUrl, mediaType, isPopup) {
+function playMedia(mediaUrl, mediaType, isPopup, position) {
     var w;
     var h;
     var playerDiv;
@@ -169,33 +137,50 @@ function playMedia(mediaUrl, mediaType, isPopup) {
             width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
             height = document.documentElement.scrollHeight;
 
-            var btnCloseVideo = document.createElement('input');
-            btnCloseVideo.id = 'btnCloseVideo';
-            btnCloseVideo.setAttribute('type', 'button');
-            btnCloseVideo.setAttribute('onclick', 'CloseVideo()');
-            btnCloseVideo.setAttribute('value', 'Close Video');
-            btnCloseVideo.style.styleFloat = 'right';
-
             var btnPlayInPopup = document.createElement('input');
             btnPlayInPopup.id = 'btnPlayInPopup';
             btnPlayInPopup.setAttribute('type', 'button');
             btnPlayInPopup.setAttribute('onclick', 'showMediaInPopupWindow("video")');
             btnPlayInPopup.setAttribute('value', 'Show In Popup Window');
-            btnPlayInPopup.style.styleFloat = 'left';
+            //btnPlayInPopup.style.styleFloat = 'left';
             btnPlayInPopup.style.display = 'block';
+
+            var btnCloseVideo = document.createElement('input');
+            btnCloseVideo.id = 'btnCloseVideo';
+            btnCloseVideo.setAttribute('type', 'button');
+            btnCloseVideo.setAttribute('onclick', 'CloseVideo()');
+            btnCloseVideo.setAttribute('value', 'Close Video');
+            //btnCloseVideo.style.styleFloat = 'right';
+
+            var buttonDivTableTd1 = document.createElement('td');
+            buttonDivTableTd1.align = 'left';
+            buttonDivTableTd1.appendChild(btnPlayInPopup);
+
+            var buttonDivTableTd2 = document.createElement('td');
+            buttonDivTableTd2.align = 'right';
+            buttonDivTableTd2.appendChild(btnCloseVideo);
+
+            var buttonDivTableTr = document.createElement('tr');
+            buttonDivTableTr.style.width = '100%';
+
+            buttonDivTableTr.appendChild(buttonDivTableTd1);
+            buttonDivTableTr.appendChild(buttonDivTableTd2);
+
+            var buttonDivTable = document.createElement('table');
+            buttonDivTable.style.width = '100%';
+            buttonDivTable.appendChild(buttonDivTableTr);
 
             var buttonDiv = document.createElement('div');
             buttonDiv.id = 'buttonDiv';
             buttonDiv.style.width = '100%';
 
-            buttonDiv.appendChild(btnPlayInPopup);
-            buttonDiv.appendChild(btnCloseVideo);
+            buttonDiv.appendChild(buttonDivTable);
 
         }
         else // popup 
         {
             width = '400';
-            height = '300';
+            height = '350';
         }
 
         playerDiv = document.createElement('div');
@@ -219,15 +204,19 @@ function playMedia(mediaUrl, mediaType, isPopup) {
         div.id = 'mediaBox';
         div.style.position = (navigator.userAgent.indexOf('MSIE 6') > -1) ? 'absolute' : 'fixed';
         div.style.top = '0px';
-        div.style.left = '5' + '%';
-        div.style.height = '90' + '%';
-        div.style.width = '90' + '%';
+        div.style.left = '0' + '%';
         div.style.backgroundColor = 'black';
 
         if (!isPopup) {
+            div.style.height = '90' + '%';
+
             div.appendChild(buttonDiv);
         }
+        else {
+            div.style.height = '100' + '%';
+        }
 
+        div.style.width = '100' + '%';
         div.appendChild(playerDiv);
 
         document.body.appendChild(div);
@@ -267,31 +256,41 @@ function playMedia(mediaUrl, mediaType, isPopup) {
                 }
 
                 str += '<param name="showControls" value="true">'
-                    + '<param name="fileName" value="' + mediaUrl + '">'
-                    + '<param name="uiMode" value="full">'
-                    + '<param name="StretchToFit" value="true">'
-                    + '<param name="AutoSize" value="-1">'
-                    + '</object>';
+                        + '<param name="fileName" value="' + mediaUrl + '">'
+                        + '<param name="uiMode" value="full">'
+                        + '<param name="StretchToFit" value="true">'
+                        + '<param name="AutoSize" value="-1">'
+                        + '</object>';
             }
             break;
         case 'IE':
             {
+
                 str = '<object id="player" classid="clsid:22d6f312-b0f6-11d0-94ab-0080c74c7e95"';
 
                 if (mediaType == 'video') {
+
                     str += ' type="application/x-ms-wmp" width="100%" height="100%" autosize="-1">';
                 }
                 else // music
                 {
-                    str += ' type="application/x-ms-wmp" width="400px" height="43px" autosize="-1">';
+                    if (!isPopup)
+                        str += ' type="application/x-ms-wmp" width="400px" height="40px" autosize="-1">';
+                    else {
+                        str += ' type="application/x-ms-wmp" width="400px" height="100px" autosize="-1">';
+                        str += '<param name="showdisplay" value="true">';
+                    }
                 }
 
                 str += '<param name="showControls" value="true">'
-                + '<param name="fileName" value="' + mediaUrl + '">'
-                + '<param name="uiMode" value="full">'
-                + '<param name="StretchToFit" value="true">'
-                + '<param name="AutoSize" value="-1">'
-                + '</object>';
+                    + '<param name="fileName" value="' + mediaUrl + '">';
+
+                str += '<PARAM NAME="CurrentPosition" VALUE="' + position + '">'
+
+                str += '<param name="uiMode" value="full">'
+                    + '<param name="StretchToFit" value="true">'
+                    + '<param name="AutoSize" value="-1">'
+                    + '</object>';
             }
             break;
         case 'Chrome':
@@ -303,20 +302,24 @@ function playMedia(mediaUrl, mediaType, isPopup) {
                 }
                 else // music 
                 {
-                    str += ' type="application/x-ms-wmp" width="400px" height="45px" autosize="-1">';
+                    if (!isPopup)
+                        str += ' type="application/x-ms-wmp" width="420px" height="55px" autosize="-1">';
+                    else
+                        str += ' type="application/x-ms-wmp" width="100%" height="52px" autosize="-1">';
                 }
 
                 str += '<param name="showControls" value="true">'
-                    + '<param name="fileName" value="' + mediaUrl + '">'
-                    + '<param name="uiMode" value="full">'
-                    + '<param name="StretchToFit" value="true">'
-                    + '<param name="AutoSize" value="-1">'
-                    + '</object>';
+                        + '<param name="fileName" value="' + mediaUrl + '">'
+                        + '<param name="uiMode" value="full">'
+                        + '<param name="StretchToFit" value="true">'
+                        + '<param name="AutoSize" value="-1">'
+                        + '</object>';
             }
             break;
     }
 
     playerDiv.innerHTML = str;
+
 }
 
 function stop() {

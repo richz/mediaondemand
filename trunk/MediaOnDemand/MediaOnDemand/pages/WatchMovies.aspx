@@ -8,27 +8,11 @@
     <script src="../js/playMedia.js" type="text/javascript"></script>
     <script src="../js/site.js" type="text/javascript"></script>
     <script type="text/javascript">
-
-
-        function showMediaInMainWindow() {
-
-            if (_arrWin[0]) {
-
-                var mediaUrl = document.getElementById('ctl00_MainContent_hdnMediaUrl').getAttribute('value');
-
-                _arrWin[0] = null;
-
-                var btnPlayInPopup = document.getElementById('btnPlayInPopup');
-
-                if (btnPlayInPopup != null)
-                    btnPlayInPopup.disabled = '';
-            }
-        }
-
+    
+      
         function PlayVideo(link, mediaType) {
 
-            ForcePostBack(link, mediaType);
-
+            ForcePostBack(link, mediaType);            
         }
         
     </script>

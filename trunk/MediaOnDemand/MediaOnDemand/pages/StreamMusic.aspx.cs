@@ -101,7 +101,7 @@ namespace MediaOnDemand
                 this.ddlArtist.Visible = true;
             }
 
-            Session["SelectedArtistIndex"] = this.ddlArtist.SelectedIndex = 1;
+            Session["SelectedArtistIndex"] = this.ddlArtist.SelectedIndex = 0;
             
         }
 

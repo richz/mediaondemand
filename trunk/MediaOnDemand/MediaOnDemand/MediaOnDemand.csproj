@@ -61,6 +61,7 @@
     <Reference Include="System.Data.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.Extensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -81,6 +82,7 @@
     <Content Include="App_Data\MediaOnDemandDB_log.ldf">
       <DependentUpon>MediaOnDemandDB.mdf</DependentUpon>
     </Content>
+    <Content Include="pages\WatchTvSeries.aspx" />
     <Content Include="pages\Register.aspx" />
     <Content Include="bin\MediaOnDemand.dll" />
     <Content Include="bin\MediaOnDemand.pdb" />
@@ -102,6 +104,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="pages\WatchTvSeries.aspx.cs">
+      <DependentUpon>WatchTvSeries.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\WatchTvSeries.aspx.designer.cs">
+      <DependentUpon>WatchTvSeries.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\PopupMedia.aspx.cs">
       <DependentUpon>PopupMedia.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -243,6 +252,13 @@
     <Compile Include="pages\UserAccount.aspx.designer.cs">
       <DependentUpon>UserAccount.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\SiteAdministration.aspx.cs">
+      <DependentUpon>SiteAdministration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\SiteAdministration.aspx.designer.cs">
+      <DependentUpon>SiteAdministration.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebService.asmx.cs">
       <DependentUpon>WebService.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -337,6 +353,7 @@
     <Content Include="js\site.js" />
     <Content Include="pages\PopupMedia.aspx" />
     <Content Include="WebControls\mp4-streamer.ashx" />
+    <Content Include="pages\SiteAdministration.aspx" />
     <Content Include="WebService.asmx" />
   </ItemGroup>
   <ItemGroup>
@@ -360,7 +377,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>51595</DevelopmentServerPort>
+          <DevelopmentServerPort>56244</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:90/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

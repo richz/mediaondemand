@@ -40,13 +40,13 @@ namespace MediaOnDemand {
         protected global::System.Web.UI.WebControls.Button btnAddAllFromNetworkFolder;
         
         /// <summary>
-        /// btnDeleteAllRecords control.
+        /// btnDeleteAllFromNetworkFolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDeleteAllRecords;
+        protected global::System.Web.UI.WebControls.Button btnDeleteAllFromNetworkFolder;
         
         /// <summary>
         /// btnAddNewMediaRow control.
@@ -56,6 +56,15 @@ namespace MediaOnDemand {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddNewMediaRow;
+        
+        /// <summary>
+        /// btnDeleteAllRecords control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDeleteAllRecords;
         
         /// <summary>
         /// lblPageSize control.

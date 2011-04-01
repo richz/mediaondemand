@@ -20,8 +20,8 @@
     //box.style.position = (navigator.userAgent.indexOf('MSIE 6') > -1) ? 'absolute' : 'fixed';
     progressIndicator.style.position = 'absolute';
 
-    progressIndicator.style.top = ((.5 * height) - (.5 * progressIndicator.style.height)) + 'px';
-    progressIndicator.style.left = ((.5 * width) - (.5 * progressIndicator.style.width)) + 'px';
+    progressIndicator.style.top = 200 + 'px'//((.5 * height) - (.5 * progressIndicator.style.height)) + 'px';
+    progressIndicator.style.left = ((.5 * width) - (progressIndicator.style.width)) + 'px';
 
     progressIndicator.style.height = '100px';
     progressIndicator.style.width = '100px';

@@ -4,3 +4,9 @@ C:\Users\cpagu002\My Projects\Software Projects\Development\Personal\MediaOnDema
 C:\Users\cpagu002\My Projects\Software Projects\Development\Personal\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\cpagu002\My Projects\Software Projects\Development\Personal\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.dll
 C:\Users\cpagu002\My Projects\Software Projects\Development\Personal\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.pdb
+C:\Users\cpagu002\My Projects\Software Projects\Development\Personal\MediaOnDemand .NET 3.5\MediaOnDemandLibrary\bin\Debug\MediaOnDemandLibrary.dll.config
+C:\Users\cpagu002\My Projects\Software Projects\Development\Personal\MediaOnDemand .NET 3.5\MediaOnDemandLibrary\bin\Debug\MediaOnDemandLibrary.dll
+C:\Users\cpagu002\My Projects\Software Projects\Development\Personal\MediaOnDemand .NET 3.5\MediaOnDemandLibrary\bin\Debug\MediaOnDemandLibrary.pdb
+C:\Users\cpagu002\My Projects\Software Projects\Development\Personal\MediaOnDemand .NET 3.5\MediaOnDemandLibrary\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\cpagu002\My Projects\Software Projects\Development\Personal\MediaOnDemand .NET 3.5\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.dll
+C:\Users\cpagu002\My Projects\Software Projects\Development\Personal\MediaOnDemand .NET 3.5\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.pdb

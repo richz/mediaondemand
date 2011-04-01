@@ -37,7 +37,7 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript"><%= postBackStr %></script>
+    
     <asp:Label ID="lblFileMessages" runat="server" Text="Label"></asp:Label>
     <center>
         <table width="60%" style="height: 20%">
@@ -48,36 +48,25 @@
                             <table>
                                 <tr>
                                     <td align="right" style="width: 50%">
-                                        <asp:Label ID="lblChooseMediaType" runat="server" Text="Media category: "></asp:Label>
+                                        <asp:Label ID="lblChooseMediaType" runat="server" Visible="false" Text="Media category: "></asp:Label>
                                     </td>
                                     <td align="left">
-                                        <asp:DropDownList ID="ddlMediaTypes" runat="server" OnSelectedIndexChanged="ddlMediaTypes_SelectedIndexChanged"
-                                            AutoPostBack="true" OnLoad="ddlMediaTypes_Load">
-                                            <asp:ListItem Value="tv" Selected="True">TV</asp:ListItem>
-                                            <asp:ListItem Value="sports">Sports</asp:ListItem>
+                                        <asp:DropDownList ID="ddlMediaTypes" runat="server" Visible="false" OnSelectedIndexChanged="ddlMediaTypes_SelectedIndexChanged"
+                                            AutoPostBack="true" OnLoad="ddlMediaTypes_Load">                                            
+                                            <asp:ListItem Value="sports" Selected="True">Sports</asp:ListItem>
                                             <asp:ListItem Value="musicvideo">Music Videos</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="right" style="width: 50%">
-                                        <asp:Label ID="lblChooseSeries" runat="server" Text="Series: "></asp:Label>
+                                        <asp:Label ID="lblChooseSeries" runat="server" Visible="false" Text="Series: "></asp:Label>
                                     </td>
                                     <td align="left">
-                                        <asp:DropDownList ID="ddlList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlList_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlList" runat="server" Visible="false" AutoPostBack="true" OnSelectedIndexChanged="ddlList_SelectedIndexChanged">
                                         </asp:DropDownList>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td align="right" style="width: 50%">
-                                        <asp:Label ID="lblChooseSeason" runat="server" Text="Season :"></asp:Label>
-                                    </td>
-                                    <td align="left">
-                                        <asp:DropDownList ID="ddlSeasonNumbers" runat="server" AutoPostBack="true"
-                                            onselectedindexchanged="ddlSeasonNumbers_SelectedIndexChanged">
-                                        </asp:DropDownList>
-                                    </td>
-                                </tr>
+                                </tr>                                
                             </table>
                         </ContentTemplate>
                     </asp:UpdatePanel>
@@ -114,7 +103,7 @@
                     <tr>
                         <td colspan="2">
                             <div class="mediaGrid">
-                                <asp:GridView ID="gvVideos" Height="100%" Width="100%" runat="server" AllowPaging="True"
+                                <asp:GridView ID="gvVideos" Height="100%" Width="100%" PageSize="10" runat="server" AllowPaging="True"
                                     AllowSorting="True" AutoGenerateColumns="False" DataSourceID="lnqVideos" CellPadding="4"
                                     ForeColor="#333333" GridLines="None" ondatabound="gvVideos_DataBound">
                                     <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
@@ -193,11 +182,11 @@
     </asp:UpdatePanel>
     <asp:LinqDataSource ID="lnqVideos" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
         Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre, medAlbum, medDuration, medVideoType, medDateAdded, medMediaType, medId, medFileExt)"
-        TableName="StoredMedias" Where="medMediaType == @medMediaType &amp;&amp; medGenre == @medGenre &amp;&amp; medAlbum == @medAlbum"
+        TableName="StoredMedias" Where="medMediaType == @medMediaType &amp;&amp; medGenre == @medGenre"
         OnSelected="lnqVideos_Selected">
         <WhereParameters>
             <asp:ControlParameter ControlID="ddlMediaTypes" Name="medMediaType" PropertyName="SelectedValue"
-                Type="String" DefaultValue="tv" />
+                Type="String" DefaultValue="sports" />
             <asp:ControlParameter ControlID="ddlList" Name="medGenre" PropertyName="SelectedValue"
                 Type="String" DefaultValue=" " />
             

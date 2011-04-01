@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using MediaOnDemand;
+using MediaOnDemandLibrary;
 
 namespace MediaOnDemand
 {
@@ -22,29 +23,9 @@ namespace MediaOnDemand
 
             if (!IsPostBack)
             {
-                this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
-
                 SetList();
-                if (this.ddlList.Items.Count > 0)
-                    this.ddlList.SelectedIndex = 0;
-
-                if (this.ddlMediaTypes.SelectedValue.Equals("tv"))
-                {
-                    SetSeasonNumbers();
-                    if (ddlSeasonNumbers.Items.Count > 0)
-                    {
-                        this.ddlSeasonNumbers.SelectedIndex = 0;
-
-                        if (this.lnqVideos.WhereParameters.IndexOf(new Parameter("medAlbum")) < 0)
-                            this.lnqVideos.WhereParameters.Add("medAlbum", this.ddlSeasonNumbers.SelectedValue);
-                    }
-                }
-
-                this.gvVideos.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
-                this.gvVideos.Sort("medTitle", SortDirection.Ascending);
             }
 
-            //this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
             this.lblFileMessages.Text = "";
         }
 
@@ -108,24 +89,19 @@ namespace MediaOnDemand
                         this.ddlList.Items.Add(item);
                 }
             }
-        }
 
-        private void SetSeasonNumbers()
-        {
-            this.ddlSeasonNumbers.Items.Clear();
-
-            StorageMediaDataContext context = new StorageMediaDataContext();
-
-            foreach (StoredMedia sm in context.StoredMedias)
+            if (ddlList.Items.Count > 0)
             {
-                if (sm.medMediaType.Trim().Equals(this.ddlMediaTypes.SelectedValue) && sm.medGenre.Trim().Equals(this.ddlList.SelectedValue))
-                {
-                    //DirectoryInfo dir = new DirectoryInfo(sm.medLocation);
-                    string item = sm.medAlbum;
+                WebHelper.SortDropDownListItems(ddlList);
+                this.ddlList.SelectedIndex = 0;
 
-                    if (!this.ddlSeasonNumbers.Items.Contains(new ListItem(item)))
-                        this.ddlSeasonNumbers.Items.Add(item);
-                }
+                this.lblChooseSeries.Visible = true;
+                this.ddlList.Visible = true;
+            }
+            else
+            {
+                this.lblChooseSeries.Visible = false;
+                this.ddlList.Visible = false;
             }
         }
 
@@ -133,57 +109,12 @@ namespace MediaOnDemand
 
         protected void ddlMediaTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.lnqVideos.WhereParameters.Count > 2)
-                this.lnqVideos.WhereParameters.RemoveAt(2);
-
             // Reset Page Index for Grid
             this.gvVideos.PageIndex = 0;
             this.ddlPageSize.SelectedIndex = 0;
             this.gvVideos.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
 
-            SetList();
-            if (this.ddlList.Items.Count > 0)
-                this.ddlList.SelectedIndex = 0;
-
-            if (this.ddlMediaTypes.SelectedValue.Equals("tv"))
-            {
-                SetSeasonNumbers();
-                if (this.ddlSeasonNumbers.Items.Count > 0)
-                    this.ddlSeasonNumbers.SelectedIndex = 0;
-            }
-
-            switch (this.ddlMediaTypes.SelectedValue)
-            {
-                case "tv":
-                    {
-                        this.lnqVideos.WhereParameters["medMediaType"].DefaultValue = "\"tv\"";                        
-                    }
-                    break;
-                case "sports":
-                    {
-                        this.lnqVideos.WhereParameters["medMediaType"].DefaultValue = "\"sports\"";
-                    }
-                    break;
-                case "musicvideo":
-                    {
-                        this.lnqVideos.WhereParameters["medMediaType"].DefaultValue = "\"musicvideo\"";
-                    }
-                    break;
-            }
-
-            //if (Convert.ToInt32(Session["TotalRowCount"].ToString()) > 0)
-            //{
-            //    SetList();                
-            //    if(this.ddlList.Items.Count > 0)
-            //        this.ddlList.SelectedIndex = 0;
-
-            //    if (this.ddlMediaTypes.SelectedValue.Equals("tv"))
-            //    {
-            //        SetSeasonNumbers();
-            //        if (this.ddlSeasonNumbers.Items.Count > 0)
-            //            this.ddlSeasonNumbers.SelectedIndex = 0;
-            //    }
-            //}
+            SetList();            
         }
 
         protected void lnqVideos_Selected(object sender, LinqDataSourceStatusEventArgs e)
@@ -191,20 +122,7 @@ namespace MediaOnDemand
             Session["TotalRowCount"] = e.TotalRowCount;
             UpdateRecordCount();
 
-            if (e.TotalRowCount == 0)
-            {
-                this.lblPageSize.Visible = false;
-                this.ddlPageSize.Visible = false;
-                this.lblRecordCount.Visible = false;
-
-                //this.lblChooseMediaType.Visible = false;
-                //this.ddlMediaTypes.Visible = false;
-                this.lblChooseSeries.Visible = false;
-                this.ddlList.Visible = false;
-                this.ddlSeasonNumbers.Visible = false;
-                this.lblChooseSeason.Visible = false;                
-            }
-            else
+            if (e.TotalRowCount > 0)
             {
                 this.lblPageSize.Visible = true;
                 this.ddlPageSize.Visible = true;
@@ -212,44 +130,31 @@ namespace MediaOnDemand
 
                 this.lblChooseMediaType.Visible = true;
                 this.ddlMediaTypes.Visible = true;
-                this.lblChooseSeries.Visible = true;
-                this.ddlList.Visible = true;
-                this.ddlSeasonNumbers.Visible = true;
-                this.lblChooseSeason.Visible = true;   
             }
+            else
+            {
+                this.lblPageSize.Visible = false;
+                this.ddlPageSize.Visible = false;
+                this.lblRecordCount.Visible = false;
+
+                this.lblChooseMediaType.Visible = false;
+                this.ddlMediaTypes.Visible = false;
+            }
+
         }
 
         protected void ddlMediaTypes_Load(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
-            //{
-            // SetList();
-            // if(this.ddlList.Items.Count > 0)
-            //   this.ddlList.SelectedIndex = 0;
-            //}
-
+            
         }
 
         protected void ddlList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.ddlMediaTypes.SelectedValue.Equals("tv"))
-            {
-                SetSeasonNumbers();
-                if (this.ddlSeasonNumbers.Items.Count > 0)
-                    this.ddlSeasonNumbers.SelectedIndex = 0;
 
-                this.lnqVideos.WhereParameters["medAlbum"].DefaultValue = this.ddlSeasonNumbers.SelectedValue;
-            }
-        }
-
-        protected void ddlSeasonNumbers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            this.lnqVideos.WhereParameters["medAlbum"].DefaultValue = this.ddlSeasonNumbers.SelectedValue;
         }
 
         protected void gvVideos_DataBound(object sender, EventArgs e)
-        {            
+        {
 
         }
     }

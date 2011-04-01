@@ -9,9 +9,7 @@
     Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <script src="../js/WebAdmin.js" type="text/javascript"></script>
-
     <script src="../js/site.js" type="text/javascript"></script>
-
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
         rel="stylesheet" type="text/css" />
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
@@ -67,27 +65,57 @@
                 return false;
             });
 
+            $("#ctl00_MainContent_btnDeleteAllFromNetworkFolder").click(function () {
+
+                var response = confirm("Are you sure you want to delete all records for this type?");
+                if (response == true) {
+                    showProgress();
+
+                    var intervalID = setInterval(updateProgress, 1);
+                    $.ajax({
+                        type: "POST",
+                        url: "WebsiteAdministration.aspx/deleteAllRecordsForType",
+                        data: "{}",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        async: true,
+                        success: function (msg) {
+
+                            clearInterval(intervalID);
+
+                            document.body.removeChild(document.getElementById('lightBoxBackGround'));
+
+                            ForcePostBack();
+                        }
+                    });
+                }
+                return false;
+            });
+
             $("#ctl00_MainContent_btnDeleteAllRecords").click(function () {
 
-                showProgress();
+                var response = confirm("Are you sure you want to delete all the records?");
+                if (response == true) {
+                    showProgress();
 
-                var intervalID = setInterval(updateProgress, 1);
-                $.ajax({
-                    type: "POST",
-                    url: "WebsiteAdministration.aspx/deleteAllRecordsForType",
-                    data: "{}",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    async: true,
-                    success: function (msg) {
+                    var intervalID = setInterval(updateProgress, 1);
+                    $.ajax({
+                        type: "POST",
+                        url: "WebsiteAdministration.aspx/deleteAllMediaRecords",
+                        data: "{}",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        async: true,
+                        success: function (msg) {
 
-                        clearInterval(intervalID);
+                            clearInterval(intervalID);
 
-                        document.body.removeChild(document.getElementById('lightBoxBackGround'));
+                            document.body.removeChild(document.getElementById('lightBoxBackGround'));
 
-                        ForcePostBack();
-                    }
-                });
+                            ForcePostBack();
+                        }
+                    });
+                }
 
                 return false;
             });
@@ -134,15 +162,18 @@
         </tr>
         <tr>
             <td class="alignLeft">
-                <asp:Button ID="btnAddAllFromNetworkFolder" runat="server" Text="Add all files of selected media type" />
+                <asp:Button ID="btnAddAllFromNetworkFolder" runat="server" Text="Add all media of selected type" />
             </td>
             <td class="alignRight">
-                <asp:Button ID="btnDeleteAllRecords" runat="server" Text="Delete All Records" />
+                <asp:Button ID="btnDeleteAllFromNetworkFolder" runat="server" Text="Delete all media of selected type" />
             </td>
         </tr>
         <tr>
-            <td colspan="2" class="alignLeft">
+            <td class="alignLeft">
                 <asp:Button ID="btnAddNewMediaRow" runat="server" Text="Add new media" OnClick="btnAddNewMediaRow_Click" />
+            </td>
+            <td class="alignRight">
+                <asp:Button ID="btnDeleteAllRecords" runat="server" Text="Delete all records" />
             </td>
         </tr>
         <tr style="width: 1000px">

@@ -6,70 +6,90 @@
 <head runat="server">
     <title>Media On Demand</title>
     <link href="../Styles/Site.css" rel="stylesheet" type="text/css" />
-
     <script src="../js/site.js" type="text/javascript"></script>
-
     <script src="../js/playMedia.js" type="text/javascript"></script>
-    
-     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript" ></script>
-    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
+        type="text/javascript"></script>
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
         rel="stylesheet" type="text/css" />
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
         rel="stylesheet" type="text/css" />
-
     <script type="text/javascript">
 
         window.onload = startVideo;
+        window.onunload = cleanUp;
 
-        function resize() {            
+        function resize() {
 
             //var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
             //var height = document.documentElement.scrollHeight;
 
             //document.getElementById('player').width = width;
             //document.getElementById('player').height = height;
-        
+
         }
 
         function startVideo() {
 
+            var browser = BrowserDetect.browser;
+
             var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
             var height = document.documentElement.scrollHeight;
-            var mediaTitle = getQueryVariable("title");
+            var mediaType = getQueryVariable("mediaType");
             var mediaUrl = getQueryVariable("mediaUrl");
+            var mediaPosition = getQueryVariable("mediaPos");
 
-            document.body.width = width;
-            document.body.height = height;
+            if (browser == 'IE' || browser == 'FireFox') {
+                if (mediaType == 'music') {
 
-            playMedia(mediaUrl, 'video', true);
+                    if (browser == 'IE')
+                        self.resizeTo(400, 183);
+                    else
+                        self.resizeTo(400, 135);
+                }
+                else // video
+                {
+                    self.resizeTo(400, 350);
+                }
+            }
+            else if (browser == 'Chrome') {
+
+                if (mediaType == 'music') {
+
+                    self.resizeTo(400, 110);
+                }
+                else // video
+                {
+                    self.resizeTo(400, 355);
+                }
+
+
+            }
+
+            playMedia(mediaUrl, mediaType, true, mediaPosition);
+
         }
-
 
         function cleanUp() {
-                    
-            //var mediaTitle = getQueryVariable("title");
-            //var mediaUrl = getQueryVariable("mediaUrl");
 
-            //window.opener.showMediaInMainWindow(mediaUrl);
-        
+            try {
+                window.opener.RemoveChildWindow();
+            }
+            catch (err)
+                { }
         }
-            
-    </script>
 
+    </script>
 </head>
-<body style="background-color:Black; width:100%; height:100%">
+<body style="background-color: Black; width: 100%; height: 100%">
     <form id="form" runat="server">
     <div>
         <center>
             <table>
-                
                 <tr>
                     <td colspan="2">
                         <div id="mediaPlayer">
-                          
                         </div>
                     </td>
                 </tr>

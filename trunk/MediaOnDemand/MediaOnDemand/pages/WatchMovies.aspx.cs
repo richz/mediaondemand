@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using MediaOnDemand;
+using MediaOnDemandLibrary;
 
 namespace MediaOnDemand
 {
@@ -27,22 +28,18 @@ namespace MediaOnDemand
             if (!IsPostBack)
             {
                 this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
-                //this.wmPlayer.MovieURL = "";
-                //this.wmPlayer.AutoStart = true;
 
                 this.ddlPageSize.SelectedIndex = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
                 this.gvMovies.Sort("medTitle", SortDirection.Ascending);
             }
-            
-            //this.wmPlayer.MovieURL = this.hdnMediaUrl.Value;
-            //this.lblFileMessages.Text = "";
+
             this.lblMessage.Text = "";
-            
+
             if (!String.IsNullOrEmpty(this.hdnMediaUrl.Value))
             {
-                this.hdnMediaId.Value = GetMediaIdFromUrl(Path.GetFileNameWithoutExtension(this.hdnMediaUrl.Value), this.hdnMediaUrl.Value) + "";                
+                this.hdnMediaId.Value = GetMediaIdFromUrl(Path.GetFileNameWithoutExtension(this.hdnMediaUrl.Value), this.hdnMediaUrl.Value) + "";
             }
-            
+
         }
 
         private int GetMediaIdFromUrl(string mediaTitle, string mediaUrl)
@@ -60,26 +57,20 @@ namespace MediaOnDemand
             return mediaId;
         }
 
-        //[System.Web.Services.WebMethod]
-        //[System.Web.Script.Services.ScriptMethod()]
-        
-
-
         #endregion
 
-        #region Controls Event Handlers        
+        #region Controls Event Handlers
 
         protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.ddlPageSize.SelectedValue.Equals("all"))
             {
-                this.gvMovies.PageSize = Convert.ToInt32(Session["TotalRowCount"].ToString());                
+                this.gvMovies.PageSize = Convert.ToInt32(Session["TotalRowCount"].ToString());
             }
             else
                 this.gvMovies.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue);
 
             this.gvMovies.PageIndex = 0;
-            //UpdateRecordCount();
         }
 
         #endregion
@@ -98,15 +89,14 @@ namespace MediaOnDemand
             {
                 if (sm.medMediaType.Trim().Equals("movie"))
                 {
-                    DirectoryInfo dir = new DirectoryInfo(sm.medLocation);
-                    string item = dir.Parent.Parent.Name;
+                    string item = sm.medGenre;
 
                     if (!genres.Contains(item))
                         genres.Add(item);
                 }
             }
 
-            string [] arr = genres.ToArray();
+            string[] arr = genres.ToArray();
             Array.Sort(arr);
 
             genres = arr.ToList();
@@ -114,15 +104,18 @@ namespace MediaOnDemand
             foreach (string genre in genres)
                 this.ddlGenre.Items.Add(genre);
 
-            if (this.ddlGenre.Items.Count == 0)
+            if (this.ddlGenre.Items.Count > 0)
             {
-                this.lblGenre.Visible = false;
-                this.ddlGenre.Visible = false;
+
+                WebHelper.SortDropDownListItems(ddlGenre);
+
+                this.lblGenre.Visible = true;
+                this.ddlGenre.Visible = true;
             }
             else
             {
-                this.lblGenre.Visible = true;
-                this.ddlGenre.Visible = true;
+                this.lblGenre.Visible = false;
+                this.ddlGenre.Visible = false;
             }
         }
 
@@ -149,20 +142,6 @@ namespace MediaOnDemand
 
         }
 
-        //private int GetGridViewRecordCountByCurrentMediaType()
-        //{
-        //    StorageMediaDataContext context = new StorageMediaDataContext();
-
-        //    var recs =
-
-        //        (from StoredMedia in context.StoredMedias
-        //         where StoredMedia.medMediaType == "movie"
-        //         select StoredMedia
-        //        );
-
-        //    return recs.Count();
-        //}
-
         #endregion
 
         protected void lnqMovies_Selected(object sender, LinqDataSourceStatusEventArgs e)
@@ -188,7 +167,7 @@ namespace MediaOnDemand
                 this.lblRecordCount.Visible = true;
             }
 
-            
+
         }
 
         protected void ddlGenre_SelectedIndexChanged(object sender, EventArgs e)
