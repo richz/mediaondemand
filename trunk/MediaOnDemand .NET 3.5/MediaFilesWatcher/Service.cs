@@ -82,7 +82,7 @@ namespace MediaFilesWatcher
                     }
                     catch (Exception ex)
                     {
-                        eventLog.WriteEntry(ex.Message);
+                        EventLog.WriteEntry("MediaFilesWatcher", String.Format("The following exception ocurred while attempting to rename the file \"{0}\" to vob format: {1}", e.FullPath, ex.Message));
                     }
 
                 }
