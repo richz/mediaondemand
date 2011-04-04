@@ -5,26 +5,9 @@
 <%@ Register Assembly="Media-Player-ASP.NET-Control" Namespace="Media_Player_ASP.NET_Control"
     TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+<script src="../js/site.js" type="text/javascript"></script>
     <script src="../js/playMedia.js" type="text/javascript"></script>
-    <script type="text/javascript">
-
-        function showMediaInMainWindow() {
-
-            if (_arrWin[0]) {
-
-                var mediaUrl = document.getElementById('ctl00_MainContent_hdnMediaUrl').getAttribute('value');
-
-                _arrWin[0] = null;
-
-                var btnPlayInPopup = document.getElementById('btnPlayInPopup');
-
-                if (btnPlayInPopup != null)
-                    btnPlayInPopup.disabled = '';
-            }
-        }
-    
-    </script>
-</asp:Content>
+    </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h1>
         Videos</h1>
@@ -37,7 +20,6 @@
             </div>
         </div>
     </div>
-    
     <asp:Label ID="lblFileMessages" runat="server" Text="Label"></asp:Label>
     <center>
         <table width="60%" style="height: 20%">
@@ -45,13 +27,14 @@
                 <td>
                     <asp:UpdatePanel ID="updatePanel" runat="server">
                         <ContentTemplate>
-                            <table>                                
+                            <table>
                                 <tr>
                                     <td align="right" style="width: 50%">
                                         <asp:Label ID="lblChooseSeries" runat="server" Visible="false" Text="Series: "></asp:Label>
                                     </td>
                                     <td align="left">
-                                        <asp:DropDownList ID="ddlList" runat="server" Visible="false" AutoPostBack="true" OnSelectedIndexChanged="ddlList_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlList" runat="server" Visible="false" AutoPostBack="true"
+                                            OnSelectedIndexChanged="ddlList_SelectedIndexChanged">
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
@@ -61,7 +44,7 @@
                                     </td>
                                     <td align="left">
                                         <asp:DropDownList ID="ddlSeasonNumbers" runat="server" Visible="false" AutoPostBack="true"
-                                            onselectedindexchanged="ddlSeasonNumbers_SelectedIndexChanged">
+                                            OnSelectedIndexChanged="ddlSeasonNumbers_SelectedIndexChanged">
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
@@ -101,17 +84,15 @@
                     <tr>
                         <td colspan="2">
                             <div class="mediaGrid">
-                                <asp:GridView ID="gvVideos" Height="100%" Width="100%" PageSize="10" runat="server" AllowPaging="True"
-                                    AllowSorting="True" AutoGenerateColumns="False" DataSourceID="lnqVideos" CellPadding="4"
-                                    ForeColor="#333333" GridLines="None" ondatabound="gvVideos_DataBound">
+                                <asp:GridView ID="gvVideos" Height="100%" Width="100%" PageSize="10" runat="server"
+                                    AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="lnqVideos"
+                                    CellPadding="4" ForeColor="#333333" GridLines="None" OnDataBound="gvVideos_DataBound">
                                     <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                                     <Columns>
-
-
-                                     <asp:TemplateField>
+                                        <asp:TemplateField>
                                             <ItemTemplate>
-                                                <a id="lnkVideoLink" href="#" onclick="ForcePostBack(this, 'video')" mediaTitle='<%# Eval("medTitle") %>' param='<%# Eval("medLocation") %>'
-                                                    mediaid='<%# Eval("medId") %>'>
+                                                <a id="lnkVideoLink" href="#" onclick="ForcePostBack(this, 'video')" mediatitle='<%# Eval("medTitle") %>'
+                                                    param='<%# Eval("medLocation") %>' mediaid='<%# Eval("medId") %>'>
                                                     <asp:Image ID="imgPlay" Width="30px" Height="30px" ImageUrl="~/images/play.jpg" runat="server" />
                                                 </a>
                                                 <%--<a id="lnkPlayMedia" onclick="PlayMedia(this)" href="#" param='<%# Eval("medLocation") %>'>
@@ -119,40 +100,39 @@
                                             </a>--%>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:BoundField DataField="medTitle" HeaderText="Title" ReadOnly="True" 
+                                        <%--<asp:BoundField DataField="medTitle" HeaderText="Title" ReadOnly="True" 
                                             SortExpression="medTitle" >
                                         <ItemStyle HorizontalAlign="Center" />
                                         </asp:BoundField>
-
-<%--                                        <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
+                                        --%>
+                                        <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
                                             <ItemTemplate>
-                                                <a id="lnkVideoLink" href="#" onclick="ForcePostBack(this, 'video')" param='<%# Eval("medLocation") %>'
-                                                    mediaid='<%# Eval("medId") %>'>
-                                                    <asp:Label ID="lblTitle" runat="server" Text='<%# Eval("medTitle") %>'></asp:Label>
+                                                <a onmouseover="ShowPosterImage(this)" onmouseout="tooltip.hide();" posterimageurl='<%# Eval("medPosterImageUrl") %>'>
+                                                    <asp:Label ID="lblTitle" runat="server" Text='<%# Bind("medTitle") %>'></asp:Label>
                                                 </a>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
-                                        </asp:TemplateField>--%>
-                                        <asp:BoundField DataField="medArtist" HeaderText="Cast" ReadOnly="True" SortExpression="medArtist" >
-                                        <ItemStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="medArtist" HeaderText="Cast" ReadOnly="True" SortExpression="medArtist">
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:BoundField>
                                         <asp:BoundField DataField="medDescription" HeaderText="Description" ReadOnly="True"
-                                            SortExpression="medDescription" >
-                                        <ItemStyle HorizontalAlign="Center" />
+                                            SortExpression="medDescription">
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="medGenre" HeaderText="Genre" ReadOnly="True" SortExpression="medGenre" >
-                                        <ItemStyle HorizontalAlign="Center" />
+                                        <asp:BoundField DataField="medGenre" HeaderText="Genre" ReadOnly="True" SortExpression="medGenre">
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="medDuration" HeaderText="Duration" ReadOnly="True" SortExpression="medDuration" >
-                                        <ItemStyle HorizontalAlign="Center" />
+                                        <asp:BoundField DataField="medDuration" HeaderText="Duration" ReadOnly="True" SortExpression="medDuration">
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="medVideoType" HeaderText="Video Type" SortExpression="medVideoType" >
-                                        <ItemStyle HorizontalAlign="Center" />
+                                        <asp:BoundField DataField="medVideoType" HeaderText="Video Type" SortExpression="medVideoType">
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:BoundField>
                                         <asp:BoundField DataField="medDateAdded" DataFormatString="{0:G}" HeaderText="Date Added">
                                             <HeaderStyle Font-Underline="True" />
-                                        <ItemStyle HorizontalAlign="Center" />
-                                        </asp:BoundField>                                        
+                                            <ItemStyle HorizontalAlign="Center" />
+                                        </asp:BoundField>
                                     </Columns>
                                     <EmptyDataTemplate>
                                         <table cellspacing="0" cellpadding="4" border="0" id="ctl00_MainContent_gvMedia"
@@ -208,7 +188,7 @@
         </ContentTemplate>
     </asp:UpdatePanel>
     <asp:LinqDataSource ID="lnqVideos" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
-        Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre, medAlbum, medDuration, medVideoType, medDateAdded, medMediaType, medId, medFileExt)"
+        Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre, medAlbum, medDuration, medVideoType, medDateAdded, medPosterImageUrl, medMediaType, medId, medFileExt)"
         TableName="StoredMedias" Where="medMediaType == @medMediaType &amp;&amp; medGenre == @medGenre &amp;&amp; medAlbum == @medAlbum"
         OnSelected="lnqVideos_Selected">
         <WhereParameters>

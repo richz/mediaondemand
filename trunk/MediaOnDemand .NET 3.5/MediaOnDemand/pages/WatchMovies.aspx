@@ -5,12 +5,13 @@
 <%@ Register Assembly="Media-Player-ASP.NET-Control" Namespace="Media_Player_ASP.NET_Control"
     TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+        
+        <script src="../js/site.js" type="text/javascript"></script>
     <script src="../js/playMedia.js" type="text/javascript"></script>
-    <script src="../js/site.js" type="text/javascript"></script>
-    <link href="../Styles/style.css" rel="stylesheet" type="text/css" />
+
     <script type="text/javascript">
 
-        window.onload = CheckIfPlayMedia;
+//        window.onload = CheckIfPlayMedia;
 
         function urlencode(str) {
             return escape(str).replace('+', '%2B').replace('%20', '+').replace('*', '%2A').replace('/', '%2F').replace('@', '%40');
@@ -20,34 +21,22 @@
             return str.replace('+', '%20');
         }
 
-        function CheckIfPlayMedia() {
+//        function CheckIfPlayMedia() {
 
-            var mediaUrl = getQueryVariable('playMedia');
+//            var mediaUrl = getQueryVariable('playMedia');
 
-            if (mediaUrl != undefined && mediaUrl != null) {
+//            if (mediaUrl != undefined && mediaUrl != null) {
 
-                document.getElementById('ctl00_MainContent_hdnMediaUrl').setAttribute('value', mediaUrl);
+//                document.getElementById('ctl00_MainContent_hdnMediaUrl').setAttribute('value', mediaUrl);
 
-                mediaUrl.replace(new RegExp("\\+", "g"), "%2B");
+//                mediaUrl.replace(new RegExp("\\+", "g"), "%2B");
 
-                playMedia(mediaUrl, 'video', false, 0);
+//                playMedia(mediaUrl, 'video', false, 0);
 
-                alert(mediaUrl);
+//                alert(mediaUrl);
 
-            }
-        }
-
-        function ShowPosterImage(link) {
-
-            var posterImageUrl = link.getAttribute('posterImageUrl');
-
-            if (trim(posterImageUrl) != '') {
-
-                tooltip.show(posterImageUrl);
-
-            }
-
-        }
+//            }
+//        }
         
     </script>
 </asp:Content>
@@ -123,13 +112,7 @@
                                             </a>--%>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <%--<asp:TemplateField HeaderText="Title" SortExpression="medTitle">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblTitle" runat="server" Text='<%# Eval("medTitle") %>'>
-                                            </asp:Label>
-                                        </ItemTemplate>
-                                        <itemstyle horizontalalign="Left" />
-                                        </asp:TemplateField>        --%>
+                                        
                                         <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
                                             <ItemTemplate>
                                                 <a onmouseover="ShowPosterImage(this)" onmouseout="tooltip.hide();" posterimageurl='<%# Eval("medPosterImageUrl") %>'>

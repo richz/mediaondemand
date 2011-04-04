@@ -122,19 +122,19 @@ function showEditLightBox() {
     switch (mediaType) {
 
         case 'movie':
-            selectedMediaType = '<select ID="ddlMediaType"><option value="movie" selected="selected">Movie</option><option value="tv">TV</option><option value="basketball">Basketball</option><option value="musicvideo">Music Video</option><option value="music">Music</option></select>';
+            selectedMediaType = '<select ID="ddlMediaType"><option value="movie" selected="selected">Movie</option><option value="tv">TV</option><option value="sports">Sports</option><option value="musicvideo">Music Video</option><option value="music">Music</option></select>';
             break;
         case 'tv':
-            selectedMediaType = '<select ID="ddlMediaType"><option value="movie">Movie</option><option value="tv" selected="selected">TV</option><option value="basketball">Basketball</option><option value="musicvideo">Music Video</option><option value="music">Music</option></select>';
+            selectedMediaType = '<select ID="ddlMediaType"><option value="movie">Movie</option><option value="tv" selected="selected">TV</option><option value="sports">Sports</option><option value="musicvideo">Music Video</option><option value="music">Music</option></select>';
             break;
-        case 'basketball':
-            selectedMediaType = '<select ID="ddlMediaType"><option value="movie">Movie</option><option value="tv">TV</option><option value="basketball" selected="selected">Basketball</option><option value="musicvideo">Music Video</option><option value="music">Music</option></select>';
+        case 'sports':
+            selectedMediaType = '<select ID="ddlMediaType"><option value="movie">Movie</option><option value="tv">TV</option><option value="sports" selected="selected">Sports</option><option value="musicvideo">Music Video</option><option value="music">Music</option></select>';
             break;
         case 'musicvideo':
-            selectedMediaType = '<select ID="ddlMediaType"><option value="movie">Movie</option><option value="tv">TV</option><option value="basketball">Basketball</option><option value="musicvideo" selected="selected">Music Video</option><option value="music">Music</option></select>';
+            selectedMediaType = '<select ID="ddlMediaType"><option value="movie">Movie</option><option value="tv">TV</option><option value="sports">Sports</option><option value="musicvideo" selected="selected">Music Video</option><option value="music">Music</option></select>';
             break;
         case 'music':
-            selectedMediaType = '<select ID="ddlMediaType"><option value="movie">Movie</option><option value="tv">TV</option><option value="basketball">Basketball</option><option value="musicvideo">Music Video</option><option value="music" selected="selected">Music</option></select>';
+            selectedMediaType = '<select ID="ddlMediaType"><option value="movie">Movie</option><option value="tv">TV</option><option value="sports">Sports</option><option value="musicvideo">Music Video</option><option value="music" selected="selected">Music</option></select>';
             break;
     }
 

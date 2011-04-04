@@ -460,3 +460,16 @@ var BrowserDetect = {
 };
 
 BrowserDetect.init();
+
+
+function ShowPosterImage(link) {
+
+    var posterImageUrl = link.getAttribute('posterimageurl');
+
+    if (trim(posterImageUrl) != '') {
+
+        tooltip.show(posterImageUrl);
+
+    }
+
+}

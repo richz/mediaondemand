@@ -12,7 +12,6 @@ namespace MediaOnDemand
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void lnqLatestMedia_Selecting(object sender, LinqDataSourceSelectEventArgs e)
@@ -23,8 +22,30 @@ namespace MediaOnDemand
                             from sm in db.StoredMedias
                             orderby sm.medDateAdded descending
                             select sm
-                        ).Take(10);
-           
+                        ).Take(15);
+
+        }
+
+        protected void btnPrevious_Click(object sender, ImageClickEventArgs e)
+        {
+            this.dvLatestMedia.PageIndex -= 1;
+
+            if (this.dvLatestMedia.PageIndex == 0)
+                this.btnPrevious.Visible = false; 
+            
+            if (this.dvLatestMedia.PageIndex < this.dvLatestMedia.PageCount - 1)
+                this.btnNext.Visible = true;
+        }
+
+        protected void btnNext_Click(object sender, ImageClickEventArgs e)
+        {
+            this.dvLatestMedia.PageIndex += 1;
+
+            if (this.dvLatestMedia.PageIndex > 0)
+                this.btnPrevious.Visible = true;
+
+            if (this.dvLatestMedia.PageIndex == this.dvLatestMedia.PageCount - 1)
+                this.btnNext.Visible = false;
         }
     }
 }

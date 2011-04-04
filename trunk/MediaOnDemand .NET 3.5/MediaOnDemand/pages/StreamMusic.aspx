@@ -4,29 +4,13 @@
 <%@ Register Assembly="Media-Player-ASP.NET-Control" Namespace="Media_Player_ASP.NET_Control"
     TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <script src="../js/site.js" type="text/javascript"></script>
     <script src="../js/playMedia.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h1>
         Music</h1>
-    <script type="text/javascript">
 
-        //        function showMediaInMainWindow() {
-
-        //            if (_arrWin[0]) {
-
-        //                var mediaUrl = document.getElementById('ctl00_MainContent_hdnMediaUrl').getAttribute('value');
-
-        //                _arrWin[0] = null;
-
-        //                var btnPlayInPopup = document.getElementById('btnPlayInPopup');
-
-        //                if (btnPlayInPopup != null)
-        //                    btnPlayInPopup.disabled = '';
-        //            }
-        //        }
-        //    
-    </script>
     <script type="text/javascript"><%= postBackStr %></script>
     <asp:Label ID="lblFileMessages" runat="server" Text="Label"></asp:Label>
     <center>
@@ -108,19 +92,19 @@
                                             </a>--%>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:BoundField DataField="medTitle" HeaderText="Title" ReadOnly="True" SortExpression="medTitle">
+                                    <%--<asp:BoundField DataField="medTitle" HeaderText="Title" ReadOnly="True" SortExpression="medTitle">
                                         <ItemStyle HorizontalAlign="Center" />
-                                    </asp:BoundField>
-                                    <%--                                                                         
+                                    </asp:BoundField>--%>
+                                    
                                     <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
-                                        <ItemTemplate>
-                                            <a id="lnkMusicLink" href="#" onclick="ForcePostBack(this, 'music')" param='<%# Eval("medLocation") %>'
-                                                mediaid='<%# Eval("medId") %>'>
-                                                <asp:Label ID="lblTitle" runat="server" Text='<%# Eval("medTitle") %>'></asp:Label>
-                                            </a>
-                                        </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="Left" />
-                                    </asp:TemplateField>--%>
+                                            <ItemTemplate>
+                                                <a onmouseover="ShowPosterImage(this)" onmouseout="tooltip.hide();" posterimageurl='<%# Eval("medPosterImageUrl") %>'>
+                                                    <asp:Label ID="lblTitle" runat="server" Text='<%# Bind("medTitle") %>'></asp:Label>
+                                                </a>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+
                                     <asp:BoundField DataField="medArtist" HeaderText="Artist" ReadOnly="True" SortExpression="medArtist">
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:BoundField>
@@ -196,7 +180,7 @@
         </tr>
     </table>
     <asp:LinqDataSource ID="lnqMusic" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
-        Select="new (medTitle, medArtist, medDescription, medGenre, medDuration, medAlbum, medId, medLocation, medIsViewable, medDateAdded, medMediaType)"
+        Select="new (medTitle, medArtist, medDescription, medGenre, medDuration, medAlbum, medId, medLocation, medIsViewable, medDateAdded, medPosterImageUrl, medMediaType)"
         TableName="StoredMedias" Where="medMediaType == @medMediaType &amp;&amp; medIsViewable == @medIsViewable &amp;&amp; medArtist == @medArtist"
         OnSelected="lnqMusic_Selected">
         <WhereParameters>

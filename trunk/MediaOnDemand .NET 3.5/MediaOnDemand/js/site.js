@@ -10,8 +10,6 @@
     }
 }
 
-
-
 function bookmarksite() {
 
     title = document.title; //'Community Improvement Organization Inc';
@@ -74,6 +72,9 @@ function rtrim(str, chars) {
 }
 
 //Tool Tip
+
+var imageExists;
+
 var tooltip = function () {
     var id = 'ToolTip';
     var top = 3;
@@ -90,55 +91,66 @@ var tooltip = function () {
     var ie = document.all ? true : false;
     return {
         show: function (v, w) {
-            if (tt == null) {
-                tt = document.createElement('div');
-                tt.setAttribute('id', id);
-                t = document.createElement('div');
-                t.setAttribute('id', id + 'top');
 
-                image = document.createElement('img');
+            imageExists = true;
+
+            var tester = new Image();
+            tester.onerror = ImageDoesNotExist;
+            tester.src = v;
+            
+            if (imageExists == true) {
+
+                if (tt == null) {
+
+                    tt = document.createElement('div');
+                    tt.setAttribute('id', id);
+                    t = document.createElement('div');
+                    t.setAttribute('id', id + 'top');
+
+                    image = document.createElement('img');
+                    image.setAttribute('src', v);
+                    image.setAttribute('alt', '');
+                    image.setAttribute('height', '240px');
+                    image.setAttribute('width', '200px');
+
+                    //c = document.createElement('div');
+                    //c.setAttribute('id', id + 'cont');
+
+                    b = document.createElement('div');
+                    b.setAttribute('id', id + 'bot');
+                    tt.appendChild(t);
+                    //tt.appendChild(c);
+
+                    tt.appendChild(image);
+
+                    tt.appendChild(b);
+                    document.body.appendChild(tt);
+                    tt.style.opacity = 0;
+                    tt.style.filter = 'alpha(opacity=0)';
+                    document.onmousemove = this.pos;
+                }
+                tt.style.display = 'block';
+
+                //c.innerHTML = v;
+
                 image.setAttribute('src', v);
                 image.setAttribute('alt', '');
                 image.setAttribute('height', '240px');
                 image.setAttribute('width', '200px');
 
-                //c = document.createElement('div');
-                //c.setAttribute('id', id + 'cont');
-
-                b = document.createElement('div');
-                b.setAttribute('id', id + 'bot');
-                tt.appendChild(t);
-                //tt.appendChild(c);
-
-                tt.appendChild(image);
-
-                tt.appendChild(b);
-                document.body.appendChild(tt);
-                tt.style.opacity = 0;
-                tt.style.filter = 'alpha(opacity=0)';
-                document.onmousemove = this.pos;
-            }
-            tt.style.display = 'block';
-                       
-            //c.innerHTML = v;
-
-            image.setAttribute('src', v);
-            image.setAttribute('alt', '');
-            image.setAttribute('height', '240px');
-            image.setAttribute('width', '200px');
-
-            tt.style.width = w ? w + 'px' : 'auto';
-            if (!w && ie) {
-                t.style.display = 'none';
-                b.style.display = 'none';
-                tt.style.width = tt.offsetWidth;
-                t.style.display = 'block';
-                b.style.display = 'block';
-            }
-            if (tt.offsetWidth > maxw) { tt.style.width = maxw + 'px' }
-            h = parseInt(tt.offsetHeight) + top;
-            clearInterval(tt.timer);
-            tt.timer = setInterval(function () { tooltip.fade(1) }, timer);
+                tt.style.width = w ? w + 'px' : 'auto';
+                if (!w && ie) {
+                    t.style.display = 'none';
+                    b.style.display = 'none';
+                    tt.style.width = tt.offsetWidth;
+                    t.style.display = 'block';
+                    b.style.display = 'block';
+                }
+                if (tt.offsetWidth > maxw) { tt.style.width = maxw + 'px' }
+                h = parseInt(tt.offsetHeight) + top;
+                clearInterval(tt.timer);
+                tt.timer = setInterval(function () { tooltip.fade(1) }, timer);
+            }            
         },
         pos: function (e) {
             var u = ie ? event.clientY + document.documentElement.scrollTop : e.pageY;
@@ -164,8 +176,16 @@ var tooltip = function () {
             }
         },
         hide: function () {
-            clearInterval(tt.timer);
-            tt.timer = setInterval(function () { tooltip.fade(-1) }, timer);
+
+            if (tt != null) {
+                clearInterval(tt.timer);
+                tt.timer = setInterval(function () { tooltip.fade(-1) }, timer);
+            }
         }
     };
 } ();
+
+function ImageDoesNotExist() {
+
+    imageExists = false;
+}

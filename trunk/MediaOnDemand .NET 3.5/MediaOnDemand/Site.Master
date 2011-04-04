@@ -6,6 +6,8 @@
 <head runat="server">
     <%--<title>Media On Demand</title>--%>
     <link href="Styles/Site.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/style.css" rel="stylesheet" type="text/css" />  
+      
     <script type="text/javascript">
 
         var _arrWin = new Array();
