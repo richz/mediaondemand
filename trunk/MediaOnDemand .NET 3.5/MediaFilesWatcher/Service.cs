@@ -67,10 +67,14 @@ namespace MediaFilesWatcher
         private void fileSystemWatcher_Created(object sender, System.IO.FileSystemEventArgs e)
         {
             string fileExt = Path.GetExtension(e.FullPath);
+            FileInfo file = new FileInfo(e.FullPath);
             if (supportedTypes.Contains(fileExt.ToLower()) && !Path.GetFileNameWithoutExtension(e.FullPath).Equals("Thumbs"))
             {
                 AddMediaRecordForCreatedFile(e.FullPath);
-            }
+
+                if(fileExt.Equals(".VOB"))
+                    File.Move(e.FullPath, String.Format("{0}\\{1}.vob", Path.GetDirectoryName(e.FullPath), Path.GetFileNameWithoutExtension(e.FullPath)));
+                }
         }
 
         private void fileSystemWatcher_Deleted(object sender, System.IO.FileSystemEventArgs e)
