@@ -22,7 +22,7 @@ namespace MediaOnDemand
         protected void Page_Load(object sender, EventArgs e)
         {
             this.Title = "Media On Demand - " + User.Identity.Name;
-            
+
             Session["SelectedGenreIndex"] = this.ddlGenre.SelectedIndex;
 
             if (!IsPostBack)
@@ -65,19 +65,35 @@ namespace MediaOnDemand
 
         protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (this.ddlPageSize.SelectedValue.Equals("all"))
-            //{
-            //    this.gvMovies.PageSize = Convert.ToInt32(Session["TotalRowCount"].ToString());
-            //}
-            //else
+            if (!this.ddlPageSize.SelectedValue.Equals("all"))
+            {
                 this.gvMovies.PageSize = Convert.ToInt32(this.ddlPageSize.SelectedValue);
-
+            }
+            else
+            {
+                int totalCount = this.GetGridViewRecordCountByCurrentMediaType();
+                this.gvMovies.PageSize = totalCount;
+            }
             this.gvMovies.PageIndex = 0;
         }
 
         #endregion
 
         #region Helper Methods
+
+        private int GetGridViewRecordCountByCurrentMediaType()
+        {
+            StorageMediaDataContext context = new StorageMediaDataContext();
+
+            var recs =
+
+                (from sm in context.StoredMedias
+                 where sm.medMediaType.Equals("movie")
+                 select sm
+                );
+
+            return recs.Count();
+        }
 
         private void SetList()
         {
@@ -102,10 +118,10 @@ namespace MediaOnDemand
             Array.Sort(arr);
 
             genres = arr.ToList();
-            
+
             foreach (string genre in genres)
                 this.ddlGenre.Items.Add(genre);
-            
+
             if (this.ddlGenre.Items.Count > 0)
             {
                 WebHelper.SortDropDownListItems(ddlGenre);
@@ -177,6 +193,8 @@ namespace MediaOnDemand
 
         protected void ddlGenre_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Session["SelectedGenreIndex"] = this.ddlGenre.SelectedIndex;
+
             if (this.ddlGenre.SelectedIndex != 0)
             {
                 if (this.lnqMovies.WhereParameters.Count < 3)
@@ -186,6 +204,9 @@ namespace MediaOnDemand
             }
             else
                 this.lnqMovies.WhereParameters.RemoveAt(2);
+
+            if (this.gvMovies.PageCount > 0)
+                this.gvMovies.PageIndex = 0;
         }
 
     }

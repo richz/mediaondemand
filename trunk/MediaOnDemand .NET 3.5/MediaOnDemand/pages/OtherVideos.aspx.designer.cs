@@ -103,6 +103,15 @@ namespace MediaOnDemand {
         protected global::System.Web.UI.WebControls.Label lblRecordCount;
         
         /// <summary>
+        /// gridViewPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel gridViewPanel;
+        
+        /// <summary>
         /// gvVideos control.
         /// </summary>
         /// <remarks>
@@ -155,5 +164,14 @@ namespace MediaOnDemand {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnMediaId;
+        
+        /// <summary>
+        /// hdnMediaTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnMediaTitle;
     }
 }

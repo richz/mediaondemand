@@ -179,7 +179,7 @@ namespace MediaOnDemand
         }
         
         protected void ddlList_SelectedIndexChanged(object sender, EventArgs e)
-        {            
+        {
                 SetSeasonNumbers();
                 if (this.ddlSeasonNumbers.Items.Count > 0)
                     this.ddlSeasonNumbers.SelectedIndex = 0;

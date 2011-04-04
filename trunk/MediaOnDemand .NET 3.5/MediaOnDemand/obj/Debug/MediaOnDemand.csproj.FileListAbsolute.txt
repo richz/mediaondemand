@@ -58,3 +58,4 @@ C:\Users\CPAGU002\My Projects\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\Res
 C:\Users\CPAGU002\My Projects\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.dll.licenses
 C:\Users\CPAGU002\My Projects\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.dll
 C:\Users\CPAGU002\My Projects\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.pdb
+C:\Users\CPAGU002\My Projects\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MattBerseth.WebControls.AJAX.pdb

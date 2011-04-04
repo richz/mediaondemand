@@ -11,21 +11,21 @@
         Music</h1>
     <script type="text/javascript">
 
-//        function showMediaInMainWindow() {
+        //        function showMediaInMainWindow() {
 
-//            if (_arrWin[0]) {
+        //            if (_arrWin[0]) {
 
-//                var mediaUrl = document.getElementById('ctl00_MainContent_hdnMediaUrl').getAttribute('value');
+        //                var mediaUrl = document.getElementById('ctl00_MainContent_hdnMediaUrl').getAttribute('value');
 
-//                _arrWin[0] = null;
+        //                _arrWin[0] = null;
 
-//                var btnPlayInPopup = document.getElementById('btnPlayInPopup');
+        //                var btnPlayInPopup = document.getElementById('btnPlayInPopup');
 
-//                if (btnPlayInPopup != null)
-//                    btnPlayInPopup.disabled = '';
-//            }
-//        }
-//    
+        //                if (btnPlayInPopup != null)
+        //                    btnPlayInPopup.disabled = '';
+        //            }
+        //        }
+        //    
     </script>
     <script type="text/javascript"><%= postBackStr %></script>
     <asp:Label ID="lblFileMessages" runat="server" Text="Label"></asp:Label>
@@ -52,7 +52,7 @@
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <input type="button" id="btnPlayInPopup" value="Play in popup" style="display:none"
+                    <input type="button" id="btnPlayInPopup" value="Play in popup" style="display: none"
                         onclick="showMediaInPopupWindow('music')" />
                 </td>
             </tr>
@@ -97,6 +97,21 @@
                                 EnableModelValidation="True" ForeColor="#333333" GridLines="None">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
+                                    <asp:TemplateField>
+                                        <ItemTemplate>
+                                            <a id="lnkMovieLink" href="#" onclick="ForcePostBack(this, 'music')" param='<%# Eval("medLocation") %>'
+                                                mediaid='<%# Eval("medId") %>'>
+                                                <asp:Image ID="imgPlay" Width="30px" Height="30px" ImageUrl="~/images/play.jpg" runat="server" />
+                                            </a>
+                                            <%--<a id="lnkPlayMedia" onclick="PlayMedia(this)" href="#" param='<%# Eval("medLocation") %>'>
+                                                <asp:Label ID="lblTitle" runat="server" Text='<%# Eval("medTitle") %>'></asp:Label>
+                                            </a>--%>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="medTitle" HeaderText="Title" ReadOnly="True" SortExpression="medTitle">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
+                                    <%--                                                                         
                                     <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
                                         <ItemTemplate>
                                             <a id="lnkMusicLink" href="#" onclick="ForcePostBack(this, 'music')" param='<%# Eval("medLocation") %>'
@@ -105,16 +120,26 @@
                                             </a>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Left" />
-                                    </asp:TemplateField>
-                                    <asp:BoundField DataField="medArtist" HeaderText="Artist" ReadOnly="True" SortExpression="medArtist" />
+                                    </asp:TemplateField>--%>
+                                    <asp:BoundField DataField="medArtist" HeaderText="Artist" ReadOnly="True" SortExpression="medArtist">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
                                     <asp:BoundField DataField="medDescription" HeaderText="Description" ReadOnly="True"
-                                        SortExpression="medDescription" />
-                                    <asp:BoundField DataField="medGenre" HeaderText="Genre" ReadOnly="True" SortExpression="medGenre" />
-                                    <asp:BoundField DataField="medDuration" HeaderText="Duration" ReadOnly="True" SortExpression="medDuration" />
-                                    <asp:BoundField DataField="medAlbum" HeaderText="Album" ReadOnly="True" SortExpression="medAlbum" />
+                                        SortExpression="medDescription">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="medGenre" HeaderText="Genre" ReadOnly="True" SortExpression="medGenre">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="medDuration" HeaderText="Duration" ReadOnly="True" SortExpression="medDuration">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="medAlbum" HeaderText="Album" ReadOnly="True" SortExpression="medAlbum">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
                                     <asp:BoundField DataField="medDateAdded" DataFormatString="{0:G}" HeaderText="Date Added">
                                         <HeaderStyle Font-Underline="True" />
-                                        <ItemStyle Font-Underline="False" />
+                                        <ItemStyle HorizontalAlign="Center" />
                                     </asp:BoundField>
                                 </Columns>
                                 <EmptyDataTemplate>

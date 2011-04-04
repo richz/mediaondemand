@@ -106,7 +106,25 @@
                                     ForeColor="#333333" GridLines="None" ondatabound="gvVideos_DataBound">
                                     <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
+
+
+                                     <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <a id="lnkVideoLink" href="#" onclick="ForcePostBack(this, 'video')" mediaTitle='<%# Eval("medTitle") %>' param='<%# Eval("medLocation") %>'
+                                                    mediaid='<%# Eval("medId") %>'>
+                                                    <asp:Image ID="imgPlay" Width="30px" Height="30px" ImageUrl="~/images/play.jpg" runat="server" />
+                                                </a>
+                                                <%--<a id="lnkPlayMedia" onclick="PlayMedia(this)" href="#" param='<%# Eval("medLocation") %>'>
+                                                <asp:Label ID="lblTitle" runat="server" Text='<%# Eval("medTitle") %>'></asp:Label>
+                                            </a>--%>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="medTitle" HeaderText="Title" ReadOnly="True" 
+                                            SortExpression="medTitle" >
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        </asp:BoundField>
+
+<%--                                        <asp:TemplateField HeaderText="Title" SortExpression="medTitle">
                                             <ItemTemplate>
                                                 <a id="lnkVideoLink" href="#" onclick="ForcePostBack(this, 'video')" param='<%# Eval("medLocation") %>'
                                                     mediaid='<%# Eval("medId") %>'>
@@ -114,16 +132,27 @@
                                                 </a>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" />
-                                        </asp:TemplateField>
-                                        <asp:BoundField DataField="medArtist" HeaderText="Cast" ReadOnly="True" SortExpression="medArtist" />
+                                        </asp:TemplateField>--%>
+                                        <asp:BoundField DataField="medArtist" HeaderText="Cast" ReadOnly="True" SortExpression="medArtist" >
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        </asp:BoundField>
                                         <asp:BoundField DataField="medDescription" HeaderText="Description" ReadOnly="True"
-                                            SortExpression="medDescription" />
-                                        <asp:BoundField DataField="medGenre" HeaderText="Genre" ReadOnly="True" SortExpression="medGenre" />
-                                        <asp:BoundField DataField="medDuration" HeaderText="Duration" ReadOnly="True" SortExpression="medDuration" />
-                                        <asp:BoundField DataField="medVideoType" HeaderText="Video Type" SortExpression="medVideoType" />
+                                            SortExpression="medDescription" >
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="medGenre" HeaderText="Genre" ReadOnly="True" SortExpression="medGenre" >
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="medDuration" HeaderText="Duration" ReadOnly="True" SortExpression="medDuration" >
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="medVideoType" HeaderText="Video Type" SortExpression="medVideoType" >
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        </asp:BoundField>
                                         <asp:BoundField DataField="medDateAdded" DataFormatString="{0:G}" HeaderText="Date Added">
                                             <HeaderStyle Font-Underline="True" />
-                                        </asp:BoundField>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        </asp:BoundField>                                        
                                     </Columns>
                                     <EmptyDataTemplate>
                                         <table cellspacing="0" cellpadding="4" border="0" id="ctl00_MainContent_gvMedia"
@@ -194,4 +223,5 @@
     <asp:HiddenField ID="hdnMediaType" runat="server" />
     <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server" />
     <asp:HiddenField ID="hdnMediaId" Value="" runat="server" />
+    <asp:HiddenField ID="hdnMediaTitle" Value="" runat="server" />
 </asp:Content>

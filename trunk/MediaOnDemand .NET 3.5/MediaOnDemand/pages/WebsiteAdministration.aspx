@@ -10,6 +10,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <script src="../js/WebAdmin.js" type="text/javascript"></script>
     <script src="../js/site.js" type="text/javascript"></script>
+   
+   
+   <link rel="stylesheet" href="../../themes/base/jquery.ui.all.css">
+	<script src="../../jquery-1.5.1.js"></script>
+	<script src="../../ui/jquery.ui.core.js"></script>
+	<script src="../../ui/jquery.ui.widget.js"></script>
+	<script src="../../ui/jquery.ui.progressbar.js"></script>
+   
+   
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
         rel="stylesheet" type="text/css" />
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
@@ -36,11 +45,13 @@
         type="text/javascript"></script>
     <script type="text/javascript">
 
-
+        var progressPercent;
 
         $(document).ready(function () {
 
             $("#ctl00_MainContent_btnAddAllFromNetworkFolder").click(function () {
+
+                progressPercent = 0;
 
                 showProgress();
 
@@ -69,6 +80,9 @@
 
                 var response = confirm("Are you sure you want to delete all records for this type?");
                 if (response == true) {
+
+                    progressPercent = 0;
+
                     showProgress();
 
                     var intervalID = setInterval(updateProgress, 1);
@@ -96,6 +110,9 @@
 
                 var response = confirm("Are you sure you want to delete all the records?");
                 if (response == true) {
+
+                    progressPercent = 0;
+
                     showProgress();
 
                     var intervalID = setInterval(updateProgress, 1);
@@ -124,6 +141,9 @@
 
                 var response = confirm("Are you sure you want to sync all the records?\nFiles will be deleted and re-added.");
                 if (response == true) {
+
+                    progressbar = 0;
+
                     showProgress();
 
                     var intervalID = setInterval(updateProgress, 1);
@@ -147,20 +167,42 @@
 
                 return false;
             });
-            
+
             function updateProgress(filesToProcess) {
 
-                // Not used right now
+//                progressPercent += 1;
+
+//                $("#progressbar").progressbar({
+//                    value: progressPercent
+//                });
+
+//                
+
+//                var percentLabel = document.getElementById('ctl00_MainContent_lblProgressPercent');
+//                percentLabel.value = progressPercent + ' %';
+
             }
 
         });
 
     </script>
+
+    <style type="text/css">
+	.ui-progressbar-value { background-image: url('../images/ui-bg_diagonals-thick_15_0b3e6f_40x40.png'); }
+	</style>
+	<script>
+	    $(function () {
+	        $("#progressbar").progressbar({
+	            value: 0
+	        });
+	    });
+	</script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript"><%= postBackStr %></script>
     <h1>
-        Website Administration</h1>
+        Media Administration</h1>
     <br />
     <br />
     <br />
@@ -229,9 +271,16 @@
                 <asp:Label ID="lblRecordCount" runat="server" Text=""></asp:Label>
             </td>
         </tr>
+        <%--<tr>
+        <td colspan="3" align="center">
+        <div id="progressbar" style="width:500px"></div>
+        <asp:Label ID="lblProgressPercent" runat="server" Text=""></asp:Label>    
+        </td>
+        
+        </tr>--%>
     </table>
     <div class="mediaGrid">
-        <asp:Panel ID="gridViewPanel" CssClass="gridViewPanel" runat="server" ScrollBars="Auto">
+        <asp:Panel ID="gridViewPanel" CssClass="gridViewPanel" Height="100%" runat="server" ScrollBars="Auto">
             <asp:GridView ID="gvMedia" runat="server" Width="100%" Height="100%" AutoGenerateColumns="False"
                 DataSourceID="lnqMedia" PagerSettings-Position="TopAndBottom" EnableModelValidation="True"
                 DataKeyNames="medId" CellPadding="4" ForeColor="#333333" PagerSettings-Mode="NumericFirstLast"
@@ -345,6 +394,7 @@
     <asp:HiddenField ID="hdnMedId" runat="server" />
     <asp:HiddenField ID="hdnFileExt" runat="server" />
     <asp:HiddenField ID="hdnVideoType" runat="server" />
+    <asp:HiddenField ID="hdnPosterImageUrl" runat="server" />
     <asp:HiddenField ID="hdnUpdateMode" runat="server" />
     <asp:HiddenField ID="hdnNetworkFolder" runat="server" />
 </asp:Content>

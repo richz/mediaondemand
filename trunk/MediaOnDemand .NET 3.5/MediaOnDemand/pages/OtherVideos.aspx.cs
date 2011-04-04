@@ -82,7 +82,6 @@ namespace MediaOnDemand
             {
                 if (sm.medMediaType.Trim().Equals(this.ddlMediaTypes.SelectedValue))
                 {
-                    //DirectoryInfo dir = new DirectoryInfo(sm.medLocation);
                     string item = sm.medGenre;
 
                     if (!this.ddlList.Items.Contains(new ListItem(item)))
@@ -137,8 +136,8 @@ namespace MediaOnDemand
                 this.ddlPageSize.Visible = false;
                 this.lblRecordCount.Visible = false;
 
-                this.lblChooseMediaType.Visible = false;
-                this.ddlMediaTypes.Visible = false;
+                //this.lblChooseMediaType.Visible = false;
+                //this.ddlMediaTypes.Visible = false;
             }
 
         }

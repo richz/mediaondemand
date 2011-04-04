@@ -99,10 +99,10 @@ namespace MediaOnDemand
             {
                 this.lblArtist.Visible = true;
                 this.ddlArtist.Visible = true;
-            }
 
-            Session["SelectedArtistIndex"] = this.ddlArtist.SelectedIndex = 0;
-            
+                if(!IsPostBack)
+                    Session["SelectedArtistIndex"] = this.ddlArtist.SelectedIndex = 1;
+            }            
         }
 
         private void UpdateRecordCount()
@@ -174,6 +174,9 @@ namespace MediaOnDemand
 
         protected void ddlArtist_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Session["SelectedArtistIndex"] = this.ddlArtist.SelectedIndex;
+
+
             if (!this.ddlArtist.SelectedValue.Equals("All"))
                 this.lnqMusic.WhereParameters[2].DefaultValue = this.ddlArtist.SelectedValue;
             else
