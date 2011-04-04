@@ -1,9 +1,0 @@
-'''Media On Demand GUI Tests'''
-| [[Suite of GUI Tests][SuiteMediaOnDemand.SuiteGuiTests]]|
-
-
-
-'''Project SWAT Macros'''
-| [[Suite Macros][SuiteMediaOnDemand.SuiteMediaOnDemandMacros]]|
-
-
