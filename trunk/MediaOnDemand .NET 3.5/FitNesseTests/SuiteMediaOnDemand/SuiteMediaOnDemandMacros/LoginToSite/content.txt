@@ -1,0 +1,7 @@
+!include .SuiteMediaOnDemand.SuiteMediaOnDemandMacros.ServerUrl
+
+!|SWATFixture|
+|NavigateBrowser|${WebServer}|
+|SetElementAttribute|Expression|id:ctl00_MainContent_mainLogin_UserName|value|${loginUserName}|INPUT|
+|SetElementAttribute|Expression|id:ctl00_MainContent_mainLogin_Password|value|${loginPassword}|INPUT|
+|StimulateElement|Expression|id:ctl00_MainContent_mainLogin_LoginButton|onclick|input|
