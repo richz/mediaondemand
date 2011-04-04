@@ -10,6 +10,7 @@ using System.IO;
 using MediaOnDemand;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace MediaFilesWatcher
 {
@@ -72,9 +73,20 @@ namespace MediaFilesWatcher
             {
                 AddMediaRecordForCreatedFile(e.FullPath);
 
-                if(fileExt.Equals(".VOB"))
-                    File.Move(e.FullPath, String.Format("{0}\\{1}.vob", Path.GetDirectoryName(e.FullPath), Path.GetFileNameWithoutExtension(e.FullPath)));
+                if (fileExt.Equals(".VOB"))
+                {                    
+                    try
+                    {
+                        Thread.Sleep(3000);
+                        File.Move(e.FullPath, String.Format("{0}\\{1}.vob", Path.GetDirectoryName(e.FullPath), Path.GetFileNameWithoutExtension(e.FullPath)));
+                    }
+                    catch (Exception ex)
+                    {
+                        eventLog.WriteEntry(ex.Message);
+                    }
+
                 }
+            }
         }
 
         private void fileSystemWatcher_Deleted(object sender, System.IO.FileSystemEventArgs e)
@@ -129,9 +141,9 @@ namespace MediaFilesWatcher
             }
         }
 
-        private static void AddMediaRecordForCreatedFile(string path)
+        private static void AddMediaRecordForCreatedFile(string filePath)
         {
-            EventLog.WriteEntry("MediaFilesWatcher", String.Format("Adding file \"{0}\"", path));
+            EventLog.WriteEntry("MediaFilesWatcher", String.Format("Adding file \"{0}\"", filePath));
 
             string connString = ConfigurationManager.ConnectionStrings["MediaFileWatcherWinServiceConnectionString"].ConnectionString;
 
@@ -139,11 +151,11 @@ namespace MediaFilesWatcher
 
             bool fileAdded = false;
 
-            string fileExt = Path.GetExtension(path);
-            FileInfo file = new FileInfo(path);
-            string mediaType = GetMediaTypeForFile(path);
+            string fileExt = Path.GetExtension(filePath);
+            FileInfo file = new FileInfo(filePath);
+            string mediaType = GetMediaTypeForFile(filePath);
 
-            string mediaName = Path.GetFileNameWithoutExtension(path);
+            string mediaName = Path.GetFileNameWithoutExtension(filePath);
             string genre = "";
             string artist = "";
             string album = "";
@@ -194,7 +206,7 @@ namespace MediaFilesWatcher
                     StoredMedia media = new StoredMedia
                     {
                         medTitle = mediaName,
-                        medLocation = path,
+                        medLocation = filePath,
                         medDateAdded = DateTime.Now,
                         medIsViewable = 'Y',
                         medArtist = artist,
@@ -203,7 +215,8 @@ namespace MediaFilesWatcher
                         medMediaType = mediaT,
                         medDuration = new float(),
                         medAlbum = album,
-                        medFileExt = fileExt,
+                        medPosterImageUrl = String.Format("../images/posters/{0}.jpg", mediaName),
+                        medFileExt = fileExt
                     };
 
                     context.StoredMedias.InsertOnSubmit(media);
