@@ -33,16 +33,26 @@ namespace MediaOnDemand
             // Allowing only for development purposes
             if (HttpContext.Current.User.Identity.IsAuthenticated)
             {
-                if (HttpContext.Current.User.IsInRole("Site Administrator"))
+                if (CurrentUserIsInRole("Basic User"))
                 {
-                    this.NavigationMenu.Items.Add(new MenuItem("Administer Media", "", "", "~/pages/WebsiteAdministration.aspx"));
+                    this.NavigationMenu.Items.Add(new MenuItem("My Account", "", "", "~/pages/UserAccount.aspx"));                    
+                }
+                if (CurrentUserIsInRole("Site Administrator"))
+                {                    
                     this.NavigationMenu.Items.Add(new MenuItem("Administer Site", "", "", "~/pages/SiteAdministration.aspx"));
                 }
-                if (HttpContext.Current.User.IsInRole("Administrator"))
+                if (CurrentUserIsInRole("Administrator"))
                 {
                     this.NavigationMenu.Items.Add(new MenuItem("Administer Users", "", "", "~/pages/UserManagement.aspx"));
+                    this.NavigationMenu.Items.Add(new MenuItem("Administer Media", "", "", "~/pages/WebsiteAdministration.aspx"));
                 }
-            }
-        }       
+            }           
+             
+        }
+
+        private bool CurrentUserIsInRole(string role)
+        {
+            return HttpContext.Current.User.IsInRole(role);
+        }
     }
 }

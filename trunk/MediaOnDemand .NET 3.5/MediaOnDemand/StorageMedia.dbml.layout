@@ -2,16 +2,16 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="StorageMedia">
   <DataContextMoniker Name="/StorageMediaDataContext" />
   <nestedChildShapes>
-    <classShape Id="00e89564-5e81-4a6b-93de-ba5f1d18d464" absoluteBounds="3.375, 2.125, 2, 3.3093082682291666">
-      <DataClassMoniker Name="/StorageMediaDataContext/StoredMedia" />
-      <nestedChildShapes>
-        <elementListCompartment Id="d7cffc8e-b3f6-4143-bff8-efda4c17669c" absoluteBounds="3.39, 2.585, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="21eb4108-34bf-4618-b922-bd03dbcb43b6" absoluteBounds="1.25, 2.625, 2, 1.1939925130208333">
       <DataClassMoniker Name="/StorageMediaDataContext/UserAccountSetting" />
       <nestedChildShapes>
         <elementListCompartment Id="d3acf9ae-c59a-4880-a3ab-21616efd35db" absoluteBounds="1.2650000000000001, 3.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d55351dd-e956-45de-ac64-d8b9d4ef6443" absoluteBounds="3.5, 1.875, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/StorageMediaDataContext/StoredMedia" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1561acec-bef4-4540-b5b2-b8b836652005" absoluteBounds="3.515, 2.335, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

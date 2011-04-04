@@ -20,10 +20,9 @@ namespace MediaOnDemand
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-    using System.Configuration;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="aspnetdb")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="MediaOnDemandDB")]
 	public partial class StorageMediaDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -36,8 +35,8 @@ namespace MediaOnDemand
     partial void DeleteStoredMedia(StoredMedia instance);
     #endregion
 		
-		public StorageMediaDataContext() : 
-				base(ConfigurationManager.ConnectionStrings["aspnetdbConnectionString"].ConnectionString)
+		public StorageMediaDataContext() :
+        base(global::System.Configuration.ConfigurationManager.ConnectionStrings["aspnetdbConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -66,6 +65,14 @@ namespace MediaOnDemand
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<UserAccountSetting> UserAccountSettings
+		{
+			get
+			{
+				return this.GetTable<UserAccountSetting>();
+			}
+		}
+		
 		public System.Data.Linq.Table<StoredMedia> StoredMedias
 		{
 			get
@@ -73,12 +80,49 @@ namespace MediaOnDemand
 				return this.GetTable<StoredMedia>();
 			}
 		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserAccountSettings")]
+	public partial class UserAccountSetting
+	{
 		
-		public System.Data.Linq.Table<UserAccountSetting> UserAccountSettings
+		private string _acctUserName;
+		
+		private char _acctMustChangePassword;
+		
+		public UserAccountSetting()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_acctUserName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string acctUserName
 		{
 			get
 			{
-				return this.GetTable<UserAccountSetting>();
+				return this._acctUserName;
+			}
+			set
+			{
+				if ((this._acctUserName != value))
+				{
+					this._acctUserName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_acctMustChangePassword", DbType="Char(1) NOT NULL")]
+		public char acctMustChangePassword
+		{
+			get
+			{
+				return this._acctMustChangePassword;
+			}
+			set
+			{
+				if ((this._acctMustChangePassword != value))
+				{
+					this._acctMustChangePassword = value;
+				}
 			}
 		}
 	}
@@ -115,6 +159,8 @@ namespace MediaOnDemand
 		
 		private string _medFileExt;
 		
+		private string _medPosterImageUrl;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -145,6 +191,8 @@ namespace MediaOnDemand
     partial void OnmedVideoTypeChanged();
     partial void OnmedFileExtChanging(string value);
     partial void OnmedFileExtChanged();
+    partial void OnmedPosterImageUrlChanging(string value);
+    partial void OnmedPosterImageUrlChanged();
     #endregion
 		
 		public StoredMedia()
@@ -412,6 +460,26 @@ namespace MediaOnDemand
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_medPosterImageUrl", DbType="VarChar(300)")]
+		public string medPosterImageUrl
+		{
+			get
+			{
+				return this._medPosterImageUrl;
+			}
+			set
+			{
+				if ((this._medPosterImageUrl != value))
+				{
+					this.OnmedPosterImageUrlChanging(value);
+					this.SendPropertyChanging();
+					this._medPosterImageUrl = value;
+					this.SendPropertyChanged("medPosterImageUrl");
+					this.OnmedPosterImageUrlChanged();
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -429,51 +497,6 @@ namespace MediaOnDemand
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserAccountSettings")]
-	public partial class UserAccountSetting
-	{
-		
-		private string _acctUserName;
-		
-		private char _acctMustChangePassword;
-		
-		public UserAccountSetting()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_acctUserName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string acctUserName
-		{
-			get
-			{
-				return this._acctUserName;
-			}
-			set
-			{
-				if ((this._acctUserName != value))
-				{
-					this._acctUserName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_acctMustChangePassword", DbType="Char(1) NOT NULL")]
-		public char acctMustChangePassword
-		{
-			get
-			{
-				return this._acctMustChangePassword;
-			}
-			set
-			{
-				if ((this._acctMustChangePassword != value))
-				{
-					this._acctMustChangePassword = value;
-				}
 			}
 		}
 	}

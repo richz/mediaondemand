@@ -1,6 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Database Name="aspnetdb" Class="StorageMediaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\aspnetdb.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True" SettingsObjectName="MediaOnDemandLibrary.Properties.Settings" SettingsPropertyName="aspnetdbConnectionString2" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MediaOnDemandDB" Class="StorageMediaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\MediaOnDemandDB.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="MediaOnDemandDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.UserAccountSettings" Member="UserAccountSettings">
+    <Type Name="UserAccountSetting">
+      <Column Name="acctUserName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="acctMustChangePassword" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Table Name="dbo.StoredMedia" Member="StoredMedias">
     <Type Name="StoredMedia">
       <Column Name="medTitle" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
@@ -16,12 +21,7 @@
       <Column Name="medAlbum" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="medVideoType" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="medFileExt" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.UserAccountSettings" Member="UserAccountSettings">
-    <Type Name="UserAccountSetting">
-      <Column Name="acctUserName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="acctMustChangePassword" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="medPosterImageUrl" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

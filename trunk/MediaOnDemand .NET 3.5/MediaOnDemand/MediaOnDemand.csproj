@@ -82,6 +82,9 @@
     <Content Include="App_Data\MediaOnDemandDB_log.ldf">
       <DependentUpon>MediaOnDemandDB.mdf</DependentUpon>
     </Content>
+    <Content Include="images\arrow-blue-rounded-left.jpg" />
+    <Content Include="images\arrow-blue-rounded-right.jpg" />
+    <Content Include="images\play.jpg" />
     <Content Include="pages\WatchTvSeries.aspx" />
     <Content Include="pages\Register.aspx" />
     <Content Include="bin\MediaOnDemand.dll" />
@@ -259,10 +262,6 @@
     <Compile Include="pages\SiteAdministration.aspx.designer.cs">
       <DependentUpon>SiteAdministration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebService.asmx.cs">
-      <DependentUpon>WebService.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="js\playMedia.js" />
@@ -354,7 +353,6 @@
     <Content Include="pages\PopupMedia.aspx" />
     <Content Include="WebControls\mp4-streamer.ashx" />
     <Content Include="pages\SiteAdministration.aspx" />
-    <Content Include="WebService.asmx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="aspnet_client\system_web\4_0_30128\" />
