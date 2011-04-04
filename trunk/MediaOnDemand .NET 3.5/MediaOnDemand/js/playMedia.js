@@ -1,4 +1,8 @@
-﻿function showMediaInPopupWindow(mediaType) {
+﻿String.prototype.trim = function () {
+    return this.replace(/^\s*/, "").replace(/\s*$/, "");
+}
+
+function showMediaInPopupWindow(mediaType) {
     var browser = BrowserDetect.browser;
     var position = 0;
 
@@ -86,9 +90,11 @@ function ForcePostBack(lnkMovieLink, mediaType) {
 
     var mediaUrl = lnkMovieLink.getAttribute('param');
     var mediaId = lnkMovieLink.getAttribute('mediaId');
+    var mediaTitle = lnkMovieLink.getAttribute('mediaTitle');
 
     document.getElementById('ctl00_MainContent_hdnMediaUrl').setAttribute('value', mediaUrl);
     document.getElementById('ctl00_MainContent_hdnMediaId').setAttribute('value', mediaId);
+    document.getElementById('ctl00_MainContent_hdnMediaTitle').setAttribute('value', mediaTitle);
 
     if (_arrWin[0] != null) // popup window is open
     {
@@ -128,7 +134,7 @@ function playMedia(mediaUrl, mediaType, isPopup, position) {
     var playerDiv;
     var browser = BrowserDetect.browser;
     var str = '';
-
+    
     if (mediaType == 'video') {
         var width;
         var height;
@@ -136,7 +142,8 @@ function playMedia(mediaUrl, mediaType, isPopup, position) {
         if (!isPopup) {
             width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
             height = document.documentElement.scrollHeight;
-
+            var mediaTitle = document.getElementById('ctl00_MainContent_hdnMediaTitle').value;
+            
             var btnPlayInPopup = document.createElement('input');
             btnPlayInPopup.id = 'btnPlayInPopup';
             btnPlayInPopup.setAttribute('type', 'button');
@@ -144,7 +151,7 @@ function playMedia(mediaUrl, mediaType, isPopup, position) {
             btnPlayInPopup.setAttribute('value', 'Show In Popup Window');
             //btnPlayInPopup.style.styleFloat = 'left';
             btnPlayInPopup.style.display = 'block';
-
+                                   
             var btnCloseVideo = document.createElement('input');
             btnCloseVideo.id = 'btnCloseVideo';
             btnCloseVideo.setAttribute('type', 'button');
@@ -155,16 +162,23 @@ function playMedia(mediaUrl, mediaType, isPopup, position) {
             var buttonDivTableTd1 = document.createElement('td');
             buttonDivTableTd1.align = 'left';
             buttonDivTableTd1.appendChild(btnPlayInPopup);
+            buttonDivTableTd1.style.width = '100px';
 
             var buttonDivTableTd2 = document.createElement('td');
-            buttonDivTableTd2.align = 'right';
-            buttonDivTableTd2.appendChild(btnCloseVideo);
+            buttonDivTableTd2.align = 'center';
+            buttonDivTableTd2.innerHTML = '<label id="lblTitle" style="font-size: 20px; font-weight: bold">' + mediaTitle + '</label>';
+
+            var buttonDivTableTd3 = document.createElement('td');
+            buttonDivTableTd3.align = 'right';
+            buttonDivTableTd3.appendChild(btnCloseVideo);
+            buttonDivTableTd3.style.width = '100px';
 
             var buttonDivTableTr = document.createElement('tr');
             buttonDivTableTr.style.width = '100%';
 
             buttonDivTableTr.appendChild(buttonDivTableTd1);
             buttonDivTableTr.appendChild(buttonDivTableTd2);
+            buttonDivTableTr.appendChild(buttonDivTableTd3);
 
             var buttonDivTable = document.createElement('table');
             buttonDivTable.style.width = '100%';
@@ -173,7 +187,8 @@ function playMedia(mediaUrl, mediaType, isPopup, position) {
             var buttonDiv = document.createElement('div');
             buttonDiv.id = 'buttonDiv';
             buttonDiv.style.width = '100%';
-
+            buttonDiv.style.Background = 'Silver';
+            
             buttonDiv.appendChild(buttonDivTable);
 
         }
@@ -205,7 +220,7 @@ function playMedia(mediaUrl, mediaType, isPopup, position) {
         div.style.position = (navigator.userAgent.indexOf('MSIE 6') > -1) ? 'absolute' : 'fixed';
         div.style.top = '0px';
         div.style.left = '0' + '%';
-        div.style.backgroundColor = 'black';
+        div.style.backgroundColor = 'white';
 
         if (!isPopup) {
             div.style.height = '90' + '%';

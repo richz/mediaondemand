@@ -57,6 +57,7 @@ function showEditLightBox() {
         var genre = document.getElementById('ctl00_MainContent_hdnGenre').getAttribute('value') == null ? '' : document.getElementById('ctl00_MainContent_hdnGenre').getAttribute('value');
         var duration = document.getElementById('ctl00_MainContent_hdnDuration').getAttribute('value') == null ? '' : document.getElementById('ctl00_MainContent_hdnDuration').getAttribute('value');
         var album = document.getElementById('ctl00_MainContent_hdnAlbum').getAttribute('value') == null ? '' : document.getElementById('ctl00_MainContent_hdnAlbum').getAttribute('value');
+        var posterImageUrl = document.getElementById('ctl00_MainContent_hdnPosterImageUrl').getAttribute('value') == null ? '' : document.getElementById('ctl00_MainContent_hdnPosterImageUrl').getAttribute('value');
     }
     else {
 
@@ -67,6 +68,7 @@ function showEditLightBox() {
         var genre = '';
         var duration = '';
         var album = '';
+        var posterImageUrl = '';
 
     }
 
@@ -158,6 +160,8 @@ function showEditLightBox() {
         + '<td colspan="2" align="left"><input ID="txtDuration" value="' + duration + '" type="text"/></td></tr>'
         + '<tr><td align="right"><label id="lblAlbum">Album</label></td>'
         + '<td colspan="2" align="left"><input ID="txtAlbum" value="' + album + '" type="text"/></td></tr>'
+        + '<tr><td align="right"><label id="lblPosterImageUrl">Poster Image File</label></td>'
+        + '<td colspan="2" align="left"><input ID="txtPosterImageUrl" value="' + posterImageUrl + '" type="text"/></td></tr>'
         + '<tr><td colspan="3" align="right"></td></tr>'
         + '<tr><td><input id="btnSave" onclick="Save()" type="button" value="Apply"/></td>'
         + '<td><input id="btnCancel" onclick="Cancel()" type="button" value="Cancel" /></td></tr>'
@@ -185,6 +189,8 @@ function showEditLightBox() {
         + '<td colspan="2" align="left"><input ID="txtDuration" value="' + duration + '" type="text"/></td></tr>'
         + '<tr><td align="right"><label id="lblAlbum">Album</label></td>'
         + '<td colspan="2" align="left"><input ID="txtAlbum" value="' + album + '" type="text"/></td></tr>'
+        + '<tr><td align="right"><label id="lblPosterImageUrl">Poster Image File</label></td>'
+        + '<td colspan="2" align="left"><input ID="txtPosterImageUrl" value="' + posterImageUrl + '" type="text"/></td></tr>'
         + '<tr><td colspan="3" align="right"></td></tr>'
         + '<tr><td><input id="btnSave" onclick="Save()" type="button" value="Apply"/></td>'
         + '<td><input id="btnCancel" onclick="Cancel()" type="button" value="Cancel" /></td></tr>'
@@ -234,6 +240,8 @@ function validateLightboxFields() {
 
     }
 
+    // TO DO Add more validation
+
     return true;
 
 }
@@ -273,22 +281,11 @@ function Save() {
         var hdnAlbum = document.getElementById('ctl00_MainContent_hdnAlbum');
         hdnAlbum.setAttribute('value', trim(document.getElementById('txtAlbum').value));
 
+        var hdnPosterImageUrl = document.getElementById('ctl00_MainContent_hdnPosterImageUrl');
+        hdnPosterImageUrl.setAttribute('value', trim(document.getElementById('txtPosterImageUrl').value));
+
         saveButton.click();
 
         CloseLightBox();
     }
-}
-
-function trim(str, chars) {
-    return ltrim(rtrim(str, chars), chars);
-}
-
-function ltrim(str, chars) {
-    chars = chars || "\\s";
-    return str.replace(new RegExp("^[" + chars + "]+", "g"), "");
-}
-
-function rtrim(str, chars) {
-    chars = chars || "\\s";
-    return str.replace(new RegExp("[" + chars + "]+$", "g"), "");
 }
