@@ -33,12 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MediaOnDemand">
-      <HintPath>..\..\..\..\..\HostedWebSites\MediaOnDemand\bin\MediaOnDemand.dll</HintPath>
-    </Reference>
-    <Reference Include="MediaOnDemandLibrary">
-      <HintPath>..\..\..\..\..\HostedWebSites\MediaOnDemand\bin\MediaOnDemandLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Configuration.Install" />
@@ -107,6 +101,16 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\ServiceStop.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MediaOnDemandLibrary\MediaOnDemandLibrary.csproj">
+      <Project>{38E41635-F6CD-4454-98F5-6CF2E225AE6D}</Project>
+      <Name>MediaOnDemandLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MediaOnDemand\MediaOnDemand.csproj">
+      <Project>{E7CA561A-DF3E-4019-8B8E-D95857C86690}</Project>
+      <Name>MediaOnDemand</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,8 +2,7 @@
     Inherits="MediaOnDemand.OtherVideos" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-<%@ Register Assembly="Media-Player-ASP.NET-Control" Namespace="Media_Player_ASP.NET_Control"
-    TagPrefix="cc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <script src="../js/site.js" type="text/javascript"></script>
     <script src="../js/playMedia.js" type="text/javascript"></script>

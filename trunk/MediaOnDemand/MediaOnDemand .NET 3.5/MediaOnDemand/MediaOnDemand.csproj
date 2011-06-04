@@ -35,9 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit, Version=3.5.40412.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\2008 MediaOnDemand\MediaOnDemand\MediaOnDemand\bin\AjaxControlToolkit.dll</HintPath>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\ExternalLibraries\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="ASPNetVideo.NET3, Version=2.5.0.0, Culture=neutral, PublicKeyToken=9ebf40eaef1b6523, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -82,6 +81,7 @@
     <Content Include="App_Data\MediaOnDemandDB_log.ldf">
       <DependentUpon>MediaOnDemandDB.mdf</DependentUpon>
     </Content>
+    <Content Include="Default.aspx" />
     <Content Include="images\arrow-blue-rounded-left.jpg" />
     <Content Include="images\arrow-blue-rounded-right.jpg" />
     <Content Include="images\play.jpg" />
@@ -89,7 +89,6 @@
     <Content Include="pages\Register.aspx" />
     <Content Include="bin\MediaOnDemand.dll" />
     <Content Include="bin\MediaOnDemand.pdb" />
-    <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="js\jquery-1.3.2-vsdoc.js" />
     <Content Include="js\jquery-1.3.2.js" />
@@ -107,6 +106,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\WatchTvSeries.aspx.cs">
       <DependentUpon>WatchTvSeries.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -127,13 +133,6 @@
     </Compile>
     <Compile Include="pages\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Default.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
