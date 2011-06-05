@@ -42,7 +42,7 @@
                 var intervalID = setInterval(updateProgress, 93);
                 $.ajax({
                     type: "POST",
-                    url: "WebsiteAdministration.aspx/addFilesFromFolder",
+                    url: "WebsiteAdministration.aspx/addFilesForMediaType",
                     data: "{}",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -69,7 +69,7 @@
                     var intervalID = setInterval(updateProgress, 1);
                     $.ajax({
                         type: "POST",
-                        url: "WebsiteAdministration.aspx/deleteAllRecordsForType",
+                        url: "WebsiteAdministration.aspx/deleteAllRecordsForMediaType",
                         data: "{}",
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",

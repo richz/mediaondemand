@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaFilesWatcher", "MediaF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaFileWatcherClient", "MediaFileWatcherClient\MediaFileWatcherClient.csproj", "{EA6AFB2C-8B6D-4DF8-9B16-D09FD5A1519E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaOnDemandDataAccess", "MediaOnDemandDataAccess\MediaOnDemandDataAccess.csproj", "{DB9AD794-5519-4C52-9F66-A0ABCFF38205}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,18 @@ Global
 		{EA6AFB2C-8B6D-4DF8-9B16-D09FD5A1519E}.Release|x64.ActiveCfg = Release|x86
 		{EA6AFB2C-8B6D-4DF8-9B16-D09FD5A1519E}.Release|x86.ActiveCfg = Release|x86
 		{EA6AFB2C-8B6D-4DF8-9B16-D09FD5A1519E}.Release|x86.Build.0 = Release|x86
+		{DB9AD794-5519-4C52-9F66-A0ABCFF38205}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB9AD794-5519-4C52-9F66-A0ABCFF38205}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB9AD794-5519-4C52-9F66-A0ABCFF38205}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DB9AD794-5519-4C52-9F66-A0ABCFF38205}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DB9AD794-5519-4C52-9F66-A0ABCFF38205}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DB9AD794-5519-4C52-9F66-A0ABCFF38205}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DB9AD794-5519-4C52-9F66-A0ABCFF38205}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB9AD794-5519-4C52-9F66-A0ABCFF38205}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB9AD794-5519-4C52-9F66-A0ABCFF38205}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DB9AD794-5519-4C52-9F66-A0ABCFF38205}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DB9AD794-5519-4C52-9F66-A0ABCFF38205}.Release|x64.ActiveCfg = Release|Any CPU
+		{DB9AD794-5519-4C52-9F66-A0ABCFF38205}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

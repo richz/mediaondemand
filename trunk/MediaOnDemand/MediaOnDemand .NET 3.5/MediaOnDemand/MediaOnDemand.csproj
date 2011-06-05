@@ -38,17 +38,6 @@
     <Reference Include="AjaxControlToolkit">
       <HintPath>..\ExternalLibraries\AjaxControlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="ASPNetVideo.NET3, Version=2.5.0.0, Culture=neutral, PublicKeyToken=9ebf40eaef1b6523, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\GAMER\Desktop\ASPNetVideoSetup\ASP.NET 3.5 WebControl (Visual Studio 2008)\ASPNetVideo.NET3.dll</HintPath>
-    </Reference>
-    <Reference Include="EO.Web, Version=8.0.15.2, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\GAMER\Documents\Visual Studio 2008\Controls\EO.Web\EO.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="FlashControl, Version=2.4.2276.31815, Culture=neutral, PublicKeyToken=0066be59ecd613cb, processorArchitecture=MSIL" />
-    <Reference Include="MattBerseth.WebControls.AJAX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="Media-Player-ASP.NET-Control, Version=1.0.3141.38822, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core">
@@ -302,9 +291,9 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JW-FLV-Player-Control\JW-FLV-Player-Control.vbproj">
-      <Project>{0D76D2A9-D312-436E-9A33-DC8A7CA39060}</Project>
-      <Name>JW-FLV-Player-Control</Name>
+    <ProjectReference Include="..\MediaOnDemandDataAccess\MediaOnDemandDataAccess.csproj">
+      <Project>{DB9AD794-5519-4C52-9F66-A0ABCFF38205}</Project>
+      <Name>MediaOnDemandDataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\MediaOnDemandLibrary\MediaOnDemandLibrary.csproj">
       <Project>{38E41635-F6CD-4454-98F5-6CF2E225AE6D}</Project>

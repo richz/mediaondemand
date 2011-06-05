@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -50,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonFunctions.cs" />
     <Compile Include="ProjectSettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -78,6 +80,12 @@
   <ItemGroup>
     <Folder Include="bin\" />
     <Folder Include="obj\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MediaOnDemandDataAccess\MediaOnDemandDataAccess.csproj">
+      <Project>{DB9AD794-5519-4C52-9F66-A0ABCFF38205}</Project>
+      <Name>MediaOnDemandDataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

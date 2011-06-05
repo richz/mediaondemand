@@ -93,29 +93,16 @@ namespace MediaOnDemand
         #endregion
 
         #region Static Methods
-
-        public static string RemoveSpecialCharacters(string input)
-        {   
-            Regex r = new Regex("(?:[^a-z0-9 ]|(?<=['\"]))", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
-            return r.Replace(input, String.Empty);
-        }
-
+        
         [System.Web.Services.WebMethod]
         [System.Web.Script.Services.ScriptMethod()]
-        public static string addFilesFromFolder()
+        public static string addFilesForMediaType()
         {
             //Do work
             string directory = WebsiteAdministration.networkFolder;
             string mediaType = WebsiteAdministration.mediaType;
 
             int[] fileCount = new int[] { 0, 0, 0 };
-            
-            string mediaName;
-            string genre = "";
-            string artist = "";
-            string album = "";
-            string mediaT = "";
-            string posterImageUrl ="";
 
             string[] files = new string[0];
 
@@ -137,165 +124,22 @@ namespace MediaOnDemand
 
                 FileInfo file = new FileInfo(filePath);
 
-                fileAdded = false;
+                string fileExt = Path.GetExtension(filePath);
                 
-                AddMediaRecordForCreatedFile(filePath, ref fileAdded);
+                fileAdded = false;
 
+                if (WebsiteAdministration.supportedTypes.Contains(fileExt.ToLower()) && !Path.GetFileNameWithoutExtension(filePath).Equals("Thumbs"))
+                {
+                    AddMediaRecordForCreatedFile(filePath, ref fileAdded);
+                }
             }
 
             return "All finished!";
         }
 
-        private static void AddMediaRecordForCreatedFile(string filePath, ref bool fileAdded)
-        {
-            StorageMediaDataContext context = new StorageMediaDataContext();
-
-            fileAdded = false;
-
-            string fileExt = Path.GetExtension(filePath);
-            FileInfo file = new FileInfo(filePath);
-            string mediaType = GetMediaTypeForFile(filePath);
-
-            string mediaName = Path.GetFileNameWithoutExtension(filePath);
-            string genre = "";
-            string artist = "";
-            string album = "";
-            string posterImageUrl = "";
-            string mediaT = "";
-            int rating = 0;
-
-            string path = filePath.Replace(@"C:",@"\\mediaserver");
-            
-            switch (mediaType)
-            {
-                case "movie":
-                    {
-                        mediaT = mediaType;
-                        genre = file.Directory.Parent.Name;
-                        posterImageUrl = String.Format("../images/posters/{0}.jpg", WebsiteAdministration.RemoveSpecialCharacters(mediaName));
-                    } break;
-                case "tv":
-                    {
-                        mediaT = mediaType;
-                        album = file.Directory.Parent.Parent.Name;
-                        genre = file.Directory.Parent.Name;
-                        posterImageUrl = String.Format("../images/posters/{0}.jpg", WebsiteAdministration.RemoveSpecialCharacters(album));
-                        
-                    }
-                    break;
-                case "music":
-                    {
-                        mediaT = mediaType;
-                        artist = file.Directory.Parent.Name;
-                        album = file.Directory.Name;
-                        posterImageUrl = String.Format("../images/albumcovers/{0}.jpg", WebsiteAdministration.RemoveSpecialCharacters(album));
-                    }
-                    break;
-                case "sports":
-                    {
-                        mediaT = mediaType;
-                        genre = file.Directory.Parent.Parent.Name; //Sport
-                        album = file.Directory.Parent.Name;
-                        posterImageUrl = String.Format("../images/posters/{0}.jpg", WebsiteAdministration.RemoveSpecialCharacters(album));
-                    }
-                    break;
-                case "musicvideo":
-                    {
-                        mediaT = mediaType;
-                        artist = file.Directory.Parent.Parent.Name;
-                        album = genre = file.Directory.Parent.Name;
-                        posterImageUrl = String.Format("../images/albumcovers/{0}.jpg", WebsiteAdministration.RemoveSpecialCharacters(album));
-                    }
-                    break;
-            }
-            bool recordExists = false;
-
-            foreach (StoredMedia sm in context.StoredMedias)
-                if (sm.medTitle.Trim().Equals(mediaName))
-                    recordExists = true;
-
-            if (!recordExists)
-            {
-                try
-                {
-                    StoredMedia media = new StoredMedia
-                    {
-                        medTitle = mediaName,
-                        medLocation = path,
-                        medDateAdded = DateTime.Now,
-                        medIsViewable = 'Y',
-                        medArtist = artist,
-                        medDescription = "",
-                        medGenre = genre,
-                        medMediaType = mediaT,
-                        medDuration = new float(),
-                        medAlbum = album,
-                        medPosterImageUrl = posterImageUrl,
-                        medFileExt = fileExt,
-                        medRating = rating
-                    };
-
-                    context.StoredMedias.InsertOnSubmit(media);
-
-                    context.SubmitChanges();
-
-                    fileAdded = true;
-                }
-                catch (Exception ex)
-                {
-                    fileAdded = false;
-                }
-            }
-        }
-
-        public static string GetMediaTypeForFile(string filePath)
-        {
-            FileInfo file = new FileInfo(filePath);
-
-            string mediaT = "";
-            FileInfo[] files;
-
-            if (musicDirectory.Exists)
-            {
-                files = musicDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
-                if (files.Length > 0)
-                    mediaT = "music";
-            }
-
-            if (moviesDirectory.Exists)
-            {
-                files = moviesDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
-                if (files.Length > 0)
-                    mediaT = "movie";
-            }
-
-            if (tvDirectory.Exists)
-            {
-                files = tvDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
-                if (files.Length > 0)
-                    mediaT = "tv";
-            }
-
-            if (musicVideosDirectory.Exists)
-            {
-                files = musicVideosDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
-                if (files.Length > 0)
-                    mediaT = "musicvideo";
-            }
-
-            if (sportsDirectory.Exists)
-            {
-                files = sportsDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
-                if (files.Length > 0)
-                    mediaT = "sports";
-            }
-
-            return mediaT;
-        }
-        
         [System.Web.Services.WebMethod]
         [System.Web.Script.Services.ScriptMethod()]
-        public static string deleteAllRecordsForType()
+        public static string deleteAllRecordsForMediaType()
         {
             StorageMediaDataContext context = new StorageMediaDataContext();
 
@@ -343,11 +187,11 @@ namespace MediaOnDemand
         [System.Web.Script.Services.ScriptMethod()]
         public static string syncAllMediaRecords()
         {
-            deleteAllMediaRecords();
-            string directory = WebsiteAdministration.networkFolder;
-            WebsiteAdministration.networkFolder = rootMediaFilesFolder;
-            addFilesFromFolder();
-            WebsiteAdministration.networkFolder = directory;
+            //deleteAllMediaRecords();
+            //string directory = WebsiteAdministration.networkFolder;
+            //WebsiteAdministration.networkFolder = rootMediaFilesFolder;
+            //addFilesForMediaType();
+            //WebsiteAdministration.networkFolder = directory;
 
             return "All finished!";
         }
@@ -355,7 +199,7 @@ namespace MediaOnDemand
         #endregion
 
         #region Control Event Handlers
-        
+
         protected void ddlMediaTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Reset Page Index for Grid
@@ -402,31 +246,32 @@ namespace MediaOnDemand
                     break;
             }
 
-            if(!IsPostBack)
-            {    this.ddlPageSize.SelectedIndex = 0;
+            if (!IsPostBack)
+            {
+                this.ddlPageSize.SelectedIndex = 0;
                 this.gvMedia.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].ToString());
             }
             this.gvMedia.PageIndex = 0;
         }
 
         protected void btnAddNewMediaRow_Click(object sender, EventArgs e)
-        {            
-                // Reset Hidden fields
-                this.hdnTitle.Value = "";
-                this.hdnLocation.Value = "";
-                this.hdnIsViewable.Value = "";
-                this.hdnArtist.Value = "";
-                this.hdnDescription.Value = "";
-                this.hdnGenre.Value = "";
-                this.hdnDuration.Value = "";
-                this.hdnAlbum.Value = "";
-                this.hdnMedId.Value = "";
-                this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
-                this.hdnPosterImageUrl.Value = "";
+        {
+            // Reset Hidden fields
+            this.hdnTitle.Value = "";
+            this.hdnLocation.Value = "";
+            this.hdnIsViewable.Value = "";
+            this.hdnArtist.Value = "";
+            this.hdnDescription.Value = "";
+            this.hdnGenre.Value = "";
+            this.hdnDuration.Value = "";
+            this.hdnAlbum.Value = "";
+            this.hdnMedId.Value = "";
+            this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
+            this.hdnPosterImageUrl.Value = "";
 
-                this.hdnUpdateMode.Value = "add";
+            this.hdnUpdateMode.Value = "add";
 
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Show lightbox", "showEditLightBox();", true);            
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Show lightbox", "showEditLightBox();", true);
         }
 
         protected void btnApplyChanges_Click(object sender, EventArgs e)
@@ -446,7 +291,7 @@ namespace MediaOnDemand
                 {
                 }
             }
-            else if(this.hdnUpdateMode.Value.Equals("edit"))//Edit
+            else if (this.hdnUpdateMode.Value.Equals("edit"))//Edit
             {
                 string title = this.hdnTitle.Value.Trim();
                 string location = this.hdnLocation.Value.Trim();
@@ -496,7 +341,7 @@ namespace MediaOnDemand
         }
 
         protected void lnkEdit_Click(object sender, EventArgs e)
-        {            
+        {
             this.hdnUpdateMode.Value = "edit";
 
             this.hdnMedId.Value = (sender as LinkButton).CommandArgument;
@@ -613,6 +458,151 @@ namespace MediaOnDemand
 
         #region Helper Methods
 
+        private static void AddMediaRecordForCreatedFile(string filePath, ref bool fileAdded)
+        {
+            string mediaName = Path.GetFileNameWithoutExtension(filePath);
+
+            bool recordExists = MediaRecordExists(mediaName);
+
+            if (!recordExists)
+            {
+                StorageMediaDataContext context = new StorageMediaDataContext();
+
+                fileAdded = false;
+
+                string fileExt = Path.GetExtension(filePath);
+                FileInfo file = new FileInfo(filePath);
+                string mediaType = GetMediaTypeForFile(filePath);
+
+                string genre = "";
+                string artist = "";
+                string album = "";
+                string posterImageUrl = "";
+                string mediaT = "";
+                int rating = 0;
+
+                string path = filePath.Replace(@"C:", @"\\mediaserver");
+
+                switch (mediaType)
+                {
+                    case "movie":
+                        {
+                            mediaT = mediaType;
+                            genre = file.Directory.Parent.Name;
+                            posterImageUrl = String.Format("../images/posters/{0}.jpg", WebsiteAdministration.RemoveSpecialCharacters(mediaName));
+                        } break;
+                    case "tv":
+                        {
+                            mediaT = mediaType;
+                            album = file.Directory.Parent.Parent.Name;
+                            genre = file.Directory.Parent.Name;
+                            posterImageUrl = String.Format("../images/posters/{0}.jpg", WebsiteAdministration.RemoveSpecialCharacters(album));
+
+                        }
+                        break;
+                    case "music":
+                        {
+                            mediaT = mediaType;
+                            artist = file.Directory.Parent.Name;
+                            album = file.Directory.Name;
+                            posterImageUrl = String.Format("../images/albumcovers/{0}.jpg", WebsiteAdministration.RemoveSpecialCharacters(album));
+                        }
+                        break;
+                    case "sports":
+                        {
+                            mediaT = mediaType;
+                            genre = file.Directory.Parent.Parent.Name; //Sport
+                            album = file.Directory.Parent.Name;
+                            posterImageUrl = String.Format("../images/posters/{0}.jpg", WebsiteAdministration.RemoveSpecialCharacters(album));
+                        }
+                        break;
+                    case "musicvideo":
+                        {
+                            mediaT = mediaType;
+                            artist = file.Directory.Parent.Parent.Name;
+                            album = genre = file.Directory.Parent.Name;
+                            posterImageUrl = String.Format("../images/albumcovers/{0}.jpg", WebsiteAdministration.RemoveSpecialCharacters(album));
+                        }
+                        break;
+                }
+
+                try
+                {
+                    StoredMedia media = new StoredMedia
+                    {
+                        medTitle = mediaName,
+                        medLocation = path,
+                        medDateAdded = DateTime.Now,
+                        medIsViewable = 'Y',
+                        medArtist = artist,
+                        medDescription = "",
+                        medGenre = genre,
+                        medMediaType = mediaT,
+                        medDuration = new float(),
+                        medAlbum = album,
+                        medPosterImageUrl = posterImageUrl,
+                        medFileExt = fileExt,
+                        medRating = rating
+                    };
+
+                    context.StoredMedias.InsertOnSubmit(media);
+
+                    context.SubmitChanges();
+
+                    fileAdded = true;
+                }
+                catch (Exception ex)
+                {
+                    fileAdded = false;
+                }
+            }
+        }
+
+        public static string GetMediaTypeForFile(string filePath)
+        {
+            FileInfo file = new FileInfo(filePath);
+
+            string mediaT = "";
+            FileInfo[] files;
+
+            if (musicDirectory.Exists)
+            {
+                files = musicDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
+                if (files.Length > 0)
+                    mediaT = "music";
+            }
+
+            if (moviesDirectory.Exists)
+            {
+                files = moviesDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
+                if (files.Length > 0)
+                    mediaT = "movie";
+            }
+
+            if (tvDirectory.Exists)
+            {
+                files = tvDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
+                if (files.Length > 0)
+                    mediaT = "tv";
+            }
+
+            if (musicVideosDirectory.Exists)
+            {
+                files = musicVideosDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
+                if (files.Length > 0)
+                    mediaT = "musicvideo";
+            }
+
+            if (sportsDirectory.Exists)
+            {
+                files = sportsDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
+                if (files.Length > 0)
+                    mediaT = "sports";
+            }
+
+            return mediaT;
+        }
+
         private void RetrieveRowDataToEdit(string mediaId)
         {
             StorageMediaDataContext context = new StorageMediaDataContext();
@@ -696,7 +686,7 @@ namespace MediaOnDemand
 
             return recs.Count();
         }
-        
+
         public static string GetMediaTypeForFile(FileInfo file)
         {
             string mediaT = "";
@@ -723,6 +713,25 @@ namespace MediaOnDemand
                 mediaT = "sports";
 
             return mediaT;
+        }
+        
+        public static string RemoveSpecialCharacters(string input)
+        {
+            Regex r = new Regex("(?:[^a-z0-9 ]|(?<=['\"]))", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
+            return r.Replace(input, String.Empty);
+        }
+
+        public static bool MediaRecordExists(string mediaName)
+        {
+            StorageMediaDataContext context = new StorageMediaDataContext();
+
+            foreach (StoredMedia sm in context.StoredMedias)
+                if (sm.medTitle.Trim().Equals(mediaName))
+                {
+                    return true;
+                }
+
+            return false;
         }
 
         #endregion

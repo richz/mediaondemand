@@ -41,10 +41,8 @@ namespace MediaFilesWatcher
         static DirectoryInfo musicVideosDirectory = new DirectoryInfo(musicVideosFolder);
         static DirectoryInfo tvDirectory = new DirectoryInfo(tvFolder);
         static DirectoryInfo sportsDirectory = new DirectoryInfo(sportsFolder);
-                
-        static List<string> supportedTypes = new List<string> { ".vob", ".avi", ".flv", ".mp4", ".mp3", ".wma", ".wmv", ".mpg", ".mpeg", ".rm", ".mkv", ".divx", ".m4p", ".m4a" };
 
-        static NotifyIcon appIcon;
+        static List<string> supportedTypes = new List<string> { ".vob", ".avi", ".flv", ".mp4", ".mp3", ".wma", ".wmv", ".mpg", ".mpeg", ".rm", ".mkv", ".divx", ".m4p", ".m4a" };
 
         #endregion
 
@@ -64,10 +62,13 @@ namespace MediaFilesWatcher
                 EventLog.CreateEventSource("MediaFilesWatcher", "DoDyLog");
 
             this.fileSystemWatcher.Path = ConfigurationManager.AppSettings["WatchPath"];
+
+            EventLog.WriteEntry("MediaFilesWatcher", String.Format("MediaFilesWatcher service is starting"));
         }
 
         protected override void OnStop()
         {
+            EventLog.WriteEntry("MediaFilesWatcher", String.Format("MediaFilesWatcher service is stopping"));
         }
 
         private void fileSystemWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
@@ -78,59 +79,75 @@ namespace MediaFilesWatcher
         {
             EventLog.WriteEntry("MediaFilesWatcher", String.Format("Adding the file \"{0}\"", e.FullPath));
 
-            string fileExt = Path.GetExtension(e.FullPath);
+            bool fileAdded = false;
 
-            //if (supportedTypes.Contains(fileExt.ToLower()) && !Path.GetFileNameWithoutExtension(e.FullPath).Equals("Thumbs"))
-            //{
-
-            AddMediaRecordForCreatedFile(e.FullPath);
-
-            if (fileExt.Equals(".VOB"))
+            AddMediaRecordForCreatedFile(e.FullPath, ref fileAdded);
+            
+            if (fileAdded)
             {
-                try
-                {
-                    Thread.Sleep(3000);
-                    File.Move(e.FullPath, String.Format("{0}\\{1}.vob", Path.GetDirectoryName(e.FullPath), Path.GetFileNameWithoutExtension(e.FullPath)));
-                }
-                catch (Exception ex)
-                {
-                    EventLog.WriteEntry("MediaFilesWatcher", String.Format("The following exception ocurred while attempting to rename the file \"{0}\" to vob format: {1}", e.FullPath, ex.Message));
-                }
+                EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was added", e.FullPath));
 
+                string fileExt = Path.GetExtension(e.FullPath);
+
+                if (fileExt.Equals(".VOB"))
+                {
+                    EventLog.WriteEntry("MediaFilesWatcher", String.Format("Renaming file \"{0}\" from extension VOB to vob", e.FullPath));
+
+                    try
+                    {
+                        Thread.Sleep(3000);
+                        File.Move(e.FullPath, String.Format("{0}\\{1}.vob", Path.GetDirectoryName(e.FullPath), Path.GetFileNameWithoutExtension(e.FullPath)));
+                    }
+                    catch (Exception ex)
+                    {
+                        EventLog.WriteEntry("MediaFilesWatcher", String.Format("The following exception ocurred while attempting to rename the file \"{0}\" to vob format: {1}", e.FullPath, ex.Message));
+                    }
+                }                
             }
-            //}
+            else
+                EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was not added", e.FullPath));
         }
 
         private void fileSystemWatcher_Deleted(object sender, System.IO.FileSystemEventArgs e)
         {
-            string fileExt = Path.GetExtension(e.FullPath);
-            if (supportedTypes.Contains(fileExt.ToLower()) && !Path.GetFileNameWithoutExtension(e.FullPath).Equals("Thumbs"))
-            {
-                DeleteMediaRecordForDeletedFile(e.FullPath);
-            }
+            EventLog.WriteEntry("MediaFilesWatcher", String.Format("Deleting file \"{0}\"", e.FullPath));
+
+            bool fileDeleted = false;
+
+            DeleteMediaRecordForDeletedFile(e.FullPath, ref fileDeleted);
+
+            if(fileDeleted)
+                EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was deleted", e.FullPath));
+            else
+                EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was not deleted", e.FullPath));
         }
 
         private void fileSystemWatcher_Renamed(object sender, System.IO.RenamedEventArgs e)
         {
-            string fileExt = Path.GetExtension(e.FullPath);
-            if (supportedTypes.Contains(fileExt.ToLower()) && !Path.GetFileNameWithoutExtension(e.FullPath).Equals("Thumbs"))
-            {
-                UpdateMediaRecordForChangedFile(e.OldFullPath, e.FullPath);
-            }
+            EventLog.WriteEntry("MediaFilesWatcher", String.Format("Renaming file \"{0}\"", e.OldFullPath));
+
+            bool fileUpdated = false;
+
+            UpdateMediaRecordForChangedFile(e.OldFullPath, e.FullPath, ref fileUpdated);
+
+            if(fileUpdated)
+                EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was renamed to \"{1}\"", e.OldFullPath, e.FullPath));
+            else
+                EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was not renamed", e.OldFullPath));
         }
 
         #endregion
 
         #region Helper Methods
 
-        private static void UpdateMediaRecordForChangedFile(string oldPath, string newPath)
+        private static void UpdateMediaRecordForChangedFile(string oldPath, string newPath, ref bool fileUpdated)
         {
-            EventLog.WriteEntry("MediaFilesWatcher", String.Format("Updating file \"{0}\"", oldPath));
-
             string fileExt = Path.GetExtension(oldPath);
+
+            fileUpdated = false;
+
             if (supportedTypes.Contains(fileExt.ToLower()) && !Path.GetFileNameWithoutExtension(oldPath).Equals("Thumbs"))
             {
-
                 string connString = ConfigurationManager.ConnectionStrings["MediaFileWatcherWinServiceConnectionString"].ConnectionString;
 
                 StorageMediaDataContext context = new MediaOnDemand.StorageMediaDataContext(connString);
@@ -139,7 +156,7 @@ namespace MediaFilesWatcher
 
                 foreach (StoredMedia sm in context.StoredMedias)
                 {
-                    if (sm.medLocation.Equals(oldPath))
+                    if (sm.medTitle.Equals(Path.GetFileNameWithoutExtension(oldPath)))
                     {
                         sm.medTitle = Path.GetFileNameWithoutExtension(newPath);
                         sm.medLocation = newPath;
@@ -149,35 +166,25 @@ namespace MediaFilesWatcher
                         {
                             context.SubmitChanges();
 
-                            //ShowToolTip(String.Format("File {0} was renamed to {1}", oldPath, newPath));
-                            //ShowToolTip(2);
-
+                            fileUpdated = true;
                         }
                         catch (Exception ex)
                         {
-                            EventLog.WriteEntry("MediaFilesWatcher", String.Format("Error ocurred submitting DB changes\n\"{0}\"", ex.Message));
                         }
                     }
                 }
             }
-            else
-                EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was not updated", oldPath));
         }
-        public static string RemoveSpecialCharacters(string input)
-        {
-            Regex r = new Regex("(?:[^a-z0-9 ]|(?<=['\"]))", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
-            return r.Replace(input, String.Empty);
-        }
-
-        private static void AddMediaRecordForCreatedFile(string filePath)
+        
+        private static void AddMediaRecordForCreatedFile(string filePath, ref bool fileAdded)
         {
             string connString = ConfigurationManager.ConnectionStrings["MediaFileWatcherWinServiceConnectionString"].ConnectionString;
 
             StorageMediaDataContext context = new MediaOnDemand.StorageMediaDataContext(connString);
 
-            bool fileAdded = false;
-
             string fileExt = Path.GetExtension(filePath);
+
+            fileAdded = false;
 
             if (Service.supportedTypes.Contains(fileExt.ToLower()) && !Path.GetFileNameWithoutExtension(filePath).Equals("Thumbs"))
             {
@@ -275,91 +282,63 @@ namespace MediaFilesWatcher
                         if (recordExists)
                         {
                             fileAdded = true;
-
-                            EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was added", filePath));
                         }
                         else
-                            EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was not added", filePath));
-
-                        //ShowToolTip(String.Format("File {0} was added to {1}", Path.GetFileName(path), Path.GetDirectoryName(path)));
-                        //ShowToolTip(1);
+                            fileAdded = false;
                     }
                     catch (Exception ex)
-                    {
-                        EventLog.WriteEntry("MediaFilesWatcher", String.Format("Error ocurred submitting DB changes\n\"{0}\"", ex.Message));
+                    {                        
                     }
                 }
             }
-            else
-                EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was not added", filePath));
         }
 
-        private static void DeleteMediaRecordForDeletedFile(string filePath)
+        private static void DeleteMediaRecordForDeletedFile(string filePath, ref bool fileDeleted)
         {
-            string path = filePath.Replace(@"C:", @"\\mediaserver");
+            string fileExt = Path.GetExtension(filePath);
 
-            EventLog.WriteEntry("MediaFilesWatcher", String.Format("Deleting file \"{0}\"", path));
+            fileDeleted = false;
 
-            string connString = ConfigurationManager.ConnectionStrings["MediaFileWatcherWinServiceConnectionString"].ConnectionString;
-
-            StorageMediaDataContext context = new MediaOnDemand.StorageMediaDataContext(connString);
-
-            foreach (StoredMedia sm in context.StoredMedias)
+            if (supportedTypes.Contains(fileExt.ToLower()) && !Path.GetFileNameWithoutExtension(filePath).Equals("Thumbs"))
             {
-                if (sm.medLocation.Trim().Equals(path))
-                {
-                    context.StoredMedias.DeleteOnSubmit(sm);
-                }
-            }
+                string path = filePath.Replace(@"C:", @"\\mediaserver");
 
-            try
-            {
-                context.SubmitChanges();
-                bool recordExists = false;
+                string connString = ConfigurationManager.ConnectionStrings["MediaFileWatcherWinServiceConnectionString"].ConnectionString;
 
+                StorageMediaDataContext context = new MediaOnDemand.StorageMediaDataContext(connString);
 
                 foreach (StoredMedia sm in context.StoredMedias)
-                    if (sm.medLocation.Trim().Equals(filePath))
-                        recordExists = true;
-
-                if (!recordExists)
                 {
-                    EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was deleted", path));
-
+                    if (sm.medLocation.Trim().Equals(path))
+                    {
+                        context.StoredMedias.DeleteOnSubmit(sm);
+                    }
                 }
-                //ShowToolTip(String.Format("File {0} was deleted from {1}", Path.GetFileName(path), Path.GetDirectoryName(path)));
-                //ShowToolTip(3);
-            }
-            catch (Exception ex)
-            {
 
-                EventLog.WriteEntry("MediaFilesWatcher", String.Format("Error ocurred submitting DB changes\n\"{0}\"", ex.Message));
+                try
+                {
+                    context.SubmitChanges();
+                    bool recordExists = false;
+                    
+                    foreach (StoredMedia sm in context.StoredMedias)
+                        if (sm.medLocation.Trim().Equals(filePath))
+                            recordExists = true;
+
+                    if (!recordExists)
+                    {
+                        fileDeleted = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
             }
         }
 
-        public static void ShowToolTip(uint Message)
+        public static string RemoveSpecialCharacters(string input)
         {
-            ////get this running process
-            //Process proc = Process.GetCurrentProcess();
-            ////get all other (possible) running instances
-            //Process[] processes = Process.GetProcessesByName(Properties.Settings.Default.ClientProcessName);
-
-            //if (processes.Length > 1)
-            //{
-            //    //iterate through all running target applications
-            //    foreach (Process p in processes)
-            //    {
-            //        if (p.Id != proc.Id)
-            //        {
-            //            //now send the RF_TESTMESSAGE to the running instance
-            //            SendMessage(p.MainWindowHandle, Message, IntPtr.Zero, IntPtr.Zero);
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    //MessageBox.Show("No other running applications found.");
-            //}
+            Regex r = new Regex("(?:[^a-z0-9 ]|(?<=['\"]))", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
+            return r.Replace(input, String.Empty);
         }
 
         public static string GetMediaTypeForFile(string filePath)
