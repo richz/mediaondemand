@@ -128,17 +128,17 @@
     <script type="text/javascript"><%= postBackStr %></script>
     <h1 id="PageHeader">
         Media Administration</h1>
-    <br />
-    
-    <br />
-    <br />
+        <br />
     <table style="margin-left: auto; margin-right: auto; width: 1150px;">
     <tr>
     <td colspan="2">
     <table>
     <tr>
-    <td colspan="2">
-        <asp:RadioButtonList ID="rblMediaType" RepeatDirection="Horizontal" 
+    <td>
+        <asp:Label ID="lblImageMediaType" runat="server" Text="Select a media type "></asp:Label>
+    </td>
+    <td>
+        <asp:RadioButtonList ID="rblMediaType" CellSpacing="10" RepeatDirection="Horizontal" 
             runat="server" onselectedindexchanged="rblMediaType_SelectedIndexChanged" 
             AutoPostBack="True">
         <asp:ListItem Text="Movie" Value="movie" Selected="True"></asp:ListItem>
@@ -163,13 +163,16 @@
             onclick="btnUploadFile_Click" />
     </td>
     </tr>
+    <tr>
+    <td colspan="2" align="center">
+        <asp:Label ID="lblImageUploadStatus" runat="server" ForeColor="Green" Text=""></asp:Label>
+    </td>
+    </tr>
     </table>
     
 
     <br />
-    <br />
-    <br />
-
+    
     </td>
     </tr>    
         <tr>

@@ -13,6 +13,15 @@ namespace MediaOnDemand {
     public partial class WebsiteAdministration {
         
         /// <summary>
+        /// lblImageMediaType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblImageMediaType;
+        
+        /// <summary>
         /// rblMediaType control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace MediaOnDemand {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUploadFile;
+        
+        /// <summary>
+        /// lblImageUploadStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblImageUploadStatus;
         
         /// <summary>
         /// btnAddAllFromNetworkFolder control.

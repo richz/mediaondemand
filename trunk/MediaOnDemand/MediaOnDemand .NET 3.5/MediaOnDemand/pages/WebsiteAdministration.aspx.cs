@@ -95,7 +95,7 @@ namespace MediaOnDemand
         #endregion
 
         #region Static Methods
-        
+
         [System.Web.Services.WebMethod]
         [System.Web.Script.Services.ScriptMethod()]
         public static string addFilesForMediaType()
@@ -127,7 +127,7 @@ namespace MediaOnDemand
                 FileInfo file = new FileInfo(filePath);
 
                 string fileExt = Path.GetExtension(filePath);
-                
+
                 fileAdded = false;
 
                 if (WebsiteAdministration.supportedTypes.Contains(fileExt.ToLower()) && !Path.GetFileNameWithoutExtension(filePath).Equals("Thumbs"))
@@ -716,7 +716,7 @@ namespace MediaOnDemand
 
             return mediaT;
         }
-        
+
         public static string RemoveSpecialCharacters(string input)
         {
             Regex r = new Regex("(?:[^a-z0-9 ]|(?<=['\"]))", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
@@ -740,10 +740,12 @@ namespace MediaOnDemand
 
         protected void btnUploadFile_Click(object sender, EventArgs e)
         {
+            this.lblImageUploadStatus.Text = "";
+
             // Specify the path on the server to
             // save the uploaded file to.
             String savePath = this.hdnImageUploadPath.Value;
-                        
+
 
             // Before attempting to perform operations
             // on the file, verify that the FileUpload 
@@ -763,10 +765,33 @@ namespace MediaOnDemand
                 // If a file with the same name
                 // already exists in the specified path,  
                 // the uploaded file overwrites it.
-                ImageUpload.SaveAs(savePath);
+
+                if (File.Exists(savePath))
+                {
+                    this.lblImageUploadStatus.ForeColor = Color.Red;
+                    this.lblImageUploadStatus.Text = "File with the same name already exists";
+                }
+                else
+                {
+                    try
+                    {
+
+                        ImageUpload.SaveAs(savePath);
+
+                        this.lblImageUploadStatus.ForeColor = Color.Green;
+                        this.lblImageUploadStatus.Text = "File upload was successful";
+                    }
+                    catch (Exception ex)
+                    {
+                        this.lblImageUploadStatus.ForeColor = Color.Red;
+                        this.lblImageUploadStatus.Text = "An error ocurred while uploading the file";
+                    }
+                }
             }
             else
             {
+                this.lblImageUploadStatus.ForeColor = Color.Red;
+                this.lblImageUploadStatus.Text = "No file was selected to upload";
             }
         }
 
@@ -775,7 +800,7 @@ namespace MediaOnDemand
             string rootImagesPath = HttpContext.Current.Request.PhysicalApplicationPath + @"images";
             string imageUploadPath = "";
 
-            switch((sender as RadioButtonList).SelectedValue)
+            switch ((sender as RadioButtonList).SelectedValue)
             {
                 case "movie":
                     imageUploadPath = rootImagesPath + @"\posters\";

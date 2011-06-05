@@ -88,7 +88,8 @@
                                 <h2>
                                     Latest Media Played</h2>
                                 <asp:DataList ID="dlLatestMediaPlayed" DataKeyField="medId" RepeatDirection="Horizontal"
-                                    RepeatColumns="5" runat="server">
+                                    RepeatColumns="5" runat="server" 
+                                    onitemdatabound="dlLatestMediaPlayed_ItemDataBound">
                                     <ItemTemplate>
                                         <table>
                                             <tr>
@@ -174,7 +175,8 @@
                                 <h2>
                                     Latest Media Added</h2>
                                 <asp:DataList ID="dlLatestMediaAdded" DataKeyField="medId" RepeatDirection="Horizontal"
-                                    RepeatColumns="5" runat="server">
+                                    RepeatColumns="5" runat="server" 
+                                    onitemdatabound="dlLatestMediaAdded_ItemDataBound">
                                     <ItemTemplate>
                                         <table>
                                             <tr>
@@ -259,7 +261,8 @@
                                 <h2>
                                     Highest Rated Media</h2>
                                 <asp:DataList ID="dlHighestRatedMedia" DataKeyField="medId" RepeatDirection="Horizontal"
-                                    RepeatColumns="5" runat="server">
+                                    RepeatColumns="5" runat="server" 
+                                    onitemdatabound="dlHighestRatedMedia_ItemDataBound">
                                     <ItemTemplate>
                                         <table>
                                             <tr>

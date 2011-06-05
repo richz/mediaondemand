@@ -151,8 +151,7 @@ namespace MediaOnDemand
                                   where storedMedia.medId == id
                                   orderby storedMedia.medDateAdded descending
                                   select storedMedia).First();
-
-
+                
                 sm.medLastPlayedDate = DateTime.Now;
 
                 context.SubmitChanges();
@@ -486,19 +485,22 @@ namespace MediaOnDemand
         {
             bool imageExists = false;
 
-            string baseUrl = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath.TrimEnd('/') + '/';
+            if (!String.IsNullOrEmpty(imageUrl))
+            {
+                string baseUrl = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath.TrimEnd('/') + '/';
 
-            //HttpWebRequest req = default(HttpWebRequest);
-            WebRequest req = WebRequest.Create(baseUrl + imageUrl.Substring(3));
-            WebResponse resp = default(WebResponse);
-            try
-            {
-                resp = req.GetResponse();
-                imageExists = true;
-            }
-            catch (Exception ex)
-            {
-                imageExists = false;
+                //HttpWebRequest req = default(HttpWebRequest);
+                WebRequest req = WebRequest.Create(baseUrl + imageUrl.Substring(3));
+                WebResponse resp = default(WebResponse);
+                try
+                {
+                    resp = req.GetResponse();
+                    imageExists = true;
+                }
+                catch (Exception ex)
+                {
+                    imageExists = false;
+                }
             }
 
             return imageExists;
@@ -541,6 +543,24 @@ namespace MediaOnDemand
         }
 
         #endregion
+        
+        protected void dlLatestMediaPlayed_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            if (!ImageExists((e.Item.Controls[3] as Image).ImageUrl))
+                (e.Item.Controls[3] as Image).ImageUrl = "../images/missingimage.jpg";
+        }
+
+        protected void dlLatestMediaAdded_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            if (!ImageExists((e.Item.Controls[3] as Image).ImageUrl))
+                (e.Item.Controls[3] as Image).ImageUrl = "../images/missingimage.jpg";
+        }
+
+        protected void dlHighestRatedMedia_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            if (!ImageExists((e.Item.Controls[3] as Image).ImageUrl))
+                (e.Item.Controls[3] as Image).ImageUrl = "../images/missingimage.jpg";
+        }
         
     }
 }

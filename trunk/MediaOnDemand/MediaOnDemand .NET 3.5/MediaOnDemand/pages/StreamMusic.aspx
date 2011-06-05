@@ -23,6 +23,9 @@
                 <asp:Panel ID="findByRecordCountPanel" runat="server">
                     <table width="100%">
                         <tr>
+                            <td align="center" colspan="2">
+                            <table>
+                            <tr>
                             <td align="center">
                                 <input style="display: none" type="button" id="btnPlayInPopup" onclick="showMediaInPopupWindow('music')"
                                     value="Play in popup" />
@@ -32,6 +35,9 @@
                                     value="Close Player" />
                             </td>
 
+                            </tr>
+                            </table>
+                            </td>
                         </tr>
                         <tr>
                             <td align="center">
