@@ -291,10 +291,6 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MediaOnDemandDataAccess\MediaOnDemandDataAccess.csproj">
-      <Project>{DB9AD794-5519-4C52-9F66-A0ABCFF38205}</Project>
-      <Name>MediaOnDemandDataAccess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MediaOnDemandLibrary\MediaOnDemandLibrary.csproj">
       <Project>{38E41635-F6CD-4454-98F5-6CF2E225AE6D}</Project>
       <Name>MediaOnDemandLibrary</Name>
