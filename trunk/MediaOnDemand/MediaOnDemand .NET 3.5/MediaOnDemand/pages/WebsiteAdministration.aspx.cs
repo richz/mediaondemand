@@ -69,6 +69,8 @@ namespace MediaOnDemand
                 this.ddlMediaTypes.SelectedIndex = 0;
                 this.hdnMediaType.Value = ddlMediaTypes.SelectedValue;
 
+                this.hdnImageUploadPath.Value = HttpContext.Current.Request.PhysicalApplicationPath + @"\images\posters";
+
                 this.hdnUpdateMode.Value = "none";
 
 
@@ -735,5 +737,64 @@ namespace MediaOnDemand
         }
 
         #endregion
+
+        protected void btnUploadFile_Click(object sender, EventArgs e)
+        {
+            // Specify the path on the server to
+            // save the uploaded file to.
+            String savePath = this.hdnImageUploadPath.Value;
+                        
+
+            // Before attempting to perform operations
+            // on the file, verify that the FileUpload 
+            // control contains a file.
+            if (ImageUpload.HasFile)
+            {
+                // Get the name of the file to upload.
+                String fileName = ImageUpload.FileName;
+
+                // Append the name of the file to upload to the path.
+                savePath += fileName;
+
+                // Call the SaveAs method to save the 
+                // uploaded file to the specified path.
+                // This example does not perform all
+                // the necessary error checking.               
+                // If a file with the same name
+                // already exists in the specified path,  
+                // the uploaded file overwrites it.
+                ImageUpload.SaveAs(savePath);
+            }
+            else
+            {
+            }
+        }
+
+        protected void rblMediaType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string rootImagesPath = HttpContext.Current.Request.PhysicalApplicationPath + @"images";
+            string imageUploadPath = "";
+
+            switch((sender as RadioButtonList).SelectedValue)
+            {
+                case "movie":
+                    imageUploadPath = rootImagesPath + @"\posters\";
+                    break;
+                case "tv":
+                    imageUploadPath = rootImagesPath + @"\posters\";
+                    break;
+                case "musicvideo":
+                    imageUploadPath = rootImagesPath + @"\albumcovers\";
+                    break;
+                case "music":
+                    imageUploadPath = rootImagesPath + @"\albumcovers\";
+                    break;
+                case "sports":
+                    imageUploadPath = rootImagesPath + @"\posters\";
+                    break;
+            }
+
+            hdnImageUploadPath.Value = imageUploadPath;
+        }
     }
 }

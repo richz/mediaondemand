@@ -97,8 +97,15 @@
     <asp:LinqDataSource ID="lnqMedia" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
         TableName="StoredMedias">
     </asp:LinqDataSource>
-    <asp:HiddenField ID="hdnMediaTitle" runat="server" />
-    <asp:HiddenField ID="hdnMediaUrl" runat="server" />
+
+    <div style="display:none">
+    <asp:Button ID="btnSaveMediaPlayed" runat="server" 
+            onclick="btnSaveMediaPlayed_Click" />
+    </div>
+
+    <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server" />
+    <asp:HiddenField ID="hdnMediaId" Value="" runat="server" />
+    <asp:HiddenField ID="hdnMediaTitle" Value="" runat="server" />   
     </form>
 </body>
 </html>

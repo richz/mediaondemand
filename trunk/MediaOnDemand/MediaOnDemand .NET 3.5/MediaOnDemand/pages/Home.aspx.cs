@@ -9,54 +9,19 @@ using System.IO;
 using AjaxControlToolkit;
 using System.Data.OleDb;
 using System.Data;
+using System.Threading;
+using System.Net;
 
 namespace MediaOnDemand
 {
     public partial class Home : System.Web.UI.Page
     {
-        private bool RatingChanged = false;
-
-        #region Helper Methods
-
-        private void ItemsGet(DataList dataList, SqlDataSource dataSource, ImageButton previousButton, ImageButton nextButton, Label previousLabel, Label nextLabel)
-        {
-            // Populate the repeater control with the Items DataSet
-            PagedDataSource objPds = new PagedDataSource();
-
-            DataView dv = (DataView)dataSource.Select(DataSourceSelectArguments.Empty);
-
-            objPds.DataSource = dv;
-
-            objPds.AllowPaging = true;
-
-            objPds.PageSize = 5;
-
-            switch (dataList.ID)
-            {
-                case "dlLatestMediaPlayed":
-                    objPds.CurrentPageIndex = LatestMediaPlayedCurrentPage;
-                    break;
-                case "dlLatestMediaAdded":
-                    objPds.CurrentPageIndex = LatestMediaAddedCurrentPage;
-                    break;
-                case "dlHighestRatedMedia":
-                    objPds.CurrentPageIndex = HighestRatedMediaCurrentPage;
-                    break;
-            }
-            
-            // Disable/Hide Prev or Next buttons if necessary
-            previousLabel.Visible = previousButton.Enabled = previousButton.Visible = !objPds.IsFirstPage;
-            nextLabel.Visible = nextButton.Enabled = nextButton.Visible = !objPds.IsLastPage;
-
-            dataList.DataSource = objPds;
-
-            dataList.DataBind();
-        }
-
-        #endregion
+        protected string postBackStr;
 
         #region Private Fields
-        
+
+        private bool RatingChanged = false;
+
         public int LatestMediaPlayedCurrentPage
         {
             get
@@ -131,6 +96,7 @@ namespace MediaOnDemand
         {
             if (!IsPostBack)
             {
+                this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
 
                 ImageButton btnPreviousLatestMediaPlayed = dlLatestMediaPlayed.Parent.FindControl("btnPreviousLatestMediaPlayed") as ImageButton;
                 ImageButton btnNextLatestMediaPlayed = dlLatestMediaPlayed.Parent.FindControl("btnNextLatestMediaPlayed") as ImageButton;
@@ -158,37 +124,46 @@ namespace MediaOnDemand
 
 
             }
-            if (this.hdnHasMediaPlayed.Value.Equals("Y"))
-            {
-                try
-                {
-                    int id = Convert.ToInt32(this.hdnMediaId.Value);
-
-                    StorageMediaDataContext context = new StorageMediaDataContext();
-
-
-                    StoredMedia sm = (from storedMedia in context.StoredMedias
-                                      where storedMedia.medId == id
-                                      orderby storedMedia.medDateAdded descending
-                                      select storedMedia).First();
-
-
-                    sm.medLastPlayedDate = DateTime.Now;
-
-                    context.SubmitChanges();
-                }
-                catch (Exception ex)
-                {
-
-                }
-
-                this.hdnHasMediaPlayed.Value = "N";
-            }
         }
 
         #endregion
 
         #region Control Event Handlers
+
+        protected void imgPosterImage_Load(object sender, EventArgs e)
+        {
+            Image img = sender as Image;
+
+            if (!ImageExists(img.ImageUrl))
+                img.ImageUrl = "../images/missingimage.jpg";
+        }
+
+        protected void btnSaveMediaPlayed_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int id = Convert.ToInt32(this.hdnMediaId.Value);
+
+                StorageMediaDataContext context = new StorageMediaDataContext();
+
+
+                StoredMedia sm = (from storedMedia in context.StoredMedias
+                                  where storedMedia.medId == id
+                                  orderby storedMedia.medDateAdded descending
+                                  select storedMedia).First();
+
+
+                sm.medLastPlayedDate = DateTime.Now;
+
+                context.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri);
+        }
 
         protected void Save_Rating1(object sender, EventArgs e)
         {
@@ -283,7 +258,7 @@ namespace MediaOnDemand
         protected void ratingControl1_Changed(object sender, EventArgs e)
         {
             this.RatingChanged = true;
-            Rating ratingControl = sender as Rating;            
+            Rating ratingControl = sender as Rating;
             //string s = ratingControl.ID.ToArray()[ratingControl.ID.Length - 1].ToString();
 
             ImageButton btnSubmitRating = ratingControl.Parent.FindControl("btnSubmitRating1") as ImageButton;
@@ -295,7 +270,7 @@ namespace MediaOnDemand
         {
             this.RatingChanged = true;
             Rating ratingControl = sender as Rating;
-            
+
             ImageButton btnSubmitRating = ratingControl.Parent.FindControl("btnSubmitRating2") as ImageButton;
 
             Session[btnSubmitRating.ClientID] = "visible";
@@ -305,7 +280,7 @@ namespace MediaOnDemand
         {
             this.RatingChanged = true;
             Rating ratingControl = sender as Rating;
-            
+
             ImageButton btnSubmitRating = ratingControl.Parent.FindControl("btnSubmitRating3") as ImageButton;
 
             Session[btnSubmitRating.ClientID] = "visible";
@@ -318,7 +293,7 @@ namespace MediaOnDemand
             //string s = ratingControl.ID.ToArray()[ratingControl.ID.Length - 1].ToString();
 
             ImageButton btnSubmitRating = ratingControl.Parent.FindControl("btnSubmitRating1") as ImageButton;
-            
+
             int mediaID = Convert.ToInt32(btnSubmitRating.CommandArgument);
 
             StorageMediaDataContext context = new StorageMediaDataContext();
@@ -335,7 +310,7 @@ namespace MediaOnDemand
         {
             int rating = 0;
             Rating ratingControl = (sender as Rating);
-            
+
             ImageButton btnSubmitRating = ratingControl.Parent.FindControl("btnSubmitRating2") as ImageButton;
 
             int mediaID = Convert.ToInt32(btnSubmitRating.CommandArgument);
@@ -354,7 +329,7 @@ namespace MediaOnDemand
         {
             int rating = 0;
             Rating ratingControl = (sender as Rating);
-            
+
             ImageButton btnSubmitRating = ratingControl.Parent.FindControl("btnSubmitRating3") as ImageButton;
 
             int mediaID = Convert.ToInt32(btnSubmitRating.CommandArgument);
@@ -502,8 +477,70 @@ namespace MediaOnDemand
 
             ItemsGet(dlHighestRatedMedia, dsHighestRatedMedia, btnPreviousHighestRatedMedia, btnNextHighestRatedMedia, lblPreviousHighestRatedMedia, lblNextHighestRatedMedia);
         }
-        
+
         #endregion
 
+        #region Helper Methods
+
+        private bool ImageExists(string imageUrl)
+        {
+            bool imageExists = false;
+
+            string baseUrl = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath.TrimEnd('/') + '/';
+
+            //HttpWebRequest req = default(HttpWebRequest);
+            WebRequest req = WebRequest.Create(baseUrl + imageUrl.Substring(3));
+            WebResponse resp = default(WebResponse);
+            try
+            {
+                resp = req.GetResponse();
+                imageExists = true;
+            }
+            catch (Exception ex)
+            {
+                imageExists = false;
+            }
+
+            return imageExists;
+
+        }
+
+        private void ItemsGet(DataList dataList, SqlDataSource dataSource, ImageButton previousButton, ImageButton nextButton, Label previousLabel, Label nextLabel)
+        {
+            // Populate the repeater control with the Items DataSet
+            PagedDataSource objPds = new PagedDataSource();
+
+            DataView dv = (DataView)dataSource.Select(DataSourceSelectArguments.Empty);
+
+            objPds.DataSource = dv;
+
+            objPds.AllowPaging = true;
+
+            objPds.PageSize = 5;
+
+            switch (dataList.ID)
+            {
+                case "dlLatestMediaPlayed":
+                    objPds.CurrentPageIndex = LatestMediaPlayedCurrentPage;
+                    break;
+                case "dlLatestMediaAdded":
+                    objPds.CurrentPageIndex = LatestMediaAddedCurrentPage;
+                    break;
+                case "dlHighestRatedMedia":
+                    objPds.CurrentPageIndex = HighestRatedMediaCurrentPage;
+                    break;
+            }
+
+            // Disable/Hide Prev or Next buttons if necessary
+            previousLabel.Visible = previousButton.Enabled = previousButton.Visible = !objPds.IsFirstPage;
+            nextLabel.Visible = nextButton.Enabled = nextButton.Visible = !objPds.IsLastPage;
+
+            dataList.DataSource = objPds;
+
+            dataList.DataBind();
+        }
+
+        #endregion
+        
     }
 }

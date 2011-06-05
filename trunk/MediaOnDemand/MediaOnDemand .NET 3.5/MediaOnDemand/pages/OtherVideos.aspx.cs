@@ -32,39 +32,38 @@ namespace MediaOnDemand
                     if (Session.Keys[i].EndsWith("btnSubmitRating"))
                         Session[i] = "hidden";    
             }
-            
-            if (this.hdnHasMediaPlayed.Value.Equals("Y"))
-            {
-                try
-                {
-                    int id = Convert.ToInt32(this.hdnMediaId.Value);
-
-                    StorageMediaDataContext context = new StorageMediaDataContext();
-
-
-                    StoredMedia sm = (from storedMedia in context.StoredMedias
-                                      where storedMedia.medId == id
-                                      orderby storedMedia.medDateAdded descending
-                                      select storedMedia).First();
-
-
-                    sm.medLastPlayedDate = DateTime.Now;
-
-                    context.SubmitChanges();
-                }
-                catch (Exception ex)
-                {
-
-                }
-
-                this.hdnHasMediaPlayed.Value = "N";
-            }
-
         }
 
         #endregion
 
         #region Controls Event Handlers
+
+        protected void btnSaveMediaPlayed_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int id = Convert.ToInt32(this.hdnMediaId.Value);
+
+                StorageMediaDataContext context = new StorageMediaDataContext();
+
+
+                StoredMedia sm = (from storedMedia in context.StoredMedias
+                                  where storedMedia.medId == id
+                                  orderby storedMedia.medDateAdded descending
+                                  select storedMedia).First();
+
+
+                sm.medLastPlayedDate = DateTime.Now;
+
+                context.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri);
+        }
 
         protected void Save_Rating(object sender, EventArgs e)
         {

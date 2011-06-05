@@ -251,8 +251,13 @@
         Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre, medDuration, medVideoType, medDateAdded, medPosterImageUrl, medId, medMediaType, medFileExt, medRating)"
         TableName="StoredMedias" OnSelected="lnqMovies_Selected">
     </asp:LinqDataSource>
+
+      <div style="display:none">
+    <asp:Button ID="btnSaveMediaPlayed" runat="server" 
+            onclick="btnSaveMediaPlayed_Click" />
+    </div>
+
     <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server" />
     <asp:HiddenField ID="hdnMediaId" Value="" runat="server" />
-    <asp:HiddenField ID="hdnMediaTitle" Value="" runat="server" />
-    <asp:HiddenField ID="hdnHasMediaPlayed" Value="N" runat="server" />
+    <asp:HiddenField ID="hdnMediaTitle" Value="" runat="server" />    
 </asp:Content>

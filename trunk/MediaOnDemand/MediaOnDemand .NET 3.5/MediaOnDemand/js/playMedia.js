@@ -1,13 +1,13 @@
 ﻿function SetStars(controlId, startNum) {
 
     var i = 1;
-    
+
     var controlID = controlId.substring(0, controlId.length - 1);
     var imageButton;
     var imageUrl;
 
     while (i <= 5) {
-    
+
         imageButton = document.getElementById(controlID + '' + i);
 
         if (i <= startNum)
@@ -26,19 +26,19 @@
 
 function UnSetStars(controlId, startNum) {
 
-//    var i = 1;
+    //    var i = 1;
 
-//    var controlID = controlId.substring(0, controlId.length - 1);
-//    var imageButton;
+    //    var controlID = controlId.substring(0, controlId.length - 1);
+    //    var imageButton;
 
-//    while (i <= 5) {
+    //    while (i <= 5) {
 
-//        imageButton = document.getElementById(controlID + '' + i);
+    //        imageButton = document.getElementById(controlID + '' + i);
 
-//        imageButton.setAttribute('src', '~/images/rating/ratingStarEmpty.png');
+    //        imageButton.setAttribute('src', '~/images/rating/ratingStarEmpty.png');
 
-//        i++;
-//    }
+    //        i++;
+    //    }
 }
 
 
@@ -169,6 +169,8 @@ function RemoveChildWindow() {
 
 function CloseVideo() {
 
+
+
     if (navigator.appName == 'Microsoft Internet Explorer' && document.getElementById('player') != null)
         stop();
 
@@ -181,9 +183,24 @@ function CloseVideo() {
 
     javascript: scroll(0, 0);
 
-    document.getElementById('ctl00_MainContent_hdnHasMediaPlayed').setAttribute('value', 'Y');
+    //document.getElementById('ctl00_MainContent_hdnHasMediaPlayed').setAttribute('value', 'Y');
 
-    __doPostBack('__Page', 'MyCustomArgument');
+    //__doPostBack('__Page', 'MyCustomArgument');
+
+    var btnSaveMediaPlayed = document.getElementById('ctl00_MainContent_btnSaveMediaPlayed');
+
+    btnSaveMediaPlayed.click();
+}
+
+function CloseMusicPlayer() {
+
+    if (navigator.appName == 'Microsoft Internet Explorer' && document.getElementById('player') != null)
+        stop();
+
+    var btnSaveMediaPlayed = document.getElementById('ctl00_MainContent_btnSaveMediaPlayed');
+
+    btnSaveMediaPlayed.click();
+
 }
 
 function playMedia(mediaUrl, mediaType, isPopup, position) {
@@ -303,6 +320,9 @@ function playMedia(mediaUrl, mediaType, isPopup, position) {
 
             var btnPlayInPopup = document.getElementById('btnPlayInPopup');
             btnPlayInPopup.style.display = 'block';
+
+            var btnCloseMusicPlayer = document.getElementById('btnCloseMusicPlayer');
+            btnCloseMusicPlayer.style.display = 'block';
         }
         else // popup
         {
@@ -325,7 +345,7 @@ function playMedia(mediaUrl, mediaType, isPopup, position) {
                 }
                 else // music 
                 {
-                    str += ' type="application/x-ms-wmp" width="400px" height="45px" autosize="-1">';                    
+                    str += ' type="application/x-ms-wmp" width="400px" height="45px" autosize="-1">';
                 }
 
                 str += '<param name="showControls" value="true">'
@@ -378,9 +398,9 @@ function playMedia(mediaUrl, mediaType, isPopup, position) {
                     if (!isPopup)
                         str += ' type="application/x-ms-wmp" width="420px" height="45px" autosize="-1">';
                     else {
-                        str += ' type="application/x-ms-wmp" width="100%" height="52px" autosize="-1">';  
-                        str += '<param name="showdisplay" value="true">';                      
-                    } 
+                        str += ' type="application/x-ms-wmp" width="100%" height="52px" autosize="-1">';
+                        str += '<param name="showdisplay" value="true">';
+                    }
                 }
 
                 str += '<param name="showControls" value="true">'

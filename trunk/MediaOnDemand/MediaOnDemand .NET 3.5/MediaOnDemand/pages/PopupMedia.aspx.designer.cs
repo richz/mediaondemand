@@ -31,13 +31,13 @@ namespace MediaOnDemand.pages {
         protected global::System.Web.UI.WebControls.LinqDataSource lnqMedia;
         
         /// <summary>
-        /// hdnMediaTitle control.
+        /// btnSaveMediaPlayed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnMediaTitle;
+        protected global::System.Web.UI.WebControls.Button btnSaveMediaPlayed;
         
         /// <summary>
         /// hdnMediaUrl control.
@@ -47,5 +47,23 @@ namespace MediaOnDemand.pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnMediaUrl;
+        
+        /// <summary>
+        /// hdnMediaId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnMediaId;
+        
+        /// <summary>
+        /// hdnMediaTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnMediaTitle;
     }
 }

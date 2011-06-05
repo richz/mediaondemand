@@ -16,17 +16,21 @@ namespace MediaOnDemand
     public partial class WatchMovies : System.Web.UI.Page
     {
         protected string postBackStr;
+
+        #region Private Fields
+
         private bool RatingChanged = false;
 
+        #endregion
+
         #region Page Event Handlers
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             this.Title = "Media On Demand - " + User.Identity.Name;
 
             if (!IsPostBack)
             {
-
                 this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
                 this.gvMovies.Sort("medTitle", SortDirection.Ascending);
 
@@ -44,36 +48,7 @@ namespace MediaOnDemand
                 for (int i = 0; i < Session.Keys.Count; i++ )
                     if (Session.Keys[i].EndsWith("btnSubmitRating"))
                         Session[i] = "hidden";                
-            }
-
-            if (this.hdnHasMediaPlayed.Value.Equals("Y"))
-            {
-                try
-                {
-                    int id = Convert.ToInt32(this.hdnMediaId.Value);
-
-                    StorageMediaDataContext context = new StorageMediaDataContext();
-
-
-                    StoredMedia sm = (from storedMedia in context.StoredMedias
-                                      where storedMedia.medId == id
-                                      orderby storedMedia.medDateAdded descending
-                                      select storedMedia).First();
-
-
-                    sm.medLastPlayedDate = DateTime.Now;
-
-                    context.SubmitChanges();
-                }
-                catch (Exception ex)
-                {
-
-                }
-
-                this.hdnHasMediaPlayed.Value = "N";
-            }
-
-
+            }          
         }
 
         private int GetMediaIdFromUrl(string mediaTitle, string mediaUrl)
@@ -94,6 +69,33 @@ namespace MediaOnDemand
         #endregion
 
         #region Controls Event Handlers        
+
+        protected void btnSaveMediaPlayed_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int id = Convert.ToInt32(this.hdnMediaId.Value);
+
+                StorageMediaDataContext context = new StorageMediaDataContext();
+
+
+                StoredMedia sm = (from storedMedia in context.StoredMedias
+                                  where storedMedia.medId == id
+                                  orderby storedMedia.medDateAdded descending
+                                  select storedMedia).First();
+
+
+                sm.medLastPlayedDate = DateTime.Now;
+
+                context.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri);
+        }
 
         protected void Save_Rating(object sender, EventArgs e)
         {
@@ -344,5 +346,7 @@ namespace MediaOnDemand
         }
 
         #endregion
+
+       
     }
 }

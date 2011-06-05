@@ -127,11 +127,51 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript"><%= postBackStr %></script>
     <h1 id="PageHeader">
-        Website Administration</h1>
+        Media Administration</h1>
     <br />
+    
     <br />
     <br />
     <table style="margin-left: auto; margin-right: auto; width: 1150px;">
+    <tr>
+    <td colspan="2">
+    <table>
+    <tr>
+    <td colspan="2">
+        <asp:RadioButtonList ID="rblMediaType" RepeatDirection="Horizontal" 
+            runat="server" onselectedindexchanged="rblMediaType_SelectedIndexChanged" 
+            AutoPostBack="True">
+        <asp:ListItem Text="Movie" Value="movie" Selected="True"></asp:ListItem>
+        <asp:ListItem Text="TV" Value="tv"></asp:ListItem>
+        <asp:ListItem Text="Music Videos" Value="musicvideo"></asp:ListItem>
+        <asp:ListItem Text="Music" Value="music"></asp:ListItem>
+        <asp:ListItem Text="Sports" Value="sports"></asp:ListItem>
+        </asp:RadioButtonList>
+    </td>
+    </tr>
+    <tr>
+    <td>
+        <asp:Label ID="lblImageUpload" runat="server" Text="Upload an image "></asp:Label>
+    </td>
+    <td>
+    <asp:FileUpload ID="ImageUpload" runat="server" />
+    </td>
+    </tr>
+    <tr>
+    <td colspan="2" align="center">
+        <asp:Button ID="btnUploadFile" runat="server" Text="Upload file" 
+            onclick="btnUploadFile_Click" />
+    </td>
+    </tr>
+    </table>
+    
+
+    <br />
+    <br />
+    <br />
+
+    </td>
+    </tr>    
         <tr>
             <td class="alignLeft">
                 <asp:Button ID="btnAddAllFromNetworkFolder" runat="server" Text="Add all records of selected media type" />
@@ -316,4 +356,5 @@
     <asp:HiddenField ID="hdnPosterImageUrl" runat="server" />
     <asp:HiddenField ID="hdnUpdateMode" runat="server" />
     <asp:HiddenField ID="hdnNetworkFolder" runat="server" />
+    <asp:HiddenField ID="hdnImageUploadPath" runat="server" />
 </asp:Content>

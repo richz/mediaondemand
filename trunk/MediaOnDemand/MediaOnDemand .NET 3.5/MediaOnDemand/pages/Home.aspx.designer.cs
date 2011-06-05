@@ -184,6 +184,15 @@ namespace MediaOnDemand {
         protected global::System.Web.UI.WebControls.Label lblNextHighestRatedMedia;
         
         /// <summary>
+        /// btnSaveMediaPlayed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSaveMediaPlayed;
+        
+        /// <summary>
         /// hdnMediaUrl control.
         /// </summary>
         /// <remarks>
@@ -209,14 +218,5 @@ namespace MediaOnDemand {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnMediaTitle;
-        
-        /// <summary>
-        /// hdnHasMediaPlayed control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnHasMediaPlayed;
     }
 }

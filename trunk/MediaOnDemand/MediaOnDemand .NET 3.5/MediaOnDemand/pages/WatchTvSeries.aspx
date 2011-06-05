@@ -231,8 +231,16 @@ medId, medFileExt, medRating)" TableName="StoredMedias" Where="medMediaType == @
 /> <asp:ControlParameter ControlID="ddlList" Name="medAlbum" PropertyName="SelectedValue"
 Type="String" DefaultValue=" " /> <asp:ControlParameter ControlID="ddlSeasonNumbers"
 Name="medGenre" PropertyName="SelectedValue" Type="String" DefaultValue=" " /> </WhereParameters>
-</asp:LinqDataSource> <asp:HiddenField ID="hdnTotalRowCount" runat="server" /> <asp:HiddenField
-ID="hdnMediaType" runat="server" /> <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server"
-/> <asp:HiddenField ID="hdnMediaId" Value="" runat="server" /> <asp:HiddenField
-ID="hdnMediaTitle" Value="" runat="server" /> <asp:HiddenField ID="hdnHasMediaPlayed"
-Value="N" runat="server" /> </asp:Content> 
+</asp:LinqDataSource> 
+
+ <div style="display:none">
+    <asp:Button ID="btnSaveMediaPlayed" runat="server" 
+            onclick="btnSaveMediaPlayed_Click" />
+    </div>
+
+<asp:HiddenField ID="hdnTotalRowCount" runat="server" /> 
+<asp:HiddenField ID="hdnMediaType" runat="server" /> 
+<asp:HiddenField ID="hdnMediaUrl" Value="" runat="server"/> 
+<asp:HiddenField ID="hdnMediaId" Value="" runat="server" /> 
+<asp:HiddenField ID="hdnMediaTitle" Value="" runat="server"/> 
+</asp:Content> 

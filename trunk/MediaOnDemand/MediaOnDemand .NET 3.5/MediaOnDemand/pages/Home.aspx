@@ -42,20 +42,25 @@
             if (url != null)
                 window.location = url;
         }
+
+        function ImageLoad(imageLocation) {
+
+            alert(imageLocation);
+        
+        }
+
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <script type="text/javascript"><%= postBackStr %></script>
     <div class="main">
-        <asp:SqlDataSource ID="dsLatestMediaPlayed" runat="server" SelectCommand="SELECT TOP (20) medId, medTitle, medPosterImageUrl, medLocation, medDateAdded, medIsViewable, medrating, medMediaType, medGenre FROM StoredMedia WHERE (medMediaType &lt;&gt; 'music') ORDER BY medLastPlayedDate DESC"
-            
+        <asp:SqlDataSource ID="dsLatestMediaPlayed" runat="server" SelectCommand="SELECT TOP (20) medId, medTitle, medPosterImageUrl, medLocation, medDateAdded, medIsViewable, medrating, medMediaType, medGenre FROM StoredMedia /*WHERE (medMediaType &lt;&gt; 'music')*/ ORDER BY medLastPlayedDate DESC"
             ConnectionString="<%$ ConnectionStrings:MediaOnDemandDBConnectionString %>">
         </asp:SqlDataSource>
-        <asp:SqlDataSource ID="dsLatestMediaAdded" runat="server" SelectCommand="SELECT TOP (20) medId, medTitle, medPosterImageUrl, medLocation, medDateAdded, medIsViewable, medrating, medMediaType, medGenre FROM StoredMedia WHERE (medMediaType &lt;&gt; 'music') ORDER BY medDateAdded DESC"
-            
+        <asp:SqlDataSource ID="dsLatestMediaAdded" runat="server" SelectCommand="SELECT TOP (20) medId, medTitle, medPosterImageUrl, medLocation, medDateAdded, medIsViewable, medrating, medMediaType, medGenre FROM StoredMedia /*WHERE (medMediaType &lt;&gt; 'music')*/ ORDER BY medDateAdded DESC"
             ConnectionString="<%$ ConnectionStrings:MediaOnDemandDBConnectionString %>">
         </asp:SqlDataSource>
-        <asp:SqlDataSource ID="dsHighestRatedMedia" runat="server" SelectCommand="SELECT TOP (20) medId, medTitle, medPosterImageUrl, medLocation, medDateAdded, medIsViewable, medrating, medMediaType, medGenre FROM StoredMedia WHERE (medMediaType &lt;&gt; 'music') AND (medRating > 0) ORDER BY medrating DESC"
-            
+        <asp:SqlDataSource ID="dsHighestRatedMedia" runat="server" SelectCommand="SELECT TOP (20) medId, medTitle, medPosterImageUrl, medLocation, medDateAdded, medIsViewable, medrating, medMediaType, medGenre FROM StoredMedia WHERE /*(medMediaType &lt;&gt; 'music') AND*/ (medRating > 0) ORDER BY medrating DESC"
             ConnectionString="<%$ ConnectionStrings:MediaOnDemandDBConnectionString %>">
         </asp:SqlDataSource>
         <br />
@@ -98,7 +103,8 @@
                                                 <td>
                                                     <a id="A1" href="#" onclick="ForcePostBack(this, 'video')" mediatitle='<%# Eval("medTitle") %>'
                                                         param='<%# Eval("medLocation") %>' mediaid='<%# Eval("medId") %>'>
-                                                        <asp:Image ID="imgPosterImage" ImageUrl='<%# Bind("medPosterImageUrl") %>' Width="158px"
+                                                                                                                
+                                                        <asp:Image ID="imgPosterImage" OnLoad="imgPosterImage_Load" ImageUrl='<%# Bind("medPosterImageUrl") %>' Width="158px"
                                                             Height="216px" runat="server" />
                                                     </a>
                                                     <asp:Label ID="lblMissingImage" runat="server" Text="Please upload an image" Visible="false"></asp:Label>
@@ -119,8 +125,8 @@
                                                         <tr>
                                                             <td>
                                                                 <asp:Panel ID="ratingPanel1" OnPreRender="ratingPanel1_PreRender" runat="server">
-                                                                    <asp:ImageButton ID="btnSubmitRating1" OnClick="Save_Rating1" CommandArgument='<%# Bind("medId") %>' Text="Submit"
-                                                                        runat="server" ImageUrl="~/images/rating/savebutton.png" />
+                                                                    <asp:ImageButton ID="btnSubmitRating1" OnClick="Save_Rating1" CommandArgument='<%# Bind("medId") %>'
+                                                                        Text="Submit" runat="server" ImageUrl="~/images/rating/savebutton.png" />
                                                                 </asp:Panel>
                                                             </td>
                                                         </tr>
@@ -183,7 +189,7 @@
                                                 <td>
                                                     <a id="A1" href="#" onclick="ForcePostBack(this, 'video')" mediatitle='<%# Eval("medTitle") %>'
                                                         param='<%# Eval("medLocation") %>' mediaid='<%# Eval("medId") %>'>
-                                                        <asp:Image ID="imgPosterImage" ImageUrl='<%# Bind("medPosterImageUrl") %>' Width="158px"
+                                                        <asp:Image ID="imgPosterImage" OnLoad="imgPosterImage_Load" ImageUrl='<%# Bind("medPosterImageUrl") %>' Width="158px"
                                                             Height="216px" runat="server" />
                                                     </a>
                                                     <asp:Label ID="lblMissingImage" runat="server" Text="Please upload an image" Visible="false"></asp:Label>
@@ -204,8 +210,8 @@
                                                         <tr>
                                                             <td>
                                                                 <asp:Panel ID="ratingPanel2" OnPreRender="ratingPanel2_PreRender" runat="server">
-                                                                    <asp:ImageButton ID="btnSubmitRating2"  OnClick="Save_Rating2" CommandArgument='<%# Bind("medId") %>' Text="Submit"
-                                                                        runat="server" ImageUrl="~/images/rating/savebutton.png" />
+                                                                    <asp:ImageButton ID="btnSubmitRating2" OnClick="Save_Rating2" CommandArgument='<%# Bind("medId") %>'
+                                                                        Text="Submit" runat="server" ImageUrl="~/images/rating/savebutton.png" />
                                                                 </asp:Panel>
                                                             </td>
                                                         </tr>
@@ -268,7 +274,7 @@
                                                 <td>
                                                     <a id="A1" href="#" onclick="ForcePostBack(this, 'video')" mediatitle='<%# Eval("medTitle") %>'
                                                         param='<%# Eval("medLocation") %>' mediaid='<%# Eval("medId") %>'>
-                                                        <asp:Image ID="imgPosterImage" ImageUrl='<%# Bind("medPosterImageUrl") %>' Width="158px"
+                                                        <asp:Image ID="imgPosterImage" OnLoad="imgPosterImage_Load" ImageUrl='<%# Bind("medPosterImageUrl") %>' Width="158px"
                                                             Height="216px" runat="server" />
                                                     </a>
                                                     <asp:Label ID="lblMissingImage" runat="server" Text="Please upload an image" Visible="false"></asp:Label>
@@ -289,8 +295,8 @@
                                                         <tr>
                                                             <td>
                                                                 <asp:Panel ID="ratingPanel3" OnPreRender="ratingPanel3_PreRender" runat="server">
-                                                                    <asp:ImageButton ID="btnSubmitRating3"  OnClick="Save_Rating3" CommandArgument='<%# Bind("medId") %>' Text="Submit"
-                                                                        runat="server" ImageUrl="~/images/rating/savebutton.png" />
+                                                                    <asp:ImageButton ID="btnSubmitRating3" OnClick="Save_Rating3" CommandArgument='<%# Bind("medId") %>'
+                                                                        Text="Submit" runat="server" ImageUrl="~/images/rating/savebutton.png" />
                                                                 </asp:Panel>
                                                             </td>
                                                         </tr>
@@ -323,8 +329,10 @@
             </asp:UpdatePanel>
         </div>
     </div>
+    <div style="display: none">
+        <asp:Button ID="btnSaveMediaPlayed" runat="server" OnClick="btnSaveMediaPlayed_Click" />
+    </div>
     <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server" />
     <asp:HiddenField ID="hdnMediaId" Value="" runat="server" />
     <asp:HiddenField ID="hdnMediaTitle" Value="" runat="server" />
-    <asp:HiddenField ID="hdnHasMediaPlayed" Value="N" runat="server" />
 </asp:Content>

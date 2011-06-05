@@ -23,13 +23,18 @@
                 <asp:Panel ID="findByRecordCountPanel" runat="server">
                     <table width="100%">
                         <tr>
-                            <td colspan="2" align="center">
+                            <td align="center">
                                 <input style="display: none" type="button" id="btnPlayInPopup" onclick="showMediaInPopupWindow('music')"
                                     value="Play in popup" />
                             </td>
+                            <td align="center">
+                                <input style="display: none" type="button" id="btnCloseMusicPlayer" onclick="CloseMusicPlayer()"
+                                    value="Close Player" />
+                            </td>
+
                         </tr>
                         <tr>
-                            <td align="left">
+                            <td align="center">
                                 <table>
                                     <tr>
                                         <td style="width: 75px">
@@ -226,7 +231,12 @@
         TableName="StoredMedias" Where="medMediaType == @medMediaType &amp;&amp; medIsViewable == @medIsViewable &amp;&amp; medArtist == @medArtist"
         OnSelected="lnqMusic_Selected">
     </asp:LinqDataSource>
+
+     <div style="display:none">
+    <asp:Button ID="btnSaveMediaPlayed" runat="server" 
+            onclick="btnSaveMediaPlayed_Click" />
+    </div>
+
     <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server" />
-    <asp:HiddenField ID="hdnMediaId" Value="" runat="server" />
-    <asp:HiddenField ID="hdnHasMediaPlayed" Value="N" runat="server" />
+    <asp:HiddenField ID="hdnMediaId" Value="" runat="server" />    
 </asp:Content>

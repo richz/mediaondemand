@@ -25,6 +25,37 @@ namespace MediaOnDemand.pages
 
         #endregion
 
+        #region Controls Event Handlers
+
+        protected void btnSaveMediaPlayed_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int id = Convert.ToInt32(this.hdnMediaId.Value);
+
+                StorageMediaDataContext context = new StorageMediaDataContext();
+
+
+                StoredMedia sm = (from storedMedia in context.StoredMedias
+                                  where storedMedia.medId == id
+                                  orderby storedMedia.medDateAdded descending
+                                  select storedMedia).First();
+
+
+                sm.medLastPlayedDate = DateTime.Now;
+
+                context.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            Response.Redirect(HttpContext.Current.Request.Url.AbsoluteUri);
+        }
+
+        #endregion
+
         #region Static Methods
 
         [System.Web.Services.WebMethod]
