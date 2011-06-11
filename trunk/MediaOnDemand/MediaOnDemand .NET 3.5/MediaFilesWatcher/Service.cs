@@ -159,7 +159,7 @@ namespace MediaFilesWatcher
                     if (sm.medTitle.Equals(Path.GetFileNameWithoutExtension(oldPath)))
                     {
                         sm.medTitle = Path.GetFileNameWithoutExtension(newPath);
-                        sm.medLocation = newPath;
+                        sm.medLocation = newPath.Replace("C:", "\\\\mediaserver");
                         sm.medFileExt = Path.GetExtension(newPath);
 
                         try
