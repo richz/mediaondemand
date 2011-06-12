@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestSettings name="MediaOnDemandTestSettings" id="2aae6be6-4e88-4a6c-b73e-000a5513ab4d" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Description>These are default test settings for a local test run.</Description>
+  <Deployment enabled="false" />
+  <Execution>
+    <Hosts skipUnhostableTests="false" />
+    <TestTypeSpecific>
+      <UnitTestRunConfig testTypeId="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b">
+        <AssemblyResolution applicationBaseDirectory="%USERPROFILE%\My Projects\Software Projects\Development\Personal\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests">
+          <TestDirectory useLoadContext="true" />
+          <RuntimeResolution>
+            <Directory path="%USERPROFILE%\My Projects\Software Projects\Development\Personal\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug" includeSubDirectories="true" />
+          </RuntimeResolution>
+          <DiscoveryResolution>
+            <Directory path="%USERPROFILE%\My Projects\Software Projects\Development\Personal\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug" includeSubDirectories="true" />
+          </DiscoveryResolution>
+        </AssemblyResolution>
+      </UnitTestRunConfig>
+    </TestTypeSpecific>
+    <AgentRule name="LocalMachineDefaultRole">
+      <DataCollectors>
+        <DataCollector uri="datacollector://microsoft/CodeCoverage/1.0" assemblyQualifiedName="Microsoft.VisualStudio.TestTools.CodeCoverage.CoveragePlugIn, Microsoft.VisualStudio.QualityTools.Plugins.CodeCoverage, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" friendlyName="Code Coverage">
+          <Configuration>
+            <CodeCoverage xmlns="">
+              <Regular>
+                <CodeCoverageItem binaryFile="MediaOnDemand.UnitTests\bin\Debug\MediaOnDemand.UnitTests.dll" pdbFile="MediaOnDemand.UnitTests\bin\Debug\MediaOnDemand.UnitTests.pdb" instrumentInPlace="true" />
+              </Regular>
+            </CodeCoverage>
+          </Configuration>
+        </DataCollector>
+      </DataCollectors>
+    </AgentRule>
+  </Execution>
+</TestSettings>

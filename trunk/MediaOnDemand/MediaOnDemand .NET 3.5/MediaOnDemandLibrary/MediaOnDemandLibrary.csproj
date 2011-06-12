@@ -35,6 +35,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Gallio">
+      <HintPath>..\MediaOnDemand.UnitTests\bin\Debug\Gallio.dll</HintPath>
+    </Reference>
+    <Reference Include="Gallio.XmlSerializers">
+      <HintPath>..\MediaOnDemand.UnitTests\bin\Debug\Gallio.XmlSerializers.dll</HintPath>
+    </Reference>
+    <Reference Include="MbUnit">
+      <HintPath>..\MediaOnDemand.UnitTests\bin\Debug\MbUnit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
