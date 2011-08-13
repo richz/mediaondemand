@@ -223,7 +223,7 @@ namespace MediaFilesWatcher
                             mediaT = mediaType;
                             artist = file.Directory.Parent.Name;
                             album = file.Directory.Name;
-                            posterImageUrl = String.Format("../images/albumcovers/{0}.jpg", Service.RemoveSpecialCharacters(album));
+                            posterImageUrl = String.Format("../images/albumcovers/music.jpg", Service.RemoveSpecialCharacters(album));
                         }
                         break;
                     case "sports":
