@@ -507,7 +507,7 @@ namespace MediaOnDemand
                             mediaT = mediaType;
                             artist = file.Directory.Parent.Name;
                             album = file.Directory.Name;
-                            posterImageUrl = String.Format("../images/albumcovers/{0}.jpg", WebsiteAdministration.RemoveSpecialCharacters(album));
+                            posterImageUrl = String.Format("../images/albumcovers/music.jpg", WebsiteAdministration.RemoveSpecialCharacters(album));
                         }
                         break;
                     case "sports":
