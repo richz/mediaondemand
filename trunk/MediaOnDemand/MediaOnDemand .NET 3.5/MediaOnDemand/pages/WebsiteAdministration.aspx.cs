@@ -19,6 +19,14 @@ namespace MediaOnDemand
     {
         #region Private Fields
 
+        //Image Upload
+        static string rootImagesPath = HttpContext.Current.Request.PhysicalApplicationPath + @"images";
+        static string movieImageUploadPath = WebsiteAdministration.rootImagesPath + @"\posters\";
+        static string tvImageUploadPath = rootImagesPath + @"\posters\";
+        static string musicVideoImageUploadPath = rootImagesPath + @"\albumcovers\";
+        static string musicImageUploadPath = rootImagesPath + @"\albumcovers\";
+        static string sportsImageUploadPath = rootImagesPath + @"\posters\";
+
         //Main Folders
         static string rootMediaFilesFolder = "\\\\mediaserver\\mediafiles";
         static string videosFolder = rootMediaFilesFolder + "\\videos";
@@ -61,19 +69,19 @@ namespace MediaOnDemand
 
             if (!IsPostBack)
             {
+                this.txtTitle.Attributes.Add("onkeypress", "if (window.event.keyCode == 13) {var filterBtn = document.getElementById('ctl00_MainContent_btnFilter'); filterBtn.click(); window.event.cancel = true;}");
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Show lightbox", "showEditLightBox();", true);
 
                 this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");
-
-                this.ddlMediaTypes.SelectedIndex = 0;
-                this.hdnMediaType.Value = ddlMediaTypes.SelectedValue;
+                
+                this.rblMediaType.SelectedIndex = 0;
+                this.hdnMediaType.Value = this.rblMediaType.SelectedValue;
 
                 this.hdnImageUploadPath.Value = HttpContext.Current.Request.PhysicalApplicationPath + @"\images\posters";
 
                 this.hdnUpdateMode.Value = "none";
-
-
+                
                 this.btnAddNewMediaRow.Enabled = true;
 
                 //default
@@ -85,9 +93,6 @@ namespace MediaOnDemand
 
                 this.btnDeleteAllRecords.Visible = true;
             }
-
-            if (this.ddlMediaTypes.SelectedValue.Equals("all"))
-                this.lnqMedia.Where = "medMediaType == \" \"";
 
             gvMedia.DataBind();
         }
@@ -201,61 +206,7 @@ namespace MediaOnDemand
         #endregion
 
         #region Control Event Handlers
-
-        protected void ddlMediaTypes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Reset Page Index for Grid
-            this.gvMedia.PageIndex = 0;
-
-            this.hdnMediaType.Value = WebsiteAdministration.mediaType = this.ddlMediaTypes.SelectedValue;
-
-            if (!this.ddlMediaTypes.SelectedValue.Equals("all"))
-                this.lnqMedia.Where = "medMediaType == \"" + this.ddlMediaTypes.SelectedValue + "\"";
-            else
-                this.lnqMedia.Where = "";
-
-            switch (this.ddlMediaTypes.SelectedValue)
-            {
-                case "all":
-                    {
-                        this.hdnNetworkFolder.Value = WebsiteAdministration.networkFolder = WebsiteAdministration.rootMediaFilesFolder;
-                    }
-                    break;
-                case "music":
-                    {
-                        this.hdnNetworkFolder.Value = WebsiteAdministration.networkFolder = WebsiteAdministration.musicFolder;
-                    }
-                    break;
-                case "movie":
-                    {
-                        this.hdnNetworkFolder.Value = WebsiteAdministration.networkFolder = WebsiteAdministration.moviesFolder;
-                    }
-                    break;
-                case "tv":
-                    {
-                        this.hdnNetworkFolder.Value = WebsiteAdministration.networkFolder = WebsiteAdministration.tvFolder;
-                    }
-                    break;
-                case "sports":
-                    {
-                        this.hdnNetworkFolder.Value = WebsiteAdministration.networkFolder = WebsiteAdministration.sportsFolder;
-                    }
-                    break;
-                case "musicvideo":
-                    {
-                        this.hdnNetworkFolder.Value = WebsiteAdministration.networkFolder = WebsiteAdministration.musicVideosFolder;
-                    }
-                    break;
-            }
-
-            if (!IsPostBack)
-            {
-                this.ddlPageSize.SelectedIndex = 0;
-                this.gvMedia.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].ToString());
-            }
-            this.gvMedia.PageIndex = 0;
-        }
-
+               
         protected void btnAddNewMediaRow_Click(object sender, EventArgs e)
         {
             // Reset Hidden fields
@@ -268,7 +219,7 @@ namespace MediaOnDemand
             this.hdnDuration.Value = "";
             this.hdnAlbum.Value = "";
             this.hdnMedId.Value = "";
-            this.hdnMediaType.Value = this.ddlMediaTypes.SelectedValue;
+            this.hdnMediaType.Value = this.rblMediaType.SelectedValue;
             this.hdnPosterImageUrl.Value = "";
 
             this.hdnUpdateMode.Value = "add";
@@ -382,7 +333,7 @@ namespace MediaOnDemand
             StorageMediaDataContext context = new StorageMediaDataContext();
 
             foreach (StoredMedia sm in context.StoredMedias)
-                if (sm.medMediaType.Trim().Equals(this.ddlMediaTypes.SelectedValue))
+                if (sm.medMediaType.Trim().Equals(this.rblMediaType.SelectedValue))
                 {
                     context.StoredMedias.DeleteOnSubmit(sm);
 
@@ -395,7 +346,7 @@ namespace MediaOnDemand
 
                     }
                 }
-
+                
             this.gvMedia.DataBind();
 
             //Hide Page Size Controls if no records, else show
@@ -439,8 +390,6 @@ namespace MediaOnDemand
                 this.lblPageSize.Visible = false;
                 this.ddlPageSize.Visible = false;
             }
-
-
         }
 
         protected void gvMedia_RowUpdated(object sender, GridViewUpdatedEventArgs e)
@@ -678,15 +627,15 @@ namespace MediaOnDemand
         private int GetGridViewRecordCountByCurrentMediaType()
         {
             StorageMediaDataContext context = new StorageMediaDataContext();
-
+            
             var recs =
 
                 (from StoredMedia in context.StoredMedias
-                 where StoredMedia.medMediaType == this.ddlMediaTypes.SelectedValue
+                 where StoredMedia.medMediaType == this.rblMediaType.SelectedValue
                  select StoredMedia
                 );
-
-            return recs.Count();
+            
+            return recs.Count();         
         }
 
         public static string GetMediaTypeForFile(FileInfo file)
@@ -739,14 +688,13 @@ namespace MediaOnDemand
         #endregion
 
         protected void btnUploadFile_Click(object sender, EventArgs e)
-        {
+        {            
             this.lblImageUploadStatus.Text = "";
 
             // Specify the path on the server to
             // save the uploaded file to.
-            String savePath = this.hdnImageUploadPath.Value;
-
-
+            String savePath = String.IsNullOrEmpty(this.hdnImageUploadPath.Value) ? WebsiteAdministration.movieImageUploadPath : this.hdnImageUploadPath.Value;
+            
             // Before attempting to perform operations
             // on the file, verify that the FileUpload 
             // control contains a file.
@@ -797,29 +745,70 @@ namespace MediaOnDemand
 
         protected void rblMediaType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string rootImagesPath = HttpContext.Current.Request.PhysicalApplicationPath + @"images";
             string imageUploadPath = "";
+            
+            // Reset Page Index for Grid
+            this.gvMedia.PageIndex = 0;
 
-            switch ((sender as RadioButtonList).SelectedValue)
+            this.txtTitle.Text = "";
+
+            switch (this.rblMediaType.SelectedValue)
             {
                 case "movie":
-                    imageUploadPath = rootImagesPath + @"\posters\";
-                    break;
+                    {
+                        imageUploadPath = WebsiteAdministration.movieImageUploadPath;
+
+                        this.hdnNetworkFolder.Value = WebsiteAdministration.networkFolder = WebsiteAdministration.moviesFolder;
+                    } break;
                 case "tv":
-                    imageUploadPath = rootImagesPath + @"\posters\";
-                    break;
+                    {
+                        imageUploadPath = WebsiteAdministration.tvImageUploadPath;
+
+                        this.hdnNetworkFolder.Value = WebsiteAdministration.networkFolder = WebsiteAdministration.tvFolder;
+                    } break;
                 case "musicvideo":
-                    imageUploadPath = rootImagesPath + @"\albumcovers\";
-                    break;
+                    {
+                        imageUploadPath = WebsiteAdministration.musicVideoImageUploadPath;
+
+                        this.hdnNetworkFolder.Value = WebsiteAdministration.networkFolder = WebsiteAdministration.musicVideosFolder;
+                    } break;
                 case "music":
-                    imageUploadPath = rootImagesPath + @"\albumcovers\";
-                    break;
+                    {
+                        imageUploadPath = WebsiteAdministration.musicImageUploadPath;
+
+                        this.hdnNetworkFolder.Value = WebsiteAdministration.networkFolder = WebsiteAdministration.musicFolder;
+                    } break;
                 case "sports":
-                    imageUploadPath = rootImagesPath + @"\posters\";
-                    break;
+                    {
+                        imageUploadPath = WebsiteAdministration.sportsImageUploadPath;
+
+                        this.hdnNetworkFolder.Value = WebsiteAdministration.networkFolder = WebsiteAdministration.sportsFolder;
+                    } break;
             }
 
             hdnImageUploadPath.Value = imageUploadPath;
+            
+            this.hdnMediaType.Value = WebsiteAdministration.mediaType = this.rblMediaType.SelectedValue;
+
+            if (!this.rblMediaType.SelectedValue.Equals("all"))
+                this.lnqMedia.Where = "medMediaType == \"" + mediaType + "\"";
+            else
+                this.lnqMedia.Where = "";
+            
+            if (!IsPostBack)
+            {
+                this.ddlPageSize.SelectedIndex = 0;
+                this.gvMedia.PageSize = Convert.ToInt32(this.ddlPageSize.Items[0].ToString());
+            }
+            this.gvMedia.PageIndex = 0;
         }
+        
+        protected void btnFilter_Click(object sender, EventArgs e)
+        {
+            if (this.txtTitle.Text.Equals(""))
+                Session["LinqDataSourceWhere"] = this.lnqMedia.Where = String.Format("medIsViewable == 'Y' && medMediaType == \"movie\"");
+            else
+                Session["LinqDataSourceWhere"] = this.lnqMedia.Where = String.Format("medIsViewable == 'Y' && medMediaType == \"movie\" && medTitle.Contains(\"{0}\")", this.txtTitle.Text);
+        }        
     }
 }

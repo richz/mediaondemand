@@ -46,7 +46,7 @@
         function ImageLoad(imageLocation) {
 
             alert(imageLocation);
-        
+
         }
 
     </script>
@@ -88,8 +88,7 @@
                                 <h2>
                                     Latest Media Played</h2>
                                 <asp:DataList ID="dlLatestMediaPlayed" DataKeyField="medId" RepeatDirection="Horizontal"
-                                    RepeatColumns="5" runat="server" 
-                                    onitemdatabound="dlLatestMediaPlayed_ItemDataBound">
+                                    RepeatColumns="5" runat="server" OnItemDataBound="dlLatestMediaPlayed_ItemDataBound">
                                     <ItemTemplate>
                                         <table>
                                             <tr>
@@ -104,9 +103,8 @@
                                                 <td>
                                                     <a id="A1" href="#" onclick="ForcePostBack(this, 'video')" mediatitle='<%# Eval("medTitle") %>'
                                                         param='<%# Eval("medLocation") %>' mediaid='<%# Eval("medId") %>'>
-                                                                                                                
-                                                        <asp:Image ID="imgPosterImage" OnLoad="imgPosterImage_Load" ImageUrl='<%# Bind("medPosterImageUrl") %>' Width="158px"
-                                                            Height="216px" runat="server" />
+                                                        <asp:Image ID="imgPosterImage" OnLoad="imgPosterImage_Load" ImageUrl='<%# Bind("medPosterImageUrl") %>'
+                                                            Width="158px" Height="216px" runat="server" />
                                                     </a>
                                                     <asp:Label ID="lblMissingImage" runat="server" Text="Please upload an image" Visible="false"></asp:Label>
                                                 </td>
@@ -175,8 +173,7 @@
                                 <h2>
                                     Latest Media Added</h2>
                                 <asp:DataList ID="dlLatestMediaAdded" DataKeyField="medId" RepeatDirection="Horizontal"
-                                    RepeatColumns="5" runat="server" 
-                                    onitemdatabound="dlLatestMediaAdded_ItemDataBound">
+                                    RepeatColumns="5" runat="server" OnItemDataBound="dlLatestMediaAdded_ItemDataBound">
                                     <ItemTemplate>
                                         <table>
                                             <tr>
@@ -191,8 +188,8 @@
                                                 <td>
                                                     <a id="A1" href="#" onclick="ForcePostBack(this, 'video')" mediatitle='<%# Eval("medTitle") %>'
                                                         param='<%# Eval("medLocation") %>' mediaid='<%# Eval("medId") %>'>
-                                                        <asp:Image ID="imgPosterImage" OnLoad="imgPosterImage_Load" ImageUrl='<%# Bind("medPosterImageUrl") %>' Width="158px"
-                                                            Height="216px" runat="server" />
+                                                        <asp:Image ID="imgPosterImage" OnLoad="imgPosterImage_Load" ImageUrl='<%# Bind("medPosterImageUrl") %>'
+                                                            Width="158px" Height="216px" runat="server" />
                                                     </a>
                                                     <asp:Label ID="lblMissingImage" runat="server" Text="Please upload an image" Visible="false"></asp:Label>
                                                 </td>
@@ -261,8 +258,7 @@
                                 <h2>
                                     Highest Rated Media</h2>
                                 <asp:DataList ID="dlHighestRatedMedia" DataKeyField="medId" RepeatDirection="Horizontal"
-                                    RepeatColumns="5" runat="server" 
-                                    onitemdatabound="dlHighestRatedMedia_ItemDataBound">
+                                    RepeatColumns="5" runat="server" OnItemDataBound="dlHighestRatedMedia_ItemDataBound">
                                     <ItemTemplate>
                                         <table>
                                             <tr>
@@ -277,8 +273,8 @@
                                                 <td>
                                                     <a id="A1" href="#" onclick="ForcePostBack(this, 'video')" mediatitle='<%# Eval("medTitle") %>'
                                                         param='<%# Eval("medLocation") %>' mediaid='<%# Eval("medId") %>'>
-                                                        <asp:Image ID="imgPosterImage" OnLoad="imgPosterImage_Load" ImageUrl='<%# Bind("medPosterImageUrl") %>' Width="158px"
-                                                            Height="216px" runat="server" />
+                                                        <asp:Image ID="imgPosterImage" OnLoad="imgPosterImage_Load" ImageUrl='<%# Bind("medPosterImageUrl") %>'
+                                                            Width="158px" Height="216px" runat="server" />
                                                     </a>
                                                     <asp:Label ID="lblMissingImage" runat="server" Text="Please upload an image" Visible="false"></asp:Label>
                                                 </td>

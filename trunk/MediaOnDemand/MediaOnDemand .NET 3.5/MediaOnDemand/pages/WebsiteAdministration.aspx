@@ -155,14 +155,10 @@
     </td>
     <td>
     <asp:FileUpload ID="ImageUpload" runat="server" />
-    </td>
-    </tr>
-    <tr>
-    <td colspan="2" align="center">
-        <asp:Button ID="btnUploadFile" runat="server" Text="Upload file" 
+    <asp:Button ID="btnUploadFile" runat="server" Text="Upload file" 
             onclick="btnUploadFile_Click" />
     </td>
-    </tr>
+    </tr>    
     <tr>
     <td colspan="2" align="center">
         <asp:Label ID="lblImageUploadStatus" runat="server" ForeColor="Green" Text=""></asp:Label>
@@ -192,7 +188,7 @@
             </td>
         </tr>
         <tr>
-            <td align="left" style="width: 400px">
+           <%-- <td align="left" style="width: 400px">
                 <table>
                     <tr>
                         <td>
@@ -201,7 +197,7 @@
                         <td>
                             <asp:DropDownList ID="ddlMediaTypes" runat="server" OnSelectedIndexChanged="ddlMediaTypes_SelectedIndexChanged"
                                 AutoPostBack="true">
-                                <%--<asp:ListItem Value="all">All</asp:ListItem>--%>
+                                
                                 <asp:ListItem Value="movie" Selected="True">Movies</asp:ListItem>
                                 <asp:ListItem Value="tv">TV</asp:ListItem>
                                 <asp:ListItem Value="sports">Sports</asp:ListItem>
@@ -211,8 +207,25 @@
                         </td>
                     </tr>
                 </table>
-            </td>
-            <td colspan class="alignRight">
+            </td>--%>
+
+            <td align="left">
+                                    <table>
+                                        <tr>
+                                        <td>
+                                            <asp:Label ID="lblFindByTitle" runat="server" Text="Find by Title"></asp:Label>
+                                        </td>
+                                            <td style="width: 400px">
+                                                <asp:TextBox ID="txtTitle" Width="100%" runat="server"></asp:TextBox>
+                                            </td>
+                                            <td>
+                                                <asp:Button ID="btnFilter" runat="server" Text="Filter" OnClick="btnFilter_Click" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+
+            <td colspan="1" class="alignRight">
                 <table style="float: right">
                     <tr>
                         <td>
@@ -340,7 +353,7 @@
         TableName="StoredMedias" Where="medMediaType == @medMediaType" EnableDelete="True"
         EnableInsert="True" EnableUpdate="True" OnSelected="lnqMedia_Selected">
         <WhereParameters>
-            <asp:ControlParameter ControlID="ddlMediaTypes" Name="medMediaType" PropertyName="SelectedValue"
+            <asp:ControlParameter ControlID="rblMediaType" Name="medMediaType" PropertyName="SelectedValue"
                 Type="String" />
         </WhereParameters>
     </asp:LinqDataSource>

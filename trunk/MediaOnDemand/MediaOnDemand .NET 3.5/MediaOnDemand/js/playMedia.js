@@ -60,13 +60,13 @@ function showMediaInPopupWindow(mediaType) {
         CloseVideo();
     else // music 
     {
+        var btnPlayInPopup = document.getElementById('btnPlayInPopup');
+        btnPlayInPopup.style.display = 'none';
+
         var musicplayer = document.getElementById('musicPlayer');
         if (musicplayer != null)
             musicplayer.innerHTML = '';
-    }
-
-    var btnPlayInPopup = document.getElementById('btnPlayInPopup');
-    btnPlayInPopup.style.display = 'none';
+    }   
 
     var mediaUrl = document.getElementById('ctl00_MainContent_hdnMediaUrl').getAttribute('value');
     var mediaId = document.getElementById('ctl00_MainContent_hdnMediaId').getAttribute('value');

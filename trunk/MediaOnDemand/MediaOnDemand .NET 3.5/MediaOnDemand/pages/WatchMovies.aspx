@@ -3,7 +3,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <link rel="stylesheet" type="text/css" href="../Styles/Site.css" />
+    
     <script src="../js/site.js" type="text/javascript"></script>
     <script src="../js/playMedia.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -233,7 +233,10 @@
                                     </table>
                                 </EmptyDataTemplate>
                                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                <PagerSettings FirstPageText="First" LastPageText="Last" NextPageText="Next" 
+                                    PageButtonCount="5" PreviousPageText="Previous" />
+                                <PagerStyle BackColor="#284775" Font-Size="X-Large" ForeColor="White" 
+                                    HorizontalAlign="Center" />
                                 <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
                                 <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                                 <EditRowStyle BackColor="#999999" />
