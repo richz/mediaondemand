@@ -83,6 +83,7 @@
     <Content Include="images\ajax-loaderCircle.gif" />
     <Content Include="images\ajax-loaderLoading.gif" />
     <Content Include="images\albumcoversSchindlers List.jpg" />
+    <Content Include="images\albumcovers\audio.jpg" />
     <Content Include="images\albumcovers\Dios de Pactos.jpg" />
     <Content Include="images\albumcovers\El Aire De Tu Casa.jpg" />
     <Content Include="images\albumcovers\For Once In My Life.jpg" />
@@ -103,7 +104,9 @@
     <Content Include="images\Buttons\addButton.png" />
     <Content Include="images\Buttons\btnShowContent.jpg" />
     <Content Include="images\Buttons\btnShowContent.png" />
+    <Content Include="images\Buttons\nextButton.png" />
     <Content Include="images\Buttons\playButton.jpg" />
+    <Content Include="images\Buttons\previousButton.png" />
     <Content Include="images\missingimage.jpg" />
     <Content Include="images\play.jpg" />
     <Content Include="images\posters\16 Blocks.jpg" />
@@ -345,6 +348,7 @@
     <Content Include="images\posters\Unplugged.jpg" />
     <Content Include="images\posters\Up In the Air.jpg" />
     <Content Include="images\posters\Vegas Vacation.jpg" />
+    <Content Include="images\posters\video.jpg" />
     <Content Include="images\posters\Virtuosity.jpg" />
     <Content Include="images\posters\Wall Street.jpg" />
     <Content Include="images\posters\Wedding Crashers.jpg" />
@@ -445,6 +449,11 @@
     <Content Include="images\ui-icons_9ccdfc_256x240.jpg" />
     <Content Include="images\ui-icons_ffffff_256x240.jpg" />
     <Content Include="images\x_icon.jpg" />
+    <Content Include="js\AC_QuickTime.js" />
+    <Content Include="mobile\Styles\mobile.css" />
+    <Content Include="mobile\MobileSite.Master" />
+    <Content Include="mobile\pages\Play.aspx" />
+    <Content Include="mobile\pages\WatchMovies.aspx" />
     <Content Include="pages\WatchTvSeries.aspx" />
     <Content Include="pages\Register.aspx" />
     <Content Include="bin\MediaOnDemand.dll" />
@@ -470,6 +479,32 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mobile\MobileSite.Master.cs">
+      <DependentUpon>MobileSite.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mobile\MobileSite.Master.designer.cs">
+      <DependentUpon>MobileSite.Master</DependentUpon>
+    </Compile>
+    <Compile Include="mobile\pages\MobileMedia.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MobileMedia.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="mobile\pages\Play.aspx.cs">
+      <DependentUpon>Play.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mobile\pages\Play.aspx.designer.cs">
+      <DependentUpon>Play.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mobile\pages\WatchMovies.aspx.cs">
+      <DependentUpon>WatchMovies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mobile\pages\WatchMovies.aspx.designer.cs">
+      <DependentUpon>WatchMovies.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\WatchTvSeries.aspx.cs">
       <DependentUpon>WatchTvSeries.aspx</DependentUpon>
@@ -635,6 +670,11 @@
     <Content Include="pages\PasswordRecovery.aspx" />
     <Content Include="pages\UserManagement.aspx" />
     <None Include="images\Thumbs.db" />
+    <None Include="mobile\pages\MobileMedia.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>MobileMedia.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="StorageMedia.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>StorageMedia.designer.cs</LastGenOutput>
@@ -678,6 +718,9 @@
     <Content Include="bin\MattBerseth.WebControls.AJAX.pdb" />
     <EmbeddedResource Include="images\progress.gif" />
     <EmbeddedResource Include="images\progress_bg.gif" />
+    <None Include="mobile\pages\MobileMedia.dbml.layout">
+      <DependentUpon>MobileMedia.dbml</DependentUpon>
+    </None>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Content Include="bin\swfobject.js" />
     <Content Include="css\smoothness\images\ui-anim_basic_16x16.gif" />
@@ -705,6 +748,7 @@
   <ItemGroup>
     <Folder Include="aspnet_client\system_web\4_0_30128\" />
     <Folder Include="aspnet_client\system_web\4_0_30319\" />
+    <Folder Include="mobile\js\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Styles\JQuery\" />
   </ItemGroup>

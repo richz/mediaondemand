@@ -477,6 +477,25 @@ namespace MediaOnDemand
             ItemsGet(dlHighestRatedMedia, dsHighestRatedMedia, btnPreviousHighestRatedMedia, btnNextHighestRatedMedia, lblPreviousHighestRatedMedia, lblNextHighestRatedMedia);
         }
 
+        protected void dlLatestMediaPlayed_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            //if (!ImageExists((e.Item.Controls[3] as Image).ImageUrl))
+            //  (e.Item.Controls[3] as Image).ImageUrl = "../images/missingimage.jpg";
+        }
+
+        protected void dlLatestMediaAdded_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            //if (!ImageExists((e.Item.Controls[3] as Image).ImageUrl))
+            //  (e.Item.Controls[3] as Image).ImageUrl = "../images/missingimage.jpg";
+        }
+
+        protected void dlHighestRatedMedia_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            //if (!ImageExists((e.Item.Controls[3] as Image).ImageUrl))
+            //  (e.Item.Controls[3] as Image).ImageUrl = "../images/missingimage.jpg";
+        }
+
+
         #endregion
 
         #region Helper Methods
@@ -543,24 +562,6 @@ namespace MediaOnDemand
         }
 
         #endregion
-        
-        protected void dlLatestMediaPlayed_ItemDataBound(object sender, DataListItemEventArgs e)
-        {
-            //if (!ImageExists((e.Item.Controls[3] as Image).ImageUrl))
-              //  (e.Item.Controls[3] as Image).ImageUrl = "../images/missingimage.jpg";
-        }
-
-        protected void dlLatestMediaAdded_ItemDataBound(object sender, DataListItemEventArgs e)
-        {
-            //if (!ImageExists((e.Item.Controls[3] as Image).ImageUrl))
-              //  (e.Item.Controls[3] as Image).ImageUrl = "../images/missingimage.jpg";
-        }
-
-        protected void dlHighestRatedMedia_ItemDataBound(object sender, DataListItemEventArgs e)
-        {
-            //if (!ImageExists((e.Item.Controls[3] as Image).ImageUrl))
-              //  (e.Item.Controls[3] as Image).ImageUrl = "../images/missingimage.jpg";
-        }
-        
+                
     }
 }

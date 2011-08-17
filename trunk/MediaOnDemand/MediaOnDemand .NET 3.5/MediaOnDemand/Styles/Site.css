@@ -124,6 +124,37 @@ body
     background-image: url(../images/rating/EmptyStar.png);
 }
 
+.ratingStar
+{
+    white-space: nowrap;
+    margin: 1em;
+    height: 14px;
+}
+.ratingStar .ratingStarRatingItem
+{
+    font-size: 0pt;
+    width: 13px;
+    height: 12px;
+    margin: 0px;
+    padding: 0px;
+    display: block;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.ratingStar .filledRatingStar
+{
+    background-image: url(images/rating/ratingStarFilled.png);
+}
+.ratingStar .emptyRatingStar
+{
+    background-image: url(images/rating/ratingStarEmpty.png);
+}
+.ratingStar .savedRatingStar
+{
+    background-image: url(images/rating/ratingStarSaved.png);
+}
+
+
 
 /*
 Simple Lightbox
@@ -227,35 +258,6 @@ Simple Lightbox
     color: Black;
 }
 
-.ratingStar
-{
-    white-space: nowrap;
-    margin: 1em;
-    height: 14px;
-}
-.ratingStar .ratingStarRatingItem
-{
-    font-size: 0pt;
-    width: 13px;
-    height: 12px;
-    margin: 0px;
-    padding: 0px;
-    display: block;
-    background-repeat: no-repeat;
-    cursor: pointer;
-}
-.ratingStar .filledRatingStar
-{
-    background-image: url(images/rating/ratingStarFilled.png);
-}
-.ratingStar .emptyRatingStar
-{
-    background-image: url(images/rating/ratingStarEmpty.png);
-}
-.ratingStar .savedRatingStar
-{
-    background-image: url(images/rating/ratingStarSaved.png);
-}
 
 /* DEFAULTS
 ----------------------------------------------------------*/

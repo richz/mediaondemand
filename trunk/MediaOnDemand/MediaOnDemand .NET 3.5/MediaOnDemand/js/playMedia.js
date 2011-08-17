@@ -66,7 +66,7 @@ function showMediaInPopupWindow(mediaType) {
         var musicplayer = document.getElementById('musicPlayer');
         if (musicplayer != null)
             musicplayer.innerHTML = '';
-    }   
+    }
 
     var mediaUrl = document.getElementById('ctl00_MainContent_hdnMediaUrl').getAttribute('value');
     var mediaId = document.getElementById('ctl00_MainContent_hdnMediaId').getAttribute('value');
@@ -136,6 +136,7 @@ function showMediaInPopupWindow(mediaType) {
 
 function ForcePostBack(lnkMovieLink, mediaType) {
 
+
     var mediaUrl = lnkMovieLink.getAttribute('param');
     var mediaId = lnkMovieLink.getAttribute('mediaId');
     var mediaTitle;
@@ -159,6 +160,7 @@ function ForcePostBack(lnkMovieLink, mediaType) {
     }
     //Force page postback to set Movie Url
     //__doPostBack('__Page', 'MyCustomArgument');
+
 }
 
 function RemoveChildWindow() {

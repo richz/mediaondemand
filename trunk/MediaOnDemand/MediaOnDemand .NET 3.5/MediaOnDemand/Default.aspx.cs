@@ -11,7 +11,10 @@ namespace MediaOnDemand
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Redirect("~/pages/Home.aspx");
+            if(Request.UserAgent.Contains("iPhone"))
+                Response.Redirect("~/mobile/pages/WatchMovies.aspx");
+            else
+                Response.Redirect("~/pages/Home.aspx");
         }
     }
 }
