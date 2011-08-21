@@ -27,10 +27,10 @@
                     <ContentTemplate>
                         <table>
                             <tr>
-                                <td align="right" style="width: 50%">
-                                    <asp:Label ID="lblChooseMediaType" runat="server" Visible="false" Text="Media category: "></asp:Label>
+                                <td align="right">
+                                    <asp:Label ID="lblChooseMediaType" Width="100px" runat="server" Visible="false" Text="Media category: "></asp:Label>
                                 </td>
-                                <td align="left">
+                                <td align="left" style="width:100%">
                                     <asp:DropDownList ID="ddlMediaTypes" runat="server" Visible="false" OnSelectedIndexChanged="ddlMediaTypes_SelectedIndexChanged"
                                         AutoPostBack="true">
                                         <asp:ListItem Value="sports" Selected="True">Sports</asp:ListItem>
@@ -39,10 +39,10 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" style="width: 50%">
-                                    <asp:Label ID="lblChooseSeries" runat="server" Visible="false" Text="Series: "></asp:Label>
+                                <td align="right">
+                                    <asp:Label ID="lblChooseSeries" Width="100px" runat="server" Visible="false" Text="Series: "></asp:Label>
                                 </td>
-                                <td align="left">
+                                <td align="left" style="width:100%">
                                     <asp:DropDownList ID="ddlList" runat="server" Visible="false" AutoPostBack="true">
                                     </asp:DropDownList>
                                 </td>

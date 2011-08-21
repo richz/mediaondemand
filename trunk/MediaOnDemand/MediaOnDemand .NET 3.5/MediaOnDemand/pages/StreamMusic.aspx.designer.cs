@@ -22,22 +22,22 @@ namespace MediaOnDemand {
         protected global::System.Web.UI.WebControls.Panel findByRecordCountPanel;
         
         /// <summary>
-        /// lblFindBy control.
+        /// lblFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFindBy;
+        protected global::System.Web.UI.WebControls.Label lblFilter;
         
         /// <summary>
-        /// ddlFilter control.
+        /// lblArtist control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFilter;
+        protected global::System.Web.UI.WebControls.Label lblArtist;
         
         /// <summary>
         /// ddlArtist control.

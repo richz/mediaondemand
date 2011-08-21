@@ -10,7 +10,16 @@
 namespace MediaOnDemand.mobile {
     
     
-    public partial class MobileSite {
+    public partial class MobileLoggedOut {
+        
+        /// <summary>
+        /// Head1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
         
         /// <summary>
         /// head control.
@@ -47,24 +56,6 @@ namespace MediaOnDemand.mobile {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LoginView LoginView;
-        
-        /// <summary>
-        /// btnVideo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVideo;
-        
-        /// <summary>
-        /// btnAudio control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAudio;
         
         /// <summary>
         /// ContentPlaceHolder1 control.

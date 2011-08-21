@@ -12,6 +12,16 @@ namespace MediaOnDemand.mobile
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnVideo_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/mobile/pages/WatchMovies.aspx");
+        }
+
+        protected void btnAudio_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/mobile/pages/StreamMusic.aspx");
         }        
     }
 }

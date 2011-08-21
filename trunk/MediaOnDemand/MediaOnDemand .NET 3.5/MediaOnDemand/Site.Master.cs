@@ -45,6 +45,7 @@ namespace MediaOnDemand
                 {
                     this.NavigationMenu.Items.Add(new MenuItem("Administer Users", "", "", "~/pages/UserManagement.aspx"));
                     this.NavigationMenu.Items.Add(new MenuItem("Administer Media", "", "", "~/pages/WebsiteAdministration.aspx"));
+                    this.NavigationMenu.Items.Add(new MenuItem("Administer Mobile Media", "", "", "~/mobile/pages/Admin.aspx"));
                 }
             }           
              

@@ -10,24 +10,33 @@
 namespace MediaOnDemand.mobile.pages {
     
     
-    public partial class WatchMovies {
+    public partial class Admin {
         
         /// <summary>
-        /// dvMobileMedia control.
+        /// btnAddAllVideo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DetailsView dvMobileMedia;
+        protected global::System.Web.UI.WebControls.Button btnAddAllVideo;
         
         /// <summary>
-        /// dsMobileMedia control.
+        /// btnAddAllAudio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource dsMobileMedia;
+        protected global::System.Web.UI.WebControls.Button btnAddAllAudio;
+        
+        /// <summary>
+        /// btnDeleteAllMobileMedia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDeleteAllMobileMedia;
     }
 }

@@ -37,13 +37,10 @@ namespace MediaOnDemand
                 this.ddlPageSize.SelectedIndex = Convert.ToInt32(this.ddlPageSize.Items[0].Value);
 
                 this.SetList();
-                this.ddlGenre.Visible = true;
-                this.btnFilter.Visible = false;
-
+                this.ddlGenre.SelectedIndex = 0;
+                
                 Session["LinqDataSourceWhere"] = this.lnqMovies.Where = String.Format("medIsViewable == 'Y' && medMediaType == \"movie\"");
 
-                this.txtTitle.Attributes.Add("onkeypress", "if (window.event.keyCode == 13) {var filterBtn = document.getElementById('ctl00_MainContent_btnFilter'); filterBtn.click(); window.event.cancel = true;}");
-                
                 // Hide Submit Ratings Save buttons      
                 for (int i = 0; i < Session.Keys.Count; i++ )
                     if (Session.Keys[i].EndsWith("btnSubmitRating"))
@@ -206,6 +203,7 @@ namespace MediaOnDemand
 
         protected void ddlGenre_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.txtTitle.Text = "";
             Session["selectedGenreIndex"] = this.ddlGenre.SelectedIndex;
 
             if (this.ddlGenre.SelectedIndex == 0)
@@ -216,37 +214,28 @@ namespace MediaOnDemand
             this.gvMovies.PageIndex = 0;
         }
 
-        protected void ddlFilter_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlFilter.SelectedValue.Equals("genre"))
-            {
-                this.txtTitle.Text = "";
-
-                this.SetList();
-
-                this.ddlGenre.SelectedIndex = 0;
-
-                this.ddlGenre.Visible = true;
-                this.txtTitle.Visible = false;
-                this.btnFilter.Visible = false;
-            }
-            else if (ddlFilter.SelectedValue.Equals("title"))
-            {
-                this.ddlGenre.Visible = false;
-                this.txtTitle.Visible = true;
-                this.btnFilter.Visible = true;
-
-            }
-
-            Session["LinqDataSourceWhere"] = this.lnqMovies.Where = String.Format("medIsViewable == 'Y' && medMediaType == \"movie\"");
-        }
-
         protected void btnFilter_Click(object sender, EventArgs e)
         {
-            if (this.txtTitle.Text.Equals(""))
-                Session["LinqDataSourceWhere"] = this.lnqMovies.Where = String.Format("medIsViewable == 'Y' && medMediaType == \"movie\"");
+            string titleFilter = this.txtTitle.Text;
+            string genreFilter = this.ddlGenre.SelectedValue;
+            string whereClause = "";
+
+            if (String.IsNullOrEmpty(titleFilter))
+            {
+                if (genreFilter.Equals("all"))
+                    whereClause = String.Format("medIsViewable == 'Y' && medMediaType == \"movie\"");
+                else
+                    whereClause = String.Format("medIsViewable == 'Y' && medMediaType == \"movie\" && medGenre == \"{0}\"", genreFilter);
+            }
             else
-                Session["LinqDataSourceWhere"] = this.lnqMovies.Where = String.Format("medIsViewable == 'Y' && medMediaType == \"movie\" && medTitle.Contains(\"{0}\")", this.txtTitle.Text);
+            {
+                if (genreFilter.Equals("all"))
+                    whereClause = String.Format("medIsViewable == 'Y' && medMediaType == \"movie\" && medTitle.Contains(\"{1}\")", genreFilter, titleFilter);
+                else
+                    whereClause = String.Format("medIsViewable == 'Y' && medMediaType == \"movie\" && medGenre == \"{0}\" && medTitle.Contains(\"{1}\")", genreFilter, titleFilter);
+            }
+
+            Session["LinqDataSourceWhere"] = this.lnqMovies.Where = whereClause;
         }
 
         protected void gvMovies_PageIndexChanged(object sender, EventArgs e)

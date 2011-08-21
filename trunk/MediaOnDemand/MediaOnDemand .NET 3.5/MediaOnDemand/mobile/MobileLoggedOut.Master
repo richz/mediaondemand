@@ -1,9 +1,9 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MobileSite.master.cs" Inherits="MediaOnDemand.mobile.MobileSite" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MobileLoggedOut.master.cs" Inherits="MediaOnDemand.mobile.MobileLoggedOut" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
     <title></title>
     
       <link rel="stylesheet" type="text/css" 
@@ -24,7 +24,6 @@
         </div>
         
         <div style="float:right">
-        
             <asp:LoginView ID="LoginView" runat="server" EnableViewState="false">
                     <AnonymousTemplate>
                         Admin <a href="~/mobile/pages/Login.aspx" id="LoginStatus" runat="server">Log In</a>
@@ -42,13 +41,7 @@
                     </LoggedInTemplate>
                 </asp:LoginView>
         </div>
-        <br />
-        <div id="menu">
-            <asp:Button ID="btnVideo" Font-Size="Large" Width="50%" Height="50px" BackColor="#4B6C9E" 
-                ForeColor="White" runat="server" Text="Videos" onclick="btnVideo_Click"/>
-            <asp:Button ID="btnAudio" Font-Size="Large" Width="49%" Height="50px" BackColor="#4B6C9E" 
-                ForeColor="White" runat="server" Text="Audio" onclick="btnAudio_Click"/>
-        </div>
+        <br /> 
     <div style="width:100%">
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         

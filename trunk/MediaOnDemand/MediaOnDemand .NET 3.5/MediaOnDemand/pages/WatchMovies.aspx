@@ -61,25 +61,24 @@
                                 <td align="left">
                                     <table>
                                         <tr>
-                                            <td style="width: 75px">
-                                                <asp:Label ID="lblFindBy" runat="server" Text="Find by: "></asp:Label>
-                                            </td>
                                             <td>
-                                                <asp:DropDownList ID="ddlFilter" runat="server" OnSelectedIndexChanged="ddlFilter_SelectedIndexChanged"
-                                                    AutoPostBack="True">
-                                                    <asp:ListItem Value="genre">Genre</asp:ListItem>
-                                                    <asp:ListItem Value="title">Title</asp:ListItem>
-                                                    <%--<asp:ListItem Value="artist">Artist</asp:ListItem>--%>
-                                                </asp:DropDownList>
+                                                <asp:Label ID="lblFilter" Width="30px" runat="server" Text="Filter:   "></asp:Label>
                                             </td>
-                                            <td style="width: 400px">
+                                            <td>                                                
+                                                <asp:Label ID="lblGenre" runat="server" Text="Genre"></asp:Label>
+                                            </td>
+                                            <td style="width:400px">
                                                 <asp:DropDownList ID="ddlGenre" runat="server" Visible="false" AutoPostBack="true"
                                                     OnSelectedIndexChanged="ddlGenre_SelectedIndexChanged">
                                                 </asp:DropDownList>
-                                                <asp:TextBox ID="txtTitle" Width="100%" Visible="false" runat="server"></asp:TextBox>
+                                                
                                             </td>
                                             <td>
-                                                <asp:Button ID="btnFilter" runat="server" Text="Filter" OnClick="btnFilter_Click" />
+                                                <asp:TextBox ID="txtTitle" Width="200px" runat="server"></asp:TextBox>
+                                                
+                                            </td>
+                                            <td>
+                                            <asp:Button ID="btnFilter" runat="server" Text="Filter" OnClick="btnFilter_Click" />
                                             </td>
                                         </tr>
                                     </table>

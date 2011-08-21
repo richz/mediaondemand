@@ -24,41 +24,37 @@
                     <table width="100%">
                         <tr>
                             <td align="center" colspan="2">
-                            <table>
-                            <tr>
-                            <td align="center">
-                                <input style="display: none" type="button" id="btnPlayInPopup" onclick="showMediaInPopupWindow('music')"
-                                    value="Play in popup" />
-                            </td>
-                            <td align="center">
-                                <input style="display: none" type="button" id="btnCloseMusicPlayer" onclick="CloseMusicPlayer()"
-                                    value="Close Player" />
-                            </td>
-
-                            </tr>
-                            </table>
+                                <table>
+                                    <tr>
+                                        <td align="center">
+                                            <input style="display: none" type="button" id="btnPlayInPopup" onclick="showMediaInPopupWindow('music')"
+                                                value="Play in popup" />
+                                        </td>
+                                        <td align="center">
+                                            <input style="display: none" type="button" id="btnCloseMusicPlayer" onclick="CloseMusicPlayer()"
+                                                value="Close Player" />
+                                        </td>
+                                    </tr>
+                                </table>
                             </td>
                         </tr>
                         <tr>
                             <td align="center">
                                 <table>
                                     <tr>
-                                        <td style="width: 75px">
-                                            <asp:Label ID="lblFindBy" runat="server" Text="Find by: "></asp:Label>
+                                        <td>
+                                            <asp:Label ID="lblFilter" Width="30px" runat="server" Text="Filter:   "></asp:Label>
                                         </td>
                                         <td>
-                                            <asp:DropDownList ID="ddlFilter" runat="server" OnSelectedIndexChanged="ddlFilter_SelectedIndexChanged"
-                                                AutoPostBack="True">
-                                                <asp:ListItem Value="artist">Artist</asp:ListItem>
-                                                <asp:ListItem Value="title">Title</asp:ListItem>
-                                                <%--<asp:ListItem Value="artist">Artist</asp:ListItem>--%>
-                                            </asp:DropDownList>
+                                            <asp:Label ID="lblArtist" runat="server" Text="Artist"></asp:Label>
                                         </td>
-                                        <td style="width: 300px">
-                                            <asp:DropDownList ID="ddlArtist" runat="server" AutoPostBack="true" Visible="false"
+                                        <td style="width: 400px">
+                                            <asp:DropDownList ID="ddlArtist" runat="server" AutoPostBack="true"
                                                 OnSelectedIndexChanged="ddlArtist_SelectedIndexChanged">
                                             </asp:DropDownList>
-                                            <asp:TextBox ID="txtTitle" Width="100%" Visible="false" runat="server"></asp:TextBox>
+                                        </td>
+                                        <td>
+                                            <asp:TextBox ID="txtTitle" Width="200px" runat="server"></asp:TextBox>
                                         </td>
                                         <td>
                                             <asp:Button ID="btnFilter" runat="server" Text="Filter" OnClick="btnFilter_Click" />
@@ -237,12 +233,9 @@
         TableName="StoredMedias" Where="medMediaType == @medMediaType &amp;&amp; medIsViewable == @medIsViewable &amp;&amp; medArtist == @medArtist"
         OnSelected="lnqMusic_Selected">
     </asp:LinqDataSource>
-
-     <div style="display:none">
-    <asp:Button ID="btnSaveMediaPlayed" runat="server" 
-            onclick="btnSaveMediaPlayed_Click" />
+    <div style="display: none">
+        <asp:Button ID="btnSaveMediaPlayed" runat="server" OnClick="btnSaveMediaPlayed_Click" />
     </div>
-
     <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server" />
-    <asp:HiddenField ID="hdnMediaId" Value="" runat="server" />    
+    <asp:HiddenField ID="hdnMediaId" Value="" runat="server" />
 </asp:Content>

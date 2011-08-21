@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MediaOnDemand.mobile.pages
+namespace MediaOnDemand
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;

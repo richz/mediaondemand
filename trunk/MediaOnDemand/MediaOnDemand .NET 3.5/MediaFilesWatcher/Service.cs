@@ -30,19 +30,37 @@ namespace MediaFilesWatcher
         static string audioFolder = rootMediaFilesFolder + "audio";
         static string picturesFolder = rootMediaFilesFolder + "pictures";
 
+        //Mobile Foders
+        static string mobileRootMediaFilesFolder = ConfigurationManager.AppSettings["MobileWatchPath"];
+        static string mobileVideosFolder = rootMediaFilesFolder + "video";
+        static string mobileAudioFolder = rootMediaFilesFolder + "audio";
+
         //Subfolders
         static string musicFolder = rootMediaFilesFolder + "audio\\music";
         static string moviesFolder = rootMediaFilesFolder + "videos\\movie";
         static string musicVideosFolder = rootMediaFilesFolder + "videos\\musicvideo";
         static string tvFolder = rootMediaFilesFolder + "videos\\tv";
         static string sportsFolder = rootMediaFilesFolder + "videos\\sports";
+
+        //Directories
         static DirectoryInfo musicDirectory = new DirectoryInfo(musicFolder);
         static DirectoryInfo moviesDirectory = new DirectoryInfo(moviesFolder);
         static DirectoryInfo musicVideosDirectory = new DirectoryInfo(musicVideosFolder);
         static DirectoryInfo tvDirectory = new DirectoryInfo(tvFolder);
         static DirectoryInfo sportsDirectory = new DirectoryInfo(sportsFolder);
 
+        //Mobile Directories
+        static DirectoryInfo mobileAudioDirectory = new DirectoryInfo(mobileAudioFolder);
+        static DirectoryInfo mobileVideoDirectory = new DirectoryInfo(mobileVideosFolder);
+
         static List<string> supportedTypes = new List<string> { ".vob", ".avi", ".flv", ".mp4", ".mp3", ".wma", ".wmv", ".mpg", ".mpeg", ".rm", ".mkv", ".divx", ".m4p", ".m4a" };
+
+        public static List<string> supportedMobileVideoTypes = new List<string> { ".mov" };
+        public static List<string> supportedMobileAudioTypes = new List<string> { ".mp4", ".mp3" };
+
+        static string rootImagesPath = @"C:\HostedWebSites\MediaOnDemand\images";
+        static string videoImagePath = rootImagesPath + @"\posters\";
+        static string audioImagePath = rootImagesPath + @"\albumcovers\";
 
         #endregion
 
@@ -62,6 +80,7 @@ namespace MediaFilesWatcher
                 EventLog.CreateEventSource("MediaFilesWatcher", "DoDyLog");
 
             this.fileSystemWatcher.Path = ConfigurationManager.AppSettings["WatchPath"];
+            this.mobileFileSystemWatcher.Path = ConfigurationManager.AppSettings["MobileWatchPath"];
 
             EventLog.WriteEntry("MediaFilesWatcher", String.Format("MediaFilesWatcher service is starting"));
         }
@@ -82,7 +101,7 @@ namespace MediaFilesWatcher
             bool fileAdded = false;
 
             AddMediaRecordForCreatedFile(e.FullPath, ref fileAdded);
-            
+
             if (fileAdded)
             {
                 EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was added", e.FullPath));
@@ -102,7 +121,7 @@ namespace MediaFilesWatcher
                     {
                         EventLog.WriteEntry("MediaFilesWatcher", String.Format("The following exception ocurred while attempting to rename the file \"{0}\" to vob format: {1}", e.FullPath, ex.Message));
                     }
-                }                
+                }
             }
             else
                 EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was not added", e.FullPath));
@@ -116,7 +135,7 @@ namespace MediaFilesWatcher
 
             DeleteMediaRecordForDeletedFile(e.FullPath, ref fileDeleted);
 
-            if(fileDeleted)
+            if (fileDeleted)
                 EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was deleted", e.FullPath));
             else
                 EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was not deleted", e.FullPath));
@@ -130,7 +149,7 @@ namespace MediaFilesWatcher
 
             UpdateMediaRecordForChangedFile(e.OldFullPath, e.FullPath, ref fileUpdated);
 
-            if(fileUpdated)
+            if (fileUpdated)
                 EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was renamed to \"{1}\"", e.OldFullPath, e.FullPath));
             else
                 EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was not renamed", e.OldFullPath));
@@ -175,7 +194,7 @@ namespace MediaFilesWatcher
                 }
             }
         }
-        
+
         private static void AddMediaRecordForCreatedFile(string filePath, ref bool fileAdded)
         {
             string connString = ConfigurationManager.ConnectionStrings["MediaFileWatcherWinServiceConnectionString"].ConnectionString;
@@ -287,7 +306,7 @@ namespace MediaFilesWatcher
                             fileAdded = false;
                     }
                     catch (Exception ex)
-                    {                        
+                    {
                     }
                 }
             }
@@ -319,12 +338,150 @@ namespace MediaFilesWatcher
                 {
                     context.SubmitChanges();
                     bool recordExists = false;
-                    
+
                     foreach (StoredMedia sm in context.StoredMedias)
                         if (sm.medLocation.Trim().Equals(filePath))
                             recordExists = true;
 
                     if (!recordExists)
+                    {
+                        fileDeleted = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+        }
+
+        private static void AddMobileMediaRecordForCreatedFile(string filePath, ref bool fileAdded)
+        {
+            string connString = ConfigurationManager.ConnectionStrings["MediaFileWatcherWinServiceConnectionString"].ConnectionString;
+
+            MobileMediaDataContext context = new MediaOnDemand.MobileMediaDataContext(connString);
+
+            string fileExt = Path.GetExtension(filePath);
+
+            if ((Service.supportedMobileAudioTypes.Contains(fileExt.ToLower()) || Service.supportedMobileVideoTypes.Contains(fileExt.ToLower())) && !Path.GetFileNameWithoutExtension(filePath).Equals("Thumbs"))
+            {
+                FileInfo file = new FileInfo(filePath);
+
+                string mediaTitle = Path.GetFileNameWithoutExtension(filePath);
+                string posterImageUrl = "";
+                string mediaT = "";
+                int rating = 0;
+
+                string path = filePath.Replace(@"E:", @"\\mediaserver");
+
+                if (Service.supportedMobileAudioTypes.Contains(fileExt.ToLower()))
+                {
+                    mediaT = "audio";
+
+                    if (File.Exists(audioImagePath + mediaTitle + ".jpg"))
+                        posterImageUrl = String.Format("../../images/albumcovers/{0}.jpg", mediaTitle);
+                    else
+                        posterImageUrl = String.Format("../../images/albumcovers/audio.jpg");
+                }
+                else if (Service.supportedMobileVideoTypes.Contains(fileExt.ToLower()))
+                {
+                    mediaT = "video";
+
+                    if (File.Exists(videoImagePath + mediaTitle + ".jpg"))
+                        posterImageUrl = String.Format("../../images/posters/{0}.jpg", mediaTitle);
+                    else
+                        posterImageUrl = String.Format("../../images/posters/video.jpg");
+                }
+                
+                bool recordExists = false;
+
+                foreach (MobileMedia sm in context.MobileMedias)
+                    if (sm.mobMediaTitle.Trim().Equals(mediaTitle))
+                        recordExists = true;
+
+                if (!recordExists)
+                {
+                    try
+                    {
+                        MobileMedia media = new MobileMedia
+                        {
+                            mobMediaTitle = mediaTitle,
+                            mobFileName = mediaTitle + Path.GetExtension(filePath),
+                            mobDateAdded = DateTime.Now,
+                            mobIsViewable = 'Y',
+                            mobMediaFileExt = Path.GetExtension(filePath),
+                            mobMediaType = mediaT,
+                            mobRating = rating,
+                            mobPosterImageUrl = posterImageUrl
+                        };
+
+                        context.MobileMedias.InsertOnSubmit(media);
+
+                        context.SubmitChanges();
+
+                        foreach (MobileMedia sm in context.MobileMedias)
+                            if (sm.mobMediaTitle.Trim().Equals(mediaTitle))
+                                recordExists = true;
+
+                        if (recordExists)
+                        {
+                            fileAdded = true;
+                        }
+                        else
+                            fileAdded = false;
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+                }
+            }
+        }
+
+        private static void DeleteMobileMediaRecordForDeletedFile(string filePath, ref bool fileDeleted)
+        {
+            string fileExt = Path.GetExtension(filePath);
+
+            fileDeleted = false;
+
+            if ((Service.supportedMobileAudioTypes.Contains(fileExt.ToLower()) || Service.supportedMobileVideoTypes.Contains(fileExt.ToLower())) && !Path.GetFileNameWithoutExtension(filePath).Equals("Thumbs"))
+            {
+                string mediaTitle = Path.GetFileNameWithoutExtension(filePath);
+                string mediaType = "audio";
+
+                if (Service.supportedMobileAudioTypes.Contains(fileExt.ToLower()))
+                    mediaType = "audio";
+                else if (Service.supportedMobileVideoTypes.Contains(fileExt.ToLower()))
+                    mediaType = "video";
+
+                string connString = ConfigurationManager.ConnectionStrings["MediaFileWatcherWinServiceConnectionString"].ConnectionString;
+
+                MobileMediaDataContext context = new MediaOnDemand.MobileMediaDataContext(connString);
+
+                int count = 0;
+
+                foreach (MobileMedia sm in context.MobileMedias)
+                {
+                    if (sm.mobMediaType.Trim().Equals(mediaType) && sm.mobMediaTitle.Trim().Equals(mediaTitle))
+                    {
+                        context.MobileMedias.DeleteOnSubmit(sm);
+                    }
+
+                    count++;
+                }
+
+                try
+                {
+                    context.SubmitChanges();
+
+                    bool recordDoesNotExist = false;
+                    foreach (MobileMedia sm in context.MobileMedias)
+                    {
+                        if (sm.mobMediaType.Trim().Equals(mediaType) && sm.mobMediaTitle.Trim().Equals(mediaTitle))
+                        {
+                            recordDoesNotExist = true;
+                        }
+                    }
+
+                    if (recordDoesNotExist)
                     {
                         fileDeleted = true;
                     }
@@ -386,6 +543,72 @@ namespace MediaFilesWatcher
             return mediaT;
         }
 
+        public static string GetMediaTypeForMobileFile(string filePath)
+        {
+            FileInfo file = new FileInfo(filePath);
+
+            string mediaT = "";
+            FileInfo[] files;
+
+            if (mobileAudioDirectory.Exists)
+            {
+                files = musicDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
+                if (files.Length > 0)
+                    mediaT = "audio";
+            }
+
+            if (mobileVideoDirectory.Exists)
+            {
+                files = moviesDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
+                if (files.Length > 0)
+                    mediaT = "video";
+            }
+
+            return mediaT;
+        }
+
         #endregion
+
+        private void mobileFileSystemWatcher_Changed(object sender, FileSystemEventArgs e)
+        {
+
+        }
+
+        private void mobileFileSystemWatcher_Created(object sender, FileSystemEventArgs e)
+        {
+            EventLog.WriteEntry("MediaFilesWatcher", String.Format("Adding the file \"{0}\"", e.FullPath));
+
+            bool fileAdded = false;
+
+            AddMobileMediaRecordForCreatedFile(e.FullPath, ref fileAdded);
+
+            if (fileAdded)
+            {
+                EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was added", e.FullPath));
+
+                string fileExt = Path.GetExtension(e.FullPath);
+            }
+            else
+                EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was not added", e.FullPath));
+        }
+
+        private void mobileFileSystemWatcher_Deleted(object sender, FileSystemEventArgs e)
+        {
+            EventLog.WriteEntry("MediaFilesWatcher", String.Format("Deleting file \"{0}\"", e.FullPath));
+
+            bool fileDeleted = false;
+
+            DeleteMobileMediaRecordForDeletedFile(e.FullPath, ref fileDeleted);
+
+            if (fileDeleted)
+                EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was deleted", e.FullPath));
+            else
+                EventLog.WriteEntry("MediaFilesWatcher", String.Format("File \"{0}\" was not deleted", e.FullPath));
+        }
+
+        private void mobileFileSystemWatcher_Renamed(object sender, RenamedEventArgs e)
+        {
+
+        }
     }
 }

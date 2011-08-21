@@ -29,12 +29,9 @@ namespace MediaOnDemand
                 this.gvMusic.Sort("medTitle", SortDirection.Ascending);
 
                 SetList();
-                this.ddlArtist.Visible = true;
-                this.btnFilter.Visible = false;
-
+                this.ddlArtist.SelectedIndex = 0;
+                
                 Session["LinqDataSourceWhere"] = this.lnqMusic.Where = String.Format("medIsViewable == 'Y' && medMediaType == \"music\"");
-
-                this.txtTitle.Attributes.Add("onkeypress", "if (window.event.keyCode == 13) {var filterBtn = document.getElementById('ctl00_MainContent_btnFilter'); filterBtn.click(); window.event.cancel = true;}");
 
                 // Hide Submit Ratings Save buttons      
                 for (int i = 0; i < Session.Keys.Count; i++)
@@ -182,7 +179,9 @@ namespace MediaOnDemand
 
         protected void ddlArtist_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Session["SelectedArtistIndex"] = this.ddlArtist.SelectedIndex;
+            this.txtTitle.Text = "";
+
+            Session["selectedArtistIndex"] = this.ddlArtist.SelectedIndex;
 
             if (this.ddlArtist.SelectedIndex == 0)
                 Session["LinqDataSourceWhere"] = this.lnqMusic.Where = String.Format("medMediaType == \"music\"");
@@ -192,39 +191,29 @@ namespace MediaOnDemand
             this.gvMusic.PageIndex = 0;
 
         }
-
-        protected void ddlFilter_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlFilter.SelectedValue.Equals("artist"))
-            {
-                this.txtTitle.Text = "";
-
-                this.SetList();
-
-                this.ddlArtist.SelectedIndex = 0;
-
-                this.ddlArtist.Visible = true;
-                this.txtTitle.Visible = false;
-                this.btnFilter.Visible = false;
-            }
-            else if (ddlFilter.SelectedValue.Equals("title"))
-            {
-                this.ddlArtist.Visible = false;
-                this.txtTitle.Visible = true;
-                this.btnFilter.Visible = true;
-
-                //this.txtTitle.Focus();
-            }
-
-            Session["LinqDataSourceWhere"] = this.lnqMusic.Where = String.Format("medMediaType == \"music\"");
-        }
-
+               
         protected void btnFilter_Click(object sender, EventArgs e)
         {
-            if (this.txtTitle.Text.Equals(""))
-                Session["LinqDataSourceWhere"] = this.lnqMusic.Where = String.Format("medIsViewable == 'Y' && medMediaType == \"music\"");
+            string titleFilter = this.txtTitle.Text;
+            string artistFilter = this.ddlArtist.SelectedValue;
+            string whereClause = "";
+
+            if (String.IsNullOrEmpty(titleFilter))
+            {
+                if (artistFilter.Equals("all"))
+                    whereClause = String.Format("medIsViewable == 'Y' && medMediaType == \"music\"");
+                else
+                    whereClause = String.Format("medIsViewable == 'Y' && medMediaType == \"music\" && medArtist == \"{0}\"", artistFilter);
+            }
             else
-                Session["LinqDataSourceWhere"] = this.lnqMusic.Where = String.Format("medIsViewable == 'Y' && medMediaType == \"music\" && medTitle.Contains(\"{0}\")", this.txtTitle.Text);
+            {
+                if (artistFilter.Equals("all"))
+                    whereClause = String.Format("medIsViewable == 'Y' && medMediaType == \"music\" && medTitle.Contains(\"{1}\")", artistFilter, titleFilter);
+                else
+                    whereClause = String.Format("medIsViewable == 'Y' && medMediaType == \"music\" && medArtist == \"{0}\" && medTitle.Contains(\"{1}\")", artistFilter, titleFilter);
+            }
+
+            Session["LinqDataSourceWhere"] = this.lnqMusic.Where = whereClause;
         }
 
         protected void gvMusic_PageIndexChanged(object sender, EventArgs e)
@@ -266,11 +255,11 @@ namespace MediaOnDemand
 
             if (this.ddlArtist.Items.Count > 0)
             {
-                this.ddlArtist.Items.Insert(0, new ListItem("All"));
+                this.ddlArtist.Items.Insert(0, new ListItem("All","all"));
                 this.ddlArtist.Visible = true;
 
                 if (!IsPostBack)
-                    this.ddlArtist.SelectedIndex = Convert.ToInt32(Session["selectedGenreIndex"]);
+                    this.ddlArtist.SelectedIndex = Convert.ToInt32(Session["selectedArtistIndex"]);
             }
             else
             {

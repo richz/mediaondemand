@@ -10,24 +10,24 @@
 namespace MediaOnDemand.mobile.pages {
     
     
-    public partial class WatchMovies {
+    public partial class Login {
         
         /// <summary>
-        /// dvMobileMedia control.
+        /// mobileLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DetailsView dvMobileMedia;
+        protected global::System.Web.UI.WebControls.Login mobileLogin;
         
         /// <summary>
-        /// dsMobileMedia control.
+        /// ContinueAsGuest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource dsMobileMedia;
+        protected global::System.Web.UI.WebControls.HyperLink ContinueAsGuest;
     }
 }

@@ -1,13 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mobile/MobileSite.Master" AutoEventWireup="true"
-    CodeBehind="WatchMovies.aspx.cs" Inherits="MediaOnDemand.mobile.pages.WatchMovies" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mobile/MobileSite.Master" AutoEventWireup="true" CodeBehind="StreamMusic.aspx.cs" Inherits="MediaOnDemand.mobile.pages.StreamMusic" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">    
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div id="main">
-        
+<div id="main">
+           
         <div class="MediaList">
             <asp:DetailsView ID="dvMobileMedia" runat="server" AutoGenerateRows="False" DataKeyNames="mobId"
                 DataSourceID="dsMobileMedia" EnableModelValidation="True" Height="50px" Width="100%"
@@ -36,6 +35,7 @@
                         Visible="False" />
                     <asp:BoundField DataField="mobLastPlayedDate" HeaderText="mobLastPlayedDate" SortExpression="mobLastPlayedDate"
                         Visible="False" />
+                    
                     <asp:TemplateField HeaderText="Rating" SortExpression="mobRating">
                         <ItemTemplate>
                             <asp:Rating ID="ratingControl" AutoPostBack="true" ReadOnly="true" CurrentRating='<%# Bind("mobRating") %>'
@@ -58,10 +58,10 @@
                     PreviousPageImageUrl="~/images/Buttons/previousButton.png" NextPageText="Next"
                     Position="Top" PreviousPageText="Previous" />
                 <PagerStyle HorizontalAlign="Center" />
-            </asp:DetailsView>            
+           </asp:DetailsView>            
         </div>
     </div>
     <asp:LinqDataSource ID="dsMobileMedia" runat="server" OrderBy="mobMediaTitle" ContextTypeName="MediaOnDemand.MobileMediaDataContext"
-        TableName="MobileMedias" Where='mobMediaType == "video"'>        
-    </asp:LinqDataSource>
+        TableName="MobileMedias" Where='mobMediaType == "audio"'>        
+    </asp:LinqDataSource>    
 </asp:Content>

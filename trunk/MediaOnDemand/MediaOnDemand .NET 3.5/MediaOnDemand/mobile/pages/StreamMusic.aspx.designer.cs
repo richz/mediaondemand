@@ -10,7 +10,7 @@
 namespace MediaOnDemand.mobile.pages {
     
     
-    public partial class WatchMovies {
+    public partial class StreamMusic {
         
         /// <summary>
         /// dvMobileMedia control.

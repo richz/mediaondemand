@@ -7,15 +7,16 @@ using System.Web.UI.WebControls;
 
 namespace MediaOnDemand.mobile.pages
 {
-    public partial class WatchMovies : System.Web.UI.Page
-    {
+    public partial class StreamMusic : System.Web.UI.Page
+    {        
         protected void Page_Load(object sender, EventArgs e)
         {
+            
         }
         
         protected void imgPosterImage_Click(object sender, ImageClickEventArgs e)
         {
-            ImageButton imgPosterImage = sender as ImageButton;                        
+            ImageButton imgPosterImage = sender as ImageButton;
             string mediaTitle = imgPosterImage.CommandArgument;
 
             playMedia(mediaTitle);
@@ -25,7 +26,7 @@ namespace MediaOnDemand.mobile.pages
         {
             string queryString = "?";
 
-            queryString += "mediaType=video";
+            queryString += "mediaType=audio";
 
             queryString += "&";
 
@@ -33,7 +34,5 @@ namespace MediaOnDemand.mobile.pages
 
             Response.Redirect("Play.aspx" + queryString);
         }
-        
-        
     }
 }

@@ -2,10 +2,10 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="MobileMedia">
   <DataContextMoniker Name="/MobileMediaDataContext" />
   <nestedChildShapes>
-    <classShape Id="46ce0ada-f7a8-49f1-9818-dbffd1abede5" absoluteBounds="5.875, 1.75, 2, 3.5016097005208326">
+    <classShape Id="a357b0dd-ec00-4582-b44a-f46b3084d7e2" absoluteBounds="8.5, 4.375, 2, 3.5016097005208326">
       <DataClassMoniker Name="/MobileMediaDataContext/MobileMedia" />
       <nestedChildShapes>
-        <elementListCompartment Id="d0ed0460-db54-4539-8523-c50ff889982e" absoluteBounds="5.89, 2.21, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="0d558442-708b-4ab7-8dd0-f5af9b32bfaa" absoluteBounds="8.515, 4.835, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

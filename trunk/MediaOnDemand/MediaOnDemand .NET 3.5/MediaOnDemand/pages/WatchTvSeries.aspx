@@ -2,7 +2,6 @@
     Inherits="MediaOnDemand.WatchTvSeries" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <script src="../js/site.js" type="text/javascript"></script>
     <script src="../js/playMedia.js" type="text/javascript"></script>
@@ -19,6 +18,7 @@
             </div>
         </div>
     </div>
+    <br />
     <table width="60%" style="height: 20%">
         <tr>
             <td>
@@ -26,20 +26,20 @@
                     <ContentTemplate>
                         <table>
                             <tr>
-                                <td align="right" style="width: 50%">
-                                    <asp:Label ID="lblChooseSeries" runat="server" Visible="false" Text="Series: "></asp:Label>
+                                <td align="right">
+                                    <asp:Label ID="lblChooseSeries" Width="100px" runat="server" Visible="false" Text="Series: "></asp:Label>
                                 </td>
-                                <td align="left">
+                                <td align="left" style="width:100%">
                                     <asp:DropDownList ID="ddlList" runat="server" Visible="false" AutoPostBack="true"
                                         OnSelectedIndexChanged="ddlList_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" style="width: 50%">
-                                    <asp:Label ID="lblChooseSeason" runat="server" Visible="false" Text="Season: "></asp:Label>
+                                <td align="right">
+                                    <asp:Label ID="lblChooseSeason" Width="100px" runat="server" Visible="false" Text="Season: "></asp:Label>
                                 </td>
-                                <td align="left">
+                                <td align="left" style="width: 100%">
                                     <asp:DropDownList ID="ddlSeasonNumbers" runat="server" Visible="false" AutoPostBack="true">
                                     </asp:DropDownList>
                                 </td>
@@ -222,25 +222,25 @@
             </center>
         </ContentTemplate>
     </asp:UpdatePanel>
-<asp:LinqDataSource ID="lnqVideos" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
-Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre,
+    <asp:LinqDataSource ID="lnqVideos" runat="server" ContextTypeName="MediaOnDemand.StorageMediaDataContext"
+        Select="new (medTitle, medLocation, medArtist, medDescription, medIsViewable, medGenre,
 medAlbum, medDuration, medVideoType, medDateAdded, medPosterImageUrl, medMediaType,
 medId, medFileExt, medRating)" TableName="StoredMedias" Where="medMediaType == @medMediaType
 &amp;&amp; medGenre == @medGenre &amp;&amp; medAlbum == @medAlbum" OnSelected="lnqVideos_Selected">
-<WhereParameters> <asp:Parameter Name="medMediaType" DefaultValue="tv" Type="String"
-/> <asp:ControlParameter ControlID="ddlList" Name="medAlbum" PropertyName="SelectedValue"
-Type="String" DefaultValue=" " /> <asp:ControlParameter ControlID="ddlSeasonNumbers"
-Name="medGenre" PropertyName="SelectedValue" Type="String" DefaultValue=" " /> </WhereParameters>
-</asp:LinqDataSource> 
-
- <div style="display:none">
-    <asp:Button ID="btnSaveMediaPlayed" runat="server" 
-            onclick="btnSaveMediaPlayed_Click" />
+        <WhereParameters>
+            <asp:Parameter Name="medMediaType" DefaultValue="tv" Type="String" />
+            <asp:ControlParameter ControlID="ddlList" Name="medAlbum" PropertyName="SelectedValue"
+                Type="String" DefaultValue=" " />
+            <asp:ControlParameter ControlID="ddlSeasonNumbers" Name="medGenre" PropertyName="SelectedValue"
+                Type="String" DefaultValue=" " />
+        </WhereParameters>
+    </asp:LinqDataSource>
+    <div style="display: none">
+        <asp:Button ID="btnSaveMediaPlayed" runat="server" OnClick="btnSaveMediaPlayed_Click" />
     </div>
-
-<asp:HiddenField ID="hdnTotalRowCount" runat="server" /> 
-<asp:HiddenField ID="hdnMediaType" runat="server" /> 
-<asp:HiddenField ID="hdnMediaUrl" Value="" runat="server"/> 
-<asp:HiddenField ID="hdnMediaId" Value="" runat="server" /> 
-<asp:HiddenField ID="hdnMediaTitle" Value="" runat="server"/> 
-</asp:Content> 
+    <asp:HiddenField ID="hdnTotalRowCount" runat="server" />
+    <asp:HiddenField ID="hdnMediaType" runat="server" />
+    <asp:HiddenField ID="hdnMediaUrl" Value="" runat="server" />
+    <asp:HiddenField ID="hdnMediaId" Value="" runat="server" />
+    <asp:HiddenField ID="hdnMediaTitle" Value="" runat="server" />
+</asp:Content>
