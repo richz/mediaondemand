@@ -1,0 +1,7 @@
+!|SWATFixture|
+|@@AttachToWindow|${mainWindow}|
+
+!include .SuiteMediaOnDemand.SuiteMediaOnDemandMacros.LogOut
+
+!|SWATFixture|
+|@@CloseBrowser|

@@ -1,0 +1,49 @@
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaOnDemand.UnitTests.dll
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaOnDemand.UnitTests.pdb
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\obj\Debug\MediaOnDemand.UnitTests.dll
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\obj\Debug\MediaOnDemand.UnitTests.pdb
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaFilesWatcher.exe
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaFileWatcherClient.exe
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaOnDemand.dll
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaOnDemandDataAccess.dll
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaOnDemandLibrary.dll
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\AjaxControlToolkit.dll
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaFilesWatcher.pdb
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaFileWatcherClient.pdb
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaOnDemandDataAccess.pdb
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaOnDemandLibrary.pdb
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaOnDemand.pdb
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\Gallio.dll
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MbUnit.dll
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\NHamcrest.dll
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\Gallio.pdb
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\Gallio.xml
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MbUnit.pdb
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MbUnit.xml
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\NHamcrest.pdb
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\Gallio.XmlSerializers.dll
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaOnDemand.UnitTests.dll
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaOnDemand.UnitTests.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaFilesWatcher.exe
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaFileWatcherClient.exe
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaOnDemand.dll
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaOnDemandDataAccess.dll
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaOnDemandLibrary.dll
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\AjaxControlToolkit.dll
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\NHamcrest.dll
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaFilesWatcher.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaFileWatcherClient.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaOnDemandDataAccess.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaOnDemandLibrary.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MediaOnDemand.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\Gallio.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\Gallio.xml
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MbUnit.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\MbUnit.xml
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\NHamcrest.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\Gallio.XmlSerializers.dll
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\obj\Debug\MediaOnDemand.UnitTests.dll
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\obj\Debug\MediaOnDemand.UnitTests.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand.UnitTests\bin\Debug\AjaxDataControls.dll
