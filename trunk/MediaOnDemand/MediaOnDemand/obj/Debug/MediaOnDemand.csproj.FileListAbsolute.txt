@@ -1,0 +1,48 @@
+C:\Users\cpagu002\My Projects\Software Projects\Development\Personal\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemand.dll
+C:\Users\cpagu002\My Projects\Software Projects\Development\Personal\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemand.pdb
+C:\Users\cpagu002\My Projects\Software Projects\Development\Personal\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemandLibrary.dll
+C:\Users\cpagu002\My Projects\Software Projects\Development\Personal\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemandLibrary.pdb
+C:\Users\cpagu002\My Projects\Software Projects\Development\Personal\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\cpagu002\My Projects\Software Projects\Development\Personal\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.dll.licenses
+C:\Users\cpagu002\My Projects\Software Projects\Development\Personal\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.dll
+C:\Users\cpagu002\My Projects\Software Projects\Development\Personal\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.pdb
+C:\Users\cpagu002\My Projects\Software Projects\Entertainment\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemand.dll
+C:\Users\cpagu002\My Projects\Software Projects\Entertainment\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemand.pdb
+C:\Users\cpagu002\My Projects\Software Projects\Entertainment\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemandLibrary.dll
+C:\Users\cpagu002\My Projects\Software Projects\Entertainment\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemandLibrary.pdb
+C:\Users\cpagu002\My Projects\Software Projects\Entertainment\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\cpagu002\My Projects\Software Projects\Entertainment\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.dll.licenses
+C:\Users\cpagu002\My Projects\Software Projects\Entertainment\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.dll
+C:\Users\cpagu002\My Projects\Software Projects\Entertainment\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemand.dll
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemand.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemandLibrary.dll
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemandLibrary.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.dll.licenses
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.dll
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.csprojResolveAssemblyReference.cache
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemand.dll
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemand.pdb
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemandLibrary.dll
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemandLibrary.pdb
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.csprojResolveAssemblyReference.cache
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.dll.licenses
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.dll
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.pdb
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemand.dll
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemand.pdb
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemandLibrary.dll
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\bin\MediaOnDemandLibrary.pdb
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.csprojResolveAssemblyReference.cache
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.dll.licenses
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.dll
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.pdb
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemand\bin\MediaOnDemand.dll
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemand\bin\MediaOnDemand.pdb
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemand\obj\Debug\MediaOnDemand.csprojResolveAssemblyReference.cache
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemand\obj\Debug\MediaOnDemand.dll.licenses
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemand\obj\Debug\MediaOnDemand.dll
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemand\obj\Debug\MediaOnDemand.pdb
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemand\bin\MediaOnDemandLibrary.dll
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemand\bin\MediaOnDemandLibrary.pdb

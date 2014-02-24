@@ -1,0 +1,80 @@
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.Installer.resources
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.Properties.Resources.resources
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.Service.resources
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\ResGen.read.1.tlog
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\ResGen.write.1.tlog
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaFilesWatcher.exe.config
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaFilesWatcher.exe
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaFilesWatcher.pdb
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaOnDemand.dll
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaOnDemandLibrary.dll
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\AjaxControlToolkit.dll
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaOnDemandLibrary.pdb
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaOnDemand.pdb
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.exe
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaFilesWatcher.exe.config
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaFilesWatcher.exe
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaFilesWatcher.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaOnDemand.dll
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaOnDemandLibrary.dll
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\AjaxControlToolkit.dll
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaOnDemandLibrary.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaOnDemand.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.Installer.resources
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.Properties.Resources.resources
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.Service.resources
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.exe
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\AjaxDataControls.dll
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.csprojResolveAssemblyReference.cache
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.csproj.GenerateResource.Cache
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaFilesWatcher.exe.config
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaFilesWatcher.exe
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaFilesWatcher.pdb
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaOnDemand.dll
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaOnDemandLibrary.dll
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\AjaxDataControls.dll
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\AjaxControlToolkit.dll
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaOnDemandLibrary.pdb
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaOnDemand.pdb
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.csprojResolveAssemblyReference.cache
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.Installer.resources
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.Properties.Resources.resources
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.Service.resources
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.csproj.GenerateResource.Cache
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.exe
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.pdb
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaFilesWatcher.exe.config
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaFilesWatcher.exe
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaFilesWatcher.pdb
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaOnDemand.dll
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaOnDemandLibrary.dll
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\AjaxDataControls.dll
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\AjaxControlToolkit.dll
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaOnDemandLibrary.pdb
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\bin\Debug\MediaOnDemand.pdb
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.csprojResolveAssemblyReference.cache
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.Installer.resources
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.Properties.Resources.resources
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.Service.resources
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.csproj.GenerateResource.Cache
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.exe
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.pdb
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaFilesWatcher\bin\Debug\MediaFilesWatcher.exe.config
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaFilesWatcher\bin\Debug\MediaFilesWatcher.exe
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaFilesWatcher\bin\Debug\MediaFilesWatcher.pdb
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.csprojResolveAssemblyReference.cache
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.Installer.resources
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.Properties.Resources.resources
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.Service.resources
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.csproj.GenerateResource.Cache
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.exe
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaFilesWatcher\obj\x86\Debug\MediaFilesWatcher.pdb
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaFilesWatcher\bin\Debug\MediaOnDemand.dll
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaFilesWatcher\bin\Debug\MediaOnDemandLibrary.dll
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaFilesWatcher\bin\Debug\AjaxDataControls.dll
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaFilesWatcher\bin\Debug\AjaxControlToolkit.dll
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaFilesWatcher\bin\Debug\MediaOnDemandLibrary.pdb
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaFilesWatcher\bin\Debug\MediaOnDemand.pdb

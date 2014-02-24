@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MEDIAONDEMANDDB" Class="MobileMediaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=localhost;Initial Catalog=MEDIAONDEMANDDB;Persist Security Info=True;User ID=dbuser" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="MEDIAONDEMANDDBConnectionString2" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.MobileMedia" Member="MobileMedias">
+    <Type Name="MobileMedia">
+      <Column Name="mobMediaTitle" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="mobMediaFileExt" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="mobMediaType" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="mobId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="mobDateAdded" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="mobIsViewable" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="mobArtist" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="mobDescription" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="mobGenre" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="mobAlbum" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="mobPosterImageUrl" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="mobLastPlayedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="mobRating" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="mobFileName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

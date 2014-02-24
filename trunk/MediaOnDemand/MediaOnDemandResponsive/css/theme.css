@@ -1,0 +1,79 @@
+﻿body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+  
+}
+
+.container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.theme-dropdown .dropdown-menu {
+  position: static;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+  margin: 5px 0;
+}
+
+a {
+    cursor: pointer;
+}
+
+/* Tool Tip */
+/**
+{
+    margin: 0;
+    padding: 0;
+}
+body
+{
+    font: 11px/1.5 Verdana, Arial, Helvetica, sans-serif;
+    background: #FFF;
+}*/
+#text
+{
+    margin: 50px auto;
+    width: 500px;
+}
+.hotspot
+{
+    color: #900;
+    padding-bottom: 1px;
+    border-bottom: 1px dotted #900;
+    cursor: pointer;
+}
+
+#ToolTip
+{
+    position: absolute;
+    display: block;
+    background: url(images/tt_left.gif) top left no-repeat;
+}
+#tttop
+{
+    display: block;
+    height: 5px;
+    margin-left: 5px;
+    background: url(images/tt_top.gif) top right no-repeat;
+    overflow: hidden;
+}
+#ttcont
+{
+    display: block;
+    padding: 2px 12px 3px 7px;
+    margin-left: 5px;
+    background: #666;
+    color: #FFF;
+}
+#ttbot
+{
+    display: block;
+    height: 5px;
+    margin-left: 5px;
+    background: url(images/tt_bottom.gif) top right no-repeat;
+    overflow: hidden;
+}

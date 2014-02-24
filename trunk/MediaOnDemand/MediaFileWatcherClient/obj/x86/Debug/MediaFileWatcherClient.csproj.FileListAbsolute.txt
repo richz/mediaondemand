@@ -1,0 +1,29 @@
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\bin\Debug\MediaFileWatcherClient.exe
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\bin\Debug\MediaFileWatcherClient.pdb
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\obj\x86\Debug\MediaFileWatcherClient.Properties.Resources.resources
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\obj\x86\Debug\ResGen.read.1.tlog
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\obj\x86\Debug\ResGen.write.1.tlog
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\obj\x86\Debug\MediaFileWatcherClient.exe
+C:\Users\CPAGU002\My Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\obj\x86\Debug\MediaFileWatcherClient.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\bin\Debug\MediaFileWatcherClient.exe
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\bin\Debug\MediaFileWatcherClient.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\obj\x86\Debug\MediaFileWatcherClient.Properties.Resources.resources
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\obj\x86\Debug\MediaFileWatcherClient.exe
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\obj\x86\Debug\MediaFileWatcherClient.pdb
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\obj\x86\Debug\MediaFileWatcherClient.csproj.GenerateResource.Cache
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\bin\Debug\MediaFileWatcherClient.exe
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\bin\Debug\MediaFileWatcherClient.pdb
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\obj\x86\Debug\MediaFileWatcherClient.Properties.Resources.resources
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\obj\x86\Debug\MediaFileWatcherClient.csproj.GenerateResource.Cache
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\obj\x86\Debug\MediaFileWatcherClient.exe
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\obj\x86\Debug\MediaFileWatcherClient.pdb
+F:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\obj\x86\Debug\MediaFileWatcherClient.csprojResolveAssemblyReference.cache
+C:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\bin\Debug\MediaFileWatcherClient.exe.config
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\bin\Debug\MediaFileWatcherClient.exe.config
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\bin\Debug\MediaFileWatcherClient.exe
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\bin\Debug\MediaFileWatcherClient.pdb
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\obj\x86\Debug\MediaFileWatcherClient.Properties.Resources.resources
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\obj\x86\Debug\MediaFileWatcherClient.csproj.GenerateResource.Cache
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\obj\x86\Debug\MediaFileWatcherClient.exe
+E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaFileWatcherClient\obj\x86\Debug\MediaFileWatcherClient.pdb
