@@ -30,43 +30,43 @@ namespace MediaOnDemand
 
         private void BuildMenu()
         {
-            SetupMenu("Movies", "movie");
-            SetupMenu("Music", "music");
-            SetupMenu("Music Videos", "musicvideo");
-            SetupMenu("Television", "tv");
-            SetupMenu("Sports", "sports");
+            SetupMenu("Movies", "movie", "Genre");
+            SetupMenu("Music", "music", "Artist");
+            SetupMenu("Music Videos", "musicvideo", "Artist");
+            SetupMenu("Television", "tv", "Series");
+            SetupMenu("Sports", "sports", "Sport");
         }
         
-        private void SetupMenu(string mediaTypeLabel, string mediaType)
+        private void SetupMenu(string mediaTypeLabel, string mediaType, string mediaFilter)
         {
             StringBuilder sb = new StringBuilder();
 
             switch(mediaType)
             {
                 case "movie":
+                case "tv":
                 case "sports":
                     menuList = GetMediaGenres(mediaType);
                     break;
                 case "music":                    
                 case "musicvideo":
                     menuList = GetMediaArtists(mediaType);
-                    break;                
-                case "tv":
-                    menuList = GetTvSeries();
-                    break;
+                    break;              
             }
 
             for (int i = 0; i < menuList.Count; i++)
             {
                 if(i == 0)
                 {
-                    sb.AppendFormat("<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{0}<b class=\"caret\"></b></a>" +
-                                   "<ul class=\"dropdown-menu\">", mediaTypeLabel);
+                    sb.AppendFormat("<li class=\"dropdown\"><a href=\"Media.aspx?Type={1}\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{0}<b class=\"caret\"></b></a>" +
+                                   "<ul class=\"dropdown-menu\">", mediaTypeLabel, mediaType);
                 }
 
-                SetupMenuItem(menuList[i], menuList[i], i == 0 || i == menuList.Count - 1, ref sb);                
-            }
-            sb.Append("</ul>");
+                SetupMenuItem(mediaType, mediaFilter, menuList[i], menuList[i], i == 0 || i == menuList.Count - 1, ref sb);
+
+                if (i == menuList.Count - 1)
+                    sb.Append("</ul>");
+            }            
             
             switch(mediaType)
             {
@@ -88,12 +88,12 @@ namespace MediaOnDemand
             }
         }
 
-        private void SetupMenuItem(string value, string label, bool firstOrLastItem, ref StringBuilder sb)
+        private void SetupMenuItem(string mediaType, string mediaFilter, string value, string label, bool firstOrLastItem, ref StringBuilder sb)
         {
             if (!firstOrLastItem)
                 sb.Append("<li class=\"divider\"></li>");
 
-            sb.AppendFormat("<li><a href=\"Media.aspx?Type=movie&Genre={0}\">{1}</a></li>", value, label);
+            sb.Append(string.Format("<li><a href=\"Media.aspx?Type={0}&{1}={2}\">{3}</a></li>", mediaType, mediaFilter, value, label));
         }
 
         private List<string> GetMediaGenres(string mediaType)

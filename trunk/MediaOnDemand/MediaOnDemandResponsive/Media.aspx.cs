@@ -39,15 +39,15 @@ namespace MediaOnDemand
                         MediaSQLDataSource.SelectParameters.Add("mediaSeries", Request.QueryString["Series"]);
                         MediaSQLDataSource.SelectParameters["mediaSeries"].DefaultValue = Request.QueryString["Series"];
 
-                        MediaSQLDataSource.SelectCommand += " and medAlbum = @mediaSeries";
+                        MediaSQLDataSource.SelectCommand += " and medGenre = @mediaSeries";
                     }
                     break;
                 case "music":
                     {
-                        //MediaSQLDataSource.SelectParameters.Add("mediaAlbum", Request.QueryString["Album"]);
-                        //MediaSQLDataSource.SelectParameters["mediaAlbum"].DefaultValue = Request.QueryString["Album"];
+                        MediaSQLDataSource.SelectParameters.Add("mediaArtist", Request.QueryString["Artist"]);
+                        MediaSQLDataSource.SelectParameters["mediaArtist"].DefaultValue = Request.QueryString["Artist"];
 
-                        //MediaSQLDataSource.SelectCommand += " and medAlbum = @mediaAlbum";
+                        MediaSQLDataSource.SelectCommand += " and medArtist = @mediaArtist";
 
                         this.gvMedia.Columns[4].Visible = true;
                         this.gvMedia.Columns[10].Visible = true;
@@ -59,6 +59,17 @@ namespace MediaOnDemand
                         MediaSQLDataSource.SelectParameters["mediaArtist"].DefaultValue = Request.QueryString["Artist"];
 
                         MediaSQLDataSource.SelectCommand += " and medArtist = @mediaArtist";
+
+                        this.gvMedia.Columns[4].Visible = true;
+                        this.gvMedia.Columns[10].Visible = true;
+                    }
+                    break;
+                case "sports":
+                    {
+                        MediaSQLDataSource.SelectParameters.Add("mediaSport", Request.QueryString["Sport"]);
+                        MediaSQLDataSource.SelectParameters["mediaSport"].DefaultValue = Request.QueryString["Sport"];
+
+                        MediaSQLDataSource.SelectCommand += " and medGenre = @mediaSport";
 
                         this.gvMedia.Columns[4].Visible = true;
                         this.gvMedia.Columns[10].Visible = true;
