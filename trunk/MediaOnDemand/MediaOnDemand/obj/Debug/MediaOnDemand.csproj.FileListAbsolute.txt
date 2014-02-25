@@ -38,11 +38,3 @@ E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOn
 E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.dll.licenses
 E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.dll
 E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemand\obj\Debug\MediaOnDemand.pdb
-E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemand\bin\MediaOnDemand.dll
-E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemand\bin\MediaOnDemand.pdb
-E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemand\obj\Debug\MediaOnDemand.csprojResolveAssemblyReference.cache
-E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemand\obj\Debug\MediaOnDemand.dll.licenses
-E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemand\obj\Debug\MediaOnDemand.dll
-E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemand\obj\Debug\MediaOnDemand.pdb
-E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemand\bin\MediaOnDemandLibrary.dll
-E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemand\bin\MediaOnDemandLibrary.pdb

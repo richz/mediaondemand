@@ -19,9 +19,3 @@ E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemandDataAccess\bin\Deb
 E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemandDataAccess\bin\Debug\MediaOnDemandDataAccess.pdb
 E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemandDataAccess\obj\Debug\MediaOnDemandDataAccess.dll
 E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemandDataAccess\obj\Debug\MediaOnDemandDataAccess.pdb
-E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandDataAccess\bin\Debug\MediaOnDemandDataAccess.dll.config
-E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandDataAccess\bin\Debug\MediaOnDemandDataAccess.dll
-E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandDataAccess\bin\Debug\MediaOnDemandDataAccess.pdb
-E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandDataAccess\obj\Debug\MediaOnDemandDataAccess.csprojResolveAssemblyReference.cache
-E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandDataAccess\obj\Debug\MediaOnDemandDataAccess.dll
-E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandDataAccess\obj\Debug\MediaOnDemandDataAccess.pdb

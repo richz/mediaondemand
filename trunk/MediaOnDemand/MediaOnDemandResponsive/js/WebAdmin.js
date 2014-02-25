@@ -46,18 +46,18 @@ function showEditLightBox() {
     var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
     var height = document.documentElement.scrollHeight;
 
-    var updateMode = document.getElementById('ctl00_MainContent_hdnUpdateMode').getAttribute('value');
+    var updateMode = $('input[id$=hdnUpdateMode]').val();
 
     if (updateMode == 'edit') {
-        var title = document.getElementById('ctl00_MainContent_hdnTitle').getAttribute('value') == null ? '' : document.getElementById('ctl00_MainContent_hdnTitle').getAttribute('value');
-        var location = document.getElementById('ctl00_MainContent_hdnLocation').getAttribute('value') == null ? '' : document.getElementById('ctl00_MainContent_hdnLocation').getAttribute('value');
-        var isViewable = document.getElementById('ctl00_MainContent_hdnIsViewable').getAttribute('value') == null ? '' : document.getElementById('ctl00_MainContent_hdnIsViewable').getAttribute('value');
-        var artist = document.getElementById('ctl00_MainContent_hdnArtist').getAttribute('value') == null ? '' : document.getElementById('ctl00_MainContent_hdnArtist').getAttribute('value');
-        var description = document.getElementById('ctl00_MainContent_hdnDescription').getAttribute('value') == null ? '' : document.getElementById('ctl00_MainContent_hdnDescription').getAttribute('value');
-        var genre = document.getElementById('ctl00_MainContent_hdnGenre').getAttribute('value') == null ? '' : document.getElementById('ctl00_MainContent_hdnGenre').getAttribute('value');
-        var duration = document.getElementById('ctl00_MainContent_hdnDuration').getAttribute('value') == null ? '' : document.getElementById('ctl00_MainContent_hdnDuration').getAttribute('value');
-        var posterImageUrl = document.getElementById('ctl00_MainContent_hdnPosterImageUrl').getAttribute('value') == null ? '' : document.getElementById('ctl00_MainContent_hdnPosterImageUrl').getAttribute('value');
-        var album = document.getElementById('ctl00_MainContent_hdnAlbum').getAttribute('value') == null ? '' : document.getElementById('ctl00_MainContent_hdnAlbum').getAttribute('value');
+        var title = $('input[id$=hdnTitle]').val() == null ? '' : $('input[id$=hdnTitle]').val();
+        var location = $('input[id$=hdnLocation]').val() == null ? '' : $('input[id$=hdnLocation]').val();
+        var isViewable = $('input[id$=hdnIsViewable]').val() == null ? '' : $('input[id$=hdnIsViewable]').val();
+        var artist = $('input[id$=hdnArtist]').val() == null ? '' : $('input[id$=hdnArtist]').val();
+        var description = $('input[id$=hdnDescription]').val() == null ? '' : $('input[id$=hdnDescription]').val();
+        var genre = $('input[id$=hdnGenre]').val() == null ? '' : $('input[id$=hdnGenre]').val()
+        var duration = $('input[id$=hdnDuration]').val() == null ? '' : $('input[id$=hdnDuration]').val();
+        var posterImageUrl = $('input[id$=hdnPosterImageUrl]').val() == null ? '' : $('input[id$=hdnPosterImageUrl]').val();
+        var album = $('input[id$=hdnAlbum]').val() == null ? '' : $('input[id$=hdnAlbum]').val();
     }
     else {
 
@@ -75,12 +75,12 @@ function showEditLightBox() {
     var width = document.documentElement.clientWidth + document.documentElement.scrollLeft;
     var height = document.documentElement.scrollHeight;
     var layer = document.createElement('div');
-    layer.style.zIndex = 2;
+    layer.style.zIndex = 10;
     layer.id = 'lightBoxBackGround';
     layer.style.position = 'absolute';
     layer.style.top = '0px';
     layer.style.left = '0px';
-    layer.style.height = (height - 50) + 'px';
+    layer.style.height = '100%';//(height - 50) + 'px';
     layer.style.width = width + 'px';
     layer.style.backgroundColor = 'black';
     layer.style.opacity = '.6';
@@ -88,18 +88,18 @@ function showEditLightBox() {
     document.body.appendChild(layer);
 
     var div = document.createElement('div');
-    div.style.zIndex = 3;
+    div.style.zIndex = 11;
     div.id = 'box';
     div.style.position = (navigator.userAgent.indexOf('MSIE 6') > -1) ? 'absolute' : 'fixed';
-    div.style.top = '50px';
+    div.style.top = height / 2 - 225  + 'px';//'50px';
     div.style.left = (width / 2) - (width / 10) + 'px';
-    div.style.height = '350px';
-    div.style.width = '300px';
+    div.style.height = '450px';
+    div.style.width = '450px';
     div.style.backgroundColor = 'white';
     div.style.border = '2px solid silver';
     div.style.padding = '20px';
 
-    var mediaType = document.getElementById('ctl00_MainContent_hdnMediaType').getAttribute('value');
+    var mediaType = $('input[id$=hdnMediaType]').val();
 
     var selectedIsViewable = '';
     var selectedMediaType = '';
@@ -140,61 +140,59 @@ function showEditLightBox() {
 
     if (updateMode == 'edit') {
 
-        div.innerHTML = '<h1>Edit Media Record</h1>'
-        + '<br/><br/><center><table>'
-        + '<tr><td align="right"><label id="lblTitle">Title</label></td>'
-        + '<td colspan="2" align="left"><input ID="txtTitle" type="text" value="' + title + '"/></td></tr>'
-        + '<tr><td align="right"><label id="lblLocation">Location</label></td>'
-        + '<td colspan="2" align="left"><input ID="txtLocation" value="' + location + '" type="text"/></td></tr>'
-        + '<tr><td align="right"><label id="lblIsViewable">Is Viewable</label></td>'
+        div.innerHTML = '<h1 style="margin-right:auto; margin-left:auto; text-align: center">Edit Media Record</h1>'
+        + '<br/><br/><table style="width: 100%">'
+        + '<tr><td align="right" style="padding-right: 10px"><label id="lblTitle">Title</label></td>'
+        + '<td colspan="2" align="left"><input ID="txtTitle" style="width: 275px" type="text" value="' + title + '"/></td></tr>'
+        + '<tr><td align="right" style="padding-right: 5px"><label id="lblLocation">Location</label></td>'
+        + '<td colspan="2" align="left"><input ID="txtLocation" style="width: 275px" value="' + location + '" type="text"/></td></tr>'
+        + '<tr><td align="right" style="padding-right: 5px"><label id="lblIsViewable">Is Viewable</label></td>'
         + '<td colspan="2" align="left">' + selectedIsViewable + '</td></tr>'
-        + '<tr><td align="right"><label id="lblArtist">Artist</label></td>'
-        + '<td colspan="2" align="left"d><input ID="txtArtist" value="' + artist + '" type="text"/></td></tr>'
-        + '<tr><td align="right"><label id="lblDescription">Description</label></td>'
-        + '<td colspan="2" align="left"><input ID="txtDescription" value="' + description + '" type="text"/></td></tr>'
-        + '<tr><td align="right"><label id="lblGenre">Genre</label></td>'
-        + '<td colspan="2" align="left"><input ID="txtGenre" value="' + genre + '" type="text"/></td></tr>'
-        + '<tr><td align="right"><label id="lblMediaType">Media Type</label></td>'
+        + '<tr><td align="right" style="padding-right: 5px"><label id="lblArtist">Artist</label></td>'
+        + '<td colspan="2" align="left"d><input ID="txtArtist" style="width: 275px" value="' + artist + '" type="text"/></td></tr>'
+        + '<tr><td align="right" style="padding-right: 5px"><label id="lblDescription">Description</label></td>'
+        + '<td colspan="2" align="left"><input ID="txtDescription" style="width: 275px" value="' + description + '" type="text"/></td></tr>'
+        + '<tr><td align="right" style="padding-right: 5px"><label id="lblGenre">Genre</label></td>'
+        + '<td colspan="2" align="left"><input ID="txtGenre" style="width: 275px" value="' + genre + '" type="text"/></td></tr>'
+        + '<tr><td align="right" style="padding-right: 5px"><label id="lblMediaType">Media Type</label></td>'
         + '<td colspan="2" align="left">' + selectedMediaType + '</td></tr>'
-        + '<tr><td align="right"><label id="lblDuration">Duration</label></td>'
-        + '<td colspan="2" align="left"><input ID="txtDuration" value="' + duration + '" type="text"/></td></tr>'
-        + '<tr><td align="right"><label id="lblAlbum">Album</label></td>'
-        + '<td colspan="2" align="left"><input ID="txtAlbum" value="' + album + '" type="text"/></td></tr>'
-        + '<tr><td align="right"><label id="lblPosterImageUrl">Poster Image File</label></td>'
-        + '<td colspan="2" align="left"><input ID="txtPosterImageUrl" value="' + posterImageUrl + '" type="text"/></td></tr>'
-        + '<tr><td colspan="3" align="right"></td></tr>'
-        + '<tr><td><input id="btnSave" onclick="Save()" type="button" value="Apply"/></td>'
-        + '<td><input id="btnCancel" onclick="Cancel()" type="button" value="Cancel" /></td></tr>'
-        + '</table></center>';
+        + '<tr><td align="right" style="padding-right: 5px"><label id="lblDuration">Duration</label></td>'
+        + '<td colspan="2" align="left"><input ID="txtDuration" style="width: 275px" value="' + duration + '" type="text"/></td></tr>'
+        + '<tr><td align="right" style="padding-right: 5px"><label id="lblAlbum">Album</label></td>'
+        + '<td colspan="2" align="left"><input ID="txtAlbum" style="width: 275px" value="' + album + '" type="text"/></td></tr>'
+        + '<tr><td align="right" style="padding-right: 5px"><label id="lblPosterImageUrl">Poster Image File</label></td>'
+        + '<td colspan="2" align="left"><input ID="txtPosterImageUrl" style="width: 275px" value="' + posterImageUrl + '" type="text"/></td></tr>'
+        + '<tr rowspan="2"><td colspan="3" align="right"><br/></td></tr>'
+        + '<tr><td></td><td colspan="2" align="right"><input id="btnSave" onclick="Save()" type="button" value="Apply"/><input id="btnCancel" style="margin-left: 20px" onclick="Cancel()" type="button" value="Cancel" /></td>'
+        + '</tr></table>';
     }
     else {
 
-        div.innerHTML = '<h1>Add Media Record</h1>'
-        + '<br/><br/><center><table>'
-        + '<tr><td align="right"><label id="lblTitle">Title</label></td>'
-        + '<td colspan="2" align="left"><input ID="txtTitle" type="text" value="' + title + '"/></td></tr>'
-        + '<tr><td align="right"><label id="lblLocation">Location</label></td>'
-        + '<td colspan="2" align="left"><input ID="txtLocation" value="' + location + '" type="text"/></td></tr>'
-        + '<tr><td align="right"><label id="lblIsViewable">Is Viewable</label></td>'
+        div.innerHTML = '<h1 style="margin-right:auto; margin-left:auto; text-align: center">Add Media Record</h1>'
+        + '<br/><br/><table style="width: 100%">'
+        + '<tr><td align="right" style="padding-right: 5px"><label id="lblTitle">Title</label></td>'
+        + '<td colspan="2" align="left"><input ID="txtTitle" style="width: 275px" type="text" value="' + title + '"/></td></tr>'
+        + '<tr><td align="right" style="padding-right: 5px"><label id="lblLocation">Location</label></td>'
+        + '<td colspan="2" align="left"><input ID="txtLocation" style="width: 275px" value="' + location + '" type="text"/></td></tr>'
+        + '<tr><td align="right" style="padding-right: 5px"><label id="lblIsViewable">Is Viewable</label></td>'
         + '<td colspan="2" align="left">' + selectedIsViewable + '</td></tr>'
-        + '<tr><td align="right"><label id="lblArtist">Artist</label></td>'
-        + '<td colspan="2" align="left"d><input ID="txtArtist" value="' + artist + '" type="text"/></td></tr>'
-        + '<tr><td align="right"><label id="lblDescription">Description</label></td>'
-        + '<td colspan="2" align="left"><input ID="txtDescription" value="' + description + '" type="text"/></td></tr>'
-        + '<tr><td align="right"><label id="lblGenre">Genre</label></td>'
-        + '<td colspan="2" align="left"><input ID="txtGenre" value="' + genre + '" type="text"/></td></tr>'
-        + '<tr><td align="right"><label id="lblMediaType">Media Type</label></td>'
+        + '<tr><td align="right" style="padding-right: 5px"><label id="lblArtist">Artist</label></td>'
+        + '<td colspan="2" align="left"d><input ID="txtArtist" style="width: 275px" value="' + artist + '" type="text"/></td></tr>'
+        + '<tr><td align="right" style="padding-right: 5px"><label id="lblDescription">Description</label></td>'
+        + '<td colspan="2" align="left"><input ID="txtDescription" style="width: 275px" value="' + description + '" type="text"/></td></tr>'
+        + '<tr><td align="right" style="padding-right: 5px"><label id="lblGenre">Genre</label></td>'
+        + '<td colspan="2" align="left"><input ID="txtGenre" style="width: 275px" value="' + genre + '" type="text"/></td></tr>'
+        + '<tr><td align="right" style="padding-right: 5px"><label id="lblMediaType">Media Type</label></td>'
         + '<td colspan="2" align="left">' + selectedMediaType + '</td></tr>'
-        + '<tr><td align="right"><label id="lblDuration">Duration</label></td>'
-        + '<td colspan="2" align="left"><input ID="txtDuration" value="' + duration + '" type="text"/></td></tr>'
-        + '<tr><td align="right"><label id="lblAlbum">Album</label></td>'
-        + '<td colspan="2" align="left"><input ID="txtAlbum" value="' + album + '" type="text"/></td></tr>'
-        + '<tr><td align="right"><label id="lblPosterImageUrl">Poster Image File</label></td>'
-        + '<td colspan="2" align="left"><input ID="txtPosterImageUrl" value="' + posterImageUrl + '" type="text"/></td></tr>'
-        + '<tr><td colspan="3" align="right"></td></tr>'
-        + '<tr><td><input id="btnSave" onclick="Save()" type="button" value="Apply"/></td>'
-        + '<td><input id="btnCancel" onclick="Cancel()" type="button" value="Cancel" /></td></tr>'
-        + '</table></center>';
+        + '<tr><td align="right" style="padding-right: 5px"><label id="lblDuration">Duration</label></td>'
+        + '<td colspan="2" align="left"><input ID="txtDuration" style="width: 275px" value="' + duration + '" type="text"/></td></tr>'
+        + '<tr><td align="right" style="padding-right: 5px"><label id="lblAlbum">Album</label></td>'
+        + '<td colspan="2" align="left"><input ID="txtAlbum" style="width: 275px" value="' + album + '" type="text"/></td></tr>'
+        + '<tr><td align="right" style="padding-right: 5px"><label id="lblPosterImageUrl">Poster Image File</label></td>'
+        + '<td colspan="2" align="left"><input ID="txtPosterImageUrl" style="width: 275px" value="' + posterImageUrl + '" type="text"/></td></tr>'
+       + '<tr rowspan="2"><td colspan="3" align="right"><br/></td></tr>'
+        + '<tr><td></td><td colspan="2" align="right"><input id="btnSave" onclick="Save()" type="button" value="Apply"/><input id="btnCancel" style="margin-left: 20px" onclick="Cancel()" type="button" value="Cancel" /></td>'
+        + '</tr></table>';
     }
     document.body.appendChild(div);
 
@@ -210,35 +208,33 @@ function Cancel() {
 
 function validateLightboxFields() {
 
-    var titleField = document.getElementById('txtTitle');
-    var locationField = document.getElementById('txtLocation');
-    var titleLabel = document.getElementById('lblTitle');
-    var locationLabel = document.getElementById('lblLocation');
+    var titleField = $('input[id=txtTitle]');
+    var locationField = $('input[id=txtLocation]');
+    var titleLabel = $('input[id=lblTitle]');
+    var locationLabel = $('label[id=lblLocation]');
 
-    titleLabel.style.color = 'Black';
-    titleLabel.style.fontWeight = 'Normal';
-    locationLabel.style.color = 'Black';
-    locationLabel.style.fontWeight = 'Normal';
+    titleLabel.css('color', 'Black');
+    titleLabel.css('fontWeight', 'Normal');
+    locationLabel.css('color', 'Black');
+    locationLabel.css('fontWeight', 'Normal');
 
-    if (titleField.value == '' || locationField.value == '') {
+    if (titleField.val() == '' || locationField.val() == '') {
 
         alert('Please fill out the required fields');
 
-        if (titleField.value == '') {
-            titleLabel.style.color = 'Red';
-            titleLabel.style.fontWeight = 'Bold';
+        if (titleField.val() == '') {
+            titleLabel.css('color', 'Red');
+            titleLabel.css('fontWeight', 'Bold');
         }
-        if (locationField.value == '') {
-            locationLabel.style.color = 'Red';
-            locationLabel.style.fontWeight = 'Bold';
+        if (locationField.val() == '') {
+            locationLabel.css('color', 'Red');
+            locationLabel.css('fontWeight', 'Bold');
         }
 
         return false;
-
     }
 
     return true;
-
 }
 
 function Save() {
@@ -246,40 +242,40 @@ function Save() {
     var isValid = validateLightboxFields();
 
     if (isValid) {
-        var saveButton = document.getElementById('ctl00_MainContent_btnApplyChanges');
+        var saveButton = $('input[id$=btnApplyChanges]');
 
         //Update Hidden fields
-        var hdnTitle = document.getElementById('ctl00_MainContent_hdnTitle');
-        hdnTitle.setAttribute('value', trim(document.getElementById('txtTitle').value));
+        var hdnTitle = $('input[id$=hdnTitle]');
+        hdnTitle.val(trim($('#txtTitle').val()));
 
-        var hdnLocation = document.getElementById('ctl00_MainContent_hdnLocation');
-        hdnLocation.setAttribute('value', trim(document.getElementById('txtLocation').value));
+        var hdnLocation = $('input[id$=hdnLocation]');
+        hdnLocation.val(trim($('#txtLocation').val()));
 
-        var hdnIsViewable = document.getElementById('ctl00_MainContent_hdnIsViewable');
-        hdnIsViewable.setAttribute('value', trim(document.getElementById('ddlIsViewable').options[document.getElementById('ddlIsViewable').selectedIndex].value));
+        var hdnIsViewable = $('input[id$=hdnIsViewable]');
+        hdnIsViewable.val(trim($('#ddlIsViewable :selected').text()));
 
-        var hdnArtist = document.getElementById('ctl00_MainContent_hdnArtist');
-        hdnArtist.setAttribute('value', trim(document.getElementById('txtArtist').value));
+        var hdnArtist = $('input[id$=hdnArtist]');
+        hdnArtist.val(trim($('#txtArtist').val()));
 
-        var hdnDescription = document.getElementById('ctl00_MainContent_hdnDescription');
-        hdnDescription.setAttribute('value', trim(document.getElementById('txtDescription').value));
+        var hdnDescription = $('input[id$=hdnDescription]');
+        hdnDescription.val(trim($('#txtDescription').val()));
 
-        var hdnGenre = document.getElementById('ctl00_MainContent_hdnGenre');
-        hdnGenre.setAttribute('value', trim(document.getElementById('txtGenre').value));
+        var hdnGenre = $('input[id$=hdnGenre]');
+        hdnGenre.val(trim($('#txtGenre').val()));
 
-        var hdnMediaType = document.getElementById('ctl00_MainContent_hdnMediaType');
-        hdnMediaType.setAttribute('value', trim(document.getElementById('ddlMediaType').options[document.getElementById('ddlMediaType').selectedIndex].value));
+        var hdnMediaType = $('input[id$=hdnMediaType');
+        hdnMediaType.val(trim($('#ddlMediaType :selected').text()));
 
-        var hdnDuration = document.getElementById('ctl00_MainContent_hdnDuration');
-        hdnDuration.setAttribute('value', trim(document.getElementById('txtDuration').value));
+        var hdnDuration = $('input[id$=hdnDuration]');
+        hdnDuration.val(trim($('input[id$=txtDuration').val()));
 
-        var hdnAlbum = document.getElementById('ctl00_MainContent_hdnAlbum');
-        hdnAlbum.setAttribute('value', trim(document.getElementById('txtAlbum').value));
+        var hdnAlbum = $('input[id$=hdnAlbum]');
+        hdnAlbum.val(trim($('input[id$=txtAlbum]').val()));
 
-        var hdnPosterImageUrl = document.getElementById('ctl00_MainContent_hdnPosterImageUrl');
-        hdnPosterImageUrl.setAttribute('value', trim(document.getElementById('txtPosterImageUrl').value));
+        var hdnPosterImageUrl = $('input[id$=hdnPosterImageUrl]');
+        hdnPosterImageUrl.val(trim($('input[id$=txtPosterImageUrl]').val()));
 
-        saveButton.click();
+        eval(saveButton.attr('href'));
 
         CloseLightBox();
     }

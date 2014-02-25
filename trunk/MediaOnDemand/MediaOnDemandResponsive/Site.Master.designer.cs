@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MediaOnDemandResponsive {
+namespace MediaOnDemand {
     
     
     public partial class Site {

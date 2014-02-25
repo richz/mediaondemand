@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace MediaOnDemandResponsive
+namespace MediaOnDemand
 {
     public partial class MediaAdmin : System.Web.UI.Page
     {
