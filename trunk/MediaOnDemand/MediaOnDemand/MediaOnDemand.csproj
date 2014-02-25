@@ -47,11 +47,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>..\ExternalLibraries\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\..\Web Pluggins\ExternalLibraries\AjaxControlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="AjaxDataControls, Version=1.0.2926.9219, Culture=neutral, PublicKeyToken=55e02a8bd101a79c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\AjaxDataControls.dll</HintPath>
+    <Reference Include="AjaxDataControls">
+      <HintPath>..\..\..\..\Web Pluggins\ExternalLibraries\AjaxDataControls.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration.Install" />

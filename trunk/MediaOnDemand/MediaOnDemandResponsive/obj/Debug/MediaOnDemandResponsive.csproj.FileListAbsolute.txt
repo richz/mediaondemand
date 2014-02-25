@@ -12,3 +12,11 @@ E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandRespons
 E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandResponsive\MediaOnDemandResponsive\obj\Debug\MediaOnDemandResponsive.pdb
 E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandResponsive\MediaOnDemandResponsive\bin\MediaOnDemandLibrary.dll
 E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandResponsive\MediaOnDemandResponsive\bin\MediaOnDemandLibrary.pdb
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandResponsive\bin\MediaOnDemand.dll
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandResponsive\bin\MediaOnDemand.pdb
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandResponsive\bin\AjaxControlToolkit.dll
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandResponsive\bin\MediaOnDemandLibrary.dll
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandResponsive\bin\MediaOnDemandLibrary.pdb
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandResponsive\obj\Debug\MediaOnDemandResponsive.csprojResolveAssemblyReference.cache
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandResponsive\obj\Debug\MediaOnDemand.dll
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandResponsive\obj\Debug\MediaOnDemand.pdb

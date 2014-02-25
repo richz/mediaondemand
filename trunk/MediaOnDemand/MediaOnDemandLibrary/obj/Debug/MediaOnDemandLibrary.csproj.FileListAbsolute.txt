@@ -54,3 +54,13 @@ E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemandLibrary\bin\Debug\
 E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.csprojResolveAssemblyReference.cache
 E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.dll
 E:\Projects\MediaOnDemand\MediaOnDemand .NET 3.5\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.pdb
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandLibrary.dll.config
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandLibrary.dll
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandLibrary.pdb
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\Gallio.dll
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MbUnit.dll
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandDataAccess.dll
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandDataAccess.pdb
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.csprojResolveAssemblyReference.cache
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.dll
+E:\Projects\Web Development\Responsive Design\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.pdb
