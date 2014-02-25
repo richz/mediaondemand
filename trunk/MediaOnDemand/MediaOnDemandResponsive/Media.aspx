@@ -2,7 +2,14 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="js/playMedia.js"></script>
-    <script src="js/site.js"></script>
+    
+    <style type="text/css">
+        .gridPager td
+        {
+            padding-left: 20px;
+        }
+    </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
       
@@ -10,7 +17,7 @@
 
     <asp:GridView ID="gvMedia" runat="server"
         CssClass="table table-hover table-striped" GridLines="None"
-        AutoGenerateColumns="False" DataKeyNames="medId" DataSourceID="MediaSQLDataSource" AllowPaging="True" AllowSorting="True" OnSorted="gvMedia_Sorted">
+        AutoGenerateColumns="False" DataKeyNames="medId" DataSourceID="MediaSQLDataSource" AllowPaging="True" AllowSorting="True" OnSorted="gvMedia_Sorted" PageSize="15">
         <Columns>            
             <asp:TemplateField HeaderText="Title" SortExpression="medTitle">              
                 <ItemTemplate>
@@ -37,7 +44,8 @@
             <asp:BoundField DataField="medLastPlayedDate" HeaderText="medLastPlayedDate" SortExpression="medLastPlayedDate" Visible="False" />
             <asp:BoundField DataField="medRating" HeaderText="medRating" SortExpression="medRating" Visible="False" />
         </Columns>
-        <PagerSettings PageButtonCount="15" />
+        <PagerSettings PageButtonCount="15" FirstPageText="First" LastPageText="Last" Mode="NextPreviousFirstLast" NextPageText="Next" PreviousPageText="Previous" />
+        <PagerStyle Width="200px" CssClass="gridPager" BorderStyle="None" Font-Bold="True" Font-Overline="False" Font-Size="Large" Font-Underline="False" HorizontalAlign="Center" Wrap="True" />
         <RowStyle CssClass="cursor-pointer" />
     </asp:GridView>
 

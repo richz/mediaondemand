@@ -22,6 +22,9 @@
     <!-- Custom styles for this template -->
     <link href="css/theme.css" rel="stylesheet" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/site.js"></script>
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -29,21 +32,25 @@
     <![endif]-->
     <style type="text/css"></style>
     <style id="clearly_highlighting_css" type="text/css">
-        /* selection */ html.clearly_highlighting_enabled ::-moz-selection {
+        /* selection */ html.clearly_highlighting_enabled ::-moz-selection
+        {
             background: rgba(246, 238, 150, 0.99);
         }
 
-        html.clearly_highlighting_enabled ::selection {
+        html.clearly_highlighting_enabled ::selection
+        {
             background: rgba(246, 238, 150, 0.99);
         }
         /* cursor */
 
-        html.clearly_highlighting_enabled { /* cursor and hot-spot position -- requires a default cursor, after the URL one */
+        html.clearly_highlighting_enabled
+        { /* cursor and hot-spot position -- requires a default cursor, after the URL one */
             cursor: url("chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/clearly/images/highlight--cursor.png") 14 16, text;
         }
         /* highlight tag */
 
-        em.clearly_highlight_element {
+        em.clearly_highlight_element
+        {
             font-style: inherit !important;
             font-weight: inherit !important;
             background-image: url("chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/clearly/images/highlight--yellow.png");
@@ -53,12 +60,14 @@
         }
             /* the delete-buttons are positioned relative to this */
 
-            em.clearly_highlight_element.clearly_highlight_first {
+            em.clearly_highlight_element.clearly_highlight_first
+            {
                 position: relative;
             }
             /* delete buttons */
 
-            em.clearly_highlight_element a.clearly_highlight_delete_element {
+            em.clearly_highlight_element a.clearly_highlight_delete_element
+            {
                 display: none;
                 cursor: pointer;
                 padding: 0;
@@ -74,17 +83,21 @@
                 background-position: 0px 0px;
             }
 
-                em.clearly_highlight_element a.clearly_highlight_delete_element:hover {
+                em.clearly_highlight_element a.clearly_highlight_delete_element:hover
+                {
                     background-position: -34px 0px;
                 }
         /* retina */
 
-        @media (min--moz-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
-            em.clearly_highlight_element {
+        @media (min--moz-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2)
+        {
+            em.clearly_highlight_element
+            {
                 background-image: url("chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/clearly/images/highlight--yellow@2x.png");
             }
 
-                em.clearly_highlight_element a.clearly_highlight_delete_element {
+                em.clearly_highlight_element a.clearly_highlight_delete_element
+                {
                     background-image: url("chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/clearly/images/highlight--delete-sprite@2x.png");
                     background-size: 68px 34px;
                 }
@@ -92,22 +105,26 @@
     </style>
     <style id="holderjs-style" type="text/css"></style>
     <style>
-        [touch-action="none"] {
+        [touch-action="none"]
+        {
             -ms-touch-action: none;
             touch-action: none;
         }
 
-        [touch-action="pan-x"] {
+        [touch-action="pan-x"]
+        {
             -ms-touch-action: pan-x;
             touch-action: pan-x;
         }
 
-        [touch-action="pan-y"] {
+        [touch-action="pan-y"]
+        {
             -ms-touch-action: pan-y;
             touch-action: pan-y;
         }
 
-        [touch-action="scroll"], [touch-action="pan-x pan-y"], [touch-action="pan-y pan-x"] {
+        [touch-action="scroll"], [touch-action="pan-x pan-y"], [touch-action="pan-y pan-x"]
+        {
             -ms-touch-action: pan-x pan-y;
             touch-action: pan-x pan-y;
         }
@@ -119,9 +136,17 @@
 <body role="document" style="">
     <form id="form1" runat="server">
 
+        <script type="text/javascript">
+            $(document).ready(function () {               
+                
+            });
+        </script>
+
         <br />
 
         <!-- Fixed navbar -->
+        
+
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -131,15 +156,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Media on Demand</a>
+                    <a class="navbar-brand" href="Home.aspx">Media on Demand</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="Default.aspx">Home</a></li>
+                        <li class="active"><a href="Home.aspx">Home</a></li>
 
                         <li>
-                            <%--<a href="Media.aspx?mediaType=movie">Movies</a>--%>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Movies<b class="caret"></b></a>
+                            <%= moviesMenu %>
+                            <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Movies<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="Media.aspx?Type=movie&Genre=Action">Action</a></li>
                                 <li class="divider"></li>
@@ -171,11 +196,11 @@
                                 <li class="divider"></li>
                                 <li><a href="Media.aspx?Type=movie&Genre=Western">Western</a></li>
 
-                                <%--<li class="divider"></li>
+                                <li class="divider"></li>
                                 <li class="dropdown-header">Nav header</li>
                                 <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li>--%>
-                            </ul>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>--%>
                         </li>
                         <li><a href="Media.aspx?Type=music">Music</a></li>
                         <li class="dropdown">
@@ -195,7 +220,7 @@
                                 <li class="divider"></li>
                                 <li><a href="Media.aspx?Type=tv&Series=The Bible">The Bible</a></li>
                             </ul>
-                        </li>                        
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Music Videos<b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -232,7 +257,6 @@
         <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
         </asp:ContentPlaceHolder>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
 
     </form>
