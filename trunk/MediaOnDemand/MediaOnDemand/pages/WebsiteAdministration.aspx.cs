@@ -109,10 +109,11 @@ namespace MediaOnDemand
             //Do work
             string directory = WebsiteAdministration.networkFolder;
             string mediaType = WebsiteAdministration.mediaType;
-            
+
             int[] fileCount = new int[] { 0, 0, 0 };
 
             string[] files = new string[0];
+            List<FileInfo> fileList = new List<FileInfo>();
 
             try
             {
@@ -123,24 +124,24 @@ namespace MediaOnDemand
                 return "";
             }
 
-            FileInfo file;
-            bool fileAdded;
-            string fileExt;
-            
-            filesToProcess = files.Count();
-
             foreach (String filePath in files)
             {
+                fileList.Add(new FileInfo(filePath));
+            }
+
+            bool fileAdded;
+
+            filesToProcess = files.Count();
+
+            foreach (FileInfo file in fileList)
+            {
                 filesProcessed = fileCount[0];
-                file = new FileInfo(filePath);
-                                    
-                fileExt = Path.GetExtension(filePath);
-                
+
                 fileAdded = false;
 
-                if (WebsiteAdministration.supportedTypes.Contains(fileExt.ToLower()) && !Path.GetFileNameWithoutExtension(filePath).Equals("Thumbs"))
+                if (WebsiteAdministration.supportedTypes.Contains(file.Extension.ToLower()) && !Path.GetFileNameWithoutExtension(file.FullName).Equals("Thumbs"))
                 {
-                    AddMediaRecordForCreatedFile(filePath, ref fileAdded);
+                    AddMediaRecordForCreatedFile(file, mediaType, ref fileAdded);
                 }
             }
 
@@ -412,11 +413,12 @@ namespace MediaOnDemand
 
         #region Helper Methods
 
-        private static void AddMediaRecordForCreatedFile(string filePath, ref bool fileAdded)
+        private static void AddMediaRecordForCreatedFile(FileInfo file, string media_Type, ref bool fileAdded)
         {
-            string mediaName = Path.GetFileNameWithoutExtension(filePath);
+            string mediaName = Path.GetFileNameWithoutExtension(file.FullName);
+            string mediaType = media_Type;
 
-            bool recordExists = MediaRecordExists(mediaName);
+            bool recordExists = MediaRecordExists(mediaType, mediaName);
 
             if (!recordExists)
             {
@@ -424,9 +426,7 @@ namespace MediaOnDemand
 
                 fileAdded = false;
 
-                string fileExt = Path.GetExtension(filePath);
-                FileInfo file = new FileInfo(filePath);
-                string mediaType = GetMediaTypeForFile(filePath);
+                string fileExt = file.Extension;
 
                 string path = "";
                 string genre = "";
@@ -436,22 +436,22 @@ namespace MediaOnDemand
                 string mediaT = "";
                 int rating = 0;
 
-                path = filePath.Replace("\\\\mediaserver", string.Format("http://{0}/mediaondemand", MediaOnDemandLibrary.BusinessLogic.GetMachineIPAddress())).Replace("\\", "/");
-                
+                path = file.FullName.Replace("\\\\mediaserver", string.Format("http://{0}/mediaondemand", MediaOnDemandLibrary.BusinessLogic.GetMachineIPAddress())).Replace("\\", "/");
+
                 switch (mediaType)
                 {
                     case "movie":
                         {
                             mediaT = mediaType;
                             genre = file.Directory.Parent.Name;
-                            posterImageUrl = String.Format("../images/posters/{0}.jpg", WebsiteAdministration.RemoveSpecialCharacters(mediaName));
+                            posterImageUrl = String.Format("images/posters/{0}.jpg", WebsiteAdministration.RemoveSpecialCharacters(mediaName));
                         } break;
                     case "tv":
                         {
                             mediaT = mediaType;
                             album = file.Directory.Parent.Parent.Name;
                             genre = file.Directory.Parent.Name;
-                            posterImageUrl = String.Format("../images/posters/{0}.jpg", WebsiteAdministration.RemoveSpecialCharacters(album));
+                            posterImageUrl = String.Format("images/posters/{0}.jpg", WebsiteAdministration.RemoveSpecialCharacters(album));
 
                         }
                         break;
@@ -460,7 +460,7 @@ namespace MediaOnDemand
                             mediaT = mediaType;
                             artist = file.Directory.Parent.Name;
                             album = file.Directory.Name;
-                            posterImageUrl = String.Format("../images/albumcovers/music.jpg", WebsiteAdministration.RemoveSpecialCharacters(album));
+                            posterImageUrl = String.Format("images/albumcovers/music.jpg", WebsiteAdministration.RemoveSpecialCharacters(album));
                         }
                         break;
                     case "sports":
@@ -468,7 +468,7 @@ namespace MediaOnDemand
                             mediaT = mediaType;
                             genre = file.Directory.Parent.Parent.Name; //Sport
                             album = file.Directory.Parent.Name;
-                            posterImageUrl = String.Format("../images/posters/{0}.jpg", WebsiteAdministration.RemoveSpecialCharacters(album));
+                            posterImageUrl = String.Format("images/posters/{0}.jpg", WebsiteAdministration.RemoveSpecialCharacters(album));
                         }
                         break;
                     case "musicvideo":
@@ -476,7 +476,7 @@ namespace MediaOnDemand
                             mediaT = mediaType;
                             artist = file.Directory.Parent.Parent.Name;
                             album = genre = file.Directory.Parent.Name;
-                            posterImageUrl = String.Format("../images/albumcovers/{0}.jpg", WebsiteAdministration.RemoveSpecialCharacters(album));
+                            posterImageUrl = String.Format("images/albumcovers/{0}.jpg", WebsiteAdministration.RemoveSpecialCharacters(album));
                         }
                         break;
                 }
@@ -676,12 +676,12 @@ namespace MediaOnDemand
             return r.Replace(input, String.Empty);
         }
 
-        public static bool MediaRecordExists(string mediaName)
+        public static bool MediaRecordExists(string mediaType, string mediaName)
         {
             StorageMediaDataContext context = new StorageMediaDataContext();
 
             foreach (StoredMedia sm in context.StoredMedias)
-                if (sm.medTitle.Trim().Equals(mediaName))
+                if (sm.medMediaType.Equals(mediaType) && sm.medTitle.Trim().Equals(mediaName))
                 {
                     return true;
                 }

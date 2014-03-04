@@ -8,11 +8,11 @@
     layer.style.position = 'absolute';
     layer.style.top = '0px';
     layer.style.left = '0px';
-    layer.style.height = height + 'px';
+    layer.style.height = '1200px';
     layer.style.width = width + 'px';
     layer.style.backgroundColor = 'black';
     layer.style.opacity = '.5';
-    layer.style.filter += ("progid:DXImageTransform.Microsoft.Alpha(opacity=60)");
+    layer.style.filter += ("progid:DXImageTransform.Microsoft.Alpha(opacity=50)");
 
     var progressIndicator = document.createElement('div');
     progressIndicator.style.zIndex = 3;
@@ -21,13 +21,13 @@
     progressIndicator.style.position = 'absolute';
 
     progressIndicator.style.top = 200 + 'px'//((.5 * height) - (.5 * progressIndicator.style.height)) + 'px';
-    progressIndicator.style.left = ((.5 * width) - (progressIndicator.style.width)) + 'px';
+    progressIndicator.style.left = ((.45 * width) - (progressIndicator.style.width)) + 'px';
 
     progressIndicator.style.height = '100px';
     progressIndicator.style.width = '100px';
     progressIndicator.style.backgroundColor = 'transparent';
 
-    progressIndicator.innerHTML = '<img id="progressImg" style="z-index:4" alt="" src="../images/ProgressIndicator/progressIndicator.gif"/>';
+    progressIndicator.innerHTML = '<img id="progressImg" style="z-index:4" alt="" src="images/ProgressIndicator/progressIndicator.gif"/>';
 
     document.body.appendChild(progressIndicator);
 
@@ -80,7 +80,7 @@ function showEditLightBox() {
     layer.style.position = 'absolute';
     layer.style.top = '0px';
     layer.style.left = '0px';
-    layer.style.height = '100%';//(height - 50) + 'px';
+    layer.style.height = '1200px';//(height - 50) + 'px';
     layer.style.width = width + 'px';
     layer.style.backgroundColor = 'black';
     layer.style.opacity = '.6';

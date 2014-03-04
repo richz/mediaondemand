@@ -28,14 +28,13 @@
     <script type="text/javascript">
         
     </script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
+    
         type="text/javascript"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
 
-            $("#ctl00_MainContent_btnAddAllFromNetworkFolder").click(function () {
+            $("input[id$=btnAddAllFromNetworkFolder]").click(function () {
 
                 showProgress();
 
@@ -60,7 +59,7 @@
                 return false;
             });
 
-            $("#ctl00_MainContent_btnDeleteAllFromNetworkFolder").click(function () {
+            $("input[id$=btnDeleteAllFromNetworkFolder]").click(function () {
 
                 var response = confirm("Are you sure you want to delete all records for this type?");
                 if (response == true) {
@@ -87,7 +86,7 @@
                 return false;
             });
 
-            $("#ctl00_MainContent_btnDeleteAllRecords").click(function () {
+            $("input[id$=btnDeleteAllRecords]").click(function () {
 
                 var response = confirm("Are you sure you want to delete all the records?");
                 if (response == true) {
@@ -137,22 +136,30 @@
         }
         
     </script>
+
+    <style>
+        table[id*=rblMediaType] td {
+            padding-left: 5px!important;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <script type="text/javascript"><%= postBackStr %></script>
     <h1 id="PageHeader">
         Media Administration</h1>
     <br />
-    <table style="margin-left: auto; margin-right: auto; width: 1150px;">
+    <table style="margin-left: auto; margin-right: auto; width: 100%;">
         <tr>
             <td colspan="2">
                 <table style="width: 100%">
                     <tr>
-                        <td style="width: 150px" align="right">
+                        <td style="width: 100%">
                             <asp:Label ID="lblImageMediaType" runat="server" Text="Select a media type "></asp:Label>
                         </td>
-                        <td colspan="2">
-                            <asp:RadioButtonList ID="rblMediaType" CellSpacing="10" RepeatDirection="Horizontal"
+                        </tr>
+        <tr>
+                        <td class="rblMediaType">
+                            <asp:RadioButtonList ID="rblMediaType" CellPadding="20" CellSpacing="50" RepeatDirection="Horizontal"
                                 runat="server" OnSelectedIndexChanged="rblMediaType_SelectedIndexChanged" AutoPostBack="True">
                                 <asp:ListItem Text="Movie" Value="movie" Selected="True"></asp:ListItem>
                                 <asp:ListItem Text="TV" Value="tv"></asp:ListItem>
@@ -163,13 +170,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="right">
+                        <td>
                             <asp:Label ID="lblImageUpload" runat="server" Text="Upload an image "></asp:Label>
-                        </td>
+                        </td>     </tr>
+        <tr>
                         <td style="width:400px">
-                            <asp:FileUpload ID="ImageUpload" runat="server" />
-                            <asp:Button ID="btnUploadFile" runat="server" Text="Upload file" OnClick="btnUploadFile_Click" />
-                        </td>
+                            <asp:FileUpload ID="ImageUpload" CssClass="btn btn-lg btn-default" Width="100%" runat="server" />
+                            <asp:Button ID="btnUploadFile" CssClass="btn btn-lg btn-default" Width="100%" runat="server" Text="Upload file" OnClick="btnUploadFile_Click" />
+                        </td>     </tr>
+        <tr>
                         <td align="left">
                             <asp:Label ID="lblImageUploadStatus" runat="server" ForeColor="Green" Text=""></asp:Label>
                         </td>
@@ -180,18 +189,21 @@
         </tr>
         <tr>
             <td class="alignLeft">
-                <asp:Button ID="btnAddAllFromNetworkFolder" runat="server" Text="Add all records of selected media type" />
-            </td>
+                <asp:Button ID="btnAddAllFromNetworkFolder" CssClass="btn btn-lg btn-default" Width="100%" runat="server" Text="Add records of selected media type" />
+            </td></tr>
+        <tr>
             <td class="alignRight">
-                <asp:Button ID="btnDeleteAllFromNetworkFolder" runat="server" Text="Delete all records of selected media type" />
+                <asp:Button ID="btnDeleteAllFromNetworkFolder" CssClass="btn btn-lg btn-default" Width="100%" runat="server" Text="Delete records of selected media type" />
             </td>
         </tr>
         <tr>
             <td class="alignLeft">
-                <asp:Button ID="btnAddNewMediaRow" runat="server" Text="Add new media" OnClick="btnAddNewMediaRow_Click" />
+                <asp:Button ID="btnAddNewMediaRow" runat="server" CssClass="btn btn-lg btn-default" Width="100%" Text="Add new media" OnClick="btnAddNewMediaRow_Click" />
             </td>
+            </tr>
+        <tr>
             <td class="alignRight">
-                <asp:Button ID="btnDeleteAllRecords" runat="server" Text="Delete all records" />
+                <asp:Button ID="btnDeleteAllRecords" runat="server" CssClass="btn btn-lg btn-default" Width="100%" Text="Delete all records" />
             </td>
         </tr>
         <tr>
@@ -216,16 +228,18 @@
                 </table>
             </td>--%>
             <td align="left">
+                <br />
                 <table>
                     <tr>
                         <td>
                             <asp:Label ID="lblFindByTitle" runat="server" Text="Find by Title"></asp:Label>
                         </td>
-                        <td style="width: 400px">
+                        <td style="width: 400px; padding-left: 15px">
+                        
                             <asp:TextBox ID="txtTitle" Width="100%" runat="server"></asp:TextBox>
                         </td>
                         <td>
-                            <asp:Button ID="btnFilter" runat="server" Text="Filter" OnClick="btnFilter_Click" />
+                            <asp:Button ID="btnFilter"  CssClass="btn btn-lg btn-default" runat="server" Text="Filter" OnClick="btnFilter_Click" />
                         </td>
                     </tr>
                 </table>
@@ -262,10 +276,10 @@
     </table>
     <div class="mediaGrid">
         <asp:Panel ID="gridViewPanel" CssClass="gridViewPanel" runat="server" ScrollBars="Auto">
-            <asp:GridView ID="gvMedia" runat="server" Width="100%" Height="100%" AutoGenerateColumns="False"
+            <asp:GridView ID="gvMedia" CssClass="table table-hover table-striped" GridLines="None" runat="server" Width="100%" Height="100%" AutoGenerateColumns="False"
                 DataSourceID="lnqMedia" PagerSettings-Position="TopAndBottom"
                 DataKeyNames="medId" CellPadding="4" ForeColor="#333333" PagerSettings-Mode="NumericFirstLast"
-                GridLines="None" AllowPaging="True" AllowSorting="True" OnDataBound="gvMedia_DataBound">
+                AllowPaging="True" AllowSorting="True" OnDataBound="gvMedia_DataBound">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                     <asp:TemplateField ShowHeader="False">
@@ -343,12 +357,17 @@
                         </tr>
                     </table>
                 </EmptyDataTemplate>
-                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                <%--<FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />--%>
                 <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Left" Wrap="True" />
                 <PagerSettings Mode="NumericFirstLast" Position="TopAndBottom" />
                 <RowStyle BackColor="#F7F6F3" ForeColor="#333333" Wrap="False" />
                 <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+
+                <PagerSettings PageButtonCount="15" FirstPageText="First" LastPageText="Last" Mode="NextPreviousFirstLast" NextPageText="Next" PreviousPageText="Previous" />
+        <PagerStyle Width="200px" CssClass="gridPager" BorderStyle="None" Font-Bold="True" Font-Overline="False" Font-Size="Large" Font-Underline="False" HorizontalAlign="Center" Wrap="True" />
+        <RowStyle CssClass="cursor-pointer" />
+
             </asp:GridView>
         </asp:Panel>
     </div>

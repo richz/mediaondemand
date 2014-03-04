@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Text.RegularExpressions;
+using MediaOnDemandLibrary;
 
 namespace MediaFilesWatcher
 {
@@ -179,6 +180,8 @@ namespace MediaFilesWatcher
         
         private static void AddMediaRecordForCreatedFile(string filePath, ref bool fileAdded)
         {
+            EventLog.WriteEntry("MediaFilesWatcher", "Made it to AddMediaRecordForCreatedFile method");
+
             string connString = ConfigurationManager.ConnectionStrings["MediaFileWatcherWinServiceConnectionString"].ConnectionString;
 
             StorageMediaDataContext context = new MediaOnDemand.StorageMediaDataContext(connString);
@@ -200,7 +203,7 @@ namespace MediaFilesWatcher
                 string mediaT = "";
                 int rating = 0;
 
-                string path = filePath.Replace("\\\\mediaserver", string.Format("http://{0}/mediaondemand", MediaOnDemandLibrary.BusinessLogic.GetMachineIPAddress())).Replace("\\", "/");
+                string path = filePath.Replace("\\\\mediaserver", string.Format("http://{0}/mediaondemand", BusinessLogic.GetMachineIPAddress())).Replace("\\", "/");
                 
                 switch (mediaType)
                 {
@@ -208,14 +211,14 @@ namespace MediaFilesWatcher
                         {
                             mediaT = mediaType;
                             genre = file.Directory.Parent.Name;
-                            posterImageUrl = String.Format("../images/posters/{0}.jpg", Service.RemoveSpecialCharacters(mediaName));
+                            posterImageUrl = String.Format("images/posters/{0}.jpg", BusinessLogic.RemoveSpecialCharacters(mediaName));
                         } break;
                     case "tv":
                         {
                             mediaT = mediaType;
                             album = file.Directory.Parent.Parent.Name;
                             genre = file.Directory.Parent.Name;
-                            posterImageUrl = String.Format("../images/posters/{0}.jpg", Service.RemoveSpecialCharacters(album));
+                            posterImageUrl = String.Format("images/posters/{0}.jpg", BusinessLogic.RemoveSpecialCharacters(album));
 
                         }
                         break;
@@ -224,7 +227,7 @@ namespace MediaFilesWatcher
                             mediaT = mediaType;
                             artist = file.Directory.Parent.Name;
                             album = file.Directory.Name;
-                            posterImageUrl = String.Format("../images/albumcovers/{0}.jpg", Service.RemoveSpecialCharacters(album));
+                            posterImageUrl = String.Format("images/albumcovers/{0}.jpg", BusinessLogic.RemoveSpecialCharacters(album));
                         }
                         break;
                     case "sports":
@@ -232,7 +235,7 @@ namespace MediaFilesWatcher
                             mediaT = mediaType;
                             genre = file.Directory.Parent.Parent.Name; //Sport
                             album = file.Directory.Parent.Name;
-                            posterImageUrl = String.Format("../images/posters/{0}.jpg", Service.RemoveSpecialCharacters(album));
+                            posterImageUrl = String.Format("images/posters/{0}.jpg", BusinessLogic.RemoveSpecialCharacters(album));
                         }
                         break;
                     case "musicvideo":
@@ -240,7 +243,7 @@ namespace MediaFilesWatcher
                             mediaT = mediaType;
                             artist = file.Directory.Parent.Parent.Name;
                             album = genre = file.Directory.Parent.Name;
-                            posterImageUrl = String.Format("../images/albumcovers/{0}.jpg", Service.RemoveSpecialCharacters(album));
+                            posterImageUrl = String.Format("images/albumcovers/{0}.jpg", BusinessLogic.RemoveSpecialCharacters(album));
                         }
                         break;
                 }

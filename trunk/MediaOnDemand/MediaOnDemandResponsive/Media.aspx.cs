@@ -17,7 +17,7 @@ namespace MediaOnDemand
             {
                 this.postBackStr = Page.ClientScript.GetPostBackEventReference(this, "MyCustomArgument");               
             }
-
+            
             MediaSQLDataSource.SelectParameters.Clear();
             MediaSQLDataSource.SelectParameters.Add("mediaType", Request.QueryString["Type"]);
             MediaSQLDataSource.SelectParameters["mediaType"].DefaultValue = Request.QueryString["Type"];
@@ -32,14 +32,20 @@ namespace MediaOnDemand
                         MediaSQLDataSource.SelectParameters["mediaGenre"].DefaultValue = Request.QueryString["Genre"];
 
                         MediaSQLDataSource.SelectCommand += " and medGenre = @mediaGenre";
+
+                        this.gvMedia.Columns[8].Visible = true;
                     }
                     break;
                 case "tv":
                     {
-                        MediaSQLDataSource.SelectParameters.Add("mediaSeries", Request.QueryString["Series"]);
-                        MediaSQLDataSource.SelectParameters["mediaSeries"].DefaultValue = Request.QueryString["Series"];
+                        MediaSQLDataSource.SelectParameters.Add("mediaAlbum", Request.QueryString["Series"]);
+                        MediaSQLDataSource.SelectParameters["mediaAlbum"].DefaultValue = Request.QueryString["Series"];
 
-                        MediaSQLDataSource.SelectCommand += " and medGenre = @mediaSeries";
+                        MediaSQLDataSource.SelectCommand += " and medAlbum = @mediaAlbum";
+                                                
+                        this.gvMedia.Columns[11].Visible = true;
+                        this.gvMedia.Columns[8].Visible = true;
+                        this.gvMedia.Columns[8].HeaderText = "Season";
                     }
                     break;
                 case "music":
@@ -49,8 +55,8 @@ namespace MediaOnDemand
 
                         MediaSQLDataSource.SelectCommand += " and medArtist = @mediaArtist";
 
-                        this.gvMedia.Columns[4].Visible = true;
-                        this.gvMedia.Columns[10].Visible = true;
+                        this.gvMedia.Columns[5].Visible = true;
+                        this.gvMedia.Columns[11].Visible = true;
                     }
                     break;
                 case "musicvideo":
@@ -60,8 +66,8 @@ namespace MediaOnDemand
 
                         MediaSQLDataSource.SelectCommand += " and medArtist = @mediaArtist";
 
-                        this.gvMedia.Columns[4].Visible = true;
-                        this.gvMedia.Columns[10].Visible = true;
+                        this.gvMedia.Columns[5].Visible = true;
+                        this.gvMedia.Columns[11].Visible = true;
                     }
                     break;
                 case "sports":
@@ -70,11 +76,19 @@ namespace MediaOnDemand
                         MediaSQLDataSource.SelectParameters["mediaSport"].DefaultValue = Request.QueryString["Sport"];
 
                         MediaSQLDataSource.SelectCommand += " and medGenre = @mediaSport";
-
-                        this.gvMedia.Columns[4].Visible = true;
-                        this.gvMedia.Columns[10].Visible = true;
+                                                
+                        this.gvMedia.Columns[11].Visible = true;
+                        this.gvMedia.Columns[11].HeaderText = "League";
                     }
                     break;
+            }
+
+            if (!Request.QueryString["Type"].Equals("music"))
+            {
+                if(Request.Browser.IsMobileDevice)
+                {
+                    MediaSQLDataSource.SelectCommand += " and medFileExt = '.mp4'";
+                }
             }
 
             this.MediaSQLDataSource.DataBind();

@@ -15,7 +15,7 @@ namespace MediaOnDemand
         protected string tvMenu = "";
         protected string musicVideosMenu = "";
         protected string sportsMenu = "";
-
+        
         private List<string> menuList;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -35,6 +35,7 @@ namespace MediaOnDemand
             SetupMenu("Music Videos", "musicvideo", "Artist");
             SetupMenu("Television", "tv", "Series");
             SetupMenu("Sports", "sports", "Sport");
+            SetupMenu("Sports", "sports", "Sport");
         }
         
         private void SetupMenu(string mediaTypeLabel, string mediaType, string mediaFilter)
@@ -43,29 +44,31 @@ namespace MediaOnDemand
 
             switch(mediaType)
             {
-                case "movie":
-                case "tv":
+                case "movie":                
                 case "sports":
                     menuList = GetMediaGenres(mediaType);
                     break;
                 case "music":                    
                 case "musicvideo":
                     menuList = GetMediaArtists(mediaType);
-                    break;              
+                    break;
+                case "tv":
+                    menuList = GetTvSeries();
+                    break;
             }
 
             for (int i = 0; i < menuList.Count; i++)
             {
                 if(i == 0)
                 {
-                    sb.AppendFormat("<li class=\"dropdown\"><a href=\"Media.aspx?Type={1}\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{0}<b class=\"caret\"></b></a>" +
-                                   "<ul class=\"dropdown-menu\">", mediaTypeLabel, mediaType);
+                    sb.AppendFormat("<li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\">{0}<b class=\"caret\"></b></a>" +
+                                   "<ul class=\"dropdown-menu scroll-menu\">", mediaTypeLabel, mediaType);
                 }
 
                 SetupMenuItem(mediaType, mediaFilter, menuList[i], menuList[i], i == 0 || i == menuList.Count - 1, ref sb);
 
                 if (i == menuList.Count - 1)
-                    sb.Append("</ul>");
+                    sb.Append("</ul></li>");
             }            
             
             switch(mediaType)

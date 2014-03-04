@@ -11,9 +11,9 @@
         imageButton = document.getElementById(controlID + '' + i);
 
         if (i <= startNum)
-            imageUrl = '../images/rating/ratingStarFilled.png';
+            imageUrl = 'images/rating/ratingStarFilled.png';
         else
-            imageUrl = '../images/rating/ratingStarEmpty.png';
+            imageUrl = 'images/rating/ratingStarEmpty.png';
 
         if (imageButton)
             imageButton.setAttribute('src', imageUrl);
@@ -291,7 +291,7 @@ function playMedia(mediaUrl, mediaType, isPopup, position) {
         layer.style.position = 'absolute';
         layer.style.top = '0px';
         layer.style.left = '0px';
-        layer.style.height = '100%';// + 'px';
+        layer.style.height = '1200' + 'px';
         layer.style.width = width + 'px';
         layer.style.backgroundColor = 'black';
 
