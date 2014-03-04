@@ -1,0 +1,8 @@
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandLibrary.dll.config
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandLibrary.dll
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandLibrary.pdb
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandDataAccess.dll
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandLibrary\bin\Debug\MediaOnDemandDataAccess.pdb
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.csprojResolveAssemblyReference.cache
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.dll
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandLibrary\obj\Debug\MediaOnDemandLibrary.pdb

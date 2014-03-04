@@ -1,0 +1,7 @@
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandResponsive\bin\MediaOnDemand.dll
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandResponsive\bin\MediaOnDemand.pdb
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandResponsive\bin\MediaOnDemandLibrary.dll
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandResponsive\bin\MediaOnDemandLibrary.pdb
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandResponsive\obj\Debug\MediaOnDemandResponsive.csprojResolveAssemblyReference.cache
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandResponsive\obj\Debug\MediaOnDemand.dll
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandResponsive\obj\Debug\MediaOnDemand.pdb
