@@ -34,6 +34,10 @@
 
         $(document).ready(function () {
 
+            $("div[id=lightBoxBackGround]").click(function () {
+                CloseLightBox();
+            });
+
             $("input[id$=btnAddAllFromNetworkFolder]").click(function () {
 
                 showProgress();
@@ -193,7 +197,7 @@
             </td></tr>
         <tr>
             <td class="alignRight">
-                <asp:Button ID="btnDeleteAllFromNetworkFolder" CssClass="btn btn-lg btn-default" Width="100%" runat="server" Text="Delete records of selected media type" />
+                <asp:Button ID="btnDeleteAllFromNetworkFolder" Enabled="false" CssClass="btn btn-lg btn-default" Width="100%" runat="server" Text="Delete records of selected media type" />
             </td>
         </tr>
         <tr>
@@ -203,7 +207,7 @@
             </tr>
         <tr>
             <td class="alignRight">
-                <asp:Button ID="btnDeleteAllRecords" runat="server" CssClass="btn btn-lg btn-default" Width="100%" Text="Delete all records" />
+                <asp:Button ID="btnDeleteAllRecords" Enabled="false" runat="server" CssClass="btn btn-lg btn-default" Width="100%" Text="Delete all records" />
             </td>
         </tr>
         <tr>

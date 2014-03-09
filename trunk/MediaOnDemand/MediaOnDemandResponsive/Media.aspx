@@ -71,9 +71,6 @@
     <asp:HiddenField ID="hdnMediaTitle" Value="" runat="server" />
 
     <asp:SqlDataSource ID="MediaSQLDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:MEDIAONDEMANDDBConnectionString %>" SelectCommand="SELECT medTitle, medLocation, medDateAdded, medIsViewable, medArtist, medDescription, medId, medGenre, medMediaType, medDuration, medAlbum, medVideoType, medFileExt, medPosterImageUrl, medLastPlayedDate, medRating FROM StoredMedia where medIsViewable = 'Y'" OnSelecting="MediaSQLDataSource_Selecting" OnFiltering="MediaSQLDataSource_Filtering" OnSelected="MediaSQLDataSource_Selected">
-        <SelectParameters>
-            <%--<asp:QueryStringParameter Name="mediaType" QueryStringField="mediaType" />
-            <asp:QueryStringParameter Name="mediaGenre" QueryStringField="mediaGenre" ConvertEmptyStringToNull="true" />--%>
-        </SelectParameters>
     </asp:SqlDataSource>
+
 </asp:Content>

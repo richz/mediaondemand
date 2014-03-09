@@ -91,7 +91,7 @@ function showEditLightBox() {
     div.style.zIndex = 11;
     div.id = 'box';
     div.style.position = (navigator.userAgent.indexOf('MSIE 6') > -1) ? 'absolute' : 'fixed';
-    div.style.top = height / 2 - 225  + 'px';//'50px';
+    div.style.top = height / 2 - 500  + 'px';//'50px';
     div.style.left = (width / 2) - (width / 10) + 'px';
     div.style.height = '450px';
     div.style.width = '450px';

@@ -41,11 +41,11 @@ namespace MediaOnDemand
         static string musicVideosFolder = rootMediaFilesFolder + "\\videos\\musicvideo";
         static string tvFolder = rootMediaFilesFolder + "\\videos\\tv";
         static string sportsFolder = rootMediaFilesFolder + "\\videos\\sports";
-        static DirectoryInfo musicDirectory = new DirectoryInfo(musicFolder);
-        static DirectoryInfo moviesDirectory = new DirectoryInfo(moviesFolder);
-        static DirectoryInfo musicVideosDirectory = new DirectoryInfo(musicVideosFolder);
-        static DirectoryInfo tvDirectory = new DirectoryInfo(tvFolder);
-        static DirectoryInfo sportsDirectory = new DirectoryInfo(sportsFolder);
+        //static DirectoryInfo musicDirectory = new DirectoryInfo(musicFolder);
+        //static DirectoryInfo moviesDirectory = new DirectoryInfo(moviesFolder);
+        //static DirectoryInfo musicVideosDirectory = new DirectoryInfo(musicVideosFolder);
+        //static DirectoryInfo tvDirectory = new DirectoryInfo(tvFolder);
+        //static DirectoryInfo sportsDirectory = new DirectoryInfo(sportsFolder);
 
         //Supported file types
         public static List<string> supportedTypes = new List<string> { ".vob", ".avi", ".flv", ".mp4", ".mp3", ".wma", ".wmv", ".mpg", ".mpeg", ".rm", ".mkv", ".divx", ".m4p", ".m4a" };
@@ -516,42 +516,42 @@ namespace MediaOnDemand
             string mediaT = "";
             FileInfo[] files;
 
-            musicDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
+            //musicDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
 
-            if (musicDirectory.Exists)
-            {
-                files = musicDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
-                if (files.Length > 0)
-                    mediaT = "music";
-            }
+            //if (musicDirectory.Exists)
+            //{
+            //    files = musicDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
+            //    if (files.Length > 0)
+            //        mediaT = "music";
+            //}
 
-            if (moviesDirectory.Exists)
-            {
-                files = moviesDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
-                if (files.Length > 0)
-                    mediaT = "movie";
-            }
+            //if (moviesDirectory.Exists)
+            //{
+            //    files = moviesDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
+            //    if (files.Length > 0)
+            //        mediaT = "movie";
+            //}
 
-            if (tvDirectory.Exists)
-            {
-                files = tvDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
-                if (files.Length > 0)
-                    mediaT = "tv";
-            }
+            //if (tvDirectory.Exists)
+            //{
+            //    files = tvDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
+            //    if (files.Length > 0)
+            //        mediaT = "tv";
+            //}
 
-            if (musicVideosDirectory.Exists)
-            {
-                files = musicVideosDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
-                if (files.Length > 0)
-                    mediaT = "musicvideo";
-            }
+            //if (musicVideosDirectory.Exists)
+            //{
+            //    files = musicVideosDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
+            //    if (files.Length > 0)
+            //        mediaT = "musicvideo";
+            //}
 
-            if (sportsDirectory.Exists)
-            {
-                files = sportsDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
-                if (files.Length > 0)
-                    mediaT = "sports";
-            }
+            //if (sportsDirectory.Exists)
+            //{
+            //    files = sportsDirectory.GetFiles(file.Name, SearchOption.AllDirectories);
+            //    if (files.Length > 0)
+            //        mediaT = "sports";
+            //}
 
             return mediaT;
         }

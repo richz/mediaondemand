@@ -91,6 +91,8 @@ namespace MediaOnDemand
                 }
             }
 
+            MediaSQLDataSource.SelectCommand += " order by medtitle";
+            
             this.MediaSQLDataSource.DataBind();
         }
 
