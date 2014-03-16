@@ -1,0 +1,1 @@
+sqlcmd -S localhost -i "C:\Projects\MediaOnDemand\Setup Website Files\DEV\Scripts\CreateMediaOnDemandDBDEV.sql" -o CreateMediaOnDemandDBDEV.txt

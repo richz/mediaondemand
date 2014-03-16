@@ -1,0 +1,17 @@
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandDataAccess\bin\Debug\MediaOnDemandDataAccess.dll.config
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandDataAccess\bin\Debug\MediaOnDemandDataAccess.dll
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandDataAccess\bin\Debug\MediaOnDemandDataAccess.pdb
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandDataAccess\obj\Debug\MediaOnDemandDataAccess.csprojResolveAssemblyReference.cache
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandDataAccess\obj\Debug\MediaOnDemandDataAccess.dll
+E:\Projects\Web Development\MediaOnDemand\MediaOnDemandDataAccess\obj\Debug\MediaOnDemandDataAccess.pdb
+C:\Projects\Web Development\MediaOnDemand\MediaOnDemandDataAccess\bin\Debug\MediaOnDemandDataAccess.dll.config
+C:\Projects\Web Development\MediaOnDemand\MediaOnDemandDataAccess\bin\Debug\MediaOnDemandDataAccess.dll
+C:\Projects\Web Development\MediaOnDemand\MediaOnDemandDataAccess\bin\Debug\MediaOnDemandDataAccess.pdb
+C:\Projects\Web Development\MediaOnDemand\MediaOnDemandDataAccess\obj\Debug\MediaOnDemandDataAccess.csprojResolveAssemblyReference.cache
+C:\Projects\Web Development\MediaOnDemand\MediaOnDemandDataAccess\obj\Debug\MediaOnDemandDataAccess.dll
+C:\Projects\Web Development\MediaOnDemand\MediaOnDemandDataAccess\obj\Debug\MediaOnDemandDataAccess.pdb
+C:\Projects\MediaOnDemand\MediaOnDemandDataAccess\bin\Debug\MediaOnDemandDataAccess.dll.config
+C:\Projects\MediaOnDemand\MediaOnDemandDataAccess\bin\Debug\MediaOnDemandDataAccess.dll
+C:\Projects\MediaOnDemand\MediaOnDemandDataAccess\bin\Debug\MediaOnDemandDataAccess.pdb
+C:\Projects\MediaOnDemand\MediaOnDemandDataAccess\obj\Debug\MediaOnDemandDataAccess.dll
+C:\Projects\MediaOnDemand\MediaOnDemandDataAccess\obj\Debug\MediaOnDemandDataAccess.pdb

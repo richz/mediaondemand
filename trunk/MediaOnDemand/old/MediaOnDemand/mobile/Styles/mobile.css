@@ -1,0 +1,98 @@
+﻿body
+{
+    width:95%;
+    font-size:medium;
+    font-family: "Helvetica Neue" , "Lucida Grande" , "Segoe UI" , Arial, Helvetica, Verdana, sans-serif;
+    background-color:#b6b7bc;
+}
+
+#menu
+{
+     width:100%;
+}
+
+#header
+{
+     width:100%;
+     font-size:x-large;
+     margin-left:auto;
+     margin-right:auto;
+     text-align:center;
+     color:White;
+     background-color:#4b6c9e;
+}
+
+#main
+{
+  font-size:x-large;
+  width:100%;   
+  background-color:White;
+   
+}
+
+.MediaList
+{
+    width:100%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#mediaTable
+{
+    width:100%;
+}
+
+#ReturnButton
+{
+     float:right;    
+}
+
+.rating_star
+{
+    font-size: 0pt;
+    width: 13px;
+    height: 12px;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+    display: block;
+    background-repeat: no-repeat;
+}
+.rating_filled
+{
+    background-image: url(../../images/rating/FilledStar.png);
+}
+.rating_empty
+{
+    background-image: url(../../images/rating/EmptyStar.png);
+}
+
+.ratingStar
+{
+    white-space: nowrap;
+    margin: 1em;
+    height: 14px;
+}
+.ratingStar .ratingStarRatingItem
+{
+    font-size: 0pt;
+    width: 13px;
+    height: 12px;
+    margin: 0px;
+    padding: 0px;
+    display: block;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.ratingStar .filledRatingStar
+{
+    background-image: url(images/rating/ratingStarFilled.png);
+}
+.ratingStar .emptyRatingStar
+{
+    background-image: url(images/rating/ratingStarEmpty.png);
+}
+.ratingStar .savedRatingStar
+{
+    background-image: url(images/rating/ratingStarSaved.png);
+}
