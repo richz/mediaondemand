@@ -23,7 +23,7 @@ namespace MediaOnDemand
 
         //Main Folders
         static string networkDrive = "\\\\NETWORKDRIVE\\USB_Storage";
-        static string rootMediaFilesFolder = networkDrive + "\\mediafiles";
+        static string rootMediaFilesFolder = networkDrive + "\\MediaFiles";
         static string videosFolder = rootMediaFilesFolder + "\\videos";
         static string audioFolder = rootMediaFilesFolder + "\\audio";
         static string picturesFolder = rootMediaFilesFolder + "\\pictures";
@@ -413,9 +413,10 @@ namespace MediaOnDemand
         {
             string mediaName = Path.GetFileNameWithoutExtension(file.Name);
             string mediaType = media_Type;
- 
-            //path = file.FullName.Replace(networkDrive, string.Format("http://{0}/mediaondemand", BusinessLogic.GetMachineIPAddress())).Replace("\\", "/");
-            string path = file.FullName.Replace(networkDrive, "http://localhost/mediaondemand").Replace("\\", "/");
+
+            //string path = file.FullName.Replace(networkDrive, string.Format("http://networkdrive.routerlogin.net/shares/USB_Storage")).Replace("\\", "/");
+            string path = file.FullName.Replace(networkDrive, string.Format("http://{0}/mediaondemand", BusinessLogic.GetMachineIPAddress())).Replace("\\", "/");
+            //string path = file.FullName.Replace(networkDrive, "http://localhost/mediaondemand").Replace("\\", "/");
 
             bool recordExists = MediaRecordExists(mediaType, mediaName, path);
 

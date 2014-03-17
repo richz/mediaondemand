@@ -15,3 +15,4 @@ C:\Projects\MediaOnDemand\MediaOnDemandDataAccess\bin\Debug\MediaOnDemandDataAcc
 C:\Projects\MediaOnDemand\MediaOnDemandDataAccess\bin\Debug\MediaOnDemandDataAccess.pdb
 C:\Projects\MediaOnDemand\MediaOnDemandDataAccess\obj\Debug\MediaOnDemandDataAccess.dll
 C:\Projects\MediaOnDemand\MediaOnDemandDataAccess\obj\Debug\MediaOnDemandDataAccess.pdb
+C:\Projects\MediaOnDemand\MediaOnDemandDataAccess\obj\Debug\MediaOnDemandDataAccess.csprojResolveAssemblyReference.cache
